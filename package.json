@@ -1,0 +1,25 @@
+{
+  "name": "npmo-docs",
+  "version": "1.0.0",
+  "description": "documentation for npm On-Site, npm's Enterprise offering",
+  "main": "index.js",
+  "scripts": {
+    "start": "gitbook serve",
+    "build": "gitbook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/npmo-docs.git"
+  },
+  "keywords": ["npm", "enterprise", "docs", "documentation"],
+  "author": "ag_dubs <ashley@npmjs.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npm/npmo-docs/issues"
+  },
+  "homepage": "https://github.com/npm/npmo-docs#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gitbook-cli": "^2.1.1"
+  }
+}
