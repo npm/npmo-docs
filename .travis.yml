@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- 4
+- 5
+script:
+- npm run build
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash
+  deploy.sh
+env:
+  global:
+  - secure: hl/diLd5px32+K33plMZUNdvWpudOdjMw6mkFRRc1X1KzuewqaVW8SnGvoYlkZT67i/qW6z55Wu/LfZUtGvkMov5RvNs8DPeo/MWCOeKHdNok6cv54AQm53m21d6anP7dMEih/+jdXGaJw1nN1TsL/cizwK0SWR1+mVM/xdhnpPFiYXqRrxvTewZKlCNHtUdbLW1XWIiucsPONWsFv0CL5Fo0vquO/ORxQIZlqOv6ZbQPv3cvtOQ/EnIKPhuNUgx7vX3faarjJM6E8J8Tg+kOde72tFjAGAOR5yFWf1UHSUqUgSGjAxuZd5nksqxFndyQyuwV/knq2GqPTf9aUm6I8efg8JTd8jzV/ScgFI8n6pOj7Z8HD3zIl7hxoVpeiZ4QlOdMmKteCHCS++QP2+Dgkr3MiMHkwEdSYk1pHdbV8caHHV7n68Fx9MysueK0uyxG6eWPSstsGjIrTogKehnz5Cu7pZJmfNd5GYlWPyW43Fj8Q5+oJyP0XCDRLWJYXVJ0+ZGljZUbtowLXJnCy58VYK/+2XM3nu3zvBbGS1Mym68Ss/GHldY1lFB6l0bRYp+VxOzUUPCvVFN6YbtsRRfH25Jk4SHh9Au5RVgys9U5esZ/4CfCdj3SCXN8i9xNT2JGMsogKbZQmVYisE6glBFgUQzcg8krIScU1BpNubl7fQ=
