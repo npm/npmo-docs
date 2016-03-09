@@ -17,6 +17,10 @@
   color: white;
 }
 
+.book .book-summary ul.summary li a.gitbook-link {
+  color: #c3c3c3;
+}
+
 .book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a, .book .book-body .page-wrapper .page-inner section.normal a {
   color: #6ea2c9;
 }
