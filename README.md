@@ -1,7 +1,7 @@
 # npmo-docs [![Build Status](https://travis-ci.org/npm/npmo-docs.svg?branch=master)](https://travis-ci.org/npm/npmo-docs)
 > documentation for npm On-Site, npm's Enterprise offering
 
-this is a [Gitbook] project].
+this is a [Gitbook] project.
 
 you can view the docs at [npm.github.io/npmo-docs].
 
