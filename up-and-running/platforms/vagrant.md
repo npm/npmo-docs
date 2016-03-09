@@ -1,3 +1,5 @@
+# Using Vagrant
+
 ## Summary
 
 To get npm On-Site up and running with Vagrant, you first need:
