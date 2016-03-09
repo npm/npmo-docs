@@ -21,6 +21,10 @@
   color: #c3c3c3;
 }
 
-.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a, .book .book-body .page-wrapper .page-inner section.normal a {
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a {
   color: #6ea2c9;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #cb3837;
 }
