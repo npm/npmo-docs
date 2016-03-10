@@ -55,7 +55,7 @@
         data-chapter-title="Using Vagrant"
         data-filepath="up-and-running/platforms/vagrant.md"
         data-basepath="../.."
-        data-revision="Thu Mar 10 2016 14:42:38 GMT+0000 (UTC)"
+        data-revision="Thu Mar 10 2016 21:24:22 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -264,6 +264,42 @@
 </ol>
 <p>Let&apos;s get started!</p>
 <h2 id="step-1-install-npm-onsite">Step 1: Install npm On-Site</h2>
+<p>This <code>Vagrantfile</code> does several things:</p>
+<ul>
+<li>updates <code>apt-get</code></li>
+<li>installs <code>curl</code> via <code>apt-get</code></li>
+<li>installs Node.js, via [NodeSource]</li>
+<li>updates npm</li>
+<li>displays Node.js and npm versions</li>
+<li>installs <code>npmo</code> globally as the root user, via npm</li>
+</ul>
+<p>Additionally, it forwards the following ports:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Administrator Panel</td>
+<td>8800</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>Website</td>
+<td>8081</td>
+</tr>
+<tr>
+<td>Authentication Endpoints</td>
+<td>8082</td>
+</tr>
+</tbody>
+</table>
 
                     
                     </section>
