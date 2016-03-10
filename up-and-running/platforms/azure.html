@@ -55,7 +55,7 @@
         data-chapter-title="Using Microsoft Azure"
         data-filepath="up-and-running/platforms/azure.md"
         data-basepath="../.."
-        data-revision="Wed Mar 09 2016 23:16:01 GMT+0000 (UTC)"
+        data-revision="Thu Mar 10 2016 04:05:49 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -265,8 +265,69 @@
 </ol>
 <p>Let&apos;s get started!</p>
 <h2 id="step-1-get-a-vm-up-and-running">Step 1: Get a VM Up and Running</h2>
+<p>The first step is to get a VM running. Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for getting
+an Ubuntu 14.04 LTS VM running.</p>
+<p>While setting this up, make sure to:</p>
+<ul>
+<li>Pick a size that has <em>at least</em> 7 GB of RAM. <strong>We strongly recommend 14 GB.</strong></li>
+<li>Take note of the name of the Security Group you assign. We&apos;ll need to edit it
+in Step 3.</li>
+</ul>
+<p>Feel free to make any other configurations you wish. Once you are set, deploy
+your VM and move on to Step 2!</p>
 <h2 id="step-2-install-npm-onsite">Step 2: Install npm On-Site</h2>
+<p>Now that you have a VM deployed, let&apos;s install the npm On-Site (<code>npmo</code>) tool.</p>
+<ol>
+<li>SSH into your VM</li>
+<li><code>curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh</code></li>
+<li><p>Let it run! It can take a minute or two, depending on the specs of your VM.</p>
+<p>This script:</p>
+<ul>
+<li>updates <code>apt-get</code></li>
+<li>installs <code>curl</code> via <code>apt-get</code></li>
+<li>installs Node.js, via [NodeSource]</li>
+<li>updates npm</li>
+<li>displays Node.js and npm versions</li>
+<li>installs <code>npmo</code> globally as the root user, via npm</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>To confirm that it worked, type <code>npmo</code>. If the install succeeded you should see the
+<code>npmo help</code> screen, which looks like this:</p>
+<p><img src="../../gitbook/images/npmo-help.png" alt="npmo help in terminal"></p>
+</li>
+</ol>
 <h2 id="step-3-set-up-endpoints">Step 3: Set up Endpoints</h2>
+<p>There are now 4 web services running on 4 ports on your VM. In order to access these
+outside of the VM, we&apos;ll need to create rules to allow them to be accessed. The ports
+we need to configure are:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Administrator Panel</td>
+<td>8800</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>Website</td>
+<td>8081</td>
+</tr>
+<tr>
+<td>Authentication Endpoints</td>
+<td>8082</td>
+</tr>
+</tbody>
+</table>
 
                     
                     </section>
