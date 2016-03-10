@@ -20,7 +20,23 @@ Let's get started!
 
 ## Step 2: Install npm On-Site
 
+This script:
+
+  - updates `apt-get`
+  - installs `curl` via `apt-get`
+  - installs Node.js, via [NodeSource]
+  - updates npm
+  - displays Node.js and npm versions
+  - installs `npmo` globally as the root user, via npm
+
 ## Step 3: Forward VM Ports
+
+| Service                   | Port  |
+|-------------------------- |------ |
+| Administrator Panel       | 8800  |
+| Registry                  | 8080  |
+| Website                   | 8081  |
+| Authentication Endpoints  | 8082  |
 
 [npm user account]: https://www.npmjs.com/signup
 [free trial]: https://www.npmjs.com/on-site#free-trial
