@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Using Microsoft Azure | npm On-Site</title>
+        <title>Open Authentication | npm On-Site</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="../../up-and-running/auth/index.html" />
+    <link rel="next" href="../../up-and-running/customization.html" />
     
     
-    <link rel="prev" href="../../up-and-running/platforms/aws.html" />
+    <link rel="prev" href="../../up-and-running/auth/github.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="1.3.4"
-        data-chapter-title="Using Microsoft Azure"
-        data-filepath="up-and-running/platforms/azure.md"
+        data-level="1.4.2"
+        data-chapter-title="Open Authentication"
+        data-filepath="up-and-running/auth/open.md"
         data-basepath="../.."
         data-revision="Mon Mar 14 2016 17:38:35 GMT+0000 (UTC)"
         data-innerlanguage="">
@@ -191,7 +191,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.4" data-path="up-and-running/platforms/azure.html">
+        <li class="chapter " data-level="1.3.4" data-path="up-and-running/platforms/azure.html">
             
                 
                     <a href="../../up-and-running/platforms/azure.html">
@@ -242,7 +242,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="up-and-running/auth/open.html">
+        <li class="chapter active" data-level="1.4.2" data-path="up-and-running/auth/open.html">
             
                 
                     <a href="../../up-and-running/auth/open.html">
@@ -469,85 +469,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="using-microsoft-azure">Using Microsoft Azure</h1>
-<h2 id="summary">Summary</h2>
-<p>To get npm On-Site up and running on Microsoft Azure, you first need:</p>
-<ul>
-<li>An <a href="https://www.npmjs.com/signup" target="_blank">npm user account</a></li>
-<li>An npm On-Site license. Get a <a href="https://www.npmjs.com/on-site#free-trial" target="_blank">free trial</a> here!</li>
-<li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a></li>
-</ul>
-<p>...then we&apos;ll need to:</p>
-<ol>
-<li>Set up and deploy an Ubuntu 14.04 LTS VM</li>
-<li>Run the npmO deploy script</li>
-<li>Set up endpoints for the admin panel, registry, and website</li>
-</ol>
-<p>Let&apos;s get started!</p>
-<h2 id="step-1-get-a-vm-up-and-running">Step 1: Get a VM Up and Running</h2>
-<p>The first step is to get a VM running. Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for getting
-an Ubuntu 14.04 LTS VM running.</p>
-<p>While setting this up, make sure to:</p>
-<ul>
-<li>Pick a size that has <em>at least</em> 7 GB of RAM. <strong>We strongly recommend 14 GB.</strong></li>
-<li>Take note of the name of the Security Group you assign. We&apos;ll need to edit it
-in Step 3.</li>
-</ul>
-<p>Feel free to make any other configurations you wish. Once you are set, deploy
-your VM and move on to Step 2!</p>
-<h2 id="step-2-install-npm-onsite">Step 2: Install npm On-Site</h2>
-<p>Now that you have a VM deployed, let&apos;s install the npm On-Site (<code>npmo</code>) tool.</p>
-<ol>
-<li>SSH into your VM</li>
-<li><code>curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh</code></li>
-<li><p>Let it run! It can take a minute or two, depending on the specs of your VM.</p>
-<p>This script:</p>
-<ul>
-<li>updates <code>apt-get</code></li>
-<li>installs <code>curl</code> via <code>apt-get</code></li>
-<li>installs Node.js, via [NodeSource]</li>
-<li>updates npm</li>
-<li>displays Node.js and npm versions</li>
-<li>installs <code>npmo</code> globally as the root user, via npm</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p>To confirm that it worked, type <code>npmo</code>. If the install succeeded you should see the
-<code>npmo help</code> screen, which looks like this:</p>
-<p><img src="../../gitbook/images/npmo-help.png" alt="npmo help in terminal"></p>
-</li>
-</ol>
-<h2 id="step-3-set-up-endpoints">Step 3: Set up Endpoints</h2>
-<p>There are now 4 web services running on 4 ports on your VM. In order to access these
-outside of the VM, we&apos;ll need to create rules to allow them to be accessed. The ports
-we need to configure are:</p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Administrator Panel</td>
-<td>8800</td>
-</tr>
-<tr>
-<td>Registry</td>
-<td>8080</td>
-</tr>
-<tr>
-<td>Website</td>
-<td>8081</td>
-</tr>
-<tr>
-<td>Authentication Endpoints</td>
-<td>8082</td>
-</tr>
-</tbody>
-</table>
+                        <h1 id="open-authentication">Open Authentication</h1>
 
                     
                     </section>
@@ -558,10 +480,10 @@ we need to configure are:</p>
         </div>
 
         
-        <a href="../../up-and-running/platforms/aws.html" class="navigation navigation-prev " aria-label="Previous page: Using AWS"><i class="fa fa-angle-left"></i></a>
+        <a href="../../up-and-running/auth/github.html" class="navigation navigation-prev " aria-label="Previous page: Github Enterprise Integration"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../up-and-running/auth/index.html" class="navigation navigation-next " aria-label="Next page: Authentication"><i class="fa fa-angle-right"></i></a>
+        <a href="../../up-and-running/customization.html" class="navigation navigation-next " aria-label="Next page: Customizating Server Configuration"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
