@@ -28,10 +28,10 @@ Don't see your favorite? Request a tutorial by messaging [support@npmjs.com]
 [Node.js]: http://www.nodejs.org
 [npm]: http://www.npm.com
 [npm OnSite]: https://www.npmjs.com/npm/on-site
-[VMWare]: up-and-running/vmware.html
-[Microsoft Azure]: up-and-running/azure.html
-[Vagrant]: up-and-running/vagrant.html
-[Vagrant tutorial]: up-and-running/vagrant.html
-[AWS]: up-and-running/aws.html
+[VMWare]: vmware.html
+[Microsoft Azure]: azure.html
+[Vagrant]: vagrant.html
+[Vagrant tutorial]: vagrant.html
+[AWS]: aws.html
 [support@npmjs.com]: mailto:support@npmjs.com
 [NodeSource]: https://github.com/nodesource/distributions
