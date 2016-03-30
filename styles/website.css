@@ -2,6 +2,36 @@
   background-color: #2a333c;
 }
 
+/* no color theme = White */
+.book .book-summary .book-search {
+  color: white;
+}
+
+.book .book-summary .book-search ::-webkit-input-placeholder { color: #6ea2c9; }
+.book .book-summary .book-search :-moz-placeholder { color: #6ea2c9; }
+.book .book-summary .book-search ::-moz-placeholder { color: #6ea2c9; }
+.book .book-summary .book-search :-ms-input-placeholder { color: #6ea2c9; }
+
+/* color-theme-1 = Sepia */
+.book.color-theme-1 .book-summary .book-search {
+  color: #877f6a;
+}
+
+.book.color-theme-1 .book-summary .book-search ::-webkit-input-placeholder { color: #704214; }
+.book.color-theme-1 .book-summary .book-search :-moz-placeholder { color: #704214; }
+.book.color-theme-1 .book-summary .book-search ::-moz-placeholder { color: #704214; }
+.book.color-theme-1 .book-summary .book-search :-ms-input-placeholder { color: #704214; }
+
+/* color-theme-2 = Night */
+.book.color-theme-2 .book-summary .book-search {
+  color: #c1c6d7;
+}
+
+.book.color-theme-2 .book-summary .book-search ::-webkit-input-placeholder { color: #f4f4f5; }
+.book.color-theme-2 .book-summary .book-search :-moz-placeholder { color: #f4f4f5; }
+.book.color-theme-2 .book-summary .book-search ::-moz-placeholder { color: #f4f4f5; }
+.book.color-theme-2 .book-summary .book-search :-ms-input-placeholder { color: #f4f4f5; }
+
 .book .book-summary ul.summary:before {
   content: '';
   background-image: url('../gitbook/images/npm-logo.svg');
