@@ -55,7 +55,7 @@
         data-chapter-title="Configuring the CLI client"
         data-filepath="cli/configuration.md"
         data-basepath=".."
-        data-revision="Mon Mar 14 2016 20:08:24 GMT+0000 (UTC)"
+        data-revision="Thu Apr 07 2016 17:45:48 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -478,6 +478,55 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="configuring-the-cli-client">Configuring the CLI client</h1>
+<p>The client you use to interact with your npm On-Site server is the same client
+that you use with the public npm registry.</p>
+<h2 id="install-the-latest-npm-client">Install the latest npm client</h2>
+<p>npm On-Site requires a 2.x or newer version of the npm client. You can get this
+by running:</p>
+<pre><code>[sudo] npm install npm -g
+</code></pre><p><a name="pointing-your-client-to-the-registry"></a></p>
+<h2 id="pointing-your-client-to-the-onsite-registry">Pointing your client to the On-Site registry</h2>
+<p>Once you have an up-to-date client, you can configure it to install from and
+publish to your private npm On-Site registry.</p>
+<p>You can do this in one of two ways:</p>
+<ol>
+<li><a href="#using-your-private-registry-for-all-packages">Using On-Site for private <em>and public</em> packages</a></li>
+<li><a href="#using-your-private-registry-for-your-scoped-packages">Using On-Site for private packages only</a></li>
+</ol>
+<p>Read about each option below.</p>
+<p><a name="using-your-private-registry-for-all-packages"></a></p>
+<h3 id="option-1-using-onsite-for-private-and-public-packages">Option 1: Using On-Site for private and public packages</h3>
+<p>If you want all packages, whether they are under a scope or not, to be stored in
+your private registry, then you should configure the npm client to use your
+private npm On-Site appliance as the top level registry.</p>
+<p>To do this, first set your On-Site registry as the CLI&apos;s default registry:</p>
+<pre><code>npm config set registry http://myreg.mycompany.com:8080
+</code></pre><p>And then authenticate against your registry without a scope:</p>
+<pre><code>npm login --registry=http://myreg.mycompany.com:8080
+</code></pre><p>When clients are configured this way, they will always use your private npm
+On-Site registry as their main registry. When using <code>npm install</code>, it will only
+look in the private registry to find the package.</p>
+<p>To make sure your On-Site instance supports this functionality, you should
+enable the &quot;Read Through Cache&quot; setting (enabled by default) in the server&apos;s
+admin console (<code>https://myreg.mycompany.com:8800/settings</code>) so that public
+packages are automatically mirrored from the public registry and automatically
+added to your registry&apos;s whitelist.</p>
+<p><a name="using-your-private-registry-for-your-scoped-packages"></a></p>
+<h3 id="option-2-using-onsite-for-private-packages-only">Option 2: Using On-Site for private packages only</h3>
+<p>If you want to default to using the public npm registry for most packages and
+only use your private registry for packages under a particular scope, then you
+can specify that the registry should only be used for that scope.</p>
+<p>To do so, use <code>npm login</code> with a registry and scope:</p>
+<pre><code>npm login --registry=http://myreg.mycompany.com:8080 --scope=@myco
+</code></pre><h2 id="logging-in">Logging in</h2>
+<p>The <code>npm login</code> command will prompt you for your credentials. The credentials
+you use should match the authentication strategy configured in the Settings of
+your instance&apos;s admin console (<code>https://myreg.mycompany.com:8800/settings</code>).
+<strong>By default, these will be your GitHub or GitHub Enterprise credentials.</strong></p>
+<p>For details on GitHub Enterprise integration, please see
+<a href="enterprise/github">this page</a>.</p>
+<p>For details on configuring custom authentication, please see
+<a href="enterprise/custom-authentication">this page</a>.</p>
 
                     
                     </section>
