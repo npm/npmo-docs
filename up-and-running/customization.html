@@ -55,7 +55,7 @@
         data-chapter-title="Customizating Server Configuration"
         data-filepath="up-and-running/customization.md"
         data-basepath=".."
-        data-revision="Thu Apr 07 2016 17:45:55 GMT+0000 (UTC)"
+        data-revision="Thu Apr 07 2016 17:55:53 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -478,6 +478,23 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="customizating-server-configuration">Customizating Server Configuration</h1>
+<p>You can customize the server&apos;s configuration by visiting npm
+On-Site&apos;s admin console (<em><a href="http://myreg.mycompany.com:8800" target="_blank">http://myreg.mycompany.com:8800</a></em>).</p>
+<h2 id="authentication">Authentication</h2>
+<p>Authentication method.</p>
+<p>Possible values: <a href="enterprise/github"><code>&quot;GitHub&quot;</code></a>, <a href="enterprise/no-authentication"><code>&quot;Open&quot;</code></a>, &quot;LDAP&quot;</p>
+<h2 id="upstream-registry">Upstream registry</h2>
+<p>Configure npm On-Site to replicate from an upstream registry.
+This can be useful for creating backups.</p>
+<h2 id="storage">Storage</h2>
+<p>Configure where npm On-Sites persistent data is stored. You may, for instance, want to store to an NFS drive that you regularly back up.</p>
+<h2 id="proxy-url">Proxy URL</h2>
+<p>Allows npm On-Site to be configured with a corporate proxy.</p>
+<h2 id="npm-onsite-registry-url">npm On-Site registry URL</h2>
+<p>Specify an alternative package URL to store in the database, rather than
+the IP that npm On-Site auto-detects. This is useful if you wish
+to place an HTTPs load-balancer in front of npm On-Site, for example:</p>
+<p><a href="https://gist.github.com/bcoe/c073859d060b802b15aa" target="_blank">using nginx for SSL termination</a></p>
 
                     
                     </section>
