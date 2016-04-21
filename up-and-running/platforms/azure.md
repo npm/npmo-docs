@@ -2,10 +2,10 @@
 
 ## Summary
 
-To get npm On-Site up and running on Microsoft Azure, you first need:
+To get npm Enterprise up and running on Microsoft Azure, you first need:
 
 - An [npm user account]
-- An npm On-Site license. Get a [free trial] here!
+- An npm Enterprise license. Get a [free trial] here!
 - A [Microsoft account] and an [Azure account]
 
 ...then we'll need to:
@@ -30,9 +30,9 @@ While setting this up, make sure to:
 Feel free to make any other configurations you wish. Once you are set, deploy
 your VM and move on to Step 2!
 
-## Step 2: Install npm On-Site
+## Step 2: Install npm Enterprise
 
-Now that you have a VM deployed, let's install the npm On-Site (`npmo`) tool.
+Now that you have a VM deployed, let's install the npm Enterprise (`npmo`) tool.
 
 1. SSH into your VM
 2. `curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh`
@@ -67,7 +67,7 @@ we need to configure are:
 | Authentication Endpoints  | 8082  |
 
 [npm user account]: https://www.npmjs.com/signup
-[free trial]: https://www.npmjs.com/on-site#free-trial
+[free trial]: https://www.npmjs.com/enterprise#free-trial
 [Microsoft account]: https://signup.live.com/signup
 [Azure account]: https://azure.microsoft.com/free/
 [Microsoft Azure portal]: https://portal.azure.com/

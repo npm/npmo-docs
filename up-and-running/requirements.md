@@ -1,6 +1,6 @@
 # Requirements
 
-To install the latest version of npm On-Site, you need a server fulfilling these basic specs:
+To install the latest version of npm Enterprise, you need a server fulfilling these basic specs:
 
 - 64-bit architecture
 - Kernel version 3.10 or higher
@@ -24,7 +24,7 @@ If using Amazon Web Services, see [note on AWS](#note-aws) below.
 <a name="note-platforms"></a>
 ## Note on Supported Platforms
 
-We have tested extensively on the operating systems listed above. It may be possible to run npm On-Site on other systems, but, at this time, no other systems are officially supported.
+We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.
 
 We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We'd love to work with you.
 
@@ -39,16 +39,16 @@ For example, the full public registry hosts at least 200,000 packages with an av
 
 Therefore, a server with 50 - 100 GB is a good choice for most registries.
 
-Please reserve at least 6 GB for OS resources and npm On-Site appliance containers.
+Please reserve at least 6 GB for OS resources and npm Enterprise appliance containers.
 
-Once installed, you can configure where registry data is stored on your server via the "Storage" paths on the "Settings" page of the admin web console (port 8800). For details on configuring your On-Site instance, please see [this page](/enterprise/server-configuration).
+Once installed, you can configure where registry data is stored on your server via the "Storage" paths on the "Settings" page of the admin web console (port 8800). For details on configuring your Enterprise instance, please see [this page](/enterprise/server-configuration).
 
 <a name="note-aws"></a>
 ## Note on AWS
 
 We recommend using an <a href="https://aws.amazon.com/ec2/instance-types/#M3" target="_blank">m3.large</a> instance type.
 
-If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the "Storage" paths on your On-Site appliance to use directories under the mount point.
+If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the "Storage" paths on your Enterprise appliance to use directories under the mount point.
 
 To open ports on your AWS EC2 instance, you can define a Security Group with the following Inbound settings:
 

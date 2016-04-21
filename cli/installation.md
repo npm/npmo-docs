@@ -1,12 +1,12 @@
 # Installing the npm CLI
 
-## npm works with npm On-Site
+## npm works with npm Enterprise
 
-npm On-Site is a program called `npmo` that runs on a server or VM
+npm Enterprise is a program called `npmo` that runs on a server or VM
 and is configured and maintainer by the IT or Ops department at your 
 company. 
 
-In order for you and your development teams to use your npm On-Site
+In order for you and your development teams to use your npm Enterprise
 instance, you'll need to install the npm Command Line Interface (CLI),
 `npm`.
 

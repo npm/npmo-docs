@@ -1,1 +1,1 @@
-# npmO Workflow
+# npmo Workflow
