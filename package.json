@@ -1,7 +1,7 @@
 {
   "name": "npmo-docs",
   "version": "1.0.0",
-  "description": "documentation for npm On-Site, npm's Enterprise offering",
+  "description": "documentation for npm Enterprise, npm's Enterprise offering",
   "main": "index.js",
   "scripts": {
     "start": "gitbook serve",
