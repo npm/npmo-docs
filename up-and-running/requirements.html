@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Requirements | npm On-Site</title>
+        <title>Requirements | npm Enterprise</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -55,7 +55,7 @@
         data-chapter-title="Requirements"
         data-filepath="up-and-running/requirements.md"
         data-basepath=".."
-        data-revision="Tue May 03 2016 15:36:30 GMT+0000 (UTC)"
+        data-revision="Tue May 03 2016 15:38:32 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -467,7 +467,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >npm On-Site</a>
+        <a href="../" >npm Enterprise</a>
     </h1>
 </div>
 
@@ -478,7 +478,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="requirements">Requirements</h1>
-<p>To install the latest version of npm On-Site, you need a server fulfilling these basic specs:</p>
+<p>To install the latest version of npm Enterprise, you need a server fulfilling these basic specs:</p>
 <ul>
 <li>64-bit architecture</li>
 <li>Kernel version 3.10 or higher</li>
@@ -504,7 +504,7 @@
 <p>If using Amazon Web Services, see <a href="#note-aws">note on AWS</a> below.</p>
 <p><a name="note-platforms"></a></p>
 <h2 id="note-on-supported-platforms">Note on Supported Platforms</h2>
-<p>We have tested extensively on the operating systems listed above. It may be possible to run npm On-Site on other systems, but, at this time, no other systems are officially supported.</p>
+<p>We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.</p>
 <p>We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We&apos;d love to work with you.</p>
 <p>You can also check for system issues on the <a href="https://github.com/npm/npmo-installer/issues" target="_blank">npmo-installer GitHub repo</a>.</p>
 <p><a name="note-space"></a></p>
@@ -512,12 +512,12 @@
 <p>The amount of disk space needed is directly proportional to the number and size of packages your registry will need to host.</p>
 <p>For example, the full public registry hosts at least 200,000 packages with an average of 6 versions each, and this requires at least half a terabyte of storage. Smaller registries, however, can get away with just a few gigabytes.</p>
 <p>Therefore, a server with 50 - 100 GB is a good choice for most registries.</p>
-<p>Please reserve at least 6 GB for OS resources and npm On-Site appliance containers.</p>
-<p>Once installed, you can configure where registry data is stored on your server via the &quot;Storage&quot; paths on the &quot;Settings&quot; page of the admin web console (port 8800). For details on configuring your On-Site instance, please see <a href="enterprise/server-configuration">this page</a>.</p>
+<p>Please reserve at least 6 GB for OS resources and npm Enterprise appliance containers.</p>
+<p>Once installed, you can configure where registry data is stored on your server via the &quot;Storage&quot; paths on the &quot;Settings&quot; page of the admin web console (port 8800). For details on configuring your Enterprise instance, please see <a href="enterprise/server-configuration">this page</a>.</p>
 <p><a name="note-aws"></a></p>
 <h2 id="note-on-aws">Note on AWS</h2>
 <p>We recommend using an <a href="https://aws.amazon.com/ec2/instance-types/#M3" target="_blank">m3.large</a> instance type.</p>
-<p>If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the &quot;Storage&quot; paths on your On-Site appliance to use directories under the mount point.</p>
+<p>If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the &quot;Storage&quot; paths on your Enterprise appliance to use directories under the mount point.</p>
 <p>To open ports on your AWS EC2 instance, you can define a Security Group with the following Inbound settings:</p>
 <p><img src="../images/aws-security-group.png" alt="AWS Security Group"></p>
 

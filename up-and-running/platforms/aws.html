@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Using AWS | npm On-Site</title>
+        <title>Using AWS | npm Enterprise</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -55,7 +55,7 @@
         data-chapter-title="Using AWS"
         data-filepath="up-and-running/platforms/aws.md"
         data-basepath="../.."
-        data-revision="Tue May 03 2016 15:36:30 GMT+0000 (UTC)"
+        data-revision="Tue May 03 2016 15:38:32 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -467,7 +467,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >npm On-Site</a>
+        <a href="../../" >npm Enterprise</a>
     </h1>
 </div>
 
@@ -477,22 +477,22 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="running-npm-onsite-in-aws">Running npm On-Site in AWS</h1>
-<p><a href="https://www.npmjs.com/npm/on-site" target="_blank">npm On-Site</a> allows you to run your own private npm registry and website behind the firewall, and it&#x2019;s designed to run on several different infrastructures. One of the easiest ways to run it, which we test extensively, is using Amazon Web Services.</p>
+                        <h1 id="running-npm-enterprise-in-aws">Running npm Enterprise in AWS</h1>
+<p><a href="https://www.npmjs.com/npm/enterprise" target="_blank">npm Enterprise</a> allows you to run your own private npm registry and website behind the firewall, and it&#x2019;s designed to run on several different infrastructures. One of the easiest ways to run it, which we test extensively, is using Amazon Web Services.</p>
 <p>In this article, we&#x2019;ll show you exactly how to set this up.</p>
 <p>Here&#x2019;s the general idea:</p>
 <ol>
 <li><a href="#define-a-security-group">Define a Security Group</a></li>
 <li><a href="#launch-an-ec2-instance">Launch an EC2 instance</a></li>
 <li><a href="#format-and-mount-an-attached-ebs-volume">Format and mount an attached EBS volume</a></li>
-<li><a href="#install-and-configure-npm-on-site">Install and configure npm On-Site</a></li>
+<li><a href="#install-and-configure-npm-enterprise">Install and configure npm Enterprise</a></li>
 <li><a href="#use-your-private-registry">Use your private registry</a></li>
 </ol>
 <p>That&#x2019;s all it takes to get up and running!</p>
 <p>Let&#x2019;s start by logging into the <a href="https://console.aws.amazon.com/console/home" target="_blank">AWS Console</a>. From there, click on &#x201C;EC2&#x201D; in the top left to access the EC2 Dashboard.</p>
 <p><a name="define-a-security-group"></a></p>
 <h2 id="1-define-a-security-group">1. Define a Security Group</h2>
-<p>In AWS, a private virtual server is called an &#x201C;EC2 instance.&#x201D; We&#x2019;ll need to create, or &#x201C;launch,&#x201D; an instance that can run npm On-Site. <em>Before</em> we can launch an instance, though, we&#x2019;ll need a &#x201C;security group&#x201D; to allow inbound TCP communication on the ports on which npm On-Site services listen. An AWS security group is a set of rules defining what type of network traffic is allowed for an EC2 instance.</p>
+<p>In AWS, a private virtual server is called an &#x201C;EC2 instance.&#x201D; We&#x2019;ll need to create, or &#x201C;launch,&#x201D; an instance that can run npm Enterprise. <em>Before</em> we can launch an instance, though, we&#x2019;ll need a &#x201C;security group&#x201D; to allow inbound TCP communication on the ports on which npm Enterprise services listen. An AWS security group is a set of rules defining what type of network traffic is allowed for an EC2 instance.</p>
 <p>To create a security group, click &#x201C;Security Groups&#x201D; under &#x201C;Network &amp; Security&#x201D; in the vertical navigation bar on the left, then click the blue &#x201C;Create Security Group&#x201D; button near the top.</p>
 <p><img src="../../images/npmo-aws1.png" alt="Security Group List"></p>
 <p>The ports needed for inbound traffic include:</p>
@@ -511,13 +511,13 @@
 <p>Click on &#x201C;Instances&#x201D; under &#x201C;Instances&#x201D; in the left navigation panel, then click the blue &#x201C;Launch Instance&#x201D; button.</p>
 <p><img src="../../images/npmo-aws3.png" alt="Instance List"></p>
 <p>This starts the multi-step instance wizard.</p>
-<p>Our first step is to select a base Amazon Machine Image (or AMI) as a starting point. npm On-Site supports Ubuntu 14+, CentOS 7, and RHEL 7. For this walkthrough, let&#x2019;s assume CentOS 7. You can use the top <code>centos 7</code> search result in the &#x201C;AWS Marketplace.&#x201D; Just make sure it&#x2019;s 64-bit. Click the blue &#x201C;Select&#x201D; button.</p>
+<p>Our first step is to select a base Amazon Machine Image (or AMI) as a starting point. npm Enterprise supports Ubuntu 14+, CentOS 7, and RHEL 7. For this walkthrough, let&#x2019;s assume CentOS 7. You can use the top <code>centos 7</code> search result in the &#x201C;AWS Marketplace.&#x201D; Just make sure it&#x2019;s 64-bit. Click the blue &#x201C;Select&#x201D; button.</p>
 <p><img src="../../images/npmo-aws4.png" alt="Launch Step 1"></p>
 <p>The next step is choosing an instance type. This determines how many resources your server will be allocated. We recommend using an <code>m3.large</code>. Select the radio button in the first column of the table, then click &#x201C;Next: Configure Instance Details&#x201D; on the bottom right.</p>
 <p><img src="../../images/npmo-aws5.png" alt="Launch Step 2"></p>
 <p>Go with default instance details, then click &#x201C;Next: Add Storage&#x201D; on the bottom right.</p>
 <p><img src="../../images/npmo-aws6.png" alt="Launch Step 3"></p>
-<p>The next step is to configure storage volumes for your instance. We recommend adding an EBS volume that has at least 50 GB. We&#x2019;ll use this volume to store the data for our npm On-Site registry, and using EBS will make it easy to create snapshots of your package data for backup or transfer purposes.</p>
+<p>The next step is to configure storage volumes for your instance. We recommend adding an EBS volume that has at least 50 GB. We&#x2019;ll use this volume to store the data for our npm Enterprise registry, and using EBS will make it easy to create snapshots of your package data for backup or transfer purposes.</p>
 <p>Click &#x201C;Add New Volume&#x201D; button, select &#x201C;EBS&#x201D; as the &#x201C;Volume Type,&#x201D; and enter your desired amount of storage in &#x201C;Size.&#x201D; Then click the &#x201C;Next: Tag Instance&#x201D; button on the bottom right.</p>
 <p><img src="../../images/npmo-aws7.png" alt="Launch Step 4"></p>
 <p>Give your instance a name and click &#x201C;Next: Configure Security Group.&#x201D;</p>
@@ -615,9 +615,9 @@ sudo vi /etc/fstab
 <pre><code class="lang-sh">$ sudo chown -R $(whoami):$(id -gn) /data
 $ mkdir /data/npmo
 </code></pre>
-<p>Our EBS volume is now ready to go, and we can install Node.js and npm On-Site!</p>
-<p><a name="install-and-configure-npm-on-site"></a></p>
-<h2 id="4-install-and-configure-npm-onsite">4. Install and configure npm On-Site</h2>
+<p>Our EBS volume is now ready to go, and we can install Node.js and npm Enterprise!</p>
+<p><a name="install-and-configure-npm-enterprise"></a></p>
+<h2 id="4-install-and-configure-npm-enterprise">4. Install and configure npm Enterprise</h2>
 <p>In this step, the walkthrough will follow our documentation&#x2019;s <a href="enterprise/installation">standard installation</a>, but we&#x2019;ll hit the highlights here.</p>
 <p>First, install Node.js and update npm. Note that this command is specific to CentOS or RHEL:</p>
 <pre><code class="lang-sh">$ curl <span class="hljs-operator">-s</span>L https://rpm.nodesource.com/setup_4.x | sudo -E bash -
@@ -627,7 +627,7 @@ $ sudo npm install npm@latest -g
 <p>Next, install <code>npmo</code> and answer any prompts:</p>
 <pre><code class="lang-sh">$ sudo npm install npmo -g --unsafe
 </code></pre>
-<p>Once that&#x2019;s done, complete the installation by configuring your On-Site instance via the admin web console at <code>https://&lt;your-server&gt;:8800</code>. At this point we&#x2019;ll defer to the <a href="enterprise/installation#3-configure-your-installation-via-the-admin-web-console">installation doc</a>, with the exception that we should configure storage settings to use our mounted EBS volume.</p>
+<p>Once that&#x2019;s done, complete the installation by configuring your Enterprise instance via the admin web console at <code>https://&lt;your-server&gt;:8800</code>. At this point we&#x2019;ll defer to the <a href="enterprise/installation#3-configure-your-installation-via-the-admin-web-console">installation doc</a>, with the exception that we should configure storage settings to use our mounted EBS volume.</p>
 <p>When you reach the Settings page, find the &#x201C;Storage&#x201D; section and change the <code>/usr/local/lib/npme</code> path prefix to <code>/data/npmo</code> for all configured paths:</p>
 <p><img src="../../images/npmo-aws13.png" alt="Storage Settings"></p>
 <p>For testing purposes, you may want to select &#x201C;Open&#x201D; as the &#x201C;Authentication&#x201D; option.</p>
@@ -640,7 +640,7 @@ $ sudo npm install npm@latest -g
 <p>Authenticate with your registry and associate the registry to a <em>scope</em> name. (The <em>scope</em> is a namespace or prefix that you&#x2019;ll use for your private packages.)</p>
 <pre><code class="lang-sh">$ npm login --registry http://&lt;your-server&gt;:<span class="hljs-number">8080</span> --scope @demo
 </code></pre>
-<p>Now, whenever npm sees the <code>@demo</code> scope in a package name &#x2014; like <code>@demo/test-pkg</code> &#x2014; it automatically will publish to and install from the private npm On-Site registry you&#x2019;ve configured.</p>
+<p>Now, whenever npm sees the <code>@demo</code> scope in a package name &#x2014; like <code>@demo/test-pkg</code> &#x2014; it automatically will publish to and install from the private npm Enterprise registry you&#x2019;ve configured.</p>
 <p>To quickly verify this, let&#x2019;s create a tiny module and publish it as a private package:</p>
 <pre><code class="lang-sh">$ mkdir <span class="hljs-built_in">test</span>-pkg
 $ <span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>-pkg
@@ -660,7 +660,7 @@ $ node <span class="hljs-operator">-e</span> <span class="hljs-string">&quot;con
 <p>As you can see, your package was downloaded to a local <code>node_modules</code> directory, allowing you to <code>require()</code> and use it.</p>
 <h2 id="wrapup">Wrap-up</h2>
 <p>That&#x2019;s it!</p>
-<p>With luck, this has demonstrated how easy it is to run your own private registry with npm On-Site and AWS.</p>
+<p>With luck, this has demonstrated how easy it is to run your own private registry with npm Enterprise and AWS.</p>
 <p>What&#x2019;s next? For more advanced topics or questions, check out the rest of <a href="enterprise/index">our docs</a>. Also, don&#x2019;t hesitate to drop us a line at support@npmjs.com.</p>
 <p>Happy publishing!</p>
 
