@@ -1,0 +1,713 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Using AWS | npm On-Site</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../up-and-running/platforms/azure.html" />
+    
+    
+    <link rel="prev" href="../../up-and-running/platforms/vmware.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="1.3.3"
+        data-chapter-title="Using AWS"
+        data-filepath="up-and-running/platforms/aws.md"
+        data-basepath="../.."
+        data-revision="Tue May 03 2016 15:36:06 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="up-and-running/index.html">
+            
+                
+                    <a href="../../up-and-running/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Up and Running
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="up-and-running/requirements.html">
+            
+                
+                    <a href="../../up-and-running/requirements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Requirements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="up-and-running/deploy-scripts.html">
+            
+                
+                    <a href="../../up-and-running/deploy-scripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        OS-Specific Deploy Scripts
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="up-and-running/platforms/index.html">
+            
+                
+                    <a href="../../up-and-running/platforms/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Integrated Platform Tutorials
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="up-and-running/platforms/vagrant.html">
+            
+                
+                    <a href="../../up-and-running/platforms/vagrant.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        Using Vagrant
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="up-and-running/platforms/vmware.html">
+            
+                
+                    <a href="../../up-and-running/platforms/vmware.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.2.</b>
+                        
+                        Using VMWare
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="up-and-running/platforms/aws.html">
+            
+                
+                    <a href="../../up-and-running/platforms/aws.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.3.</b>
+                        
+                        Using AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="up-and-running/platforms/azure.html">
+            
+                
+                    <a href="../../up-and-running/platforms/azure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.4.</b>
+                        
+                        Using Microsoft Azure
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="up-and-running/auth/index.html">
+            
+                
+                    <a href="../../up-and-running/auth/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="up-and-running/auth/github.html">
+            
+                
+                    <a href="../../up-and-running/auth/github.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.1.</b>
+                        
+                        Github Enterprise Integration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="up-and-running/auth/open.html">
+            
+                
+                    <a href="../../up-and-running/auth/open.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.2.</b>
+                        
+                        Open Authentication
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="up-and-running/customization.html">
+            
+                
+                    <a href="../../up-and-running/customization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Customizating Server Configuration
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="cli/index.html">
+            
+                
+                    <a href="../../cli/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring and Using the npm CLI
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="cli/installation.html">
+            
+                
+                    <a href="../../cli/installation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Installing the npm CLI
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="cli/updating.html">
+            
+                
+                    <a href="../../cli/updating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Updating the npm CLI
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="cli/configuration.html">
+            
+                
+                    <a href="../../cli/configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Configuring the CLI client
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="cli/authentication.html">
+            
+                
+                    <a href="../../cli/authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="workflow/index.html">
+            
+                
+                    <a href="../../workflow/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        npmO Workflow
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="workflow/installing-packages.html">
+            
+                
+                    <a href="../../workflow/installing-packages.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Installing Packages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="workflow/publishing-packages.html">
+            
+                
+                    <a href="../../workflow/publishing-packages.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Publishing Packages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="workflow/whitelisting.html">
+            
+                
+                    <a href="../../workflow/whitelisting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Whitelisting Packages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="workflow/mirroring.html">
+            
+                
+                    <a href="../../workflow/mirroring.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Mirroring the Public Registry
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >npm On-Site</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="running-npm-onsite-in-aws">Running npm On-Site in AWS</h1>
+<p><a href="https://www.npmjs.com/npm/on-site" target="_blank">npm On-Site</a> allows you to run your own private npm registry and website behind the firewall, and it&#x2019;s designed to run on several different infrastructures. One of the easiest ways to run it, which we test extensively, is using Amazon Web Services.</p>
+<p>In this article, we&#x2019;ll show you exactly how to set this up.</p>
+<p>Here&#x2019;s the general idea:</p>
+<ol>
+<li><a href="#define-a-security-group">Define a Security Group</a></li>
+<li><a href="#launch-an-ec2-instance">Launch an EC2 instance</a></li>
+<li><a href="#format-and-mount-an-attached-ebs-volume">Format and mount an attached EBS volume</a></li>
+<li><a href="#install-and-configure-npm-on-site">Install and configure npm On-Site</a></li>
+<li><a href="#use-your-private-registry">Use your private registry</a></li>
+</ol>
+<p>That&#x2019;s all it takes to get up and running!</p>
+<p>Let&#x2019;s start by logging into the <a href="https://console.aws.amazon.com/console/home" target="_blank">AWS Console</a>. From there, click on &#x201C;EC2&#x201D; in the top left to access the EC2 Dashboard.</p>
+<p><a name="define-a-security-group"></a></p>
+<h2 id="1-define-a-security-group">1. Define a Security Group</h2>
+<p>In AWS, a private virtual server is called an &#x201C;EC2 instance.&#x201D; We&#x2019;ll need to create, or &#x201C;launch,&#x201D; an instance that can run npm On-Site. <em>Before</em> we can launch an instance, though, we&#x2019;ll need a &#x201C;security group&#x201D; to allow inbound TCP communication on the ports on which npm On-Site services listen. An AWS security group is a set of rules defining what type of network traffic is allowed for an EC2 instance.</p>
+<p>To create a security group, click &#x201C;Security Groups&#x201D; under &#x201C;Network &amp; Security&#x201D; in the vertical navigation bar on the left, then click the blue &#x201C;Create Security Group&#x201D; button near the top.</p>
+<p><img src="../../images/npmo-aws1.png" alt="Security Group List"></p>
+<p>The ports needed for inbound traffic include:</p>
+<pre><code>Port | Reason           
+---- | -----------------
+8080 | Registry         
+8081 | Website          
+8082 | Auth endpoints   
+8800 | Admin web console
+</code></pre><p>You&#x2019;ll also need SSH access into your instance, so include port 22 in your security group. Then give your security group a name that you will recognize later, like &#x201C;npmo&#x201D;:</p>
+<p><img src="../../images/npmo-aws2.png" alt="Security Group Inbound"></p>
+<p>In a production environment, you&#x2019;ll probably want to front the registry and website with a load balancer or routing layer, using a DNS name and standard ports (80 for HTTP and 443 for HTTPS). For purposes of this walkthrough, though, we&#x2019;ll do without that initially and just access the services directly on the ports to which they bind.</p>
+<p><a name="launch-an-ec2-instance"></a></p>
+<h2 id="2-launch-an-ec2-instance">2. Launch an EC2 instance</h2>
+<p>Now that we have a security group defined, we&#x2019;re ready to launch an EC2 instance.</p>
+<p>Click on &#x201C;Instances&#x201D; under &#x201C;Instances&#x201D; in the left navigation panel, then click the blue &#x201C;Launch Instance&#x201D; button.</p>
+<p><img src="../../images/npmo-aws3.png" alt="Instance List"></p>
+<p>This starts the multi-step instance wizard.</p>
+<p>Our first step is to select a base Amazon Machine Image (or AMI) as a starting point. npm On-Site supports Ubuntu 14+, CentOS 7, and RHEL 7. For this walkthrough, let&#x2019;s assume CentOS 7. You can use the top <code>centos 7</code> search result in the &#x201C;AWS Marketplace.&#x201D; Just make sure it&#x2019;s 64-bit. Click the blue &#x201C;Select&#x201D; button.</p>
+<p><img src="../../images/npmo-aws4.png" alt="Launch Step 1"></p>
+<p>The next step is choosing an instance type. This determines how many resources your server will be allocated. We recommend using an <code>m3.large</code>. Select the radio button in the first column of the table, then click &#x201C;Next: Configure Instance Details&#x201D; on the bottom right.</p>
+<p><img src="../../images/npmo-aws5.png" alt="Launch Step 2"></p>
+<p>Go with default instance details, then click &#x201C;Next: Add Storage&#x201D; on the bottom right.</p>
+<p><img src="../../images/npmo-aws6.png" alt="Launch Step 3"></p>
+<p>The next step is to configure storage volumes for your instance. We recommend adding an EBS volume that has at least 50 GB. We&#x2019;ll use this volume to store the data for our npm On-Site registry, and using EBS will make it easy to create snapshots of your package data for backup or transfer purposes.</p>
+<p>Click &#x201C;Add New Volume&#x201D; button, select &#x201C;EBS&#x201D; as the &#x201C;Volume Type,&#x201D; and enter your desired amount of storage in &#x201C;Size.&#x201D; Then click the &#x201C;Next: Tag Instance&#x201D; button on the bottom right.</p>
+<p><img src="../../images/npmo-aws7.png" alt="Launch Step 4"></p>
+<p>Give your instance a name and click &#x201C;Next: Configure Security Group.&#x201D;</p>
+<p><img src="../../images/npmo-aws8.png" alt="Launch Step 5"></p>
+<p>Choose &#x201C;Select an existing security group&#x201D; at the top, then select the Security Group you created in step 1 from the list. Next, click the blue &#x201C;Review and Launch.&#x201D;</p>
+<p><img src="../../images/npmo-aws9.png" alt="Launch Step 6"></p>
+<p>Review your settings and click the blue &#x201C;Launch&#x201D; instance when you&#x2019;re satisfied. This will open a dialog to select or create a key pair that you&#x2019;ll need to access your instance over SSH.</p>
+<p><img src="../../images/npmo-aws10.png" alt="Launch Step 7"></p>
+<p>In the dialog, select &#x201C;Create a new key pair&#x201D; if you don&#x2019;t already have one. Give it a name and click &#x201C;Download Key Pair.&#x201D; Remember where you save this file, as you&#x2019;ll need it to SSH into your server. Once you&#x2019;ve downloaded the <code>.pem</code> key pair file, click &#x201C;Launch Instances&#x201D; in blue.</p>
+<p><img src="../../images/npmo-aws11.png" alt="Key Pair"></p>
+<p>Wait for your instance to launch, and view its status in the &#x201C;Instances&#x201D; list.</p>
+<p><img src="../../images/npmo-aws12.png" alt="Instance Created"></p>
+<p>Note that if you&#x2019;re running your EC2 instance in an AWS VPC virtual private cloud, then you may need to explicitly set your network interface MTU setting to 1500. You can read about why and how to do this in <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/network_mtu.html" target="_blank">the AWS docs</a>.</p>
+<p><a name="format-and-mount-an-attached-ebs-volume"></a></p>
+<h2 id="3-format-and-mount-an-attached-ebs-volume">3. Format and mount an attached EBS volume</h2>
+<p>Now that we have a server instance up and running, we need to prepare our attached EBS volume for use. Note that it will be attached, but not formatted or mounted initially.</p>
+<p>Access your server using the <code>.pem</code> key pair file via SSH. For Mac or Linux users, use the canonical <code>ssh</code> CLI program. For Windows users, try <a href="http://www.putty.org/" target="_blank">PuTTY</a>.</p>
+<p>To SSH into your server, you&#x2019;ll need its public IP address. You can find the public IP for your server in the Instances list. Note that for CentOS 7, the username is <code>centos</code>, but if you chose a different Amazon Machine Image, the username may be different (e.g., <code>ubuntu</code> for Ubuntu, <code>ec2-user</code> for RHEL, or <code>admin</code> for Debian).</p>
+<pre><code class="lang-sh">$ ssh -i ~/.ssh/my-key-pair.pem centos@&lt;public-ip&gt;
+</code></pre>
+<p>First find the volume&#x2019;s device name, e.g. <code>/dev/xvdb</code>, using the <code>lsblk</code> command:</p>
+<pre><code class="lang-sh">$ lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    <span class="hljs-number">202</span>:<span class="hljs-number">0</span>    <span class="hljs-number">0</span>   <span class="hljs-number">8</span>G  <span class="hljs-number">0</span> disk
+&#x2514;&#x2500;xvda1 <span class="hljs-number">202</span>:<span class="hljs-number">1</span>    <span class="hljs-number">0</span>   <span class="hljs-number">8</span>G  <span class="hljs-number">0</span> part /
+xvdb    <span class="hljs-number">202</span>:<span class="hljs-number">16</span>   <span class="hljs-number">0</span>  <span class="hljs-number">50</span>G  <span class="hljs-number">0</span> disk
+</code></pre>
+<p>Let&#x2019;s quickly verify that our volume does not yet have a file system:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># sudo file -s &lt;device&gt;</span>
+$ sudo file <span class="hljs-operator">-s</span> /dev/xvdb
+/dev/xvdb: data
+</code></pre>
+<p>The output should say <code>data</code>, meaning there is no file system formatted on the volume yet. Let&#x2019;s add one:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># sudo mkfs -t ext4 &lt;device&gt;</span>
+$ sudo mkfs -t ext4 /dev/xvdb
+mke2fs <span class="hljs-number">1.42</span>.<span class="hljs-number">9</span> (<span class="hljs-number">28</span>-Dec-<span class="hljs-number">2013</span>)
+Filesystem label=
+OS <span class="hljs-built_in">type</span>: Linux
+Block size=<span class="hljs-number">4096</span> (<span class="hljs-built_in">log</span>=<span class="hljs-number">2</span>)
+Fragment size=<span class="hljs-number">4096</span> (<span class="hljs-built_in">log</span>=<span class="hljs-number">2</span>)
+Stride=<span class="hljs-number">0</span> blocks, Stripe width=<span class="hljs-number">0</span> blocks
+<span class="hljs-number">3276800</span> inodes, <span class="hljs-number">13107200</span> blocks
+<span class="hljs-number">655360</span> blocks (<span class="hljs-number">5.00</span>%) reserved <span class="hljs-keyword">for</span> the super user
+First data block=<span class="hljs-number">0</span>
+Maximum filesystem blocks=<span class="hljs-number">2162163712</span>
+<span class="hljs-number">400</span> block groups
+<span class="hljs-number">32768</span> blocks per group, <span class="hljs-number">32768</span> fragments per group
+<span class="hljs-number">8192</span> inodes per group
+Superblock backups stored on blocks:
+  <span class="hljs-number">32768</span>, <span class="hljs-number">98304</span>, <span class="hljs-number">163840</span>, <span class="hljs-number">229376</span>, <span class="hljs-number">294912</span>, <span class="hljs-number">819200</span>, <span class="hljs-number">884736</span>, <span class="hljs-number">1605632</span>, <span class="hljs-number">2654208</span>,
+  <span class="hljs-number">4096000</span>, <span class="hljs-number">7962624</span>, <span class="hljs-number">11239424</span>
+
+Allocating group tables: <span class="hljs-keyword">done</span>                            
+Writing inode tables: <span class="hljs-keyword">done</span>                            
+Creating journal (<span class="hljs-number">32768</span> blocks): <span class="hljs-keyword">done</span>
+Writing superblocks and filesystem accounting information: <span class="hljs-keyword">done</span>
+</code></pre>
+<p>Now we can create a mount point, like <code>/data</code>, for our formatted volume:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># sudo mkdir &lt;mount_point&gt;</span>
+$ sudo mkdir /data
+</code></pre>
+<p>Then we can mount the volume to the mount point and check it with the <code>df -h</code> command:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># sudo mount &lt;device&gt; &lt;mount_point&gt;</span>
+$ sudo mount /dev/xvdb /data
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1      <span class="hljs-number">8.0</span>G  <span class="hljs-number">823</span>M  <span class="hljs-number">7.2</span>G  <span class="hljs-number">11</span>% /
+devtmpfs        <span class="hljs-number">3.6</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.6</span>G   <span class="hljs-number">0</span>% /dev
+tmpfs           <span class="hljs-number">3.5</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.5</span>G   <span class="hljs-number">0</span>% /dev/shm
+tmpfs           <span class="hljs-number">3.5</span>G   <span class="hljs-number">17</span>M  <span class="hljs-number">3.5</span>G   <span class="hljs-number">1</span>% /run
+tmpfs           <span class="hljs-number">3.5</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.5</span>G   <span class="hljs-number">0</span>% /sys/fs/cgroup
+/dev/xvdb        <span class="hljs-number">50</span>G   <span class="hljs-number">53</span>M   <span class="hljs-number">47</span>G   <span class="hljs-number">1</span>% /data
+</code></pre>
+<p>So far, so good. Now, in order to preserve the mount on reboot, we need to add an entry to <code>fstab</code> like so:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># keep the original fstab config in case we mess up</span>
+sudo mv /etc/fstab /etc/fstab.orig
+<span class="hljs-comment"># copy the original fstab config</span>
+sudo cp /etc/fstab.orig /etc/fstab
+<span class="hljs-comment"># and modify the new fstab config</span>
+sudo vi /etc/fstab
+</code></pre>
+<p><em>A word on editors:</em></p>
+<p>At npm, we&#x2019;re non-partisan, go-along-to-get-along types. Your editor is your choice! You do you! We&#x2019;re cool with anything you choose &#x2014; except your angry notes telling us about your choice.</p>
+<p>That being said: depending on the type of AMI you&#x2019;re using, you might have to (/get to!) use <code>vi</code> to edit the file. (This is the case on CentOS, for example. On other systems, you may be able to use <code>nano</code>.) For the uninitiated, a step-by-step:</p>
+<p>With the file open, add an entry under the last line: Go to the last line by hitting <code>Shift</code> + <code>G</code> then <code>Shift</code> + <code>4</code>. Insert a new line by hitting <code>i</code> to enter <em>insert</em> mode, use the right arrow key to move the end of the line, then press <code>Enter</code> to add a new line as shown below.</p>
+<p>On CentOS or RHEL, use <code>defaults,nofail</code> as the fs mount options. On Ubuntu or Debian, use <code>defaults,nofail,nobootwait</code>.</p>
+<pre><code class="lang-sh"><span class="hljs-comment">#&lt;device&gt;  &lt;mount_point&gt; &lt;fs_type&gt; &lt;fs_mount_ops&gt;   &lt;fs_freq&gt; &lt;fs_passno&gt;</span>
+/dev/xvdb  /data         ext4      defaults,nofail  <span class="hljs-number">0</span>         <span class="hljs-number">2</span>
+</code></pre>
+<p>Exit <em>insert</em> mode with the <code>esc</code> key, then save and exit by entering <code>:wq</code>.</p>
+<p>Now, test our new <code>fstab</code> config. If everything is okay, this command should give no output:</p>
+<pre><code class="lang-sh">$ sudo mount <span class="hljs-operator">-a</span>
+</code></pre>
+<p>Let&#x2019;s make sure we have proper file permissions on our new mount point, and create a new directory to house all of our registry data:</p>
+<pre><code class="lang-sh">$ sudo chown -R $(whoami):$(id -gn) /data
+$ mkdir /data/npmo
+</code></pre>
+<p>Our EBS volume is now ready to go, and we can install Node.js and npm On-Site!</p>
+<p><a name="install-and-configure-npm-on-site"></a></p>
+<h2 id="4-install-and-configure-npm-onsite">4. Install and configure npm On-Site</h2>
+<p>In this step, the walkthrough will follow our documentation&#x2019;s <a href="enterprise/installation">standard installation</a>, but we&#x2019;ll hit the highlights here.</p>
+<p>First, install Node.js and update npm. Note that this command is specific to CentOS or RHEL:</p>
+<pre><code class="lang-sh">$ curl <span class="hljs-operator">-s</span>L https://rpm.nodesource.com/setup_4.x | sudo -E bash -
+$ sudo yum -y install nodejs
+$ sudo npm install npm@latest -g
+</code></pre>
+<p>Next, install <code>npmo</code> and answer any prompts:</p>
+<pre><code class="lang-sh">$ sudo npm install npmo -g --unsafe
+</code></pre>
+<p>Once that&#x2019;s done, complete the installation by configuring your On-Site instance via the admin web console at <code>https://&lt;your-server&gt;:8800</code>. At this point we&#x2019;ll defer to the <a href="enterprise/installation#3-configure-your-installation-via-the-admin-web-console">installation doc</a>, with the exception that we should configure storage settings to use our mounted EBS volume.</p>
+<p>When you reach the Settings page, find the &#x201C;Storage&#x201D; section and change the <code>/usr/local/lib/npme</code> path prefix to <code>/data/npmo</code> for all configured paths:</p>
+<p><img src="../../images/npmo-aws13.png" alt="Storage Settings"></p>
+<p>For testing purposes, you may want to select &#x201C;Open&#x201D; as the &#x201C;Authentication&#x201D; option.</p>
+<p>Once you save your configuration settings, you&#x2019;ll be prompted to start the registry components and go to the Dashboard view. All components will be downloaded and started as lightweight containers.</p>
+<p>Once you see a status of &#x201C;Started,&#x201D; your registry is ready for use!</p>
+<p><img src="../../images/npmo-aws14.png" alt="Started"></p>
+<p><a name="use-your-private-registry"></a></p>
+<h2 id="5-use-your-private-registry">5. Use your private registry</h2>
+<p>Back at your local machine&#x2019;s terminal prompt, configure your npm CLI client to use your new private registry:</p>
+<p>Authenticate with your registry and associate the registry to a <em>scope</em> name. (The <em>scope</em> is a namespace or prefix that you&#x2019;ll use for your private packages.)</p>
+<pre><code class="lang-sh">$ npm login --registry http://&lt;your-server&gt;:<span class="hljs-number">8080</span> --scope @demo
+</code></pre>
+<p>Now, whenever npm sees the <code>@demo</code> scope in a package name &#x2014; like <code>@demo/test-pkg</code> &#x2014; it automatically will publish to and install from the private npm On-Site registry you&#x2019;ve configured.</p>
+<p>To quickly verify this, let&#x2019;s create a tiny module and publish it as a private package:</p>
+<pre><code class="lang-sh">$ mkdir <span class="hljs-built_in">test</span>-pkg
+$ <span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>-pkg
+$ npm init -y --scope @demo
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;module.exports = &apos;test successful&apos;\n&quot;</span> &gt; index.js
+$ npm publish
+</code></pre>
+<p>Visit your registry&#x2019;s website at <code>http://&lt;your-server&gt;:8081/</code> and find the <code>@demo/test-pkg</code> package under &#x201C;recently updated packages.&#x201D;</p>
+<p><img src="../../images/npmo-aws15.png" alt="Published"></p>
+<p>Now, let&#x2019;s make sure we can install our private package:</p>
+<pre><code class="lang-sh">$ mkdir downstream
+$ <span class="hljs-built_in">cd</span> downstream
+$ npm install @demo/<span class="hljs-built_in">test</span>-pkg
+$ node <span class="hljs-operator">-e</span> <span class="hljs-string">&quot;console.log(require(&apos;@demo/test-pkg&apos;))&quot;</span>
+<span class="hljs-built_in">test</span> successful
+</code></pre>
+<p>As you can see, your package was downloaded to a local <code>node_modules</code> directory, allowing you to <code>require()</code> and use it.</p>
+<h2 id="wrapup">Wrap-up</h2>
+<p>That&#x2019;s it!</p>
+<p>With luck, this has demonstrated how easy it is to run your own private registry with npm On-Site and AWS.</p>
+<p>What&#x2019;s next? For more advanced topics or questions, check out the rest of <a href="enterprise/index">our docs</a>. Also, don&#x2019;t hesitate to drop us a line at support@npmjs.com.</p>
+<p>Happy publishing!</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../up-and-running/platforms/vmware.html" class="navigation navigation-prev " aria-label="Previous page: Using VMWare"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../up-and-running/platforms/azure.html" class="navigation navigation-next " aria-label="Next page: Using Microsoft Azure"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

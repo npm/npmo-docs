@@ -1,7 +1,7 @@
 {
-  "name": "how-npm-works-docs",
+  "name": "npmo-docs",
   "version": "1.0.0",
-  "description": "gitbook for how npm works docs",
+  "description": "documentation for npm On-Site, npm's Enterprise offering",
   "main": "index.js",
   "scripts": {
     "start": "gitbook serve",
@@ -9,16 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/npm/how-npm-works-docs.git"
+    "url": "git+https://github.com/npm/npmo-docs.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["npm", "enterprise", "docs", "documentation"],
+  "author": "ag_dubs <ashley@npmjs.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/npm/how-npm-works-docs/issues"
+    "url": "https://github.com/npm/npmo-docs/issues"
   },
-  "homepage": "https://github.com/npm/how-npm-works-docs#readme",
-  "dependencies": {
-    "gitbook-cli": "^2.1.3"
+  "homepage": "https://github.com/npm/npmo-docs#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gitbook-cli": "^2.1.1"
   }
 }
