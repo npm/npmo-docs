@@ -1,0 +1,39 @@
+.book .book-summary {
+  background-color: #2a333c;
+}
+
+header {
+  position: relative;
+  z-index: 999;
+}
+
+.book-search {
+  z-index: -999;
+}
+
+.book .book-summary ul.summary:before {
+  content: '';
+  background-image: url('../gitbook/images/npm-logo.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3.6em 8em;
+  margin: 15px;
+  display: block;
+}
+
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+  color: white;
+}
+
+.book .book-summary ul.summary li a.gitbook-link {
+  color: #c3c3c3;
+}
+
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a {
+  color: #6ea2c9;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #cb3837;
+}
