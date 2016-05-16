@@ -48,14 +48,35 @@
         
     </head>
     <body>
-        
+        <header class="anonymous">
+  <div class="header-item header-nav-menu-container">
+    <a href="#" id="npm-expansions" class="npm-expansions" data-event-trigger="click" data-event-name="npm-expansions">New Project, Monday</a>
+    <div class="nav-menu-container" role="navigation">
+      <a class="nav-toggle drop-down-menu-toggle" href="#product-navigation"><span class="a11y-only">Toggle Navigation</span>
+        <img alt="mobile navigation menu" src="/public/images/mobile-menu.png">
+      </a>
+      <div class="drop-down-menu-container" role="menu">
+        <nav id="product-navigation" class="product-navigation drop-down-menu">
+          <ul class="drop-down-menu-section products-list">
+            <li><a href="https://www.npmjs.com/npm/on-site">npm On-Site</a></li>
+            <li><a href="https://www.npmjs.com/npm/private-packages" data-event-trigger="click" data-event-name="private-modules-nav-link">npm Private Packages</a></li>
+            <li><a href="https://www.npmjs.com/npm/open-source">npm Open Source</a></li>
+            <li><a href="/">documentation</a></li>
+            <li><a href="https://www.npmjs.com/support">support</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
         
     <div class="book"
         data-level="1.3.3"
         data-chapter-title="Using AWS"
         data-filepath="up-and-running/platforms/aws.md"
         data-basepath="../.."
-        data-revision="Tue May 03 2016 15:39:02 GMT+0000 (UTC)"
+        data-revision="Mon May 16 2016 16:45:25 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -702,12 +723,63 @@ $ node <span class="hljs-operator">-e</span> <span class="hljs-string">&quot;con
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"layout":{"headerPath":"layouts/header.html","footerPath":"layouts/footer.html"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <footer class="pane bg-npm-navy-1">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="h4 type-npm-pastel-3">You Need Help</h3>
+          <hr class="divider-1">
+          <ul class="list-unstyled h6 em-default">
+            <li class="pbl"><a class="type-neutral-11" href="https://docs.npmjs.com">Documentation</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/support">Support / Contact Us</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="http://status.npmjs.org/">Registry Status</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm/newww/issues">Website Issues</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm/npm/issues">CLI Issues</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/policies/security">Security</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+<h3 class="h4 type-npm-pastel-3">About npm</h3>
+          <hr class="divider-1">
+          <ul class="list-unstyled h6 em-default">
+            <li class="pbl"><a class="type-neutral-11" href="/about">About npm, Inc</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/jobs">Jobs</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/npm-weekly">npm Weekly</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="http://blog.npmjs.org">Blog</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="https://twitter.com/npmjs">Twitter</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="h4 type-npm-pastel-3">Legal Stuff</h3>
+          <hr class="divider-1">
+          <ul class="list-unstyled h6 em-default">
+            <li class="pbl"><a class="type-neutral-11" href="/policies/terms">Terms of Use</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/policies/conduct">Code of Conduct</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/policies/disputes">Package Name Disputes</a></li>
+<li class="pbl"><a class="type-neutral-11" href="/policies/privacy">Privacy Policy</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/policies/receiving-reports">Reporting Abuse</a></li>
+            <li class="pbl"><a class="type-neutral-11" href="/policies/">Other policies</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="txt-c container">
+      <a class="npm-loves-you type-neutral-11" href="/">
+        npm loves you
+      </a>
+    </div>
+  </footer>
+<script src="/scripts/bundle.js"></script>
+
     </body>
     
 </html>
