@@ -4,8 +4,12 @@
   "description": "documentation for npm Enterprise, npm's Enterprise offering",
   "main": "index.js",
   "scripts": {
+    "install": "gitbook install",
     "start": "gitbook serve",
-    "build": "gitbook build"
+    "build": "npm run build:scripts && npm run build:styles && npm run concat:styles && gitbook build",
+    "build:styles": "dr-frankenstyle ./styles",
+    "concat:styles": "cat ./styles/components.css ./styles/custom.css > ./styles/website.css",
+    "build:scripts": "browserify ./scripts -o ./scripts/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +22,25 @@
     "url": "https://github.com/npm/npmo-docs/issues"
   },
   "homepage": "https://github.com/npm/npmo-docs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@npmcorp/dr-frankenstyle": "^1.1.0",
+    "@npmcorp/pui-css-alignment": "^2.0.0",
+    "@npmcorp/pui-css-bootstrap": "^2.0.1",
+    "@npmcorp/pui-css-colors": "^2.2.0",
+    "@npmcorp/pui-css-dividers": "^2.0.0",
+    "@npmcorp/pui-css-grids": "^2.1.1",
+    "@npmcorp/pui-css-header": "^2.2.0",
+    "@npmcorp/pui-css-lists": "^2.4.2",
+    "@npmcorp/pui-css-media": "^2.0.1",
+    "@npmcorp/pui-css-panes": "^2.0.1",
+    "@npmcorp/pui-css-utils": "^2.3.0",
+    "@npmcorp/pui-css-whitespace": "^2.1.0",
+    "browserify": "^13.0.1",
+    "gitbook-cli": "^2.1.3",
+    "jquery": "^2.2.3",
+    "npm-expansions": "^2.2.3"
+  },
   "devDependencies": {
-    "gitbook-cli": "^2.1.1"
+    "bootstrap": "3.3.5"
   }
 }

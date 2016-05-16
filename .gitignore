@@ -1,2 +1,4 @@
 node_modules
 _book
+tmp
+styles/components.css
