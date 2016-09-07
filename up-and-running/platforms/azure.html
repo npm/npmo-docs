@@ -1,678 +1,664 @@
+
 <!DOCTYPE HTML>
-<html lang="en" >
-    
+<html lang="" >
     <head>
-        
+        <title>Using Microsoft Azure · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Using Microsoft Azure | npm Enterprise</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 3.2.0">
         
         
-        <meta name="HandheldFriendly" content="true"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
+    
     <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
     
         
-        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
-        
-    
-        
-        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
-        
-    
-        
-        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
-        
-    
-    
         <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
     
 
         
     
     
-    <link rel="next" href="../../up-and-running/auth/index.html" />
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="vagrant.html" />
     
     
-    <link rel="prev" href="../../up-and-running/platforms/aws.html" />
+    <link rel="prev" href="aws.html" />
     
 
-        
     </head>
     <body>
-        <header class="anonymous">
-  <div class="header-item header-nav-menu-container">
-    <a href="#" id="npm-expansions" class="npm-expansions" data-event-trigger="click" data-event-name="npm-expansions">New Project, Monday</a>
-    <div class="nav-menu-container" role="navigation">
-      <a class="nav-toggle drop-down-menu-toggle" href="#product-navigation"><span class="a11y-only">Toggle Navigation</span>
-        <img alt="mobile navigation menu" src="/public/images/mobile-menu.png">
-      </a>
-      <div class="drop-down-menu-container" role="menu">
-        <nav id="product-navigation" class="product-navigation drop-down-menu">
-          <ul class="drop-down-menu-section products-list">
-            <li><a href="https://www.npmjs.com/npm/on-site">npm On-Site</a></li>
-            <li><a href="https://www.npmjs.com/npm/private-packages" data-event-trigger="click" data-event-name="private-modules-nav-link">npm Private Packages</a></li>
-            <li><a href="https://www.npmjs.com/npm/open-source">npm Open Source</a></li>
-            <li><a href="/">documentation</a></li>
-            <li><a href="https://www.npmjs.com/support">support</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-
         
-    <div class="book"
-        data-level="1.3.4"
-        data-chapter-title="Using Microsoft Azure"
-        data-filepath="up-and-running/platforms/azure.md"
-        data-basepath="../.."
-        data-revision="Mon May 16 2016 16:46:01 GMT+0000 (UTC)"
-        data-innerlanguage="">
-    
+    <header class="anonymous">
+      <div class="header-item header-nav-menu-container">
+        <a href="#" id="npm-expansions" class="npm-expansions" data-event-trigger="click" data-event-name="npm-expansions">node package manager</a>
 
-<div class="book-summary">
-    <nav role="navigation">
-        <ul class="summary">
-            
-            
-            
-            
-
-            
-
-            
+        <div class="nav-menu-container" role="navigation">
+          <a class="nav-toggle drop-down-menu-toggle" href="#product-navigation"><span class="a11y-only">Toggle Navigation</span>
+            <svg viewBox="0 0 44 44">
+              <rect x="4" y="12" fill="currentColor" width="36" height="2"/>
+              <rect x="4" y="20" fill="currentColor" width="36" height="2"/>
+              <rect x="4" y="28" fill="currentColor" width="36" height="2"/>
+            </svg>
+          </a>
+          <div class="drop-down-menu-container" role="menu">
+            <nav id="product-navigation" class="product-navigation drop-down-menu">
+              <ul class="drop-down-menu-section products-list">
+                <li><a id="nav-enterprise-link" href="https://www.npmjs.com/npm/enterprise">npm Enterprise</a></li>
+                <li><a id="nav-features-link" href="https://www.npmjs.com/features" data-event-trigger="click" data-event-name="features-nav-link">features</a></li>
+                <li><a id="nav-pricing-link" href="https://www.npmjs.com/pricing">pricing</a></li>
+                <li><a id="nav-docs-link" href="https://docs.npmjs.com">documentation</a></li>
+                <li><a id="nav-support-link" href="https://www.npmjs.com/support">support</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
     
-        <li class="chapter " data-level="0" data-path="index.html">
-            
-                
-                    <a href="../../index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                        Introduction
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1" data-path="up-and-running/index.html">
-            
-                
-                    <a href="../../up-and-running/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                        Up and Running
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.1" data-path="up-and-running/requirements.html">
-            
-                
-                    <a href="../../up-and-running/requirements.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.1.</b>
-                        
-                        Requirements
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="up-and-running/deploy-scripts.html">
-            
-                
-                    <a href="../../up-and-running/deploy-scripts.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.2.</b>
-                        
-                        OS-Specific Deploy Scripts
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="up-and-running/platforms/index.html">
-            
-                
-                    <a href="../../up-and-running/platforms/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.3.</b>
-                        
-                        Integrated Platform Tutorials
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="up-and-running/platforms/vagrant.html">
-            
-                
-                    <a href="../../up-and-running/platforms/vagrant.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.3.1.</b>
-                        
-                        Using Vagrant
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="up-and-running/platforms/vmware.html">
-            
-                
-                    <a href="../../up-and-running/platforms/vmware.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.3.2.</b>
-                        
-                        Using VMWare
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="up-and-running/platforms/aws.html">
-            
-                
-                    <a href="../../up-and-running/platforms/aws.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.3.3.</b>
-                        
-                        Using AWS
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.3.4" data-path="up-and-running/platforms/azure.html">
-            
-                
-                    <a href="../../up-and-running/platforms/azure.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.3.4.</b>
-                        
-                        Using Microsoft Azure
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="up-and-running/auth/index.html">
-            
-                
-                    <a href="../../up-and-running/auth/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.4.</b>
-                        
-                        Authentication
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="up-and-running/auth/github.html">
-            
-                
-                    <a href="../../up-and-running/auth/github.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.4.1.</b>
-                        
-                        Github Enterprise Integration
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="up-and-running/auth/open.html">
-            
-                
-                    <a href="../../up-and-running/auth/open.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.4.2.</b>
-                        
-                        Open Authentication
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="up-and-running/customization.html">
-            
-                
-                    <a href="../../up-and-running/customization.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.5.</b>
-                        
-                        Customizating Server Configuration
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2" data-path="cli/index.html">
-            
-                
-                    <a href="../../cli/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                        Configuring and Using the npm CLI
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1" data-path="cli/installation.html">
-            
-                
-                    <a href="../../cli/installation.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.</b>
-                        
-                        Installing the npm CLI
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="cli/updating.html">
-            
-                
-                    <a href="../../cli/updating.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.2.</b>
-                        
-                        Updating the npm CLI
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="cli/configuration.html">
-            
-                
-                    <a href="../../cli/configuration.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.3.</b>
-                        
-                        Configuring the CLI client
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2.4" data-path="cli/authentication.html">
-            
-                
-                    <a href="../../cli/authentication.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.4.</b>
-                        
-                        Authentication
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3" data-path="workflow/index.html">
-            
-                
-                    <a href="../../workflow/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.</b>
-                        
-                        npmO Workflow
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1" data-path="workflow/installing-packages.html">
-            
-                
-                    <a href="../../workflow/installing-packages.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.</b>
-                        
-                        Installing Packages
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="workflow/publishing-packages.html">
-            
-                
-                    <a href="../../workflow/publishing-packages.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.2.</b>
-                        
-                        Publishing Packages
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="workflow/whitelisting.html">
-            
-                
-                    <a href="../../workflow/whitelisting.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.</b>
-                        
-                        Whitelisting Packages
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4" data-path="workflow/mirroring.html">
-            
-                
-                    <a href="../../workflow/mirroring.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.</b>
-                        
-                        Mirroring the Public Registry
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-
-            
-            <li class="divider"></li>
-            <li>
-                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                    Published with GitBook
-                </a>
-            </li>
-            
-        </ul>
-    </nav>
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
 </div>
 
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../requirements.html">
+            
+                <a href="../requirements.html">
+            
+                    
+                    Requirements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Platform Tutorials
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="aws.html">
+            
+                <a href="aws.html">
+            
+                    
+                    Using AWS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2.2" data-path="azure.html">
+            
+                <a href="azure.html">
+            
+                    
+                    Using Microsoft Azure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.3" data-path="vagrant.html">
+            
+                <a href="vagrant.html">
+            
+                    
+                    Using Vagrant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.4" data-path="other.html">
+            
+                <a href="other.html">
+            
+                    
+                    Other Platforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../customization.html">
+            
+                <a href="../customization.html">
+            
+                    
+                    Configuring Your Instance
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../auth/open.html">
+            
+                <a href="../auth/open.html">
+            
+                    
+                    Open Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../auth/github.html">
+            
+                <a href="../auth/github.html">
+            
+                    
+                    Github Enterprise Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../cli/">
+            
+                <a href="../../cli/">
+            
+                    
+                    Configuring and Using the npm CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../cli/installation.html">
+            
+                <a href="../../cli/installation.html">
+            
+                    
+                    Installing the npm CLI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../cli/updating.html">
+            
+                <a href="../../cli/updating.html">
+            
+                    
+                    Updating the npm CLI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../cli/configuration.html">
+            
+                <a href="../../cli/configuration.html">
+            
+                    
+                    Configuring the CLI client
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../workflow/">
+            
+                <a href="../../workflow/">
+            
+                    
+                    Common Workflows
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../workflow/installing-packages.html">
+            
+                <a href="../../workflow/installing-packages.html">
+            
+                    
+                    Installing Packages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../workflow/publishing-packages.html">
+            
+                <a href="../../workflow/publishing-packages.html">
+            
+                    
+                    Publishing Packages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../workflow/whitelisting.html">
+            
+                <a href="../../workflow/whitelisting.html">
+            
+                    
+                    Whitelisting Packages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../workflow/mirroring.html">
+            
+                <a href="../../workflow/mirroring.html">
+            
+                    
+                    Mirroring the Public Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../workflow/travis.html">
+            
+                <a href="../../workflow/travis.html">
+            
+                    
+                    Integrating With Travis CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../tutorials/">
+            
+                <a href="../../tutorials/">
+            
+                    
+                    Advanced Topics
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../tutorials/addons.html">
+            
+                <a href="../../tutorials/addons.html">
+            
+                    
+                    Enterprise Add-Ons
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../tutorials/pipelines.html">
+            
+                <a href="../../tutorials/pipelines.html">
+            
+                    
+                    Bitbucket Pipelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../tutorials/nginx.html">
+            
+                <a href="../../tutorials/nginx.html">
+            
+                    
+                    Terminating SSL with NGINX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
     <div class="book-body">
-        <div class="body-inner">
-            <div class="book-header" role="navigation">
-    <!-- Actions Left -->
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
     
 
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >npm Enterprise</a>
+        <a href="../.." >Using Microsoft Azure</a>
     </h1>
 </div>
 
-            <div class="page-wrapper" tabindex="-1" role="main">
-                <div class="page-inner">
-                
-                
-                    <section class="normal" id="section-">
-                    
-                        <h1 id="using-microsoft-azure">Using Microsoft Azure</h1>
-<h2 id="summary">Summary</h2>
-<p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p>
-<ul>
-<li>An <a href="https://www.npmjs.com/signup" target="_blank">npm user account</a></li>
-<li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here!</li>
-<li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a></li>
-</ul>
-<p>...then we&apos;ll need to:</p>
-<ol>
-<li>Set up and deploy an Ubuntu 14.04 LTS VM</li>
-<li>Run the npmO deploy script</li>
-<li>Set up endpoints for the admin panel, registry, and website</li>
-</ol>
-<p>Let&apos;s get started!</p>
-<h2 id="step-1-get-a-vm-up-and-running">Step 1: Get a VM Up and Running</h2>
-<p>The first step is to get a VM running. Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for getting
-an Ubuntu 14.04 LTS VM running.</p>
-<p>While setting this up, make sure to:</p>
-<ul>
-<li>Pick a size that has <em>at least</em> 7 GB of RAM. <strong>We strongly recommend 14 GB.</strong></li>
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="using-microsoft-azure">Using Microsoft Azure</h1><h2 id="summary">Summary</h2><p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p><ul><li>An <a href="https://www.npmjs.com/signup" target="_blank">npm user account</a>
+</li>
+<li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here!
+</li>
+<li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a>
+</li></ul>
+<p>...then we&apos;ll need to:</p><ol><li>Set up and deploy an Ubuntu 14.04 LTS VM
+</li>
+<li>Run the npmO deploy script
+</li>
+<li>Set up endpoints for the admin panel, registry, and website
+</li></ol>
+<p>Let&apos;s get started!</p><h2 id="step-1-get-a-vm-up-and-running">Step 1: Get a VM Up and Running</h2><p>The first step is to get a VM running. Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for getting
+an Ubuntu 14.04 LTS VM running.</p><p>While setting this up, make sure to:</p><ul><li>Pick a size that has <em>at least</em> 7 GB of RAM. <strong>We strongly recommend 14 GB.</strong>
+</li>
 <li>Take note of the name of the Security Group you assign. We&apos;ll need to edit it
-in Step 3.</li>
-</ul>
+in Step 3.
+</li></ul>
 <p>Feel free to make any other configurations you wish. Once you are set, deploy
-your VM and move on to Step 2!</p>
-<h2 id="step-2-install-npm-enterprise">Step 2: Install npm Enterprise</h2>
-<p>Now that you have a VM deployed, let&apos;s install the npm Enterprise (<code>npmo</code>) tool.</p>
-<ol>
-<li>SSH into your VM</li>
-<li><code>curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh</code></li>
-<li><p>Let it run! It can take a minute or two, depending on the specs of your VM.</p>
-<p>This script:</p>
-<ul>
-<li>updates <code>apt-get</code></li>
-<li>installs <code>curl</code> via <code>apt-get</code></li>
-<li>installs Node.js, via [NodeSource]</li>
-<li>updates npm</li>
-<li>displays Node.js and npm versions</li>
-<li>installs <code>npmo</code> globally as the root user, via npm</li>
-</ul>
+your VM and move on to Step 2!</p><h2 id="step-2-install-npm-enterprise">Step 2: Install npm Enterprise</h2><p>Now that you have a VM deployed, let&apos;s install the npm Enterprise (<code>npmo</code>) tool.</p><ol><li>SSH into your VM
 </li>
-</ol>
-<ol>
-<li><p>To confirm that it worked, type <code>npmo</code>. If the install succeeded you should see the
-<code>npmo help</code> screen, which looks like this:</p>
-<p><img src="../../gitbook/images/npmo-help.png" alt="npmo help in terminal"></p>
+<li><code>curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh</code>
 </li>
-</ol>
-<h2 id="step-3-set-up-endpoints">Step 3: Set up Endpoints</h2>
-<p>There are now 4 web services running on 4 ports on your VM. In order to access these
+<li><p>Let it run! It can take a minute or two, depending on the specs of your VM.</p><p>This script:</p><ul><li>updates <code>apt-get</code>
+</li>
+<li>installs <code>curl</code> via <code>apt-get</code>
+</li>
+<li>installs Node.js, via [NodeSource]
+</li>
+<li>updates npm
+</li>
+<li>displays Node.js and npm versions
+</li>
+<li>installs <code>npmo</code> globally as the root user, via npm
+</li></ul>
+</li></ol>
+<ol><li><p>To confirm that it worked, type <code>npmo</code>. If the install succeeded you should see the
+<code>npmo help</code> screen, which looks like this:</p><p><img alt="npmo help in terminal" src="../../gitbook/images/npmo-help.png"></p></li></ol>
+<h2 id="step-3-set-up-endpoints">Step 3: Set up Endpoints</h2><p>There are now 4 web services running on 4 ports on your VM. In order to access these
 outside of the VM, we&apos;ll need to create rules to allow them to be accessed. The ports
-we need to configure are:</p>
-<table>
+we need to configure are:</p><table>
 <thead>
-<tr>
-<th>Service</th>
+<tr><th>Service</th>
 <th>Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Administrator Panel</td>
+</tr></thead><tbody>
+<tr><td>Administrator Panel</td>
 <td>8800</td>
-</tr>
-<tr>
-<td>Registry</td>
+</tr><tr><td>Registry</td>
 <td>8080</td>
-</tr>
-<tr>
-<td>Website</td>
+</tr><tr><td>Website</td>
 <td>8081</td>
-</tr>
-<tr>
-<td>Authentication Endpoints</td>
+</tr><tr><td>Authentication Endpoints</td>
 <td>8082</td>
-</tr>
-</tbody>
-</table>
+</tr></tbody></table>
 
-                    
-                    </section>
-                
-                
-                </div>
-            </div>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
         </div>
-
-        
-        <a href="../../up-and-running/platforms/aws.html" class="navigation navigation-prev " aria-label="Previous page: Using AWS"><i class="fa fa-angle-left"></i></a>
-        
-        
-        <a href="../../up-and-running/auth/index.html" class="navigation navigation-next " aria-label="Next page: Authentication"><i class="fa fa-angle-right"></i></a>
-        
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
     </div>
 </div>
 
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="aws.html" class="navigation navigation-prev " aria-label="Previous page: Using AWS">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="vagrant.html" class="navigation navigation-next " aria-label="Next page: Using Vagrant">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
         
-<script src="../../gitbook/app.js"></script>
-
-    
-    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
-    
-
-    
-    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
-    
-
-    
-    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
-    
-
-    
-    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
-    
-
-<script>
-require(["gitbook"], function(gitbook) {
-    var config = {"layout":{"headerPath":"layouts/header.html","footerPath":"layouts/footer.html"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
-    gitbook.start(config);
-});
-</script>
-
-        <footer class="pane bg-npm-navy-1">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h3 class="h4 type-npm-pastel-3">You Need Help</h3>
-          <hr class="divider-1">
-          <ul class="list-unstyled h6 em-default">
-            <li class="pbl"><a class="type-neutral-11" href="https://docs.npmjs.com">Documentation</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/support">Support / Contact Us</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="http://status.npmjs.org/">Registry Status</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm/newww/issues">Website Issues</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm/npm/issues">CLI Issues</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/policies/security">Security</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-4">
-<h3 class="h4 type-npm-pastel-3">About npm</h3>
-          <hr class="divider-1">
-          <ul class="list-unstyled h6 em-default">
-            <li class="pbl"><a class="type-neutral-11" href="/about">About npm, Inc</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/jobs">Jobs</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/npm-weekly">npm Weekly</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="http://blog.npmjs.org">Blog</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="https://twitter.com/npmjs">Twitter</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="https://github.com/npm">GitHub</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-4">
-          <h3 class="h4 type-npm-pastel-3">Legal Stuff</h3>
-          <hr class="divider-1">
-          <ul class="list-unstyled h6 em-default">
-            <li class="pbl"><a class="type-neutral-11" href="/policies/terms">Terms of Use</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/policies/conduct">Code of Conduct</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/policies/disputes">Package Name Disputes</a></li>
-<li class="pbl"><a class="type-neutral-11" href="/policies/privacy">Privacy Policy</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/policies/receiving-reports">Reporting Abuse</a></li>
-            <li class="pbl"><a class="type-neutral-11" href="/policies/">Other policies</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <div class="txt-c container">
-      <a class="npm-loves-you type-neutral-11" href="/">
-        npm loves you
-      </a>
-    </div>
-  </footer>
-<script src="/scripts/bundle.js"></script>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"next":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"previous":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/platforms/azure.md","mtime":"2016-09-07T23:32:53.490Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-07T23:34:36.054Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+
+    <script src="/scripts/bundle.js"></script>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
 
     </body>
-    
 </html>
+

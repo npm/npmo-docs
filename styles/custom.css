@@ -37,3 +37,9 @@ header {
 .book .book-body .page-wrapper .page-inner section.normal a {
   color: #cb3837;
 }
+
+@media (max-width: 768px) {
+  .drop-down-menu-overlay {
+    background-color: rgb(40, 53, 70);
+  }
+}

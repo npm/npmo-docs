@@ -1,10 +1,11 @@
 {
-  "name": "npmo-docs",
+  "name": "npme-docs",
   "version": "1.0.0",
   "description": "documentation for npm Enterprise, npm's Enterprise offering",
   "main": "index.js",
   "scripts": {
     "install": "gitbook install",
+    "prestart": "npm run build",
     "start": "gitbook serve",
     "build": "npm run build:scripts && npm run build:styles && npm run concat:styles && gitbook build",
     "build:styles": "dr-frankenstyle ./styles",
@@ -13,21 +14,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/npm/npmo-docs.git"
+    "url": "git+https://github.com/npm/npme-docs.git"
   },
-  "keywords": ["npm", "enterprise", "docs", "documentation"],
+  "keywords": [
+    "npm",
+    "enterprise",
+    "docs",
+    "documentation"
+  ],
   "author": "ag_dubs <ashley@npmjs.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/npm/npmo-docs/issues"
+    "url": "https://github.com/npm/npme-docs/issues"
   },
-  "homepage": "https://github.com/npm/npmo-docs#readme",
+  "homepage": "https://github.com/npm/npme-docs#readme",
   "dependencies": {
     "@npmcorp/dr-frankenstyle": "^1.1.0",
     "@npmcorp/pui-css-alignment": "^2.0.0",
     "@npmcorp/pui-css-bootstrap": "^2.0.1",
     "@npmcorp/pui-css-colors": "^2.2.0",
     "@npmcorp/pui-css-dividers": "^2.0.0",
+    "@npmcorp/pui-css-drop-down-menu": "^6.4.0",
+    "@npmcorp/pui-css-dropdowns": "^6.4.0",
     "@npmcorp/pui-css-grids": "^2.1.1",
     "@npmcorp/pui-css-header": "^2.2.0",
     "@npmcorp/pui-css-lists": "^2.4.2",
