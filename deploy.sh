@@ -10,7 +10,7 @@ git init
 git config user.name "Ashley Williams"
 git config user.email "ashley666ashley@gmail.com"
 
-git remote add upstream "https://$GH_TOKEN@github.com/npm/npmo-docs.git"
+git remote add upstream "https://$GH_TOKEN@github.com/npm/npme-docs.git"
 git fetch upstream
 git reset upstream/gh-pages
 

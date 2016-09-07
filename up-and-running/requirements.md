@@ -52,4 +52,10 @@ If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/
 
 To open ports on your AWS EC2 instance, you can define a Security Group with the following Inbound settings:
 
-![AWS Security Group](/images/aws-security-group.png)
+```
+Port | Reason           
+---- | -----------------
+8080 | Registry         
+8081 | Website          
+8800 | Admin web console
+```

@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v2.2.3
+ * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -10,7 +10,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-04-05T19:26Z
+ * Date: 2016-05-20T17:23Z
  */
 
 (function( global, factory ) {
@@ -66,7 +66,7 @@ var support = {};
 
 
 var
-	version = "2.2.3",
+	version = "2.2.4",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5007,13 +5007,14 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
+	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.preventDefault();
 		}
 	},
@@ -5022,7 +5023,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopPropagation();
 		}
 	},
@@ -5031,7 +5032,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -5961,19 +5962,6 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-
-	// Support: IE11 only
-	// In IE 11 fullscreen elements inside of an iframe have
-	// 100x too small dimensions (gh-1764).
-	if ( document.msFullscreenElement && window.top !== window ) {
-
-		// Support: IE11 only
-		// Running getBoundingClientRect on a disconnected node
-		// in IE throws an error.
-		if ( elem.getClientRects().length ) {
-			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
-		}
-	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -7865,6 +7853,7 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
+	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -7872,27 +7861,10 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
-
-				// Previously, `originalEvent: {}` was set here, so stopPropagation call
-				// would not be triggered on donor event, since in our own
-				// jQuery.event.stopPropagation function we had a check for existence of
-				// originalEvent.stopPropagation method, so, consequently it would be a noop.
-				//
-				// But now, this "simulate" function is used only for events
-				// for which stopPropagation() is noop, so there is no need for that anymore.
-				//
-				// For the 1.x branch though, guard for "click" and "submit"
-				// events is still used, but was moved to jQuery.event.stopPropagation function
-				// because `originalEvent` should point to the original event for the constancy
-				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
-
-		if ( e.isDefaultPrevented() ) {
-			event.preventDefault();
-		}
 	}
 
 } );
@@ -9854,12 +9826,14 @@ module.exports=[
   "Nacho Portmanteau Meltdown",
   "Nacho Printing Machine",
   "Nachos Pillage Milwaukee",
+  "Nagging Mario's Princess",
   "Nagging Penguin Matriarchs",
   "Nail Polish Makeover",
   "Nail Polishing Minions",
   "Naive Puppets Marching",
   "Naivete Precedes Misrepresentation",
   "Naked Panda Meditations",
+  "naM ,sevitcepsreP weN",
   "Namby Pamby Magicians",
   "Name Picker Malfunction",
   "Named Pipe Mechanism",
@@ -9871,23 +9845,34 @@ module.exports=[
   "Naming Prosecution Mitigator",
   "NaN Producing Misery",
   "Nana Plays Minesweeper",
+  "Nana's Plush Muppet",
   "Nanananananananana.. Pat Man!",
   "Nancy's Preferred Machete",
+  "Nanobot: Polygonal Mascot",
   "Nanobots Producing Megastructures",
+  "Nanobots Protecting Microbots",
   "Nanometer Process Machine",
+  "Nanometers Per Millisecond",
   "Nanoprogrammed Penultimate Musicianship",
   "Nanoscale Parts Manufacturing",
+  "Nanoseconds Produce Minutes",
   "Nanotech Parading Mars",
   "Nanotechnology Promises Much",
+  "Nantes Paradox Market",
+  "Não Posso Mais",
   "Nap Power: Maximum",
   "Napolean Paced Mischeviously",
+  "Napoleon's Penguin Mascot",
   "Napoleonic Panda Machine",
+  "Napoleonic Political Magnificence",
   "Napping Panda Missionaries",
   "Napping Peanut Monsters",
   "Naps Per Month",
   "Narcissistic Passion Minified",
   "Narcissistic Piano Mover",
   "Narcissistic Pickle Meister",
+  "Narcissistic Preening Monarch",
+  "Narcissistic Project Managers",
   "Narcissistic, Perfectly Modest",
   "Narcoleptic Pasta Manufacturer",
   "Narcoleptic Pony Machine",
@@ -9896,16 +9881,19 @@ module.exports=[
   "Narcoleptic's Patch Mangler",
   "Narnia Protect Me",
   "Narnia's Poofy Meatcleaver",
+  "Narnia's Psychedelic Mushrooms",
   "Narrating Prophetic Monks",
   "Narwhal Parade Maestro",
   "Narwhals Playing Mahjong",
   "Narwhals Poke Mammals",
+  "Narwhals Prolong Mischief",
   "Nary a Package Missing",
   "NASA Proceeds to Mars",
   "NASA: Pluto Matters!",
   "Nasal Pathway Melodrama",
   "Nascent Personality Manifestation",
   "Nascent Plasticine Materialist",
+  "Nascent Political Miscreant",
   "Nascent Prototype Metaverse",
   "Nashville Plays Music",
   "Nasty Polka Music",
@@ -9917,10 +9905,12 @@ module.exports=[
   "National Pest Management",
   "National Poetry Month",
   "National Public Mania",
-  "Nationwide Polygamous Matrimony",
+  "Nationwide Polyamorous Matrimony",
   "Native Package Manager",
   "Native Papuan Masks",
+  "Native Penguin Milk",
   "Natively Pronounced Mandarin",
+  "Nattily Polished Marbles",
   "Nattily Primped Monster",
   "Natural Pacifist Manatees",
   "Natural Performance Manager",
@@ -9930,8 +9920,10 @@ module.exports=[
   "Natural Preference for Minification",
   "Natural Push Machine",
   "Naturally Pacifist Marsupials",
+  "Naturally Processed Meals",
   "Naturally Produced Modules",
   "Nature Preceded Machines",
+  "Nature's Particle Manager",
   "Naughty Panda Manga",
   "Naughty Pinching Mannequins",
   "Naughty Platypus Memorabilia",
@@ -9947,33 +9939,43 @@ module.exports=[
   "Nautilus: Pelagic Mollusc",
   "Naval Pilgrim's Mayflower",
   "Navel Piercing Madness",
+  "Navel Pondering Mantra",
   "Navy Penguin Mariachi",
   "Naysayers Promote Misery",
   "Ne Pas Manger!",
+  "Neanderthal Painting Monet",
+  "Neanderthal Pudding Mix",
   "Neanderthals Paint Mammals",
   "Neanderthals Programming Machines",
   "Neapolitan Pasta Maker",
   "Near Perfect Mood",
+  "Nearest Phase Modulator",
   "Nearly Past Midnight",
   "Nearly Perfect Mediocracy",
+  "Nearly Perpendicular Macaroons",
   "Nearly Picked Makefiles",
   "Nearly Pooped Myself",
+  "Nearly Pure Mustard",
   "Nearly-Pickled Module",
   "Nearsighted Paramecium Multiverse",
+  "Nearsighted Prank Master",
   "Neat Paraskavedekatriaphobia's Meaning",
+  "Neat Pidgeon Manure",
   "Neat! Pickled Muskrat!",
   "Neatly Packaged Magic",
   "Neatly Packaged Modules",
   "Neatly Placed Mail",
+  "Neatly Planned Meal",
   "Neatly Positioned Magazines",
   "Neatly Prepared Mustache",
   "Neatly Punctuated Musings",
   "Neato Polyester Material",
   "Nebulae Populate M83",
+  "Nebulous Plasma Muffin",
   "Nebulous Program Mechanic",
   "Nebulous Puffy Marshmallows",
+  "Necessary Pigeonholing Mechanism",
   "Necessitates Proper Modularity",
-  "Neckbeard Party Materials",
   "Necromancers Playing MTG",
   "Necrotizing Pineapple Music",
   "Nectar of the Programming Masses",
@@ -9981,23 +9983,32 @@ module.exports=[
   "Need Pray More",
   "Need Private Modules",
   "Need Prize Money",
+  "Needful Program Management",
   "Needle-Pinpointing Machine",
-  "Needless Pachouli Manufacture",
+  "Needless Patchouli Manufacture",
   "Needlessly Postulating Minds",
   "Needlessly Promiscuous, Modularize!",
   "Needlessly Provoking Marsupials",
+  "Needling Perl Mongers",
   "Needs Perl Modules",
   "Needs Puma Managers",
   "Needy Poetic Mothers",
+  "Nefarious Pickle Muncher",
   "Nefarious Planetary Meddling",
+  "Nefarious Plastic Mannequins",
   "Nefarious Punk Monk",
   "Nefariously Programmed Mecha",
+  "Nefariously Pushing Master",
   "Negatively Proportional Model",
   "Negatory. Postpone Mission.",
   "Neglected Parking Meter",
+  "Neglected Pizza Money",
   "Neglected Pulse Machine",
+  "Neglected Puppy Market",
   "Negligent Pachinko Machine",
+  "Negligent Parachute Maintainers",
   "Negligible Participation Metric",
+  "Negligible Psychological Misery",
   "Negotiable Paleobotanist Missions",
   "Neigh Purr Moo",
   "Neighbor's Preppy Maltese",
@@ -10006,19 +10017,25 @@ module.exports=[
   "Neil Patrick's Mansion",
   "Nemo's Parental Misguidance",
   "Neo's Personal Matrix",
+  "Neo's Playing Morpheus",
   "Neoanthropic Preternatural Murmurings",
+  "Neoclassic Placebo Maker",
   "Neoclassical Piano Montage",
   "Neoclassical Programming Multitude",
   "Neocon Propaganda Machine",
   "Neodymium Plated Magnet",
+  "Neolithic Populous Metropolis",
   "Neolithic Programming Machine",
+  "Neolithic Psychedelic Mushrooms",
   "Neologistic Paraphasic Mumbling",
   "Neon Papier Mâché",
+  "Neonatal Penguin March",
   "Neophobe Plebeian Mumpsimus",
   "Neopolitan Pizza Maker",
   "Neoteric Plumbing Mishap",
   "Neovictorian Paisley Menswear",
   "Nepotistic Pontifex Maximus",
+  "Neptune: Planet or Myth?",
   "Neptune's Personal Maid",
   "Neptunium, Promethium, Manganese",
   "Nerd Party Madness",
@@ -10029,39 +10046,53 @@ module.exports=[
   "Nerds Produce Money",
   "Nerds Publishing Monstrosities",
   "Nerdy People Matriculate",
+  "Nerdy Poly Millionaires",
   "Nerdy Programmers Mingling",
   "Nerdy Pun Mavens",
   "Nerfing Powerful Megalomaniacs",
   "Nero Punished Miscreants",
   "Nervous Parrot Muttering",
+  "Nervous Penpal Message",
   "Nestable Processes Mutate",
   "Nested Parenthetical Madness",
   "Nested Public Modules",
   "Net Possibility Multiplier",
+  "Netherworld's Pretend Minibar",
   "Neti Pot Manufacturer",
   "Nettle Pie Market",
+  "Network Performance Monitor",
   "Network Pipe Manufacturer",
   "Network Printer Manager",
+  "Network Processor Module",
   "Neural Prediction Model",
   "Neural Processing Mechanisms",
+  "Neural Proton Mapper",
   "Neurological Phenomenon Multiplexer",
+  "Neurologically Paralyzing Mouseovers",
   "Neurophysiologically Pseudoscientific Manatee",
+  "Neurotic and Probably Misinformed",
   "Neurotic Pantaloon Maker",
   "Neurotic Pink Mongooses",
   "Neurotoxin Powered Marketing",
   "Neutered Paranoid Meerkat",
+  "Neutered Puppy Masquerade",
   "Neutral Point Measurement",
+  "Neutral Political Machine",
   "Neutral Pork Motel",
+  "Neutral, Plus or Minus",
   "Neutralize Pesky Miscreants",
   "Neutrino Packing Machine",
+  "Neutrinos Peludos Magnéticos",
   "Neutron Polarization Manipulator",
   "Never Paint Mohawks",
   "Never Panic Much",
+  "Never Patronize Mothers",
   "Never Pay your Mortgage",
   "Never Perfectly Managed",
   "Never Pet Marmots",
   "Never Pet Mermaids",
   "Never Play Matchmaker",
+  "Never Please Meanies",
   "Never Poke Monkeys",
   "Never Post Memes",
   "Never Prank Me",
@@ -10075,11 +10106,14 @@ module.exports=[
   "Never Push to Master",
   "Neverending Package Mountain",
   "Neverending Perpetual Motion",
+  "Neverending Pile of Messages",
   "Neverending Plethora of Modules",
   "Neverending Programming Mistakes",
   "Neverending Prototype Mode",
   "Neverending Pun Machine",
+  "Neverending Puppy Marathon",
   "Nevertheless Published Mine",
+  "Nevertheless! Party Metaphorically",
   "New Package Monster",
   "New Patch, Merge?",
   "New Personal Mail",
@@ -10090,6 +10124,7 @@ module.exports=[
   "New Prague, Minnesota",
   "New Pretend Meaning",
   "New Priority Mail",
+  "New Prog Mixtape",
   "New Programs Makers",
   "New Project, Monday",
   "New Purple Moon",
@@ -10104,16 +10139,23 @@ module.exports=[
   "Newly Pregnant Mom",
   "Newly Purchased Memories",
   "Newlywed Party Monsters",
+  "Newlyweds Proposing Marriage",
+  "Newsworthy Presidential Mistakes",
+  "Newton's Poleless Magnet",
+  "Newton's Preposterous Miscalculation",
   "Newton's Programmatic Measurements",
   "Newtonian Particle Motion",
   "Newts Parading Majestically",
   "Newts Prefer MS-DOS",
   "Next Perpendicular Moonlanding",
   "Next Phenomenal Microbrewery",
+  "Next Planet of Monkeys",
   "Next Popular Module",
   "Next Prince Montage",
   "next() Packaged Middleware",
+  "NeXTSTEP Programming Mastermind",
   "Nibble Plum Meringue",
+  "Nibbling Perfect Macaroni",
   "Nicaragua's Pet Mice",
   "Nice Package, Mate",
   "Nice Paintings, Mondrian",
@@ -10127,6 +10169,7 @@ module.exports=[
   "Nicely Packaged Make",
   "Nicely Pointed Mandibles",
   "Nicely Presented Misnomer",
+  "Nicely Printed Maps",
   "Nicer Package Manager",
   "Nicer Perusal Method",
   "Niche Portobello Mushroom",
@@ -10134,6 +10177,7 @@ module.exports=[
   "Nickel Plated Moose",
   "Nickelback Plays Music",
   "Nietzsche's Preposterous Moustache",
+  "Nifty Penguin Magic",
   "Nifty Pony Merchandise",
   "Nifty Poutine Meal",
   "Nifty Procrastination Machine",
@@ -10148,16 +10192,22 @@ module.exports=[
   "Nightly Perpetrated Mischief",
   "Nightly Piano Man",
   "Nightly Punk Masters",
+  "Nightmare Prom Memories",
+  "Nightmarish Pawnshop Mystic",
   "Nights Pay More",
   "Nighttime Peanut Migrations",
   "Nighttime Possum Meandering",
+  "Nihil Prius Modulus",
   "Nihilist Pocket Monsters",
   "Nihilist Postmodern Mistake",
+  "Nihilistic Party Mantra",
+  "Nihilistic Pool Man",
   "Nil Packet Minimizer",
   "Nimble Package Maestros",
   "Nimble Pirate Monitor",
   "Nimble Pixie Merchant",
   "Nimble Polyglot Microcosm",
+  "Nimble Porridge Muncher",
   "Nimoy Prospers Mystically",
   "Nincompoops Producing Methane",
   "Nine Parsecs from Milwaukee",
@@ -10166,17 +10216,25 @@ module.exports=[
   "Nine Point Mulligan",
   "Nine Pomeranian Monsters",
   "Nine Post Meridiem",
+  "Nine Project Managers",
   "Nine Putrid Mangos",
   "Nineteen Poor Moths",
   "Nineties Party Mix",
+  "Nineties Pop Music",
   "Ninety Percent Muffin",
+  "Ninety-nine Pitchers of Malt",
   "Ninja Parading Musically",
+  "Ninja Party Manager",
+  "Ninja Pirate Mutants",
   "Ninja Pokémon Master",
+  "Ninja Power Manifesto",
   "Ninja Programmers Mindmeld",
   "Ninja Pumpkin Mutants",
   "Ninjas Practicing Multidimensionality",
   "Nirvana Playing Madonna",
+  "Nit-Picking Manager",
   "Nitrate Processed Mincemeat",
+  "Nitrogen Peroxide Monoxide",
   "Nitrogen Poisonous Monoxide",
   "Nitrogenous Polymorphic Molecule",
   "Nixon's Pants Missing",
@@ -10184,7 +10242,9 @@ module.exports=[
   "No Packages Misplaced",
   "No Packages, Mate",
   "No Padding Margin",
+  "No Padding Module",
   "No Painful Merges",
+  "No Pants Mafia",
   "No Pants Monkey",
   "No Pants, Mom",
   "No Particular Method",
@@ -10205,11 +10265,12 @@ module.exports=[
   "No Punches Made",
   "No Puns Monday",
   "No Purchase Made",
-  "No! Primate Mutation!",
   "No, Pay Me",
+  "No! Primate Mutation!",
   "Noah's Pairwise Manifest",
   "Nobel Prize Magnet",
   "Noble Programming Mantra",
+  "Noble Pug Mullet",
   "Nobody Packages More",
   "Nobody Pays (for) Magazines",
   "Nobody Peels Mangoes",
@@ -10219,10 +10280,12 @@ module.exports=[
   "Nobody Publish Monsters",
   "Nobody's Perfect, Man",
   "Noctiflorous Pansy Mulch",
+  "Nocturnal Pajama Mutants",
   "Nocturnal Parakeet Monitor",
   "Nocturnal Practitioners of Magic",
   "Nocturnal Programmer's Machine",
   "Nocturnally Psychologizing Millipede",
+  "Nodding Previously Managed",
   "Node Package Maid",
   "Node Package Manager",
   "Node Package Master",
@@ -10236,23 +10299,32 @@ module.exports=[
   "Node Popular Man",
   "Node Promiscuous Modules",
   "Node's Package Magician",
+  "Node's Perfect Mate",
   "Node's Perpetuum Mobile",
   "Node's Personal Monk",
   "Node's Play Mate",
   "Node's Pocket Monsters",
   "Node's Power Meal",
+  "Node's Pretty Magical",
   "Nodes Per Minute",
   "Nodeschool Public Materials",
+  "Nodular Pudding Multiverse",
   "Noiseless Party Machine",
   "Noiseless Peaceful Morning",
+  "Noiseless Praying Mantis",
   "Noisy Pillaging Monster",
+  "Noisy Pirate Mutiny",
   "Noisy Pneumatic Mnemonic",
   "Noisy Pop Music",
+  "Noisy Pterodactyl Melodies",
   "nom, please more",
   "Nomad Packaging Mechanism",
+  "Nomadic People Migration",
   "Nomenclature Processing Machine",
+  "Nominal Package Missing",
   "Nominal Pizza Masticator",
   "Nominally Patriotic Meathead",
+  "Nominating Presidential Muppets",
   "Nomming Peanut M&M's",
   "Nomnom Pumpernickle Muffins",
   "Non Polar Magnetism",
@@ -10279,14 +10351,19 @@ module.exports=[
   "Nonsense Placement Mandatory",
   "Nonsense Poetry Manager",
   "Nonstop Pajama Models",
+  "Nonstop Perpetual Motion",
   "Nonstop Pet Mewing",
   "Nonstop Progressive Marxism",
   "Nonviolent Pigeon Manifestation",
+  "Nonviolent Pirate Mobster",
   "Nonvoluntary Professional Mangling",
   "Noodle Printing Machine",
+  "Noodles Practicing Medicine",
+  "Noodles, Poodles and More!",
   "Noodly Pasta Maker",
   "noop(); pop(); map();",
   "Noosphere Possibilities Maximized",
+  "Nordic Panda Moor",
   "Normal People, MMM!",
   "Normal Programming Mistake",
   "Normally Palatable Mango",
@@ -10294,21 +10371,25 @@ module.exports=[
   "Norse Polytheistic Mythology",
   "North Pittsburgh Meatpackers",
   "North Pole Merriment",
+  "Northern Pie Muncher",
   "Northern Pileated Marmoset",
-  "Norvell's Public Machinations",
   "Norvell, Please Merge",
+  "Norvell's Public Machinations",
   "Norwegian Parcel Mail",
   "Norwegian Peat Moss",
   "Norwegian Polka Music",
   "Norwegian Pony Master",
   "Nose Picker's Maven",
+  "Nose Picking Mechanisms",
   "Nosey Party Murderer",
+  "Nosferatu's Pace Maker",
   "Nostalgic Perogi Monogramming",
   "Nostalgic Piano Music",
   "Nostalgic Pickled Mango",
   "Nostalgic Pizza Manager",
   "Nostalgic Primordial Monster",
   "Nostradamus Predicting Maelstroms",
+  "Nostradamus Prophecy Machine",
   "Nosy Pinocchio Manners",
   "Not a Package Manager",
   "Not a Penny More",
@@ -10329,64 +10410,85 @@ module.exports=[
   "Notebook Page Margin",
   "Noteworthy Programming Masterpiece",
   "Noteworthy Programs Map",
+  "Nothing Particularly Magnificent",
   "Nothing Pleases Me",
   "Nothing Plus Modules",
   "Nothing Prevents Misery",
+  "Nothing, Plus More",
   "Nothing's plumb meaningless",
   "Noticeably Playful Monkeys",
   "Notify President Madagascar",
+  "Notorious Party Muppets",
   "Notorious Penguin Magicians",
+  "Notorious Preying Mantis",
   "Notorious Public Menace",
   "Notorious Pug Mafia",
+  "Notoriously Psychedelic Modules",
   "Nougat Predominant Middleware",
   "Noun/Pronoun Mix-up",
   "Nourished Personal Mucus",
+  "Nourishing Pear Medley",
   "Nouveau Papier Mâché",
   "Nouveau Print Maker",
   "Novel Personal Mantras",
   "Novel Planetary Movement",
+  "Novel Preposterous Mockery",
   "Novelty Palliates Malaise",
   "Novelty Plastic Moustache",
   "Novelty Polygonal Mathematics",
+  "Novelty Promotes Magicians",
   "November Perfect Moustache",
+  "November: Procrastination Month",
   "November's Paddleball Marathon",
   "Novice Prime Minister",
   "Novice, Paragon, Master",
+  "Novice, Practiced, Mastered",
   "Novices Performing Miracles",
+  "Novices Plagiarizing Mozart",
   "Now Package More",
   "Now Packing Magic",
+  "Now Paging Maciej",
   "Now Particularly Misnamed",
   "Now Playing Mario",
   "Now Playing Mathcore",
   "Now Printing Money",
+  "Now with Partition Management",
   "Now, Please Meander",
   "Now, Publish Me",
   "Now, Push Me",
   "Noxious Plant Miasma",
+  "Nozzle Piping Mismatch",
   "npm packaged modules",
   "npm pretty much",
   "npm private modules",
   "npm promotes metadefinitions",
   "npm promulgates marsupials",
   "npm provides modules",
-  "npm's pretty magical",
   "npm: package manager",
   "npm: possibly marvellous",
+  "npm's personal messenger",
+  "npm's pretty magical",
   "NTFS Path Mockery",
   "Nth Permutation Mathematics",
   "Nth Phonetic Mnemonic",
   "Nth Power Matrix",
   "Nu Pop Metal",
   "Nuanced Pterodactyl Monk",
+  "Nuclear Package Magnet",
   "Nuclear Pizza Machine",
   "Nuclear Planning Manual",
   "Nuclear Power Manager",
   "Nuclear Powered Macros",
+  "Nuclear Powered Marshmallows",
   "Nuclear Powered Mushroom",
   "Nuclear Pumpkin Mocha",
   "Nuclearly Potent Moonshine",
+  "Nucleic Photon Magnetizer",
   "Nucleophosmin",
+  "nuǝɯ pǝɥsᴉꞁod mǝu",
+  "nuǝW pǝuoᴉʇᴉsoԀ ʎlǝʌᴉʇɐƃǝN",
   "NuGet Package Manager",
+  "Nuked: Probably Microwaved",
   "Nukem's Possible Manifestation",
   "Null Pointer Micromanagement",
   "Null Pointer Missing",
@@ -10394,29 +10496,137 @@ module.exports=[
   "Numbers Prefer Multiplication",
   "Numeric Production Mechanism",
   "Numerous Packages Multiply",
+  "Numerous Panicky Mimes",
   "Numerous Problems Multiplied",
   "Numerous Pulls Merged",
   "Numerous Pulsating Martians",
+  "Nunchaku Pizza Master",
+  "Nunjucks Powers Mozilla",
   "Nuns Playing Monopoly",
+  "Nuns Practicing Misanthropy",
   "Nupital Pomp Mesmerises",
   "Nuptial Predicament Mediation",
   "Nurturing Palpable Magnificence",
   "Nurturing Pluto's Martians",
   "Nutella Peanut-Butter Marshmallow",
   "Nutella Per Minute",
+  "Nutella with Pepperoni and Mushrooms",
   "Nutmeg Plundering Muse",
   "Nutrias Punching Marmots",
   "Nutrient Packed Morsels",
+  "Nutritious Polygonal Meatball",
   "Nutritious Pomegranate Muffins",
+  "Nutritious Potato Munchies",
   "Nutritious Pumpkin Meal",
+  "Nutty Peanut Marshmallow",
   "Nutty Penguin Music",
   "Nutty Professor Movie",
   "Nutty Programming Men",
-  "nuǝɯ pǝɥsᴉꞁod mǝu",
-  "Nybble Processing Mainframe",
-  "Nü Metal Provocateur"
+  "Nybble Processing Mainframe"
 ]
 },{}],3:[function(require,module,exports){
+var $ = require('jquery');
+
+var DropDownMenu = require('./drop-down-menu');
+
+module.exports = function() {
+  $(function() {
+    var dropDownMenus = $('.drop-down-menu');
+
+    $.each(dropDownMenus, function(idx, el) {
+      var ddm = new DropDownMenu($(el));
+
+      ddm.addListeners();
+
+      // in case you need to refresh while the menu is open
+      if (window.location.hash === '#' + ddm.id) {
+        ddm.open();
+      }
+
+      // for android users and anyone who likes to press the browser navigation buttons
+      $(window).on('hashchange', function() {
+
+        if (window.location.hash === '') {
+          ddm.close();
+        }
+
+        if (window.location.hash === '#' + ddm.id) {
+          ddm.open();
+        }
+      });
+    });
+
+    $("body").on("opened:dropDownMenu", function(e, id) {
+      $.each(dropDownMenus, function(idx, el) {
+        if (el.id !== id) {
+          $(el).trigger("close", {
+            noPathChange: true
+          });
+        }
+      });
+    });
+
+
+  });
+};
+
+},{"./drop-down-menu":4,"jquery":1}],4:[function(require,module,exports){
+$ = require('jquery');
+
+var DropDownMenu = function($el, $toggle, $overlay) {
+  this.menu = $el;
+  this.id = this.menu.attr('id');
+  this.menuToggle = $toggle || $('a[href="#' + this.id + '"]');
+  this.menuOverlay = $overlay || $("<div class='drop-down-menu-overlay' data-drop-down-menu='" + this.id + "'/>").appendTo("body");
+};
+
+DropDownMenu.prototype.close = function(noPathChange) {
+  if (noPathChange) {
+    history.pushState({}, '', window.location.pathname);
+  }
+  this.menu.addClass('hidden').removeClass('show');
+  this.menuToggle
+    .addClass('toggle-is-closed')
+    .removeClass('toggle-is-open')
+    .trigger('blur');
+  this.menuOverlay.removeClass('show');
+  this.menu.trigger("closed:dropDownMenu", [this.id]);
+};
+
+DropDownMenu.prototype.open = function() {
+  history.pushState({}, '', window.location.pathname + this.menuToggle.attr('href'));
+  this.menu.addClass('show').removeClass('hidden');
+  this.menuToggle.addClass('toggle-is-open').removeClass('toggle-is-closed');
+  this.menuOverlay.addClass('show');
+  this.menu.trigger("opened:dropDownMenu", [this.id]);
+};
+
+DropDownMenu.prototype.addListeners = function() {
+  var self = this;
+
+  this.menu.on("close", function(e) {
+    self.close(e.noPathChange);
+  });
+
+  this.menu.on("open", $.proxy(this.open, this));
+
+  this.menuToggle.on('click', function(e) {
+    e.preventDefault();
+
+    if (self.menu.is(':visible')) {
+      self.close();
+    } else {
+      self.open();
+    }
+  });
+
+  this.menuOverlay.on('click', $.proxy(this.close, this));
+
+};
+
+module.exports = DropDownMenu;
+
+},{"jquery":1}],5:[function(require,module,exports){
 var $ = require("jquery")
 var expansions = require("npm-expansions")
 var clickCount = -1
@@ -10437,7 +10647,8 @@ $(function() {
   $("#npm-expansions").on('click', updateExpansion)
 })
 
-},{"jquery":1,"npm-expansions":2}],4:[function(require,module,exports){
+},{"jquery":1,"npm-expansions":2}],6:[function(require,module,exports){
 require('./npm-expansions');
+require('./drop-down-menu-init')();
 
-},{"./npm-expansions":3}]},{},[4]);
+},{"./drop-down-menu-init":3,"./npm-expansions":5}]},{},[6]);

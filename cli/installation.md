@@ -2,9 +2,9 @@
 
 ## npm works with npm Enterprise
 
-npm Enterprise is a program called `npmo` that runs on a server or VM
-and is configured and maintainer by the IT or Ops department at your 
-company. 
+npm Enterprise is a program called `npme` that runs on a server or VM
+and is configured and maintainer by the IT or Ops department at your
+company.
 
 In order for you and your development teams to use your npm Enterprise
 instance, you'll need to install the npm Command Line Interface (CLI),
@@ -63,4 +63,4 @@ multiple platforms. If you are on Linux we recommend that you use these.
 [n]: https://github.com/tj/n
 [nodist]: https://github.com/marcelklehr/nodist
 [nvm-windows]: https://github.com/coreybutler/nvm-windows
-[file an issue]: https://github.com/npm/npmo-docs/issues
+[file an issue]: https://github.com/npm/npme-docs/issues
