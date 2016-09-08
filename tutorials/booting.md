@@ -11,6 +11,12 @@ directories you've configured under settings in `:8800`, have space available.
 
 ## Step 2: Upgrade to the Newest Version of Replicated on Your npme Server
 
+Older versions of Replicated (npme's orchestration software) ran into booting problems
+more frequently. Upgrading to a newer version of the appliance will frequently resolve
+these issues.
+
+  > make sure you've run backups recently, before upgrading your appliance.
+
 1. ssh into your npme server.
 2. run `replicated --version`
 3. if you you are on a version `< 2.0.0` run:
