@@ -4,7 +4,7 @@
   "description": "documentation for npm Enterprise, npm's Enterprise offering",
   "main": "index.js",
   "scripts": {
-    "install": "gitbook install",
+    "install": "gitbook fetch 3.2.0 && gitbook install",
     "prestart": "npm run build",
     "start": "gitbook serve",
     "build": "npm run build:scripts && npm run build:styles && npm run concat:styles && gitbook build",
