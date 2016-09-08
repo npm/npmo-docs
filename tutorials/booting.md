@@ -35,6 +35,6 @@ To force npm Enterprise to reboot, run the following commands:
 
 ## What Now?
 
-If things still aren't working? please email [support@npmjs.com].
+If things still aren't working, please email [support@npmjs.com].
 
 [support@npmjs.com]: mailto:support@npmjs.com
