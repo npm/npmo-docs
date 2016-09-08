@@ -4,7 +4,6 @@
 
 To get npm Enterprise up and running on Microsoft Azure, you first need:
 
-- An [npm user account]
 - An npm Enterprise license. Get a [free trial] here!
 - A [Microsoft account] and an [Azure account]
 
@@ -53,7 +52,7 @@ Now that you have a VM deployed, let's install the npm Enterprise (`npmo`) tool.
 
   ![npmo help in terminal](/gitbook/images/npmo-help.png)
 
-## Step 3: Set up Endpoints 
+## Step 3: Set up Endpoints
 
 There are now 4 web services running on 4 ports on your VM. In order to access these
 outside of the VM, we'll need to create rules to allow them to be accessed. The ports
