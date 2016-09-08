@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -524,25 +528,25 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="up-and-running">Up and Running</h1><p>In order to get up and running, you&apos;ll need to accomplish 5 things:</p><ul><li>provision a server running Ubuntu, CentOS, or Debian.
+                                <h1 id="up-and-running"><a name="up-and-running" class="plugin-anchor" href="#up-and-running"><i class="fa fa-link" aria-hidden="true"></i></a>Up and Running</h1><p>In order to get up and running, you&apos;ll need to accomplish 5 things:</p><ul><li>provision a server running Ubuntu, CentOS, RHEL, or Debian.
 </li>
-<li>install <a href="http://www.nodejs.org" target="_blank">Node.js</a>, ideally using a <a href="https://github.com/nodesource/distributions" target="_blank">NodeSource</a> dist
+<li>install <a href="http://www.nodejs.org" target="_blank">Node.js</a>, ideally using a <a href="https://github.com/nodesource/distributions" target="_blank">NodeSource</a> dist.
 </li>
-<li>install <a href="https://www.npmjs.com" target="_blank">npm</a>
+<li>install <a href="../cli/installation.html">npm</a>
 </li>
-<li>install <a href="https://www.npmjs.com/npm/enterprise" target="_blank">npm Enterprise</a>
+<li>install <a href="platforms/other.html">npm Enterprise</a>
 </li>
-<li>forward ports <code>8800</code>, <code>8080</code>, <code>8081</code>
+<li>ensure ports <code>8800</code>, <code>8080</code>, <code>8081</code> accessible on your server.
 </li></ul>
 <p>If you feel comfortable with those steps, feel free to jump in on your own.
-Otherwise, we have platform specific tutorials to help get you going.</p><h2 id="platform-specific-tutorials">Platform Specific Tutorials</h2><p>If you are just looking to play around with a trial version of npm
+Otherwise, we have platform specific tutorials to help get you going.</p><h2 id="platform-specific-tutorials"><a name="platform-specific-tutorials" class="plugin-anchor" href="#platform-specific-tutorials"><i class="fa fa-link" aria-hidden="true"></i></a>Platform Specific Tutorials</h2><p>If you are just looking to play around with a trial version of npm
 Enterprise, we recommend following the <a href="platforms/vagrant.html">Vagrant tutorial</a>.</p><p>We currently provide platform specific tutorials for:</p><ul><li><a href="platforms/aws.html">AWS</a>
 </li>
 <li><a href="platforms/azure.html">Microsoft Azure</a>
 </li>
 <li><a href="platforms/vagrant.html">Vagrant</a>
 </li>
-<li><a href="platforms/other.html">Other Platforms</a>
+<li><a href="platforms/other.html">Other Linux Platforms</a>
 </li></ul>
 <p>Don&apos;t see your favorite? Request a tutorial by messaging <a href="mailto:support@npmjs.com" target="_blank">support@npmjs.com</a></p>
                                 
@@ -587,13 +591,13 @@ Enterprise, we recommend following the <a href="platforms/vagrant.html">Vagrant 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.2","depth":1,"next":{"title":"Requirements","level":"1.2.1","depth":2,"path":"up-and-running/requirements.md","ref":"up-and-running/requirements.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"INTRO.md","ref":"INTRO.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/README.md","mtime":"2016-09-07T23:32:54.905Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-07T23:34:43.514Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.2","depth":1,"next":{"title":"Requirements","level":"1.2.1","depth":2,"path":"up-and-running/requirements.md","ref":"up-and-running/requirements.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"INTRO.md","ref":"INTRO.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/README.md","mtime":"2016-09-08T01:03:04.276Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-08T01:04:26.239Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
 
-    <script src="/scripts/bundle.js"></script>
+    <script src="/docs/scripts/bundle.js"></script>
 
         
     <script src="../gitbook/gitbook.js"></script>
