@@ -478,6 +478,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5.4" data-path="../../tutorials/booting.html">
+            
+                <a href="../../tutorials/booting.html">
+            
+                    
+                    npm Enterprise Won't Boot
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -528,15 +541,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="using-microsoft-azure"><a name="using-microsoft-azure" class="plugin-anchor" href="#using-microsoft-azure"><i class="fa fa-link" aria-hidden="true"></i></a>Using Microsoft Azure</h1><h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2><p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p><ul><li>An <a href="https://www.npmjs.com/signup" target="_blank">npm user account</a>
-</li>
-<li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here!
+                                <h1 id="using-microsoft-azure"><a name="using-microsoft-azure" class="plugin-anchor" href="#using-microsoft-azure"><i class="fa fa-link" aria-hidden="true"></i></a>Using Microsoft Azure</h1><h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2><p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p><ul><li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here!
 </li>
 <li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a>
 </li></ul>
 <p>...then we&apos;ll need to:</p><ol><li>Set up and deploy an Ubuntu 14.04 LTS VM
 </li>
-<li>Run the npmO deploy script
+<li>install Node.js and npm
+</li>
+<li>install npm Enterprise itself
 </li>
 <li>Set up endpoints for the admin panel, registry, and website
 </li></ol>
@@ -547,26 +560,13 @@ an Ubuntu 14.04 LTS VM running.</p><p>While setting this up, make sure to:</p><u
 in Step 3.
 </li></ul>
 <p>Feel free to make any other configurations you wish. Once you are set, deploy
-your VM and move on to Step 2!</p><h2 id="step-2-install-npm-enterprise"><a name="step-2-install-npm-enterprise" class="plugin-anchor" href="#step-2-install-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm Enterprise</h2><p>Now that you have a VM deployed, let&apos;s install the npm Enterprise (<code>npmo</code>) tool.</p><ol><li>SSH into your VM
-</li>
-<li><code>curl https://raw.githubusercontent.com/ashleygwilliams/npmo-deploy/master/deploy.sh | sh</code>
-</li>
-<li><p>Let it run! It can take a minute or two, depending on the specs of your VM.</p><p>This script:</p><ul><li>updates <code>apt-get</code>
-</li>
-<li>installs <code>curl</code> via <code>apt-get</code>
-</li>
-<li>installs Node.js, via [NodeSource]
-</li>
-<li>updates npm
-</li>
-<li>displays Node.js and npm versions
-</li>
-<li>installs <code>npmo</code> globally as the root user, via npm
-</li></ul>
-</li></ol>
-<ol><li><p>To confirm that it worked, type <code>npmo</code>. If the install succeeded you should see the
-<code>npmo help</code> screen, which looks like this:</p><p><img alt="npmo help in terminal" src="../../gitbook/images/npmo-help.png"></p></li></ol>
-<h2 id="step-3-set-up-endpoints"><a name="step-3-set-up-endpoints" class="plugin-anchor" href="#step-3-set-up-endpoints"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Set up Endpoints</h2><p>There are now 4 web services running on 4 ports on your VM. In order to access these
+your VM and move on to Step 2!</p><h2 id="step-2-install-npm-and-nodejs"><a name="step-2-install-npm-and-nodejs" class="plugin-anchor" href="#step-2-install-npm-and-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm and Node.js</h2><p>Now that you have a VM deployed, let&apos;s install npm and Node.js</p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm i -g npm@latest
+node -v &amp;&amp; npm -v</code></pre>
+<h2 id="step-3-install-npm-enterprise-itself"><a name="step-3-install-npm-enterprise-itself" class="plugin-anchor" href="#step-3-install-npm-enterprise-itself"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Install npm Enterprise itself</h2><pre><code class="lang-bash">sudo npm i npme -g --unsafe</code></pre>
+<p>To confirm that it worked, type <code>npme</code>. If the install succeeded you should see the
+<code>npme help</code> screen, which looks like this:</p><p><img alt="npmo help in terminal" src="../../gitbook/images/npmo-help.png"></p><h2 id="step-4-set-up-endpoints"><a name="step-4-set-up-endpoints" class="plugin-anchor" href="#step-4-set-up-endpoints"><i class="fa fa-link" aria-hidden="true"></i></a>Step 4: Set up Endpoints</h2><p>There are now 4 web services running on 4 ports on your VM. In order to access these
 outside of the VM, we&apos;ll need to create rules to allow them to be accessed. The ports
 we need to configure are:</p><table>
 <thead>
@@ -579,8 +579,6 @@ we need to configure are:</p><table>
 <td>8080</td>
 </tr><tr><td>Website</td>
 <td>8081</td>
-</tr><tr><td>Authentication Endpoints</td>
-<td>8082</td>
 </tr></tbody></table>
 
 
@@ -626,7 +624,7 @@ we need to configure are:</p><table>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"next":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"previous":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors","livereload"],"pluginsConfig":{"anchors":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/platforms/azure.md","mtime":"2016-09-08T23:51:18.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-08T22:32:29.812Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"next":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"previous":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/platforms/azure.md","mtime":"2016-09-09T00:40:17.766Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-09T00:41:57.830Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -637,10 +635,6 @@ we need to configure are:</p><table>
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
