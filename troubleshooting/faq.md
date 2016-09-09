@@ -79,7 +79,9 @@ The answer depends on [which part](#what-is-npm-enterprise-made-of) of npme you'
 
 ## What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?
 
-The first version of npm Enterprise that used Replicated and Docker was called npm On-Site, which was released around September 2015. In April 2016, npm On-Site was rebranded back to npm Enterprise. npm On-Site is literally the same product as npm Enterprise, just an older version. Similarly, the `npmo` bin was renamed to `npme` and has been deprecated.
+The first version of npm Enterprise did not use Docker or Replicated, but it only supported a small range of platforms. Around August 2015, the product was refactored to leverage Replicated and Docker, significantly expanding the range of supported platforms, and was soon renamed to npm On-Site. Over time we discovered the On-Site name was confusing, and so in April 2016 we rebranded npm On-Site back to npm Enterprise.
+
+npm On-Site is literally the same product as npm Enterprise, just an older version. Similarly, the `npmo` bin was renamed to `npme` and has been deprecated.
 
 If you're currently running npm On-Site, please use the [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise) answer to upgrade to npm Enterprise, and make sure to migrate Replicated to version 2. You should also replace the `npmo` bin on your host with `npme` via the following:
 
