@@ -54,7 +54,7 @@ To confirm that it worked, type `npme`. If the install succeeded you should see 
 
 ## Step 4: Set up Endpoints
 
-There are now 4 web services running on 4 ports on your VM. In order to access these
+There are now 3 web services running on 3 ports on your VM. In order to access these
 outside of the VM, we'll need to create rules to allow them to be accessed. The ports
 we need to configure are:
 
