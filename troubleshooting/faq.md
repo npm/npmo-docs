@@ -15,7 +15,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
 
 ## What is npm Enterprise made of? {#what-is-npme-made-of}
 
-npme itself consists of Docker, Replicated, the npme appliance, and the `npme` installer bin.
+npme consists of Docker, Replicated, the npme appliance, and the `npme` installer bin.
 
 [Docker](https://www.docker.com/) is used to run Replicated and the npme appliance.
 
@@ -24,6 +24,8 @@ npme itself consists of Docker, Replicated, the npme appliance, and the `npme` i
 The npme appliance is a suite of Docker images/containers that make up the private npm registry and website. The registry binds to port `:8080` and the website binds to port `:8081` on your host. Each instance of the appliance maintains its own databases as Docker containers, storing their data in configurable directories on the host file system. The npme appliance is configured and managed by the admin console. The appliance does not use any SSL/TLS certificate, but the registry and website can be fronted with a load balancer, web server, or reverse proxy that terminates SSL/TLS. See [Terminating SSL with NGINX](../tutorials/nginx.md) for an example.
 
 The [`npme` bin](https://www.npmjs.com/package/npme) is a CLI app distributed as a public npm package. It is used as a one-step installer for Docker and Replicated, and after installation it provides several administrative commands for adding or configuring functionality for your npme instance. In order to use it, you must have Node and npm installed on your host.
+
+The last piece to the puzzle is `npm` itself. The same CLI client you use to install packages from the public registry can be used to publish and install private packages from npm Enterprise. Read more about in [Common Workflows](../workflow/README.md).
 
 ## How do I upgrade npm Enterprise? {#how-do-i-upgrade-npme}
 
