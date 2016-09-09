@@ -4,27 +4,26 @@
 
 To get npm Enterprise up and running with Vagrant, you first need:
 
-- An [npm user account]
 - An npm Enterprise license. Get a [free trial] here!
 - [VirtualBox] installed.
 - [Vagrant] installed.
 
 ...then we'll need to:
 
-1. Download and run the npm Enterprise `Vagrantfile`
+1. Download and run the npm Enterprise [Vagrantfile]
 
 Let's get started!
 
 ## Step 1: Install npm Enterprise
 
-This `Vagrantfile` does several things:
+The Vagrantfile does several things:
 
   - updates `apt-get`
   - installs `curl` via `apt-get`
   - installs Node.js, via [NodeSource]
   - updates npm
   - displays Node.js and npm versions
-  - installs `npmo` globally as the root user, via npm
+  - installs `npme` globally as the root user, via npm
 
 Additionally, it forwards the following ports:
 
@@ -33,10 +32,19 @@ Additionally, it forwards the following ports:
 | Administrator Panel       | 8800  |
 | Registry                  | 8080  |
 | Website                   | 8081  |
-| Authentication Endpoints  | 8082  |
 
+To start npm Enterprise, simply download the [Vagrantfile] and run `vagrant up`.
 
-[npm user account]: https://www.npmjs.com/signup
+To SSH into the vagrant image, run `vagrant ssh`.
+
+## Step 2: Configuring npm Enterprise
+
+Open your favorite web browser, access your server on port `8800`, and follow the prompts to configure and start your appliance.
+
+For more information on configuring npm Enterprise, [read these docs](/up-and-running/customization.html).
+
 [free trial]: https://www.npmjs.com/enterprise#free-trial
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
+[NodeSource]: https://github.com/nodesource/distributions
+[Vagrantfile]: https://raw.githubusercontent.com/npm/npme-vagrant/master/Vagrantfile

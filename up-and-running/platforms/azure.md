@@ -64,6 +64,12 @@ we need to configure are:
 | Registry                  | 8080  |
 | Website                   | 8081  |
 
+## Step 5: Configuring npm Enterprise
+
+Open your favorite web browser, access your server on port `8800`, and follow the prompts to configure and start your appliance.
+
+For more information on configuring npm Enterprise, [read these docs](/up-and-running/customization.html).
+
 [npm user account]: https://www.npmjs.com/signup
 [free trial]: https://www.npmjs.com/enterprise#free-trial
 [Microsoft account]: https://signup.live.com/signup
