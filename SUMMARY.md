@@ -27,3 +27,4 @@
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [npm Enterprise Won't Boot](troubleshooting/booting.md)
+  * [Migrating From Legacy Server](troubleshooting/migrating.md)
