@@ -22,7 +22,7 @@ sudo npm i -g npm@latest
 node -v && npm -v
 ```
 
-_On Centos/RHEL:_
+_On CentOS/RHEL:_
 
 ```bash
 curl -sL https://rpm.nodesource.com/setup_4.x | sudo -E bash -
@@ -40,7 +40,7 @@ sudo npm i npme -g --unsafe
 To confirm that it worked, type `npme`. If the install succeeded you should see the
 `npme help` screen, which looks like this:
 
-  ![npmo help in terminal](/gitbook/images/npmo-help.png)
+  ![npme help in terminal](/gitbook/images/npme-help.png)
 
 ## Step 3: Set up Endpoints
 
@@ -53,7 +53,7 @@ ports are open on your server:
 | Registry                  | 8080  |
 | Website                   | 8081  |
 
-On Centos/RHEL servers, you may need to disable `firewalld`. It's also worth checking
+On CentOS/RHEL servers, you may need to disable `firewalld`. It's also worth checking
 that your default [iptable rules] aren't blocking any traffic.
 
 On Ubuntu, you should double check that `ufw` is not blocking traffic to any of these

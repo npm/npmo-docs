@@ -50,7 +50,7 @@ sudo npm i npme -g --unsafe
 To confirm that it worked, type `npme`. If the install succeeded you should see the
 `npme help` screen, which looks like this:
 
-  ![npmo help in terminal](/gitbook/images/npmo-help.png)
+  ![npme help in terminal](/gitbook/images/npme-help.png)
 
 ## Step 4: Set up Endpoints
 
@@ -76,4 +76,3 @@ For more information on configuring npm Enterprise, [read these docs](/up-and-ru
 [Azure account]: https://azure.microsoft.com/free/
 [Microsoft Azure portal]: https://portal.azure.com/
 [this tutorial]: https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
-[deploy script]: https://github.com/ashleygwilliams/npmo-deploy/blob/master/deploy.sh
