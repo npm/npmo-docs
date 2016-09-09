@@ -3,17 +3,17 @@
 Here are answers to some frequently asked questions. If you don't see your question listed here, and it's not covered by one of the many other docs pages, feel free to [open an issue](https://github.com/npm/npme-docs/issues) and ask/propose your question there.
 
 - General
-    - [What is npm Enterprise made of?](#what-is-npme-made-of)
-    - [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npme)
-    - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmo)
+    - [What is npm Enterprise made of?](#what-is-npm-enterprise-made-of)
+    - [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise)
+    - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmonpm-on-site-and-how-is-it-related-to-npmenpm-enterprise)
 - Scopes and Packages
-    - [What's the difference between a scoped package and an unscoped package?](#difference-bw-scoped-and-unscoped)
-    - [Does using a scope make packages private automatically?](#are-scoped-packages-automatically-private)
-    - [Do I have to use a scope for the packages I publish to npme?](#do-i-have-to-use-a-scope)
-    - [Am I assigned a scope? How many scopes can I use?](#am-i-assigned-a-scope-how-many)
-    - [If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?](#are-packages-published-to-public-registry)
+    - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
+    - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
+    - [Do I have to use a scope for the packages I publish to npme?](#do-i-have-to-use-a-scope-for-the-packages-i-publish-to-npme)
+    - [Am I assigned a scope? How many scopes can I use?](#am-i-assigned-a-scope-for-npm-enterprise-how-many-scopes-can-i-use)
+    - [If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?](#if-i-publish-a-package-to-my-npm-enterprise-registry-will-it-be-published-privately-on-the-public-registry-too)
 
-## What is npm Enterprise made of? {#what-is-npme-made-of}
+## What is npm Enterprise made of?
 
 npme consists of Docker, Replicated, the npme appliance, and the `npme` installer bin.
 
@@ -27,9 +27,9 @@ The [`npme` bin](https://www.npmjs.com/package/npme) is a CLI app distributed as
 
 The last piece to the puzzle is `npm` itself. The same CLI client you use to install packages from the public registry can be used to publish and install private packages from npm Enterprise. Read more about in [Common Workflows](../workflow/README.md).
 
-## How do I upgrade npm Enterprise? {#how-do-i-upgrade-npme}
+## How do I upgrade npm Enterprise?
 
-The answer depends on [which part](#what-is-npme-made-of) of npme you're talking about.
+The answer depends on [which part](#what-is-npm-enterprise-made-of) of npme you're talking about.
 
 1. Upgrading the appliance (registry and website)
 
@@ -77,28 +77,28 @@ The answer depends on [which part](#what-is-npme-made-of) of npme you're talking
 
     Note that all of these options incur downtime for your npme instance.
 
-## What is npmo/npm On-Site, and how is it related to npme/npm Enterprise? {#what-is-npmo}
+## What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?
 
 The first version of npm Enterprise that used Replicated and Docker was called npm On-Site, which was released around September 2015. In April 2016, npm On-Site was rebranded back to npm Enterprise. npm On-Site is literally the same product as npm Enterprise, just an older version. Similarly, the `npmo` bin was renamed to `npme` and has been deprecated.
 
-If you're currently running npm On-Site, please use the [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npme) answer to upgrade to npm Enterprise, and make sure to migrate Replicated to version 2. You should also replace the `npmo` bin on your host with `npme` via the following:
+If you're currently running npm On-Site, please use the [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise) answer to upgrade to npm Enterprise, and make sure to migrate Replicated to version 2. You should also replace the `npmo` bin on your host with `npme` via the following:
 
 ```
 sudo npm uninstall -g npmo
 sudo npm i -g --ignore-scripts npme
 ```
 
-## What's the difference between a scoped package and an unscoped package? {#difference-bw-scoped-and-unscoped}
+## What's the difference between a scoped package and an unscoped package?
 
 A scoped package has a scope (or namespace), which begins with an `@` symbol and is followed by a `/`, in the package name, e.g. `@scope/foo`. An unscoped package has no scope in the package name, e.g. `foo`. The scope is a permanent part of the package's name and identity, used in `package.json` and also in `require()` or `import` statements in code.
 
 Technically, the only difference is the presence of a scope in the package name. Semantically, however, a scoped package is private by default. For this reason, we *highly* recommend that you use a scope for any and all packages that you do not want to publish publicly.
 
-## Does using a scope make packages private automatically? {#are-scoped-packages-automatically-private}
+## Does using a scope make packages private automatically?
 
 Yes, because a scoped package is only made public if published using `npm publish --access public` (or subsequently modified via `npm access public`). For this reason, we *highly* recommend that you use a scope for any and all private packages.
 
-## Do I have to use a scope for the packages I publish to npme? {#do-i-have-to-use-a-scope}
+## Do I have to use a scope for the packages I publish to npme?
 
 Technically no. There are a couple ways you can configure your `npm` client (or even an individual package) to point to your private registry without using a scope, but we *highly* recommend using a scope for _all_ private packages to avoid unintentionally publishing your private package to the public registry, based on the following facts:
 
@@ -109,12 +109,12 @@ There are valid workflows which publish prerelease versions of a package to a pr
 
 For more info on scopes, see the next question.
 
-## Am I assigned a scope for npm Enterprise? How many scopes can I use? {#am-i-assigned-a-scope-how-many}
+## Am I assigned a scope for npm Enterprise? How many scopes can I use?
 
 Unlike [orgs or private packages](https://www.npmjs.com/features) on the public registry, you are *not* assigned a scope to use for private packages you publish to npm Enterprise. You are free to use any scope name that you wish, but to avoid namespace collisions with public scoped packages, you should try to use a scope that identifies your company/organization and is unique on the public registry. This will also make it easier to switch to npm's hosted orgs solution (where your private packages are hosted privately on the public registry), if you ever wish to do so. But it's your choice!
 
 You are allowed to use as many scopes as you like with npm Enterprise. You could use different scopes for different teams or projects within your organization, or use one scope for all packages. It's up to you!
 
-## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too? {#are-packages-published-to-public-registry}
+## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?
 
 No. Packages published to npm Enterprise are not published to an upstream registry, particularly not the public registry. One of the main reasons to use npm Enterprise is that you maintain complete control over the packages that you publish - they belong to you and they live _only_ on your server(s). Access to packages published to npm Enterprise is defined by your configured authentication/authorization provider, which is controlled by you or your organization. The access control used by the public registry is different and completely separate.
