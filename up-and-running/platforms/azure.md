@@ -50,11 +50,11 @@ sudo npm i npme -g --unsafe
 To confirm that it worked, type `npme`. If the install succeeded you should see the
 `npme help` screen, which looks like this:
 
-  ![npmo help in terminal](/gitbook/images/npmo-help.png)
+  ![npme help in terminal](/gitbook/images/npme-help.png)
 
 ## Step 4: Set up Endpoints
 
-There are now 4 web services running on 4 ports on your VM. In order to access these
+There are now 3 web services running on 3 ports on your VM. In order to access these
 outside of the VM, we'll need to create rules to allow them to be accessed. The ports
 we need to configure are:
 
@@ -76,4 +76,3 @@ For more information on configuring npm Enterprise, [read these docs](/up-and-ru
 [Azure account]: https://azure.microsoft.com/free/
 [Microsoft Azure portal]: https://portal.azure.com/
 [this tutorial]: https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
-[deploy script]: https://github.com/ashleygwilliams/npmo-deploy/blob/master/deploy.sh
