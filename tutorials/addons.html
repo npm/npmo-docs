@@ -586,7 +586,88 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="npm-enterprise-add-ons"><a name="npm-enterprise-add-ons" class="plugin-anchor" href="#npm-enterprise-add-ons"><i class="fa fa-link" aria-hidden="true"></i></a>npm Enterprise Add-Ons</h1><p>Add-ons allow third-party developer tools to integrate directly into npm Enterprise.
+This allows npm Enterprise to be augmented with powerful functionality, such as: vulnerability scanning, license auditing, and code quality analysis.</p><h2 id="installing-add-ons"><a name="installing-add-ons" class="plugin-anchor" href="#installing-add-ons"><i class="fa fa-link" aria-hidden="true"></i></a>Installing Add-Ons</h2><p>Add-ons are installed via the <code>npme</code> admin tool on your Enterprise server:</p><ol><li>ssh into your npme appliance.
+</li>
+<li>run <code>npme addon &lt;add-on-identifier&gt;</code>.
+</li>
+<li>third-parties may require an additional step, such as verifying your
+email address.
+</li>
+<li>that&apos;s all there is to it, visit any package page in your
+npm Enterprise website:
+</li></ol>
+<p><img alt="npm Enterprise Add-Ons" src="../gitbook/images/npme-addon.png"></p><h2 id="add-ons-currently-available"><a name="add-ons-currently-available" class="plugin-anchor" href="#add-ons-currently-available"><i class="fa fa-link" aria-hidden="true"></i></a>Add-Ons Currently Available</h2><h3 id="node-security"><a name="node-security" class="plugin-anchor" href="#node-security"><i class="fa fa-link" aria-hidden="true"></i></a>Node Security</h3><ul><li>homepage: <a href="https://nodesecurity.io/" target="_blank">https://nodesecurity.io/</a>
+</li>
+<li>installation: <code>npme addon nodesecurity</code>
+</li></ul>
+<p>The Node Security team audits modules Enterprises depend on and then surface this  security information in the Node Security Platform. For years, the nsp tool has been a pivotal source of intelligence on vulnerabilities in Node dependencies.</p><p>The npm Enterprise Node Security add-on provides this information in the sidebar of the module detail page. By clicking the sidebar, a user receives a more detailed
+description of the vulnerability.</p><p><img alt="Node Security" src="../gitbook/images/npme-node-security.png"></p><h3 id="fossa"><a name="fossa" class="plugin-anchor" href="#fossa"><i class="fa fa-link" aria-hidden="true"></i></a>FOSSA</h3><ul><li>homepage: <a href="http://fossa.io/" target="_blank">http://fossa.io/</a>
+</li>
+<li>installation: <code>npme addon http://{fossa_host}/api/services/npm</code>
+</li></ul>
+<p>FOSSA&#x2019;s Licenses add-on proactively assesses both public and proprietary packages in a company&#x2019;s npmE registry to identify licensing issues and obligations. npmE users will be able to view an at-a-glance summary of a package&#x2019;s licensing impact online before deciding to download and integrate into their products.</p><p>FOSSA runs as an appliance securely behind your firewall, contact
+support@fossa.io to get started with this add-on.</p><p><img alt="FOSSA" src="../gitbook/images/npme-fossa.png"></p><h3 id="bithound"><a name="bithound" class="plugin-anchor" href="#bithound"><i class="fa fa-link" aria-hidden="true"></i></a>bitHound</h3><ul><li>homepage: <a href="https://www.bithound.io/" target="_blank">https://www.bithound.io/</a>
+</li>
+<li>installation: <code>npme install addon https://www.bithound.io/npm/plugin.json</code>
+</li></ul>
+<p>Once the bitHound Addon is activated (via email post installation), you will start seeing bitHound package metrics and insights. This will show up on the right hand side where you&apos;re already used to seeing npm provided information.</p><p>This information provides valuable insight into the health of the open-source
+dependencies your company is building on top of.</p><p><img alt="bitHound" src="../gitbook/images/npme-bithound.png"></p><h2 id="writing-your-own-add-on"><a name="writing-your-own-add-on" class="plugin-anchor" href="#writing-your-own-add-on"><i class="fa fa-link" aria-hidden="true"></i></a>Writing Your Own Add-On</h2><p>Would you like to write an npm Enterprise add-on? send an email to
+<a href="mailto:support@npmjs.com" target="_blank">support@npmjs.com</a>.</p><p>npm Enterprise Add-Ons consist of two parts: a manifest that provides
+meta information about an add-on, and a server that gets web-hooks
+posted to it from the npm Enterprise appliance.</p><h3 id="the-manifest"><a name="the-manifest" class="plugin-anchor" href="#the-manifest"><i class="fa fa-link" aria-hidden="true"></i></a>The Manifest</h3><p>The manifest contains the following fields:</p><ul><li><strong>type:</strong> what type of add-on is this (currently <code>badge plus</code> is the only option)
+</li>
+<li><strong>email:</strong> email address of the add-on maintainer.
+</li>
+<li><strong>name:</strong> human readable name for add-on.
+</li>
+<li><strong>homepage:</strong> homepage URL for add-on.
+</li>
+<li><strong>description:</strong> a brief description of the add-on.
+</li>
+<li><strong>callback:</strong> callback to invoke during add-on installation.
+</li>
+<li><strong>webhook:</strong> webhook to invoke with package.json, as package pages are
+visited by users.
+</li></ul>
+<p><em>bitHound&apos;s manifest:</em></p><pre><code> {
+   &quot;type&quot;: &quot;badge plus&quot;,
+   &quot;email&quot;: &quot;gord@bithound.io&quot;,
+   &quot;name&quot;: &quot;Package Metrics&quot;,
+   &quot;homepage&quot;: &quot;https://www.bithound.io&quot;,
+   &quot;description&quot;: &quot;Package Metrics powered by bitHound&quot;,
+   &quot;callback&quot;: &quot;https://www.bithound.io/auth/npm&quot;,
+   &quot;webhook&quot;: &quot;https://www.bithound.io/webhook/npm&quot;
+ }</code></pre>
+<p>The manifest should be available on a public URL, and is installed via:</p><pre><code> npme addon https://manifest-url</code></pre>
+<h3 id="the-server"><a name="the-server" class="plugin-anchor" href="#the-server"><i class="fa fa-link" aria-hidden="true"></i></a>The Server</h3><p>The server component listens for events posted to the <code>webhook</code> and
+<code>callback</code> URL described in the manifest.</p><p>The <code>callback</code> URL receives <code>access_token</code> and <code>email</code>, the <code>access_token</code>
+is used to sign future webhooks, using a signing scheme outlined <a href="https://github.com/bcoe/npm-tonic-app/blob/master/server.js#L94" target="_blank">here</a>.</p><p>The <code>webhook</code> URL is posted a signed payload, representing the package
+page that a user is viewing. A webhook returns a payload representing
+the UI elements that should be rendered on the package page.</p><p><em>sample response:</em></p><pre><code> {
+     &quot;rows&quot;: [
+     {
+       &quot;image&quot;: {
+       &quot;text&quot;: &quot;&quot;,
+       &quot;url&quot;: &quot;http://localhost:8081/static/images/tonicdev.ico&quot;
+     },
+     &quot;link&quot;: {
+        &quot;url&quot;: &quot;https://tonicdev.com/npm/nyc&quot;,
+        &quot;text&quot;: &quot;test nyc in the browser&quot;
+     }
+    }
+  ]
+ }</code></pre>
+<p>Two sample servers are available as a point of reference:</p><ul><li><strong>name:</strong> npm Top Users
+</li>
+<li><strong>code:</strong> <a href="https://github.com/bcoe/top-npm-users-server" target="_blank">https://github.com/bcoe/top-npm-users-server</a>
+</li></ul>
+<p>Displays a list of the top npm users contributing to a package,
+based on their download counts.</p><ul><li><strong>name:</strong> Tonic
+</li>
+<li><strong>code:</strong> <a href="https://github.com/bcoe/npm-tonic-app" target="_blank">https://github.com/bcoe/npm-tonic-app</a>
+</li></ul>
+<p>Experiment with an npm module using Tonic.</p>
                                 
                                 </section>
                             
@@ -629,7 +710,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"next":{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},"previous":{"title":"Tutorials","level":"1.5","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"path":"tutorials/addons.md","ref":"tutorials/addons.md","articles":[]},{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"path":"tutorials/nginx.md","ref":"tutorials/nginx.md","articles":[]}]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tutorials/addons.md","mtime":"2016-09-09T23:20:41.341Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-09T23:23:18.984Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"next":{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},"previous":{"title":"Tutorials","level":"1.5","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"path":"tutorials/addons.md","ref":"tutorials/addons.md","articles":[]},{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"path":"tutorials/nginx.md","ref":"tutorials/nginx.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tutorials/addons.md","mtime":"2016-09-10T00:02:40.331Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-10T00:04:21.560Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -586,7 +586,88 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="terminating-ssl-with-nginx"><a name="terminating-ssl-with-nginx" class="plugin-anchor" href="#terminating-ssl-with-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>Terminating SSL with NGINX</h1>
+                                <h1 id="terminating-ssl-with-nginx"><a name="terminating-ssl-with-nginx" class="plugin-anchor" href="#terminating-ssl-with-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>Terminating SSL with NGINX</h1><p>Using NGINX is a great way to add DNS and SSL termination to your
+npm Enterprise server.</p><p>Here&apos;s an example <code>nginx.conf</code> configuration that you can use for
+associating one DNS name with your npm Enterprise Website and an
+alternative DNS name with your npm Enterprise Registry:</p><pre><code class="lang-nginx"><span class="hljs-attribute">user</span> root;
+<span class="hljs-attribute">worker_processes</span> <span class="hljs-number">1</span>;
+<span class="hljs-attribute">pid</span> /var/run/nginx.pid;
+
+<span class="hljs-section">events</span> {
+    <span class="hljs-comment"># After increasing this value You probably should increase limit</span>
+    <span class="hljs-comment"># of file descriptors (for example in start_precmd in startup script)</span>
+    <span class="hljs-attribute">worker_connections</span>  <span class="hljs-number">1024</span>;
+}
+
+<span class="hljs-section">http</span> {
+    <span class="hljs-attribute">upstream</span> registry {
+        <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8080</span>;
+    }
+
+    <span class="hljs-attribute">upstream</span> www {
+        <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8081</span>;
+    }
+
+    <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">200M</span>;
+
+    <span class="hljs-attribute">include</span>       /etc/nginx/mime.types;
+    <span class="hljs-attribute">default_type</span>  application/octet-stream;
+
+    <span class="hljs-attribute">log_format</span>  main  <span class="hljs-string">&apos;<span class="hljs-variable">$remote_addr</span> - <span class="hljs-variable">$remote_user</span> [<span class="hljs-variable">$time_local</span>] &quot;<span class="hljs-variable">$request</span>&quot; &apos;</span>
+                      <span class="hljs-string">&apos;<span class="hljs-variable">$status</span> <span class="hljs-variable">$body_bytes_sent</span> &quot;<span class="hljs-variable">$http_referer</span>&quot; &apos;</span>
+                      <span class="hljs-string">&apos;&quot;<span class="hljs-variable">$http_user_agent</span>&quot; &quot;<span class="hljs-variable">$http_x_forwarded_for</span>&quot;&apos;</span>;
+
+    <span class="hljs-attribute">access_log</span>  /var/log/nginx/access.log  main;
+
+    <span class="hljs-attribute">sendfile</span>        <span class="hljs-literal">on</span>;
+
+    <span class="hljs-attribute">keepalive_timeout</span>  <span class="hljs-number">65</span>;
+
+    <span class="hljs-comment"># npm Enterprise registry.</span>
+    <span class="hljs-section">server</span> {
+        <span class="hljs-attribute">listen</span>       <span class="hljs-number">443</span>;
+        <span class="hljs-attribute">server_name</span>  demo-registry.npmjs.com;
+
+        <span class="hljs-attribute">ssl</span>                  <span class="hljs-literal">on</span>;
+
+        <span class="hljs-attribute">ssl_certificate</span>      /home/ubuntu/sslcerts/wildcard.pem;
+        <span class="hljs-attribute">ssl_certificate_key</span>  /home/ubuntu/sslcerts/wildcard.pem;
+
+        <span class="hljs-attribute">ssl_session_timeout</span>  <span class="hljs-number">5m</span>;
+
+        <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;
+        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;
+        <span class="hljs-attribute">ssl_ciphers</span> <span class="hljs-string">&quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;</span>;
+
+        <span class="hljs-attribute">location</span> / {
+            <span class="hljs-attribute">proxy_pass</span>       http://registry;
+            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        }
+    }
+
+    <span class="hljs-comment"># npm Enterprise Website</span>
+    <span class="hljs-section">server</span> {
+        <span class="hljs-attribute">listen</span>       <span class="hljs-number">443</span>;
+        <span class="hljs-attribute">server_name</span>  demo-www.npmjs.com;
+
+        <span class="hljs-attribute">ssl</span>                  <span class="hljs-literal">on</span>;
+
+        <span class="hljs-attribute">ssl_certificate</span>      /home/ubuntu/sslcerts/wildcard.pem;
+        <span class="hljs-attribute">ssl_certificate_key</span>  /home/ubuntu/sslcerts/wildcard.pem;
+
+        <span class="hljs-attribute">ssl_session_timeout</span>  <span class="hljs-number">5m</span>;
+
+        <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;
+        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;
+        <span class="hljs-attribute">ssl_ciphers</span> <span class="hljs-string">&quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;</span>;
+
+        <span class="hljs-attribute">location</span> / {
+            <span class="hljs-attribute">proxy_pass</span>       http://www;
+            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        }
+    }
+}</code></pre>
+
                                 
                                 </section>
                             
@@ -629,7 +710,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"next":{"title":"Troubleshooting","level":"1.6","depth":1,"path":"troubleshooting/README.md","ref":"troubleshooting/README.md","articles":[{"title":"FAQ","level":"1.6.1","depth":2,"path":"troubleshooting/faq.md","ref":"troubleshooting/faq.md","articles":[]},{"title":"npm Enterprise Won't Boot","level":"1.6.2","depth":2,"path":"troubleshooting/booting.md","ref":"troubleshooting/booting.md","articles":[]},{"title":"Migrating From Legacy Server","level":"1.6.3","depth":2,"path":"troubleshooting/migrating.md","ref":"troubleshooting/migrating.md","articles":[]}]},"previous":{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tutorials/nginx.md","mtime":"2016-09-09T23:20:41.341Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-09T23:23:18.984Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"next":{"title":"Troubleshooting","level":"1.6","depth":1,"path":"troubleshooting/README.md","ref":"troubleshooting/README.md","articles":[{"title":"FAQ","level":"1.6.1","depth":2,"path":"troubleshooting/faq.md","ref":"troubleshooting/faq.md","articles":[]},{"title":"npm Enterprise Won't Boot","level":"1.6.2","depth":2,"path":"troubleshooting/booting.md","ref":"troubleshooting/booting.md","articles":[]},{"title":"Migrating From Legacy Server","level":"1.6.3","depth":2,"path":"troubleshooting/migrating.md","ref":"troubleshooting/migrating.md","articles":[]}]},"previous":{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tutorials/nginx.md","mtime":"2016-09-10T00:02:40.331Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-10T00:04:21.560Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -586,7 +586,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="github-enterprise-integration"><a name="github-enterprise-integration" class="plugin-anchor" href="#github-enterprise-integration"><i class="fa fa-link" aria-hidden="true"></i></a>Github Enterprise Integration</h1>
+                                <h1 id="github-enterprise-authentication"><a name="github-enterprise-authentication" class="plugin-anchor" href="#github-enterprise-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Github Enterprise Authentication</h1><p>If your organization uses GitHub or GitHub Enterprise, npm Enterprise can be configured
+to automatically use them for login and access control. Simply add a
+repository field to your package.json that points to your repo:</p><pre><code class="lang-js">{
+  ..
+  <span class="hljs-string">&quot;repository&quot;</span>: {
+    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;git://github.mycompany.com/myco/mypackage.git&quot;</span>
+  }
+}</code></pre>
+<p>npm Enterprise restricts installation of your
+package to users who have access to the repo for that package, and restricts
+publishing of that package to users who have commit access to the repo.</p><h2 id="pointing-at-your-github-enterprise-appliance"><a name="pointing-at-your-github-enterprise-appliance" class="plugin-anchor" href="#pointing-at-your-github-enterprise-appliance"><i class="fa fa-link" aria-hidden="true"></i></a>Pointing at your GitHub Enterprise appliance</h2><p>To point npm Enterprise at your GitHub Enterprise appliance:</p><ol><li>visit the admin console at <code>http://myreg.mycompany.com:8800</code>
+</li>
+<li>choose <code>GitHub</code> as the authentication strategy.
+</li>
+<li>choose <code>GitHub Enterprise</code>.
+</li>
+<li>enter your GitHub Enterprise appliance&apos;s host and scheme.
+</li></ol>
+<h2 id="logging-in-with-two-factor-authentication"><a name="logging-in-with-two-factor-authentication" class="plugin-anchor" href="#logging-in-with-two-factor-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Logging in with two-factor authentication</h2><p>If you use two-factor authentication for your GitHub account, you will need to
+manually generate a token and add it to your <a href="../../files/npmrc"><code>.npmrc</code></a> file.</p><ol><li>Visit github.com/settings/tokens/new to create a new &quot;Personal access token&quot;.
+</li>
+<li>Use a descriptive name for your token, like &quot;myco npmE&quot;
+</li>
+<li>Leave the default scopes as they are.
+</li>
+<li>Click &quot;Generate Token&quot; and you&apos;ll be redirected to a new page that displays your token. Copy the token right away, as it will only be displayed on screen once.
+</li>
+<li>Copy the token and paste it into the bottom of your <a href="../../files/npmrc"><code>.npmrc</code></a> file:
+</li></ol>
+<pre><code>@myco:registry=https://npme-private.npmjs.com/
+//npme-private.npmjs.com/:_authToken=3aa689a8a6772ab997bb333d096b8c1f48a9ccc</code></pre>
+<p><em>Note: you do not need to run <code>npm login</code> if you set up two-factor authentication this way.</em></p>
                                 
                                 </section>
                             
@@ -629,7 +660,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Github Enterprise Integration","level":"1.2.3.2","depth":3,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"Open Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/auth/github.md","mtime":"2016-09-09T23:20:41.341Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-09T23:23:18.984Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Github Enterprise Integration","level":"1.2.3.2","depth":3,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"Open Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/auth/github.md","mtime":"2016-09-10T00:02:40.331Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-10T00:04:21.560Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
