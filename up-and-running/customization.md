@@ -119,7 +119,7 @@ deployments.
 
 ### Auth Scoped Installs
 
-Should a user be required to authenticate against the registry (e.g. `npm login --registry=http://my-private-registry:8080`) in order to npm install scoped packages (e.g. ``@company/foo`)?
+Should a user be required to authenticate against the registry (e.g. `npm login --registry=http://my-private-registry:8080`) in order to `npm install` scoped packages (e.g. `@company/foo`)?
 
 This setting defaults to `Yes` to prevent anonymous users from installing private packages from your npm Enterprise registry. If your registry is running behind a firewall, you could set this to `No` to more easily share packages internally.
 
@@ -152,4 +152,4 @@ you to connect to your company's existing authentication system.
 Read more about [configuring authentication].
 
 [configuring authentication]: /up-and-running/auth/
-[Terminating SSL with NGINX]: /tutorials/nginx.html
+[Terminating SSL with NGINX]: /tutorials/nginx.md
