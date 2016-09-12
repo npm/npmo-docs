@@ -6,14 +6,13 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What is npm Enterprise made of?](#what-is-npm-enterprise-made-of)
     - [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise)
     - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmonpm-on-site-and-how-is-it-related-to-npmenpm-enterprise)
+    - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
     - [Do I have to use a scope for the packages I publish to npme?](#do-i-have-to-use-a-scope-for-the-packages-i-publish-to-npme)
     - [Am I assigned a scope? How many scopes can I use?](#am-i-assigned-a-scope-for-npm-enterprise-how-many-scopes-can-i-use)
     - [If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?](#if-i-publish-a-package-to-my-npm-enterprise-registry-will-it-be-published-privately-on-the-public-registry-too)
-    - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
-
 
 ## What is npm Enterprise made of?
 
