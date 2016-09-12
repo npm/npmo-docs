@@ -12,6 +12,8 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [Do I have to use a scope for the packages I publish to npme?](#do-i-have-to-use-a-scope-for-the-packages-i-publish-to-npme)
     - [Am I assigned a scope? How many scopes can I use?](#am-i-assigned-a-scope-for-npm-enterprise-how-many-scopes-can-i-use)
     - [If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?](#if-i-publish-a-package-to-my-npm-enterprise-registry-will-it-be-published-privately-on-the-public-registry-too)
+    - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
+
 
 ## What is npm Enterprise made of?
 
@@ -120,3 +122,26 @@ You are allowed to use as many scopes as you like with npm Enterprise. You could
 ## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?
 
 No. Packages published to npm Enterprise are not published to an upstream registry, particularly not the public registry. One of the main reasons to use npm Enterprise is that you maintain complete control over the packages that you publish - they belong to you and they live _only_ on your server(s). Access to packages published to npm Enterprise is defined by your configured authentication/authorization provider, which is controlled by you or your organization. The access control used by the public registry is different and completely separate.
+
+## How do I replicate between two npm Enterprise instances?
+
+It's good practice to setup a second npm Enterprise as a replica of your primary npm Enterprise
+server. This gives you a hot spare to fallback to in the case of failure.
+
+Setting up a replica is easy:
+
+1. on your primary server copy the values of `Full URL of npm Enterprise registry`, and
+   `Secret used between services` (replication connects to the registry component
+    of npm Enterprise, which defaults to running on `:8080`).
+2. provision the secondary server and ensure that publication and installation is working
+  appropriately.
+3. Optionally, set `Publication Settings` to `Read Only` on the secondary server (this
+   will prevent users form accidentally publishing packages to it).
+4. on the secondary server:
+  * set `Upstream URL` to the value of `Full URL of npm Enterprise registry` on the primary.
+  * set `Upstream secret` to the value of `Secret used between services` on the primary.
+  * set `Policy to apply during replication` to `mirror` on the secondary server.
+5. `ssh` into the secondary server, and run `npme reset-follower`.
+
+That's all there is to it, wait a few minutes and the secondary should be synced with the
+primary server.
