@@ -1,4 +1,4 @@
-# Customizating Server Configuration
+# Server Configuration
 
 You can customize the server's configuration by visiting npm
 Enterprise's admin console on `:8800`
@@ -17,7 +17,8 @@ initial configuration that you will need to perform:
 
 2. next you will be prompted to upload a certificate, or to generate
   a self-signed certificate (this certificate will be used going forward
-  when accessing the admin console).
+  when accessing the admin console, this will need to be configured
+  separately for the website and registry see [Terminating SSL with NGINX]).
 3. on the next screen you will be prompted for the `billing email` and
   `license key `, which you were provided with when you started your
   [npm Enterprise trial](https://www.npmjs.com/enterprise).
@@ -26,8 +27,8 @@ initial configuration that you will need to perform:
   your appliance.
 5. Next, a series of preflight checks will be run. These checks ensure that
    you are running hardware that meets the requirements.
-6. The docker containers will now begin downloading for npm Enterprise, and
-   you can proceed to [customizing your configuration](/up-and-running/customization.html#customizing-your-configuration).
+6. The Docker containers will now begin downloading for npm Enterprise, and
+   you can proceed to [customizing your configuration](#customizing-your-configuration).
 
 ## Customizing Your Configuration
 
@@ -43,7 +44,7 @@ you should place this DNS name here. _Note: For installs and publications
 to work, this URL must be accessible._
 
 While you may choose to use the default registry URL
-(`https://my-server:8080`), setting an alternative port # will not result
+(`http://my-server:8080`), setting an alternative port # will not result
 in the registry binding to an alternative port (it
   always binds to `:8080`).
 
@@ -54,6 +55,11 @@ The externally accessible URL of your npm Enterprise website.
 ### Your company name
 
 The company name that should be displayed on the npm Enterprise website.
+
+### Proxy URL
+
+If your company connects to the external Internet through a proxy,
+set the URL here.
 
 ### Secret used between services
 
@@ -90,10 +96,10 @@ or would prefer to mirror the entire registry, set this option to `No`.
 
 ### Reject Unauthorized
 
-This this option to `No`, if you would like to disable strict SSL checks
+Set this option to `No`, if you would like to disable strict SSL checks
 for operations performed by npm Enterprise.
 
-_As an example, you might disable SSL checks if your upstream GitHub enterprise
+_As an example, you might disable SSL checks if your upstream GitHub Enterprise
 server is using a self-signed certificate._
 
 ### Upstream Registry
@@ -113,12 +119,15 @@ deployments.
 
 ### Auth Scoped Installs
 
-Should authentication be required to install scoped modules?
+Should a user be required to authenticate against the registry (e.g. `npm login --registry=http://my-private-registry:8080`) in order to npm install scoped packages (e.g. ``@company/foo`)?
+
+This setting defaults to `Yes` to prevent anonymous users from installing private packages from your npm Enterprise registry. If your registry is running behind a firewall, you could set this to `No` to more easily share packages internally.
 
 ### Auth All Installs
 
-Should authentication be enabled to install both scoped (`@company/foo`), and
-global modules from your registry (`lodash`).
+Should a user be required to authenticate against the registry (e.g. `npm login --registry=http://my-private-registry:8080`) in order to `npm install` both scoped packages (e.g. `@company/foo`) and global packages (e.g. `lodash`)?
+
+This setting defaults to `No` so that global packages cached within your npm Enterprise registry may be installed without authentication, just like the public registry. If your registry is not running behind a firewall, you may want to set this to `Yes`.
 
 ### Auth Website
 
@@ -143,3 +152,4 @@ you to connect to your company's existing authentication system.
 Read more about [configuring authentication].
 
 [configuring authentication]: /up-and-running/auth/
+[Terminating SSL with NGINX]: /tutorials/nginx.html
