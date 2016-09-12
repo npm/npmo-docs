@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Other Platforms · GitBook</title>
+        <title>Authentication · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../customization.html" />
+    <link rel="next" href="open.html" />
     
     
-    <link rel="prev" href="vagrant.html" />
+    <link rel="prev" href="../customization.html" />
     
 
     </head>
@@ -162,9 +162,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="./">
+        <li class="chapter " data-level="1.2.2" data-path="../platforms/">
             
-                <a href="./">
+                <a href="../platforms/">
             
                     
                     Platform Tutorials
@@ -176,9 +176,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.1" data-path="aws.html">
+        <li class="chapter " data-level="1.2.2.1" data-path="../platforms/aws.html">
             
-                <a href="aws.html">
+                <a href="../platforms/aws.html">
             
                     
                     Using AWS
@@ -189,9 +189,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.2" data-path="azure.html">
+        <li class="chapter " data-level="1.2.2.2" data-path="../platforms/azure.html">
             
-                <a href="azure.html">
+                <a href="../platforms/azure.html">
             
                     
                     Using Microsoft Azure
@@ -202,9 +202,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.3" data-path="vagrant.html">
+        <li class="chapter " data-level="1.2.2.3" data-path="../platforms/vagrant.html">
             
-                <a href="vagrant.html">
+                <a href="../platforms/vagrant.html">
             
                     
                     Using Vagrant
@@ -215,9 +215,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.2.4" data-path="other.html">
+        <li class="chapter " data-level="1.2.2.4" data-path="../platforms/other.html">
             
-                <a href="other.html">
+                <a href="../platforms/other.html">
             
                     
                     Other Platforms
@@ -247,9 +247,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="../auth/">
+        <li class="chapter active" data-level="1.2.3.1" data-path="./">
             
-                <a href="../auth/">
+                <a href="./">
             
                     
                     Authentication
@@ -261,9 +261,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1.1" data-path="../auth/open.html">
+        <li class="chapter " data-level="1.2.3.1.1" data-path="open.html">
             
-                <a href="../auth/open.html">
+                <a href="open.html">
             
                     
                     Open Authentication
@@ -274,9 +274,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.2" data-path="../auth/github.html">
+        <li class="chapter " data-level="1.2.3.1.2" data-path="github.html">
             
-                <a href="../auth/github.html">
+                <a href="github.html">
             
                     
                     Github Enterprise Integration
@@ -590,7 +590,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Other Platforms</a>
+        <a href="../.." >Authentication</a>
     </h1>
 </div>
 
@@ -605,41 +605,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="other-linux-platforms"><a name="other-linux-platforms" class="plugin-anchor" href="#other-linux-platforms"><i class="fa fa-link" aria-hidden="true"></i></a>Other Linux Platforms</h1><p>npm Enterprise works on most modern versions of Linux:</p><ul><li>Ubuntu 14.04 / 15.10
+                                <h1 id="authentication"><a name="authentication" class="plugin-anchor" href="#authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Authentication</h1><p>Rather than handling user accounts itself, npm Enterprise allows
+you to connect to your company&apos;s existing authentication system.</p><p>Currently we support:</p><ul><li><a href="open.html">Open Authentication</a>
 </li>
-<li>CentOS 7.x
+<li><a href="github.html">GitHub Enterprise</a>
 </li>
-<li>Red Hat Enterprise Linux (RHEL) 7.x
+<li>Bitbucket Cloud
 </li>
-<li>Debian 7.7
+<li>LDAP
+</li>
+<li>SAML
+</li>
+<li>OAuth 2
 </li></ul>
-<p>Simply follow the steps listed below:</p><h2 id="step-1-install-npm-and-nodejs"><a name="step-1-install-npm-and-nodejs" class="plugin-anchor" href="#step-1-install-npm-and-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Step 1: Install npm and Node.js</h2><p>Now that you have a server provisioned, let&apos;s install npm and Node.js</p><p><em>On Ubuntu:</em></p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo npm i -g npm@latest
-node -v &amp;&amp; npm -v</code></pre>
-<p><em>On CentOS/RHEL:</em></p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://rpm.nodesource.com/setup_4.x | sudo -E bash -
-sudo yum -y install nodejs
-sudo npm i -g npm@latest
-node -v &amp;&amp; npm -v</code></pre>
-<h2 id="step-2-install-npm-enterprise-itself"><a name="step-2-install-npm-enterprise-itself" class="plugin-anchor" href="#step-2-install-npm-enterprise-itself"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm Enterprise Itself</h2><pre><code class="lang-bash">sudo npm i npme -g --unsafe</code></pre>
-<p>To confirm that it worked, type <code>npme</code>. If the install succeeded you should see the
-<code>npme help</code> screen, which looks like this:</p><p><img alt="npme help in terminal" src="../../gitbook/images/npme-help.png"></p><h2 id="step-3-set-up-endpoints"><a name="step-3-set-up-endpoints" class="plugin-anchor" href="#step-3-set-up-endpoints"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Set up Endpoints</h2><p>There are now 3 web services running on 3 ports on your VM. Make sure that these
-ports are open on your server:</p><table>
-<thead>
-<tr><th>Service</th>
-<th>Port</th>
-</tr></thead><tbody>
-<tr><td>Administrator Panel</td>
-<td>8800</td>
-</tr><tr><td>Registry</td>
-<td>8080</td>
-</tr><tr><td>Website</td>
-<td>8081</td>
-</tr></tbody></table>
-
-<p>On CentOS/RHEL servers, you may need to disable <code>firewalld</code>. It&apos;s also worth checking
-that your default <a href="https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules" target="_blank">iptable rules</a> aren&apos;t blocking any traffic.</p><p>On Ubuntu, you should double check that <code>ufw</code> is not blocking traffic to any of these
-ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring-npm-enterprise" class="plugin-anchor" href="#step-4-configuring-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Step 4: Configuring npm Enterprise</h2><p>Open your favorite web browser, access your server on port <code>8800</code>, and follow the prompts to configure and start your appliance.</p><p>For more information on configuring npm Enterprise, <a href="../customization.html">read these docs</a>.</p>
+<h2 id="writing-custom-authentication-plugins"><a name="writing-custom-authentication-plugins" class="plugin-anchor" href="#writing-custom-authentication-plugins"><i class="fa fa-link" aria-hidden="true"></i></a>Writing Custom Authentication Plugins</h2><p>You can also opt to write your own <a href="https://github.com/nexdrew/npme-auth-gitlab" target="_blank">custom auth-plugin</a> for npm Enterprise.</p><p>Install your module on the host machine in the <code>Miscellaneous data files</code> storage directory (this defaults to <code>/usr/local/lib/npme/data</code>). The module will be available at <code>/etc/npme/data</code> inside your container.</p>
                                 
                                 </section>
                             
@@ -666,12 +645,12 @@ ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring
 
             
                 
-                <a href="vagrant.html" class="navigation navigation-prev " aria-label="Previous page: Using Vagrant">
+                <a href="../customization.html" class="navigation navigation-prev " aria-label="Previous page: Configuring Your Instance">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../customization.html" class="navigation navigation-next " aria-label="Next page: Configuring Your Instance">
+                <a href="open.html" class="navigation navigation-next " aria-label="Next page: Open Authentication">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -682,7 +661,7 @@ ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Other Platforms","level":"1.2.2.4","depth":3,"next":{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]}]}]},"previous":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/platforms/other.md","mtime":"2016-09-12T17:49:55.703Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-12T17:52:27.445Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Authentication","level":"1.2.3.1","depth":3,"next":{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},"previous":{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"up-and-running/auth/README.md","mtime":"2016-09-12T17:49:55.703Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-12T17:52:27.445Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
