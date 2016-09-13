@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Migrating From Legacy Server · npm Enterprise Docs</title>
+        <title>Uninstalling npm Enterprise · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="uninstalling.html" />
     
-    
-    <link rel="prev" href="booting.html" />
+    <link rel="prev" href="migrating.html" />
     
 
     </head>
@@ -555,7 +553,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="migrating.html">
+        <li class="chapter " data-level="1.6.3" data-path="migrating.html">
             
                 <a href="migrating.html">
             
@@ -568,7 +566,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="uninstalling.html">
+        <li class="chapter active" data-level="1.6.4" data-path="uninstalling.html">
             
                 <a href="uninstalling.html">
             
@@ -616,7 +614,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Migrating From Legacy Server</a>
+        <a href=".." >Uninstalling npm Enterprise</a>
     </h1>
 </div>
 
@@ -631,22 +629,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="migrating-from-legacy-server"><a name="migrating-from-legacy-server" class="plugin-anchor" href="#migrating-from-legacy-server"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating From Legacy Server</h1><p>If you are running a legacy version of npm Enterprise (prior to npm
-  Enterprise running on Docker) you can follow the following steps
-  to migrate your data to a new installation:</p><ul><li>provision the new server, <a href="../up-and-running/platforms">following a tutorial</a> for one of npm Enterprise&apos;s
-supported platforms.
-</li>
-<li><p>Once the new server is provisioned (and you&apos;ve tested that it&apos;s handling publishes
-and installations appropriately) stop the appliance using the admin panel running on <code>:8800</code>.</p><p><img alt="Stop Now" src="../gitbook/images/stop-now.png"></p></li>
-<li><p>copy the packages folder form the old npm Enterprise server to the new server:</p><blockquote><p>copy <code>/etc/npme/packages</code> on <em>old</em>, to <code>/var/lib/npme/packages</code> on <em>new</em>.</p></blockquote></li>
-<li><p>copy the CouchDB database files form the old npm Enterprise server to the new server:</p><blockquote><p>copy <code>/etc/npme/couchdb</code> on <em>old</em>, to <code>/var/lib/npme/couchdb</code> on <em>new</em>.</p></blockquote></li></ul>
-<p><em>Note: <code>/var/lib/npme/packages</code>, and <code>/var/lib/npme/couchdb</code> are the default locations
- on the npm Enterprise server, you may have changed these in the admin console.</em></p><ul><li>Start the new npm Enterprise server, using the admin console running on <code>:8800</code>.
-</li>
-<li>Test publishing and installing (your old packages should now be available on the
- new npm Enterprise server).
-</li></ul>
-
+                                <h1 id="uninstalling-npm-enterprise"><a name="uninstalling-npm-enterprise" class="plugin-anchor" href="#uninstalling-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Uninstalling npm Enterprise</h1><p>Although the <code>npme</code> installer can conveniently install all dependencies required to run an npm Enterprise instance, it cannot uninstall everything on its own. Here&apos;s a quick guide to uninstall and remove the different components that make up the Enterprise product.</p><ol><li><p>Uninstall the <code>npme</code> package</p><pre><code> sudo npm uninstall -g npme</code></pre>
+<p>This removes the installer but not the Enterprise appliance.</p></li>
+<li><p>Note storage paths in admin console settings</p><p>If you wish to remove all packages and data from your registry, please make a note of all the Storage paths you have configured for your instance at <code>https://&lt;your-server&gt;:8800/settings</code>.</p><p>The default root is <code>/usr/local/lib/npme</code>. You can remove these in step 6 below.</p></li>
+<li><p>Uninstall the orchestration layer and admin console</p><p>To uninstall and remove Replicated, please <a href="https://www.replicated.com/docs/distributing-an-application/installing/#removing-replicated" target="_blank">follow the instructions found here</a>.</p><p>Ubuntu/Debian:</p><pre><code> sudo service replicated stop
+ sudo service replicated-ui stop
+ sudo service replicated-operator stop
+ sudo docker rm -f replicated replicated-ui replicated-operator
+ sudo docker images | grep &quot;quay\.io/replicated&quot; | awk &apos;{print $3}&apos; | xargs sudo docker rmi -f
+ sudo apt-get remove -y replicated replicated-ui replicated-operator
+ sudo apt-get purge -y replicated replicated-ui replicated-operator
+ sudo rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/init.d/replicated* /etc/default/replicated* /var/log/upstart/replicated* /etc/systemd/system/replicated*</code></pre>
+<p>CentOS/RHEL:</p><pre><code> sudo systemctl stop replicated replicated-ui replicated-operator
+ sudo service replicated stop
+ sudo service replicated-ui stop
+ sudo service replicated-operator stop
+ sudo docker rm -f replicated replicated-ui replicated-operator
+ sudo docker images | grep &quot;quay\.io/replicated&quot; | awk &apos;{print $3}&apos; | xargs sudo docker rmi -f
+ sudo yum remove -y replicated replicated-ui replicated-operator
+ sudo rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated* /etc/sysconfig/replicated* /etc/systemd/system/multi-user.target.wants/replicated* /run/replicated*</code></pre>
+<p>You can ignore any commands that might have failed.</p></li>
+<li><p>Stop and remove all Docker containers and images</p><p>Assuming you are not using Docker for anything else on your server, you may remove all running Docker containers and images with the following commands:</p><pre><code> # stop all containers
+ sudo docker stop $(sudo docker ps -aq)
+ # remove all containers
+ sudo docker rm -f $(sudo docker ps -aq)
+ # remove all images
+ sudo docker rmi -f $(sudo docker images -q)</code></pre>
+<p>Be careful! This will remove any other services using Docker on your system!</p></li>
+<li><p>Optionally uninstall Docker</p><p>If you wish, you may also remove Docker itself. Use the instructions for your Linux distribution:</p><p><a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/#uninstallation" target="_blank">Ubuntu/Debian instructions</a>, sample:</p><pre><code> sudo apt-get autoremove --purge docker-engine
+ sudo rm -rf /var/lib/docker</code></pre>
+<p><a href="https://docs.docker.com/engine/installation/linux/rhel/#uninstall" target="_blank">CentOS/RHEL instructions</a>, sample:</p><pre><code> sudo yum -y remove docker-engine.x86_64
+ sudo rm -rf /var/lib/docker</code></pre>
+<p>If you have configured Docker to store data in a directory other than <code>/var/lib/docker</code>, remove it instead.</p></li>
+<li><p>Optionally remove packages and Enterprise data</p><p>To completely wipe the Enterprise data, you should also remove the directories noted from step 2. Note that this will remove all packages you have published thus far!</p><pre><code> # caution! make sure the directory below is correct
+ # caution! this will remove all published packages
+ sudo rm -r /usr/local/lib/npme</code></pre>
+<p>If you configured npm Enterprise to store data in directories other than the defaults, remove those instead.</p></li>
+<li><p>Optionally uninstall Node.js and npm</p><p>Assuming you do not need Node.js or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.js.</p><p>Ubuntu/Debian:</p><pre><code> sudo apt-get autoremove --purge nodejs</code></pre>
+<p>CentOS/RHEL:</p><pre><code> sudo yum -y remove nodejs</code></pre>
+</li></ol>
+<p>This should remove all traces of npm Enterprise from your server.</p><p>If you wish to reinstall npm Enterprise, use the standard <a href="../up-and-running">installation docs</a>.</p>
                                 
                                 </section>
                             
@@ -673,14 +695,10 @@ and installations appropriately) stop the appliance using the admin panel runnin
 
             
                 
-                <a href="booting.html" class="navigation navigation-prev " aria-label="Previous page: npm Enterprise Won't Boot">
+                <a href="migrating.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Migrating From Legacy Server">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="uninstalling.html" class="navigation navigation-next " aria-label="Next page: Uninstalling npm Enterprise">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -689,7 +707,7 @@ and installations appropriately) stop the appliance using the admin panel runnin
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Migrating From Legacy Server","level":"1.6.3","depth":2,"next":{"title":"Uninstalling npm Enterprise","level":"1.6.4","depth":2,"path":"troubleshooting/uninstalling.md","ref":"troubleshooting/uninstalling.md","articles":[]},"previous":{"title":"npm Enterprise Won't Boot","level":"1.6.2","depth":2,"path":"troubleshooting/booting.md","ref":"troubleshooting/booting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"troubleshooting/migrating.md","mtime":"2016-09-13T20:04:24.612Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T20:06:40.600Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Uninstalling npm Enterprise","level":"1.6.4","depth":2,"previous":{"title":"Migrating From Legacy Server","level":"1.6.3","depth":2,"path":"troubleshooting/migrating.md","ref":"troubleshooting/migrating.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"troubleshooting/uninstalling.md","mtime":"2016-09-13T20:04:24.612Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T20:06:40.600Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
