@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Platform Tutorials · npm Enterprise Docs</title>
+        <title>Google OAuth2 Integration · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="aws.html" />
+    <link rel="next" href="../../cli/" />
     
     
-    <link rel="prev" href="../requirements.html" />
+    <link rel="prev" href="github.html" />
     
 
     </head>
@@ -162,9 +162,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.2" data-path="./">
+        <li class="chapter " data-level="1.2.2" data-path="../platforms/">
             
-                <a href="./">
+                <a href="../platforms/">
             
                     
                     Platform Tutorials
@@ -176,9 +176,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.1" data-path="aws.html">
+        <li class="chapter " data-level="1.2.2.1" data-path="../platforms/aws.html">
             
-                <a href="aws.html">
+                <a href="../platforms/aws.html">
             
                     
                     Using AWS
@@ -189,9 +189,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.2" data-path="azure.html">
+        <li class="chapter " data-level="1.2.2.2" data-path="../platforms/azure.html">
             
-                <a href="azure.html">
+                <a href="../platforms/azure.html">
             
                     
                     Using Microsoft Azure
@@ -202,9 +202,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.3" data-path="vagrant.html">
+        <li class="chapter " data-level="1.2.2.3" data-path="../platforms/vagrant.html">
             
-                <a href="vagrant.html">
+                <a href="../platforms/vagrant.html">
             
                     
                     Using Vagrant
@@ -215,9 +215,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.4" data-path="other.html">
+        <li class="chapter " data-level="1.2.2.4" data-path="../platforms/other.html">
             
-                <a href="other.html">
+                <a href="../platforms/other.html">
             
                     
                     Other Platforms
@@ -247,9 +247,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="../auth/">
+        <li class="chapter " data-level="1.2.3.1" data-path="./">
             
-                <a href="../auth/">
+                <a href="./">
             
                     
                     Authentication
@@ -261,9 +261,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1.1" data-path="../auth/open.html">
+        <li class="chapter " data-level="1.2.3.1.1" data-path="open.html">
             
-                <a href="../auth/open.html">
+                <a href="open.html">
             
                     
                     Open Authentication
@@ -274,9 +274,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.2" data-path="../auth/github.html">
+        <li class="chapter " data-level="1.2.3.1.2" data-path="github.html">
             
-                <a href="../auth/github.html">
+                <a href="github.html">
             
                     
                     Github Enterprise Integration
@@ -287,9 +287,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.3" data-path="../auth/oauth-google.html">
+        <li class="chapter active" data-level="1.2.3.1.3" data-path="oauth-google.html">
             
-                <a href="../auth/oauth-google.html">
+                <a href="oauth-google.html">
             
                     
                     Google OAuth2 Integration
@@ -629,7 +629,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Platform Tutorials</a>
+        <a href="../.." >Google OAuth2 Integration</a>
     </h1>
 </div>
 
@@ -644,17 +644,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="integrated-platform-tutorials"><a name="integrated-platform-tutorials" class="plugin-anchor" href="#integrated-platform-tutorials"><i class="fa fa-link" aria-hidden="true"></i></a>Integrated Platform Tutorials</h1><p>Here&apos;s a list of tutorials that will walk you through creating
-a VM and forwarding the necessary ports.</p><p>Don&apos;t see your preferred platform here? <a href="https://github.com/npm/npme-docs/issues" target="_blank">File an issue</a> or
-email <a href="mailto:support@npmjs.com" target="_blank">support@npmjs.com</a>.</p><ul><li><a href="aws.html">AWS</a>
-</li>
-<li><a href="azure.html">Microsoft Azure</a> for Ubuntu
-</li>
-<li><a href="vagrant.html">Vagrant</a> for Ubuntu
-</li>
-<li><a href="other.html">Other Linux Platforms</a>
-</li></ul>
+                                <h1 id="google-oauth2-integration"><a name="google-oauth2-integration" class="plugin-anchor" href="#google-oauth2-integration"><i class="fa fa-link" aria-hidden="true"></i></a>Google OAuth2 Integration</h1><p>npm Enterprise allows you to log in to your private registry and website using your Google account. Follow these steps to set it up.</p><h2 id="server-configuration"><a name="server-configuration" class="plugin-anchor" href="#server-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Server Configuration</h2><p>There are two basic steps to server-side configuration: creating an oauth client in Google and configuring authentication in npm Enterprise.</p><h3 id="setup-oauth-client-credentials-in-google"><a name="setup-oauth-client-credentials-in-google" class="plugin-anchor" href="#setup-oauth-client-credentials-in-google"><i class="fa fa-link" aria-hidden="true"></i></a>Setup oauth client credentials in Google</h3><p>These steps are based on <a href="https://developers.google.com/identity/protocols/OAuth2WebServer" target="_blank">Google&apos;s documentation</a>.</p><p>First log in to the Google Developers API console at <a href="https://console.developers.google.com/apis/credentials" target="_blank">https://console.developers.google.com/apis/credentials</a></p><p>Click the <strong>Create credentials</strong> button and choose <strong>OAuth client ID</strong>.</p><p>Choose <strong>Web application</strong> as the &quot;Application type&quot;.</p><p>Enter a name like <code>npm Enterprise</code>.</p><p>Under <strong>Restrictions</strong>, enter a callback URL for your npm Enterprise instance under <strong>Authorized redirect URIs</strong>. The value should be the <strong>Full URL of npm Enterprise website</strong> (e.g. <code>http://npm.mycompany.com:8081</code>) from the npm Enterprise admin console settings, plus the <code>/auth/oauth2/callback</code> route. A full example would be <code>http://npm.mycompany.com:8081/auth/oauth2/callback</code>. Note that you <em>must</em> use a domain name (IP address not allowed). We will enter this same URL as the <strong>Redirect URI</strong> in npm Enterprise&apos;s admin console when configuring authentication.</p><p>Click the <strong>Create</strong> button. On the next page, you will be shown the client ID and client secret that we will plug into npm Enterprise&apos;s admin console.</p><h3 id="configure-authentication-settings-in-npm-enterprise"><a name="configure-authentication-settings-in-npm-enterprise" class="plugin-anchor" href="#configure-authentication-settings-in-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Configure authentication settings in npm Enterprise</h3><p>In another browser tab, go to the <code>/settings</code> page of the npm Enterprise admin console (port <code>:8800</code>).</p><p>Under <strong>Authentication</strong>, select <strong>OAuth2</strong> and enter the following values:</p><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Config Value</th>
+</tr></thead><tbody>
+<tr><td>Client ID</td>
+<td>Paste value from Google</td>
+</tr><tr><td>Client Secret</td>
+<td>Paste value from Google</td>
+</tr><tr><td>API Endpoint</td>
+<td><code>https://accounts.google.com</code></td>
+</tr><tr><td>Token Path</td>
+<td><code>https://www.googleapis.com/oauth2/v4/token</code></td>
+</tr><tr><td>Authorization Path</td>
+<td><code>/o/oauth2/v2/auth</code></td>
+</tr><tr><td>Redirect URI</td>
+<td>Enter the same value you gave to Google when creating client credentials.<br>Example: <code>http://npm.mycompany.com:8081/auth/oauth2/callback</code></td>
+</tr><tr><td>Scope</td>
+<td><code>profile email</code></td>
+</tr><tr><td>Profile URL</td>
+<td><code>https://www.googleapis.com/oauth2/v2/userinfo</code></td>
+</tr><tr><td>Email Key</td>
+<td><code>email</code></td>
+</tr><tr><td>User Key</td>
+<td><code>name</code></td>
+</tr></tbody></table>
 
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="client-login"><a name="client-login" class="plugin-anchor" href="#client-login"><i class="fa fa-link" aria-hidden="true"></i></a>Client Login</h2><p>Now when you <code>npm login</code> against your registry, the user credentials you enter will be ignored and you will be granted an unresolved token, which is stored in your <code>~/.npmrc</code> file. Please <em>DO NOT</em> enter your Google password on <code>npm login</code> - use a fake password instead, it will be discarded.</p><p>The first time you attempt to <code>npm publish</code>, the registry will see that your token is unresolved and it will initially fail the publication, displaying a Google URL you should visit in your browser to authenticate against your Google account. Once you authenticate with Google using that URL and grant npm Enterprise access to your profile information, you will be redirected back to your npm Enterprise website and your token will be resolved, overwriting the user credentials you entered on <code>npm login</code> with your Google account name and email. You should now <code>npm publish</code> again to publish the package succesfully.</p><p>Again, you <em>SHOULD NOT</em> use your Google password with <code>npm login</code>. npm Enterprise should never see your Google password and will never ask for it. This is the point of OAuth.</p><p>Once you are authenticated with your Google account, you can use <code>npm</code> and the Enterprise website as you normally would.</p>
                                 
                                 </section>
                             
@@ -681,12 +698,12 @@ email <a href="mailto:support@npmjs.com" target="_blank">support@npmjs.com</a>.<
 
             
                 
-                <a href="../requirements.html" class="navigation navigation-prev " aria-label="Previous page: Requirements">
+                <a href="github.html" class="navigation navigation-prev " aria-label="Previous page: Github Enterprise Integration">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="aws.html" class="navigation navigation-next " aria-label="Next page: Using AWS">
+                <a href="../../cli/" class="navigation navigation-next " aria-label="Next page: Configuring and Using the npm CLI">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -697,7 +714,7 @@ email <a href="mailto:support@npmjs.com" target="_blank">support@npmjs.com</a>.<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Platform Tutorials","level":"1.2.2","depth":2,"next":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"previous":{"title":"Requirements","level":"1.2.1","depth":2,"path":"up-and-running/requirements.md","ref":"up-and-running/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/README.md","mtime":"2016-09-13T20:33:29.824Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T20:35:43.794Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Google OAuth2 Integration","level":"1.2.3.1.3","depth":4,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/oauth-google.md","mtime":"2016-09-13T20:33:29.820Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T20:35:43.794Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
