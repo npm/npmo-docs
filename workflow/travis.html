@@ -605,7 +605,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="integrating-with-travis-ci"><a name="integrating-with-travis-ci" class="plugin-anchor" href="#integrating-with-travis-ci"><i class="fa fa-link" aria-hidden="true"></i></a>Integrating with Travis CI</h1>
+                                <h1 id="integrating-with-travis-ci"><a name="integrating-with-travis-ci" class="plugin-anchor" href="#integrating-with-travis-ci"><i class="fa fa-link" aria-hidden="true"></i></a>Integrating with Travis CI</h1><p>To integrate npm Enterprise with Travis CI, you need to generate a <code>.npmrc</code>
+that knows about your npm Enterprise instance and its credentials:</p><ol><li><p>Fetch your npm Enterprise secret token:</p><p>Look in your <code>~/.npmrc</code> file, you will see an entry that looks something like this:</p><p><code>//registry.mycompany.com/:_authToken=[my-secret-token]</code></p><p>Copy <code>[my-secret-token]</code> somewhere safe. <em>Note: never make this token public.</em></p></li>
+<li><p>on Travis CI, or your Travis Enterprise server, create an environment variable called
+<code>NPM_TOKEN</code> and set this equal to <code>[my-secret-token]</code>.</p></li>
+<li><p>create a <code>.travis.yml</code> file in your project, that looks like this:</p><pre><code class="lang-yaml"><span class="hljs-attr">language:</span> node_js
+<span class="hljs-attr">node_js:</span>
+<span class="hljs-bullet"> -</span> <span class="hljs-string">&quot;node&quot;</span>
+<span class="hljs-attr">before_install:</span>
+<span class="hljs-bullet"> -</span> printf <span class="hljs-string">&quot;@mycompany:registry=https://registry.mycompany.com/\n//registry.mycompany.com/:_authToken=${NPM_TOKEN}&quot;</span> &gt;&gt; ~/.npmrc</code></pre>
+<ul><li><strong>@mycompany</strong>: should be the scope that you&apos;ve chosen for yourself.
+</li>
+<li><strong><code>https://registry.mycompany.com</code></strong>: should be the full address of your private registry, including scheme and port.
+</li>
+<li><strong><code>registry.mycompany.com</code></strong>: should be the address of your private registry, including port.
+</li></ul>
+</li></ol>
+<p>That&apos;s all there is to it, when you kickoff builds on Travis it should now
+be able to install modules from private npm Enterprise server.</p>
                                 
                                 </section>
                             
@@ -648,7 +665,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Integrating With Travis CI","level":"1.4.5","depth":2,"next":{"title":"Tutorials","level":"1.5","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"path":"tutorials/addons.md","ref":"tutorials/addons.md","articles":[]},{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"path":"tutorials/nginx.md","ref":"tutorials/nginx.md","articles":[]}]},"previous":{"title":"Mirroring the Public Registry","level":"1.4.4","depth":2,"path":"workflow/mirroring.md","ref":"workflow/mirroring.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"workflow/travis.md","mtime":"2016-09-13T17:38:45.810Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T17:40:55.719Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Integrating With Travis CI","level":"1.4.5","depth":2,"next":{"title":"Tutorials","level":"1.5","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"Enterprise Add-Ons","level":"1.5.1","depth":2,"path":"tutorials/addons.md","ref":"tutorials/addons.md","articles":[]},{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"path":"tutorials/nginx.md","ref":"tutorials/nginx.md","articles":[]}]},"previous":{"title":"Mirroring the Public Registry","level":"1.4.4","depth":2,"path":"workflow/mirroring.md","ref":"workflow/mirroring.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"workflow/travis.md","mtime":"2016-09-13T18:34:30.084Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T18:36:11.687Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
