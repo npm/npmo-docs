@@ -11,7 +11,6 @@
     * [Authentication](up-and-running/auth/README.md)
       * [Open Authentication](up-and-running/auth/open.md)
       * [Github Enterprise Integration](up-and-running/auth/github.md)
-  * [Uninstalling npm Enterprise](up-and-running/uninstalling.md)
 * [Configuring and Using the npm CLI](cli/README.md)
   * [Installing the npm CLI](cli/installation.md)
   * [Updating the npm CLI](cli/updating.md)
@@ -30,3 +29,4 @@
   * [FAQ](troubleshooting/faq.md)
   * [npm Enterprise Won't Boot](troubleshooting/booting.md)
   * [Migrating From Legacy Server](troubleshooting/migrating.md)
+  * [Uninstalling npm Enterprise](troubleshooting/uninstalling.md)
