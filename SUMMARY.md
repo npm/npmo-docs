@@ -30,3 +30,4 @@
   * [FAQ](troubleshooting/faq.md)
   * [npm Enterprise Won't Boot](troubleshooting/booting.md)
   * [Migrating From Legacy Server](troubleshooting/migrating.md)
+  * [Uninstalling npm Enterprise](troubleshooting/uninstalling.md)
