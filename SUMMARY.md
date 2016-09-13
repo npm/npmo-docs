@@ -25,6 +25,7 @@
   * [Enterprise Add-Ons](tutorials/addons.md)
   * [Bitbucket Pipelines](tutorials/pipelines.md)
   * [Terminating SSL with NGINX](tutorials/nginx.md)
+  * [Backups and HA](tutorials/backups-and-ha.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [npm Enterprise Won't Boot](troubleshooting/booting.md)

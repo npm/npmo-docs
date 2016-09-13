@@ -91,6 +91,31 @@ sudo npm uninstall -g npmo
 sudo npm i -g --ignore-scripts npme
 ```
 
+## How do I replicate between two npm Enterprise instances?
+
+It's good practice to setup a second npm Enterprise as a replica of your primary npm Enterprise
+server. This gives you a hot spare to fallback to in the case of failure.
+
+Setting up a replica is easy:
+
+1. on your primary server copy the values of `Full URL of npm Enterprise registry`, and
+   `Secret used between services` (replication connects to the registry component
+    of npm Enterprise, which defaults to running on `:8080`).
+2. provision the secondary server and ensure that publication and installation is working
+  appropriately.
+3. Optionally, set `Publication Settings` to `Read Only` on the secondary server (this
+   will prevent users form accidentally publishing packages to it).
+4. on the secondary server:
+  * set `Upstream URL` to the value of `Full URL of npm Enterprise registry` on the primary.
+  * set `Upstream secret` to the value of `Secret used between services` on the primary.
+  * set `Policy to apply during replication` to `mirror` on the secondary server.
+5. `ssh` into the secondary server, and run `npme reset-follower`.
+
+That's all there is to it, wait a few minutes and the secondary should be synced with the
+primary server.
+
+For more details, see replication for [Backups and HA](../tutorials/backups-and-ha.md).
+
 ## What's the difference between a scoped package and an unscoped package?
 
 A scoped package has a scope (or namespace), which begins with an `@` symbol and is followed by a `/`, in the package name, e.g. `@scope/foo`. An unscoped package has no scope in the package name, e.g. `foo`. The scope is a permanent part of the package's name and identity, used in `package.json` and also in `require()` or `import` statements in code.
@@ -121,26 +146,3 @@ You are allowed to use as many scopes as you like with npm Enterprise. You could
 ## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?
 
 No. Packages published to npm Enterprise are not published to an upstream registry, particularly not the public registry. One of the main reasons to use npm Enterprise is that you maintain complete control over the packages that you publish - they belong to you and they live _only_ on your server(s). Access to packages published to npm Enterprise is defined by your configured authentication/authorization provider, which is controlled by you or your organization. The access control used by the public registry is different and completely separate.
-
-## How do I replicate between two npm Enterprise instances?
-
-It's good practice to setup a second npm Enterprise as a replica of your primary npm Enterprise
-server. This gives you a hot spare to fallback to in the case of failure.
-
-Setting up a replica is easy:
-
-1. on your primary server copy the values of `Full URL of npm Enterprise registry`, and
-   `Secret used between services` (replication connects to the registry component
-    of npm Enterprise, which defaults to running on `:8080`).
-2. provision the secondary server and ensure that publication and installation is working
-  appropriately.
-3. Optionally, set `Publication Settings` to `Read Only` on the secondary server (this
-   will prevent users form accidentally publishing packages to it).
-4. on the secondary server:
-  * set `Upstream URL` to the value of `Full URL of npm Enterprise registry` on the primary.
-  * set `Upstream secret` to the value of `Secret used between services` on the primary.
-  * set `Policy to apply during replication` to `mirror` on the secondary server.
-5. `ssh` into the secondary server, and run `npme reset-follower`.
-
-That's all there is to it, wait a few minutes and the secondary should be synced with the
-primary server.
