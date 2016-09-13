@@ -26,25 +26,20 @@ Click the **Create** button. On the next page, you will be shown the client ID a
 
 In another browser tab, go to the `/settings` page of the npm Enterprise admin console (port `:8800`).
 
-Under **Authentication**, select **OAuth2**.
+Under **Authentication**, select **OAuth2** and enter the following values:
 
-Paste the **Client ID** and **Client Secret** values from Google.
-
-For **API Endpoint**, enter `https://accounts.google.com`.
-
-For **Token Path**, enter `https://www.googleapis.com/oauth2/v4/token`.
-
-For **Authorization Path**, enter `/o/oauth2/v2/auth`.
-
-For **Redirect URI**, enter the same value you gave to Google when creating client credentials. A full example would be `http://npm.mycompany.com:8081/auth/oauth2/callback`.
-
-For **Scope**, enter `profile email`.
-
-For **Profile URL**, enter `https://www.googleapis.com/oauth2/v2/userinfo`.
-
-For **Email Key**, enter `email`.
-
-For **User Key**, enter `name`.
+| Config Field       | Config Value |
+| ------------------ | ------------ |
+| Client ID          | Paste value from Google |
+| Client Secret      | Paste value from Google |
+| API Endpoint       | `https://accounts.google.com` |
+| Token Path         | `https://www.googleapis.com/oauth2/v4/token` |
+| Authorization Path | `/o/oauth2/v2/auth` |
+| Redirect URI       | Enter the same value you gave to Google when creating client credentials.<br/>Example: `http://npm.mycompany.com:8081/auth/oauth2/callback` |
+| Scope              | `profile email` |
+| Profile URL        | `https://www.googleapis.com/oauth2/v2/userinfo` |
+| Email Key          | `email` |
+| User Key           | `name` |
 
 Click **Save** to save these settings and then **Restart now** (when prompted) to restart the appliance and apply these settings.
 
