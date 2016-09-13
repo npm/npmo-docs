@@ -70,7 +70,9 @@ npm login --registry=http://myreg.mycompany.com:8080 --scope=@myco
 The `npm login` command will prompt you for your credentials. The credentials
 you use should match the authentication strategy configured in the Settings of
 your instance's admin console (`https://myreg.mycompany.com:8800/settings`).
-**By default, these will be your GitHub or GitHub Enterprise credentials.**
+
+_Note: by default `Open` authentication is enabled, this will allow you to
+ test your npm Enterprise instance using any combination of `username` and `password`._
 
 For details on GitHub Enterprise integration, please see
 [this page](/up-and-running/auth/github.md).

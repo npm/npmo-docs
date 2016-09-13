@@ -3,17 +3,30 @@
 To integrate npm Enterprise with Travis CI, you need to generate a `.npmrc`
 that knows about your npm Enterprise instance and its credentials:
 
-1. Fetch your npm Enterprise secret token:
+## Option 1) Fetch your npm Enterprise secret token:
 
   Look in your `~/.npmrc` file, you will see an entry that looks something like this:
 
   `//registry.mycompany.com/:_authToken=[my-secret-token]`
 
-  Copy `[my-secret-token]` somewhere safe. _Note: never make this token public._
+  Copy `[my-secret-token]` somewhere safe.
 
-2. on Travis CI, or your Travis Enterprise server, create an environment variable called
+  _Note: you should never make this token public._
+
+## Option 2) Generate a deploy token:
+
+  Rather than using `[my-secret-token]` from your `~/.npmrc` file, you may opt to
+  generate a deploy token on npm Enterprise:
+
+  1. `ssh` into your npm Enterprise server.
+  2. run `npme manage-tokens generate`.
+  3. copy this token, for use in the next step.
+
+## Now that you have a token
+
+1. on Travis CI, or your Travis Enterprise server, create an environment variable called
   `NPM_TOKEN` and set this equal to `[my-secret-token]`.
-3. create a `.travis.yml` file in your project, that looks like this:
+2. create a `.travis.yml` file in your project, that looks like this:
 
   ```yaml
   language: node_js
