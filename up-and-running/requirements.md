@@ -59,6 +59,10 @@ In addition to this list, you should make sure your host has access to the `yum`
 - rpm.nodesource.com
 - dl.fedoraproject.org
 
+### Node Security Platform
+
+- api.nodesecurity.io
+
 ## Note on Supported Platforms
 
 We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.
