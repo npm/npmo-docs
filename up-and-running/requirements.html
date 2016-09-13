@@ -648,7 +648,7 @@
 </li>
 <li>Kernel version 3.10 or higher
 </li>
-<li><p>One of the following Linux flavors (see <a href="requirements.html#note-on-supported-platforms">note on supported platforms</a> below):</p><ul><li>Ubuntu 14.04 / 15.10
+<li><p>One of the following Linux flavors (see <a href="#note-on-supported-platforms">note on supported platforms</a> below):</p><ul><li>Ubuntu 14.04 / 15.10
 </li>
 <li>CentOS 7.x
 </li>
@@ -669,12 +669,64 @@
 <li>8081 (website)
 </li></ul>
 </li>
-<li><p>Access to the public internet, either directly or via proxy</p></li></ul>
-<p>If using Amazon Web Services, see <a href="#note-on-aws">note on AWS</a> below.</p><h2 id="note-on-supported-platforms"><a name="note-on-supported-platforms" class="plugin-anchor" href="#note-on-supported-platforms"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Supported Platforms</h2><p>We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.</p><p>We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We&apos;d love to work with you.</p><p>You can also check for system issues on the <a href="https://github.com/npm/npme-installer/issues" target="_blank">npme-installer GitHub repo</a>.</p><h2 id="note-on-disk-space"><a name="note-on-disk-space" class="plugin-anchor" href="#note-on-disk-space"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Disk Space</h2><p>The amount of disk space needed is directly proportional to the number and size of packages your registry will need to host.</p><p>For example, the full public registry hosts at least 200,000 packages with an average of 6 versions each, and this requires at least half a terabyte of storage. Smaller registries, however, can get away with just a few gigabytes.</p><p>Therefore, a server with 50 - 100 GB is a good choice for most registries.</p><p>Please reserve at least 6 GB for OS resources and npm Enterprise appliance containers.</p><p>Once installed, you can configure where registry data is stored on your server via the &quot;Storage&quot; paths on the &quot;Settings&quot; page of the admin web console (port 8800). For details on configuring your Enterprise instance, please see <a href="../enterprise/server-configuration">this page</a>.</p><p><a name="note-aws"></a></p><h2 id="note-on-aws"><a name="note-on-aws" class="plugin-anchor" href="#note-on-aws"><i class="fa fa-link" aria-hidden="true"></i></a>Note on AWS</h2><p>We recommend using an <a href="https://aws.amazon.com/ec2/instance-types/#M3" target="_blank">m3.large</a> instance type.</p><p>If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the &quot;Storage&quot; paths on your Enterprise appliance to use directories under the mount point.</p><p>To open ports on your AWS EC2 instance, you can define a Security Group with the following Inbound settings:</p><pre><code>Port | Reason           
----- | -----------------
-8080 | Registry         
-8081 | Website          
-8800 | Admin web console</code></pre>
+<li><p>Access to the public internet, either directly or via proxy (see <a href="#network-requirements">network requirements</a> below)</p></li></ul>
+<p>If using Amazon Web Services, see <a href="#note-on-aws">note on AWS</a> below.</p><h2 id="network-requirements"><a name="network-requirements" class="plugin-anchor" href="#network-requirements"><i class="fa fa-link" aria-hidden="true"></i></a>Network Requirements</h2><p>Access to the following domains are required for installing and running an instance of npm Enterprise. Assume HTTP and HTTPS traffic for all of the domains listed.</p><p>In addition to this list, you should make sure your host has access to the <code>yum</code> or <code>apt</code> repositories it needs for standard OS and kernel upgrades.</p><h3 id="docker"><a name="docker" class="plugin-anchor" href="#docker"><i class="fa fa-link" aria-hidden="true"></i></a>Docker</h3><ul><li>cdn-registry-1.docker.io
+</li>
+<li>index.docker.io
+</li>
+<li>registry-1.docker.io
+</li>
+<li>quay.io
+</li>
+<li>get.docker.com
+</li>
+<li>apt.dockerproject.org
+</li>
+<li>yum.dockerproject.org
+</li>
+<li>ha.pool.sks-keyservers.net
+</li>
+<li>pgp.mit.edu
+</li>
+<li>keyserver.ubuntu.com
+</li></ul>
+<h3 id="replicated"><a name="replicated" class="plugin-anchor" href="#replicated"><i class="fa fa-link" aria-hidden="true"></i></a>Replicated</h3><ul><li>api.replicated.com
+</li>
+<li>get.replicated.com
+</li>
+<li>registry.replicated.com
+</li></ul>
+<h3 id="npm"><a name="npm" class="plugin-anchor" href="#npm"><i class="fa fa-link" aria-hidden="true"></i></a>npm</h3><ul><li>license.npmjs.com
+</li>
+<li>registry.npmjs.com
+</li>
+<li>registry.npmjs.org
+</li>
+<li>replicate.npmjs.com
+</li>
+<li>skimdb.npmjs.com
+</li></ul>
+<h3 id="node"><a name="node" class="plugin-anchor" href="#node"><i class="fa fa-link" aria-hidden="true"></i></a>Node</h3><ul><li>deb.nodesource.com
+</li>
+<li>rpm.nodesource.com
+</li>
+<li>dl.fedoraproject.org
+</li></ul>
+<h3 id="node-security-platform"><a name="node-security-platform" class="plugin-anchor" href="#node-security-platform"><i class="fa fa-link" aria-hidden="true"></i></a>Node Security Platform</h3><ul><li>api.nodesecurity.io
+</li></ul>
+<h2 id="note-on-supported-platforms"><a name="note-on-supported-platforms" class="plugin-anchor" href="#note-on-supported-platforms"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Supported Platforms</h2><p>We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.</p><p>We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We&apos;d love to work with you.</p><p>You can also check for system issues on the <a href="https://github.com/npm/npme-installer/issues" target="_blank">npme-installer GitHub repo</a>.</p><h2 id="note-on-disk-space"><a name="note-on-disk-space" class="plugin-anchor" href="#note-on-disk-space"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Disk Space</h2><p>The amount of disk space needed is directly proportional to the number and size of packages your registry will need to host.</p><p>For example, the full public registry hosts at least 300,000 packages with an average of 6 versions each, and this requires at least a terabyte of storage. Smaller registries, however, can get away with just a few gigabytes.</p><p>Therefore, a server with 75 - 150 GB is a good choice for most registries.</p><p>Please reserve at least 10 GB for OS resources and npm Enterprise appliance containers.</p><p>Once installed, you can configure where registry data is stored on your server via the &quot;Storage&quot; paths on the &quot;Settings&quot; page of the admin web console (port 8800). For details on configuring your Enterprise instance, please see <a href="customization.html">this page</a>.</p><p><a name="note-aws"></a></p><h2 id="note-on-aws"><a name="note-on-aws" class="plugin-anchor" href="#note-on-aws"><i class="fa fa-link" aria-hidden="true"></i></a>Note on AWS</h2><p>We have an AMI for npm Enterprise, and you should use it! <a href="platforms/aws.html">Read more about that here.</a></p><p>We recommend using an <a href="https://aws.amazon.com/ec2/instance-types/#M3" target="_blank">m3.large</a> instance type.</p><p>If extra storage is needed, you may want to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html" target="_blank">attach an EBS volume</a> to your EC2 instance and configure the &quot;Storage&quot; paths on your Enterprise appliance to use directories under the mount point.</p><p>To open ports on your AWS EC2 instance, you can define a Security Group with the following Inbound settings:</p><table>
+<thead>
+<tr><th>Port</th>
+<th>Reason</th>
+</tr></thead><tbody>
+<tr><td>8080</td>
+<td>Registry</td>
+</tr><tr><td>8081</td>
+<td>Website</td>
+</tr><tr><td>8800</td>
+<td>Admin web console</td>
+</tr></tbody></table>
+
 
                                 
                                 </section>
@@ -718,7 +770,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements","level":"1.2.1","depth":2,"next":{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]}]},"previous":{"title":"Installation","level":"1.2","depth":1,"path":"up-and-running/README.md","ref":"up-and-running/README.md","articles":[{"title":"Requirements","level":"1.2.1","depth":2,"path":"up-and-running/requirements.md","ref":"up-and-running/requirements.md","articles":[]},{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]}]},{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/requirements.md","mtime":"2016-09-13T20:33:29.824Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T20:35:43.794Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements","level":"1.2.1","depth":2,"next":{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]}]},"previous":{"title":"Installation","level":"1.2","depth":1,"path":"up-and-running/README.md","ref":"up-and-running/README.md","articles":[{"title":"Requirements","level":"1.2.1","depth":2,"path":"up-and-running/requirements.md","ref":"up-and-running/requirements.md","articles":[]},{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]}]},{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/requirements.md","mtime":"2016-09-13T21:07:33.245Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-13T21:09:47.309Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
