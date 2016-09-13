@@ -20,12 +20,11 @@ publish to your private npm Enterprise registry.
 
 You can do this in one of two ways:
 
-1. [Using Enterprise for private _and public_ packages](#using-your-private-registry-for-all-packages)
-2. [Using Enterprise for private packages only](#using-your-private-registry-for-your-scoped-packages)
+1. [Using Enterprise for private _and public_ packages](#option-1-using-enterprise-for-private-and-public-packages)
+2. [Using Enterprise for private packages only](#option-2-using-enterprise-for-private-packages-only)
 
 Read about each option below.
 
-<a name="using-your-private-registry-for-all-packages"></a>
 ### Option 1: Using Enterprise for private and public packages
 
 If you want all packages, whether they are under a scope or not, to be stored in
@@ -41,7 +40,7 @@ npm config set registry http://myreg.mycompany.com:8080
 And then authenticate against your registry without a scope:
 
 ```
-npm login --registry=http://myreg.mycompany.com:8080
+npm login
 ```
 
 When clients are configured this way, they will always use your private npm
@@ -54,7 +53,6 @@ admin console (`https://myreg.mycompany.com:8800/settings`) so that public
 packages are automatically mirrored from the public registry and automatically
 added to your registry's whitelist.
 
-<a name="using-your-private-registry-for-your-scoped-packages"></a>
 ### Option 2: Using Enterprise for private packages only
 
 If you want to default to using the public npm registry for most packages and
@@ -75,7 +73,7 @@ your instance's admin console (`https://myreg.mycompany.com:8800/settings`).
 **By default, these will be your GitHub or GitHub Enterprise credentials.**
 
 For details on GitHub Enterprise integration, please see
-[this page](/enterprise/github).
+[this page](/up-and-running/auth/github.md).
 
 For details on configuring custom authentication, please see
-[this page](/enterprise/custom-authentication).
+[this page](/up-and-running/auth/).
