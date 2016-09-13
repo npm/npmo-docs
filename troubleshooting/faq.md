@@ -114,7 +114,7 @@ Setting up a replica is easy:
 That's all there is to it, wait a few minutes and the secondary should be synced with the
 primary server.
 
-For more details, see [Replication for Backups and HA](../tutorials/replication.md).
+For more details, see replication for [Backups and HA](../tutorials/backups-and-ha.md).
 
 ## What's the difference between a scoped package and an unscoped package?
 

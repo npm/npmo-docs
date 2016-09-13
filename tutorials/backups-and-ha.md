@@ -1,4 +1,4 @@
-# Replication for Backups and HA
+# Backups and HA
 
 One nice thing about npm Enterprise is that replication is built into the product, and you can configure it using just the Settings page in the admin console UI. We typically recommend running at least one other npme instance as a live replica, which is easy to set up and makes restoration as simple as configuring your client to talk to a secondary instance if your primary instance goes down. This also makes it easy to set up a HA solution, where you could front the instances with a load balancer, directing all writes to the primary instance while balancing reads across many instances. In case of failure, reads/installs will still be available but writes/publishes will be unavailable until you can make a secondary instance the new primary by directing writes to it.
 
