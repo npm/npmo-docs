@@ -7,6 +7,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise)
     - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmonpm-on-site-and-how-is-it-related-to-npmenpm-enterprise)
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
+    - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -115,6 +116,24 @@ That's all there is to it, wait a few minutes and the secondary should be synced
 primary server.
 
 For more details, see replication for [Backups and HA](../tutorials/backups-and-ha.md).
+
+## What should I do if npm Enterprise binds to the wrong IP address?
+
+In rare situations, npm Enterprise may bind to the wrong `Daemon Address`
+for the cluster of services that it provisions. To fix this, manually configure
+the IP address:
+
+### On Centos/RHEL
+
+1. edit `/etc/sysconfig/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
+2. edit `/etc/sysconfig/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
+3. `sudo systemctl restart replicated replicated-operator`, to reload the environment.
+
+### On Ubuntu/Debian
+
+1. edit `/etc/default/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
+2. edit `/etc/default/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
+3. `sudo service replicated stop && sudo service replicated-operator stop && sudo service replicated start && sudo service replicated-operator start`, to reload the environment.
 
 ## What's the difference between a scoped package and an unscoped package?
 
