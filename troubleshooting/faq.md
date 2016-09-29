@@ -13,6 +13,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
     - [Do I have to use a scope for the packages I publish to npme?](#do-i-have-to-use-a-scope-for-the-packages-i-publish-to-npme)
     - [Am I assigned a scope? How many scopes can I use?](#am-i-assigned-a-scope-for-npm-enterprise-how-many-scopes-can-i-use)
+    - [How should I choose my scope?](#how-should-i-choose-my-scope)
     - [If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?](#if-i-publish-a-package-to-my-npm-enterprise-registry-will-it-be-published-privately-on-the-public-registry-too)
 
 ## What is npm Enterprise made of?
@@ -161,6 +162,12 @@ For more info on scopes, see the next question.
 Unlike [orgs or private packages](https://www.npmjs.com/features) on the public registry, you are *not* assigned a scope to use for private packages you publish to npm Enterprise. You are free to use any scope name that you wish, but to avoid namespace collisions with public scoped packages, you should try to use a scope that identifies your company/organization and is unique on the public registry. This will also make it easier to switch to npm's hosted orgs solution (where your private packages are hosted privately on the public registry), if you ever wish to do so. But it's your choice!
 
 You are allowed to use as many scopes as you like with npm Enterprise. You could use different scopes for different teams or projects within your organization, or use one scope for all packages. It's up to you!
+
+## How should I choose my scope?
+
+It's recommended that you use your company name, e.g., `@npm`,
+or for large organizations a business unit within your company, e.g., `@npm-cli`. There's
+no limit on the number of scopes that you can use in npm Enterprise.
 
 ## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?
 

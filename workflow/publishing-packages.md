@@ -6,7 +6,7 @@ To create a private module, all you need to do is initialize an npm module with 
 scope that you used while logging in:
 
 1. create a folder with the name of your module, e.g., `my-test-module`.
-2. run `npm init` specifying the scope you used while logging in:
+2. run `npm init` specifying the scope you used while logging in (see [Using npm Enterprise for Private Packages](/cli/configuration.md#option-2-using-enterprise-for-private-packages-only)):
 
   > `npm init --scope=@mycompany`
 
