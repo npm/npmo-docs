@@ -4,6 +4,8 @@ npm Enterprise supports most LDAP corporate directories, including Active Direct
 
 It's important to note that, when using LDAP integration, your npm Enterprise instance(s) should typically be running on the same subnet as your LDAP servers.
 
+Note that you can also use LDAP integration for logging into the admin console (port `:8800`) as well. If you'd like to set that up, visit the `/create-password` page once you're logged in, choose the `LDAP`, and enter the settings just as you would below.
+
 ## Configuration Fields
 
 ### Server Settings
