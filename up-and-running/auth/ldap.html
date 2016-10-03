@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Open Authentication · npm Enterprise Docs</title>
+        <title>LDAP Authentication · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="github.html" />
+    <link rel="next" href="oauth-google.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="github.html" />
     
 
     </head>
@@ -261,7 +261,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.3.1.1" data-path="open.html">
+        <li class="chapter " data-level="1.2.3.1.1" data-path="open.html">
             
                 <a href="open.html">
             
@@ -287,7 +287,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.3" data-path="ldap.html">
+        <li class="chapter active" data-level="1.2.3.1.3" data-path="ldap.html">
             
                 <a href="ldap.html">
             
@@ -642,7 +642,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Open Authentication</a>
+        <a href="../.." >LDAP Authentication</a>
     </h1>
 </div>
 
@@ -657,13 +657,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="open-authentication"><a name="open-authentication" class="plugin-anchor" href="#open-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Open Authentication</h1><p>If you do not need authentication or authorization at all (for example, you&apos;re
-only running npm Enterprise inside your firewalled, private network), you can
-configure npm Enterprise to accept whatever credentials users log in with, and
-allow everyone access to everything.</p><p>In order to do so, visit npm Enterprise&apos;s admin console, and choose the <code>Open</code> authentication strategy.</p><p>The npm CLI will still require that you log in in order to publish
-packages, but you can just log in with any credentials (although the
-username you input will be inserted into the package document - for
-example in the <code>maintainers</code> field).</p>
+                                <h1 id="ldap-authentication"><a name="ldap-authentication" class="plugin-anchor" href="#ldap-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>LDAP Authentication</h1><p>npm Enterprise supports most LDAP corporate directories, including Active Directory and OpenLDAP.</p><p>It&apos;s important to note that, when using LDAP integration, your npm Enterprise instance(s) should typically be running on the same subnet as your LDAP servers.</p><p>Note that you can also use LDAP integration for logging into the admin console (port <code>:8800</code>) as well. If you&apos;d like to set that up, visit the <code>/create-password</code> page once you&apos;re logged in, choose <code>LDAP</code>, and enter the settings just as you would below.</p><h2 id="server-settings"><a name="server-settings" class="plugin-anchor" href="#server-settings"><i class="fa fa-link" aria-hidden="true"></i></a>Server Settings</h2><h3 id="ldap-type"><a name="ldap-type" class="plugin-anchor" href="#ldap-type"><i class="fa fa-link" aria-hidden="true"></i></a>LDAP Type</h3><p><em>Required.</em> What type of LDAP does your corporate directory use?</p><p>Options are <code>OpenLDAP</code>, <code>Active Directory</code>, and <code>Other</code>.</p><h3 id="hostname"><a name="hostname" class="plugin-anchor" href="#hostname"><i class="fa fa-link" aria-hidden="true"></i></a>Hostname</h3><p><em>Required.</em> The hostname or domain name that represents your LDAP server.</p><h3 id="port"><a name="port" class="plugin-anchor" href="#port"><i class="fa fa-link" aria-hidden="true"></i></a>Port</h3><p><em>Required.</em> The port that should be used when accessing the LDAP server.</p><p>Default is <code>389</code>.</p><h3 id="encryption-type"><a name="encryption-type" class="plugin-anchor" href="#encryption-type"><i class="fa fa-link" aria-hidden="true"></i></a>Encryption Type</h3><p><em>Required.</em> The type of encryption your LDAP provider supports.</p><p>Options are <code>Plain</code>, <code>StartTLS</code>, and <code>LDAPS</code>.</p><h3 id="search-user"><a name="search-user" class="plugin-anchor" href="#search-user"><i class="fa fa-link" aria-hidden="true"></i></a>Search user</h3><p><em>Required.</em> The user, in distinguished name (DN) format, that npm Enterprise should use to log into LDAP. When users attempt to authenticate against the private npm registry or website, npm Enterprise will use this user to query the corporate directory service. This should typically include at least one common name (CN) representing a read-only service or admin user.</p><h3 id="search-password"><a name="search-password" class="plugin-anchor" href="#search-password"><i class="fa fa-link" aria-hidden="true"></i></a>Search password</h3><p><em>Required.</em>  The password associated with the &quot;Search user&quot; above.</p><h2 id="ldap-schema"><a name="ldap-schema" class="plugin-anchor" href="#ldap-schema"><i class="fa fa-link" aria-hidden="true"></i></a>LDAP Schema</h2><h3 id="base-dn"><a name="base-dn" class="plugin-anchor" href="#base-dn"><i class="fa fa-link" aria-hidden="true"></i></a>Base DN</h3><p><em>Required.</em> The root node, in distinguished name (DN) format, in the LDAP tree. The root node should be a parent of the &quot;User search DN&quot; below.</p><h3 id="user-search-dn"><a name="user-search-dn" class="plugin-anchor" href="#user-search-dn"><i class="fa fa-link" aria-hidden="true"></i></a>User search DN</h3><p><em>Required.</em> The tree node, in distinguished name (DN) format, relative to the &quot;Base DN&quot; above, that all npm Enterprise users should belong to. This is typically a single common name (CN) or organizational unit (OU).</p><h3 id="restricted-user-group"><a name="restricted-user-group" class="plugin-anchor" href="#restricted-user-group"><i class="fa fa-link" aria-hidden="true"></i></a>Restricted User Group</h3><p><em>Optional.</em> A group name that users must be a part of, used as an additional criterion in the LDAP query when looking up users. This is typically <strong>not</strong> a distinguished name (DN).</p><h3 id="username-field"><a name="username-field" class="plugin-anchor" href="#username-field"><i class="fa fa-link" aria-hidden="true"></i></a>Username field</h3><p><em>Required.</em> The attribute of a user entry that represents the username to be used when authenticating. Active Directory uses <code>sAMAccountName</code> as its default.</p><h2 id="test-ldap-settings"><a name="test-ldap-settings" class="plugin-anchor" href="#test-ldap-settings"><i class="fa fa-link" aria-hidden="true"></i></a>Test LDAP Settings</h2><p>You can test your LDAP configuration directly from the admin console UI. Just provide a test username and password and click the <strong>Test LDAP</strong> button. The result of the test will be displayed next to the button.</p><h3 id="test-username"><a name="test-username" class="plugin-anchor" href="#test-username"><i class="fa fa-link" aria-hidden="true"></i></a>Test username</h3><p>The username value to test LDAP configuration with.</p><h3 id="test-password"><a name="test-password" class="plugin-anchor" href="#test-password"><i class="fa fa-link" aria-hidden="true"></i></a>Test password</h3><p>The password value to test LDAP configuration with.</p><h2 id="example-configuration"><a name="example-configuration" class="plugin-anchor" href="#example-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Example Configuration</h2><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Example Value</th>
+</tr></thead><tbody>
+<tr><td>LDAP Type</td>
+<td>`Active Directory`</td>
+</tr><tr><td>Hostname</td>
+<td>`ad.example.com`</td>
+</tr><tr><td>Port</td>
+<td>`389`</td>
+</tr><tr><td>Encryption Type</td>
+<td>`Plain`</td>
+</tr><tr><td>Search user</td>
+<td>`CN=Administrator,CN=Users,DC=ad,DC=example,DC=com`</td>
+</tr><tr><td>Search password</td>
+<td>[SECRET]</td>
+</tr><tr><td>Base DN</td>
+<td>`DC=ad,DC=example,DC=com`</td>
+</tr><tr><td>User search DN</td>
+<td>`CN=Users`</td>
+</tr><tr><td>Restricted User Group</td>
+<td>`Developers`</td>
+</tr><tr><td>Username field</td>
+<td>`sAMAccountName`</td>
+</tr></tbody></table>
+
+
                                 
                                 </section>
                             
@@ -690,12 +711,12 @@ example in the <code>maintainers</code> field).</p>
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Authentication">
+                <a href="github.html" class="navigation navigation-prev " aria-label="Previous page: Github Enterprise Integration">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="github.html" class="navigation navigation-next " aria-label="Next page: Github Enterprise Integration">
+                <a href="oauth-google.html" class="navigation navigation-next " aria-label="Next page: Google OAuth2 Integration">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -706,7 +727,7 @@ example in the <code>maintainers</code> field).</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"next":{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},"previous":{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/open.md","mtime":"2016-10-03T22:43:31.252Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-03T22:45:20.782Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"next":{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]},"previous":{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/ldap.md","mtime":"2016-10-03T22:43:31.252Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-03T22:45:20.782Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
