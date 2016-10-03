@@ -8,7 +8,7 @@ Currently we support:
 - [Open Authentication]
 - [GitHub Enterprise]
 - Bitbucket Cloud
-- LDAP
+- [LDAP]
 - SAML
 - OAuth 2, e.g. [Google]
 
@@ -20,5 +20,6 @@ Install your module on the host machine in the `Miscellaneous data files` storag
 
 [GitHub Enterprise]: ../auth/github.md
 [Open Authentication]: ../auth/open.md
+[LDAP]: ../auth/ldap.md
 [Google]: ../auth/oauth-google.md
 [custom auth-plugin]: https://github.com/nexdrew/npme-auth-gitlab
