@@ -10,13 +10,13 @@ We have AMIs for several AWS regions. When you launch a new instance in the AWS 
 
 Here’s a list of the AMI IDs by region:
 
-* `us-east-1` (N. Virginia): `ami-8cc9ae9b`
-* `us-west-1` (N. California): `ami-7189cb11`
-* `us-west-2` (Oregon): `ami-dc60b5bc`
-* `eu-central-1` (Frankfurt): `ami-1e18e971`
-* `ap-southeast-2` (Sydney): `ami-36023555`
+* `us-east-1` (N. Virginia): `ami-9e145989`
+* `us-west-1` (N. California): `ami-dc5c15bc`
+* `us-west-2` (Oregon): `ami-6e37ee0e`
+* `eu-central-1` (Frankfurt): `ami-e2e8178d`
+* `ap-southeast-2` (Sydney): `ami-e4d0e387`
 
-Ensure the AMI comes from owner `666882590071`.
+Make sure the AMI comes from owner `666882590071`.
 
 If you don’t see your preferred region in the list above, [contact our support team](https://www.npmjs.com/support), and we’ll get one created for you!
 
@@ -27,7 +27,7 @@ If you don’t see your preferred region in the list above, [contact our support
 When you launch an instance of the AMI, you’ll need to:
 
 * Choose an instance type: use `m3.large` or better
-* Enter a storage size: must be at least 16 GB; we recommend 50-100 GB for typical installs
+* Enter a storage size: must be at least 16 GB; we recommend 75-150 GB for typical installs
 * Select or create a security group: open ports `22` (ssh), `8080` (registry), `8081` (website), and `8800` (npm Enterprise admin UI)
 * Select or create a `.pem` key pair: this allows you to `ssh` into your server instance
 
@@ -41,6 +41,6 @@ You don’t have to, but you can `ssh` into your EC2 instance to make sure it’
 
 Open your favorite web browser, access your server on port `8800`, and follow the prompts to configure and start your appliance.
 
-For more information on configuring npm Enterprise, [read these docs](/up-and-running/customization.html).
+For more information on configuring npm Enterprise, see [Server Configuration](/up-and-running/customization.html).
 
 That’s it! Once you’ve configured and started the appliance, your private npm registry and website are ready for use. See [this document](/cli/configuration.html) for configuring your npm CLI to use your new private registry.
