@@ -63,7 +63,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../../cli/" />
+    <link rel="next" href="oauth-github.html" />
     
     
     <link rel="prev" href="ldap.html" />
@@ -306,6 +306,19 @@
             
                     
                     Google OAuth2 Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.5" data-path="oauth-github.html">
+            
+                <a href="oauth-github.html">
+            
+                    
+                    GitHub Enterprise OAuth2
             
                 </a>
             
@@ -680,24 +693,25 @@
 </tr><tr><td>Client Secret</td>
 <td>Paste value from Google</td>
 </tr><tr><td>API Endpoint</td>
-<td>`https://accounts.google.com`</td>
+<td>```https://accounts.google.com```</td>
 </tr><tr><td>Token Path</td>
-<td>`https://www.googleapis.com/oauth2/v4/token`</td>
+<td>```https://www.googleapis.com/oauth2/v4/token```</td>
 </tr><tr><td>Authorization Path</td>
-<td>`/o/oauth2/v2/auth`</td>
+<td>```/o/oauth2/v2/auth```</td>
 </tr><tr><td>Redirect URI</td>
-<td>Enter the same value you gave to Google when creating client credentials.&lt;br/&gt;Example: `http://npm.mycompany.com:8081/auth/oauth2/callback`</td>
+<td>Enter the same value you gave to Google when creating client credentials, e.g., ```http://npm.mycompany.com:8081/auth/oauth2/callback```</td>
 </tr><tr><td>Scope</td>
-<td>`profile email`</td>
+<td>```profile email```</td>
 </tr><tr><td>Profile URL</td>
-<td>`https://www.googleapis.com/oauth2/v2/userinfo`</td>
+<td>```https://www.googleapis.com/oauth2/v2/userinfo```</td>
 </tr><tr><td>Email Key</td>
-<td>`email`</td>
+<td>```email```</td>
 </tr><tr><td>User Key</td>
-<td>`name`</td>
+<td>```name```</td>
 </tr></tbody></table>
 
-<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="client-login"><a name="client-login" class="plugin-anchor" href="#client-login"><i class="fa fa-link" aria-hidden="true"></i></a>Client Login</h2><p>Now when you <code>npm login</code> against your registry, the user credentials you enter will be ignored and you will be granted an unresolved token, which is stored in your <code>~/.npmrc</code> file. Please <em>DO NOT</em> enter your Google password on <code>npm login</code> - use a fake password instead, it will be discarded.</p><p>The first time you attempt to <code>npm publish</code>, the registry will see that your token is unresolved and it will initially fail the publication, displaying a Google URL you should visit in your browser to authenticate against your Google account. Once you authenticate with Google using that URL and grant npm Enterprise access to your profile information, you will be redirected back to your npm Enterprise website and your token will be resolved, overwriting the user credentials you entered on <code>npm login</code> with your Google account name and email. You should now <code>npm publish</code> again to publish the package succesfully.</p><p>Again, you <em>SHOULD NOT</em> use your Google password with <code>npm login</code>. npm Enterprise should never see your Google password and will never ask for it. This is the point of OAuth.</p><p>Once you are authenticated with your Google account, you can use <code>npm</code> and the Enterprise website as you normally would.</p>
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="client-login"><a name="client-login" class="plugin-anchor" href="#client-login"><i class="fa fa-link" aria-hidden="true"></i></a>Client Login</h2><p>Client login using SSO behaves differently than other authentication mechanisms, see
+<a href="../../cli/configuration.html#single-sign-on-authentication-saml-oauth-20">Single Sign-On Authentication</a>.</p>
                                 
                                 </section>
                             
@@ -729,7 +743,7 @@
                 </a>
                 
                 
-                <a href="../../cli/" class="navigation navigation-next " aria-label="Next page: Configuring and Using the npm CLI">
+                <a href="oauth-github.html" class="navigation navigation-next " aria-label="Next page: GitHub Enterprise OAuth2">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -740,7 +754,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/oauth-google.md","mtime":"2016-10-06T21:35:50.862Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:34.998Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"next":{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"path":"up-and-running/auth/oauth-github.md","ref":"up-and-running/auth/oauth-github.md","articles":[]},"previous":{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/oauth-google.md","mtime":"2016-10-06T21:35:49.784Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:46.695Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

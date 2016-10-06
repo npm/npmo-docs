@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Authentication · npm Enterprise Docs</title>
+        <title>GitHub Enterprise OAuth2 · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="open.html" />
+    <link rel="next" href="../../cli/" />
     
     
-    <link rel="prev" href="../customization.html" />
+    <link rel="prev" href="oauth-google.html" />
     
 
     </head>
@@ -247,7 +247,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.3.1" data-path="./">
+        <li class="chapter " data-level="1.2.3.1" data-path="./">
             
                 <a href="./">
             
@@ -313,7 +313,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.5" data-path="oauth-github.html">
+        <li class="chapter active" data-level="1.2.3.1.5" data-path="oauth-github.html">
             
                 <a href="oauth-github.html">
             
@@ -668,7 +668,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Authentication</a>
+        <a href="../.." >GitHub Enterprise OAuth2</a>
     </h1>
 </div>
 
@@ -683,20 +683,49 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="authentication"><a name="authentication" class="plugin-anchor" href="#authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Authentication</h1><p>Rather than handling user accounts itself, npm Enterprise allows
-you to connect to your company&apos;s existing authentication system.</p><p>Currently we support:</p><ul><li><a href="open.html">Open Authentication</a>
+                                <h1 id="github-enterprise-oauth2"><a name="github-enterprise-oauth2" class="plugin-anchor" href="#github-enterprise-oauth2"><i class="fa fa-link" aria-hidden="true"></i></a>GitHub Enterprise OAuth2</h1><p>npm Enterprise allows you to log in to your private registry and website using a GitHub Enterprise OAuth2 Client.</p><p><em>Note: the specialized <a href="github.html">Github Enterprise Integration</a> supports both authentication and authorization,
+and may be a better solution depending the type of authorization you have enabled for GitHub Enterprise.</em></p><p>To get up and running with GitHub Enterprise SSO, follow these simple steps:</p><h2 id="server-configuration"><a name="server-configuration" class="plugin-anchor" href="#server-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Server Configuration</h2><p>There are two basic steps to server-side configuration: creating an OAuth client in GitHub Enterprise, and configuring authentication in npm Enterprise.</p><h3 id="setup-oauth2-client-credentials-in-github-enterprise"><a name="setup-oauth2-client-credentials-in-github-enterprise" class="plugin-anchor" href="#setup-oauth2-client-credentials-in-github-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Setup OAuth2 client credentials in GitHub Enterprise</h3><ol><li>login to your GitHub Enterprise appliance.
 </li>
-<li><a href="github.html">GitHub Enterprise</a>
+<li>Click on <strong>Settings</strong>, <strong>OAuth Applications</strong>, <strong>Register a new OAuth application</strong>.
 </li>
-<li>Bitbucket Cloud
+<li><p>Fill in the requested information:</p><ul><li><code>Application Name</code>: npm Enterprise.
 </li>
-<li><a href="ldap.html">LDAP</a>
+<li><code>Homepage URL</code>: URL of your npm Enterprise website.
 </li>
-<li>SAML
-</li>
-<li>OAuth 2, e.g. <a href="oauth-google.html">Google</a>
+<li><code>Authorization callback URL</code>: <code>http://npm.mycompany.com:8081/auth/oauth2/callback</code>, where
+<code>npm.mycompany.com:8081</code> is the address your npm Enterprise website.
 </li></ul>
-<h2 id="writing-custom-authentication-plugins"><a name="writing-custom-authentication-plugins" class="plugin-anchor" href="#writing-custom-authentication-plugins"><i class="fa fa-link" aria-hidden="true"></i></a>Writing Custom Authentication Plugins</h2><p>You can also opt to write your own <a href="https://github.com/nexdrew/npme-auth-gitlab" target="_blank">custom auth-plugin</a> for npm Enterprise.</p><p>Install your module on the host machine in the <code>Miscellaneous data files</code> storage directory (this defaults to <code>/usr/local/lib/npme/data</code>). The module will be available at <code>/etc/npme/data</code> inside your container.</p>
+</li>
+<li><p>Create the application and take note of the values <code>Client ID</code>, and <code>Client Secret</code>.</p></li></ol>
+<h3 id="configure-authentication-settings-in-npm-enterprise"><a name="configure-authentication-settings-in-npm-enterprise" class="plugin-anchor" href="#configure-authentication-settings-in-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Configure authentication settings in npm Enterprise</h3><p>In another browser tab, go to the <code>/settings</code> page of the npm Enterprise admin console (port <code>:8800</code>).</p><p>Under <strong>Authentication</strong>, select <strong>OAuth2</strong> and enter the following values:</p><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Config Value</th>
+</tr></thead><tbody>
+<tr><td>Client ID</td>
+<td>Paste value from GitHub Enterprise</td>
+</tr><tr><td>Client Secret</td>
+<td>Paste value from GitHub Enterprise</td>
+</tr><tr><td>API Endpoint</td>
+<td>```https://your-github-enterprise-server/login```</td>
+</tr><tr><td>Token Path</td>
+<td>/oauth/access_token</td>
+</tr><tr><td>Authorization Path</td>
+<td>/oauth/authorize</td>
+</tr><tr><td>Redirect URI</td>
+<td>Enter the same value you gave to GitHub Enterprise when creating client credentials, e.g., ```http://npm.mycompany.com:8081/auth/oauth2/callback```</td>
+</tr><tr><td>Scope</td>
+<td>user</td>
+</tr><tr><td>Profile URL</td>
+<td>```https://your-github-enterprise-server/api/v3/user```</td>
+</tr><tr><td>Email Key</td>
+<td>email</td>
+</tr><tr><td>User Key</td>
+<td>login</td>
+</tr></tbody></table>
+
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="client-login"><a name="client-login" class="plugin-anchor" href="#client-login"><i class="fa fa-link" aria-hidden="true"></i></a>Client Login</h2><p>Client login using SSO behaves differently than other authentication mechanisms, see
+<a href="../../cli/configuration.html#single-sign-on-authentication-saml-oauth-20">Single Sign-On Authentication</a>.</p>
                                 
                                 </section>
                             
@@ -723,12 +752,12 @@ you to connect to your company&apos;s existing authentication system.</p><p>Curr
 
             
                 
-                <a href="../customization.html" class="navigation navigation-prev " aria-label="Previous page: Configuring Your Instance">
+                <a href="oauth-google.html" class="navigation navigation-prev " aria-label="Previous page: Google OAuth2 Integration">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="open.html" class="navigation navigation-next " aria-label="Next page: Open Authentication">
+                <a href="../../cli/" class="navigation navigation-next " aria-label="Next page: Configuring and Using the npm CLI">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -739,7 +768,7 @@ you to connect to your company&apos;s existing authentication system.</p><p>Curr
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Authentication","level":"1.2.3.1","depth":3,"next":{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},"previous":{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]},{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"path":"up-and-running/auth/oauth-github.md","ref":"up-and-running/auth/oauth-github.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/README.md","mtime":"2016-10-06T21:35:49.784Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:46.695Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/oauth-github.md","mtime":"2016-10-06T21:35:49.784Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:46.695Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
