@@ -48,4 +48,4 @@ That's all the server-side configuration you need!
 ## Client Login
 
 Client login using SSO behaves differently than other authentication mechanisms, see
-[Single Sign-On Authentication](/cli/configuration.html#single-sign-on-authentication-saml-oauth-20).
+[Single Sign-On Authentication](/cli/configuration.md#single-sign-on-authentication-saml-oauth-20).

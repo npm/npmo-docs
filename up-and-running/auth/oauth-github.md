@@ -1,17 +1,20 @@
-# GitHub Enterprise OAuth2 Integration
+# GitHub Enterprise OAuth2
 
-npm Enterprise allows you to log in to your private registry and website using your GitHub Enterprise account.
+npm Enterprise allows you to log in to your private registry and website using a GitHub Enterprise OAuth2 Client.
 
-Follow these steps to set it up:
+_Note: the specialized [Github Enterprise Integration](/up-and-running/auth/github.md) supports both authentication and authorization,
+and may be a better solution depending the type of authorization you have enabled for GitHub Enterprise._
+
+To get up and running with GitHub Enterprise SSO, follow these simple steps:
 
 ## Server Configuration
 
-There are two basic steps to server-side configuration: creating an OAuth client in Github Enterprise, and configuring authentication in npm Enterprise.
+There are two basic steps to server-side configuration: creating an OAuth client in GitHub Enterprise, and configuring authentication in npm Enterprise.
 
 ### Setup OAuth2 client credentials in GitHub Enterprise
 
 1. login to your GitHub Enterprise appliance.
-2. Click on `Settings`, `OAuth Applications`, `Register a new OAuth application`.
+2. Click on **Settings**, **OAuth Applications**, **Register a new OAuth application**.
 3. Fill in the requested information:
   * `Application Name`: npm Enterprise.
   * `Homepage URL`: URL of your npm Enterprise website.
@@ -45,4 +48,4 @@ That's all the server-side configuration you need!
 ## Client Login
 
 Client login using SSO behaves differently than other authentication mechanisms, see
-[Single Sign-On Authentication](/cli/configuration.html#single-sign-on-authentication-saml-oauth-20).
+[Single Sign-On Authentication](/cli/configuration.md#single-sign-on-authentication-saml-oauth-20).
