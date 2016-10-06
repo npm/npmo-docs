@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Uninstalling npm Enterprise · npm Enterprise Docs</title>
+        <title>A Package Failed to Replicate · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,8 +63,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="booting.html" />
     
-    <link rel="prev" href="migrating.html" />
+    
+    <link rel="prev" href="faq.html" />
     
 
     </head>
@@ -566,7 +568,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="replication.html">
+        <li class="chapter active" data-level="1.6.2" data-path="replication.html">
             
                 <a href="replication.html">
             
@@ -605,7 +607,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.5" data-path="uninstalling.html">
+        <li class="chapter " data-level="1.6.5" data-path="uninstalling.html">
             
                 <a href="uninstalling.html">
             
@@ -653,7 +655,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Uninstalling npm Enterprise</a>
+        <a href=".." >A Package Failed to Replicate</a>
     </h1>
 </div>
 
@@ -668,46 +670,22 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="uninstalling-npm-enterprise"><a name="uninstalling-npm-enterprise" class="plugin-anchor" href="#uninstalling-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Uninstalling npm Enterprise</h1><p>Although the <code>npme</code> installer can conveniently install all dependencies required to run an npm Enterprise instance, it cannot uninstall everything on its own. Here&apos;s a quick guide to uninstall and remove the different components that make up the Enterprise product.</p><ol><li><p>Uninstall the <code>npme</code> package</p><pre><code> sudo npm uninstall -g npme</code></pre>
-<p>This removes the installer but not the Enterprise appliance.</p></li>
-<li><p>Note storage paths in admin console settings</p><p>If you wish to remove all packages and data from your registry, please make a note of all the Storage paths you have configured for your instance at <code>https://&lt;your-server&gt;:8800/settings</code>.</p><p>The default root is <code>/usr/local/lib/npme</code>. You can remove these in step 6 below.</p></li>
-<li><p>Uninstall the orchestration layer and admin console</p><p>To uninstall and remove Replicated, please <a href="https://www.replicated.com/docs/distributing-an-application/installing/#removing-replicated" target="_blank">follow the instructions found here</a>.</p><p>Ubuntu/Debian:</p><pre><code> sudo service replicated stop
- sudo service replicated-ui stop
- sudo service replicated-operator stop
- sudo docker rm -f replicated replicated-ui replicated-operator
- sudo docker images | grep &quot;quay\.io/replicated&quot; | awk &apos;{print $3}&apos; | xargs sudo docker rmi -f
- sudo apt-get remove -y replicated replicated-ui replicated-operator
- sudo apt-get purge -y replicated replicated-ui replicated-operator
- sudo rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/init.d/replicated* /etc/default/replicated* /var/log/upstart/replicated* /etc/systemd/system/replicated*</code></pre>
-<p>CentOS/RHEL:</p><pre><code> sudo systemctl stop replicated replicated-ui replicated-operator
- sudo service replicated stop
- sudo service replicated-ui stop
- sudo service replicated-operator stop
- sudo docker rm -f replicated replicated-ui replicated-operator
- sudo docker images | grep &quot;quay\.io/replicated&quot; | awk &apos;{print $3}&apos; | xargs sudo docker rmi -f
- sudo yum remove -y replicated replicated-ui replicated-operator
- sudo rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated* /etc/sysconfig/replicated* /etc/systemd/system/multi-user.target.wants/replicated* /run/replicated*</code></pre>
-<p>You can ignore any commands that might have failed.</p></li>
-<li><p>Stop and remove all Docker containers and images</p><p>Assuming you are not using Docker for anything else on your server, you may remove all running Docker containers and images with the following commands:</p><pre><code> # stop all containers
- sudo docker stop $(sudo docker ps -aq)
- # remove all containers
- sudo docker rm -f $(sudo docker ps -aq)
- # remove all images
- sudo docker rmi -f $(sudo docker images -q)</code></pre>
-<p>Be careful! This will remove any other services using Docker on your system!</p></li>
-<li><p>Optionally uninstall Docker</p><p>If you wish, you may also remove Docker itself. Use the instructions for your Linux distribution:</p><p><a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/#uninstallation" target="_blank">Ubuntu/Debian instructions</a>, sample:</p><pre><code> sudo apt-get autoremove --purge docker-engine
- sudo rm -rf /var/lib/docker</code></pre>
-<p><a href="https://docs.docker.com/engine/installation/linux/rhel/#uninstall" target="_blank">CentOS/RHEL instructions</a>, sample:</p><pre><code> sudo yum -y remove docker-engine.x86_64
- sudo rm -rf /var/lib/docker</code></pre>
-<p>If you have configured Docker to store data in a directory other than <code>/var/lib/docker</code>, remove it instead.</p></li>
-<li><p>Optionally remove packages and Enterprise data</p><p>To completely wipe the Enterprise data, you should also remove the directories noted from step 2. Note that this will remove all packages you have published thus far!</p><pre><code> # caution! make sure the directory below is correct
- # caution! this will remove all published packages
- sudo rm -r /usr/local/lib/npme</code></pre>
-<p>If you configured npm Enterprise to store data in directories other than the defaults, remove those instead.</p></li>
-<li><p>Optionally uninstall Node.js and npm</p><p>Assuming you do not need Node.js or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.js.</p><p>Ubuntu/Debian:</p><pre><code> sudo apt-get autoremove --purge nodejs</code></pre>
-<p>CentOS/RHEL:</p><pre><code> sudo yum -y remove nodejs</code></pre>
+                                <h1 id="a-package-failed-to-replicate"><a name="a-package-failed-to-replicate" class="plugin-anchor" href="#a-package-failed-to-replicate"><i class="fa fa-link" aria-hidden="true"></i></a>A Package Failed to Replicate</h1><p>Occasionally, due to networking issues, npm Enterprise will
+fail to replicate a version of a package that has been added to your mirror. This
+can result in the following error message when installing:</p><pre><code class="lang-bash">npm ERR! Valid install targets:
+
+npm ERR! 4.1.0, 4.0.9, 4.0.8, 4.0.7, 4.0.6, 4.0.5, 4.0.4, 4.0.3, 4.0.2, 4.0.1, 4.0.0, 3.2.0, 3.1.0, 3.0.0, 2.4.1, 2.4.0, 2.3.0, 2.2.1, 2.2.0, 2.1.0, 2.0.0</code></pre>
+<p>There are two approaches you can take to address this problem:</p><h2 id="reindex-the-package-that-failed-to-replicate"><a name="reindex-the-package-that-failed-to-replicate" class="plugin-anchor" href="#reindex-the-package-that-failed-to-replicate"><i class="fa fa-link" aria-hidden="true"></i></a>Reindex the package that failed to replicate</h2><ol><li><code>ssh</code> into your npm Enterprise server.
+</li>
+<li><p>run the following commands:</p><pre><code>npme remove-package :pkg-name
+npme add-package :pkg-name</code></pre>
+<p>This forces npm Enterprise to reindex the package and is the fastest way to get back up and running.</p></li></ol>
+<h2 id="reindex-all-the-packages"><a name="reindex-all-the-packages" class="plugin-anchor" href="#reindex-all-the-packages"><i class="fa fa-link" aria-hidden="true"></i></a>Reindex <em>all</em> the packages</h2><p>In the rare case that you would like to reindex all the packages mirrored by your npm Enterprise server, simply:</p><ol><li><code>ssh</code> into your npm Enterprise server.
+</li>
+<li>run the command, <code>npme reset-follower</code>.
 </li></ol>
-<p>This should remove all traces of npm Enterprise from your server.</p><p>If you wish to reinstall npm Enterprise, use the standard <a href="../up-and-running">installation docs</a>.</p>
+<p><em>Note: our engineering team is working hard to make sure that this category of bug
+ is eliminated in the future.</em></p>
                                 
                                 </section>
                             
@@ -734,10 +712,14 @@
 
             
                 
-                <a href="migrating.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Migrating From Legacy Server">
+                <a href="faq.html" class="navigation navigation-prev " aria-label="Previous page: FAQ">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="booting.html" class="navigation navigation-next " aria-label="Next page: npm Enterprise Won't Boot">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -746,7 +728,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Uninstalling npm Enterprise","level":"1.6.5","depth":2,"previous":{"title":"Migrating From Legacy Server","level":"1.6.4","depth":2,"path":"troubleshooting/migrating.md","ref":"troubleshooting/migrating.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"troubleshooting/uninstalling.md","mtime":"2016-10-06T21:35:50.838Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:34.998Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"A Package Failed to Replicate","level":"1.6.2","depth":2,"next":{"title":"npm Enterprise Won't Boot","level":"1.6.3","depth":2,"path":"troubleshooting/booting.md","ref":"troubleshooting/booting.md","articles":[]},"previous":{"title":"FAQ","level":"1.6.1","depth":2,"path":"troubleshooting/faq.md","ref":"troubleshooting/faq.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"troubleshooting/replication.md","mtime":"2016-10-06T21:35:50.838Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-06T21:37:34.998Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
