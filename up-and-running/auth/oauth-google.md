@@ -32,14 +32,14 @@ Under **Authentication**, select **OAuth2** and enter the following values:
 | ------------------ | ------------ |
 | Client ID          | Paste value from Google |
 | Client Secret      | Paste value from Google |
-| API Endpoint       | `https://accounts.google.com` |
-| Token Path         | `https://www.googleapis.com/oauth2/v4/token` |
-| Authorization Path | `/o/oauth2/v2/auth` |
-| Redirect URI       | Enter the same value you gave to Google when creating client credentials.<br/>Example: `http://npm.mycompany.com:8081/auth/oauth2/callback` |
-| Scope              | `profile email` |
-| Profile URL        | `https://www.googleapis.com/oauth2/v2/userinfo` |
-| Email Key          | `email` |
-| User Key           | `name` |
+| API Endpoint       | ```https://accounts.google.com``` |
+| Token Path         | ```https://www.googleapis.com/oauth2/v4/token``` |
+| Authorization Path | ```/o/oauth2/v2/auth``` |
+| Redirect URI       | Enter the same value you gave to Google when creating client credentials, e.g., ```http://npm.mycompany.com:8081/auth/oauth2/callback``` |
+| Scope              | ```profile email``` |
+| Profile URL        | ```https://www.googleapis.com/oauth2/v2/userinfo``` |
+| Email Key          | ```email``` |
+| User Key           | ```name``` |
 
 Click **Save** to save these settings and then **Restart now** (when prompted) to restart the appliance and apply these settings.
 
@@ -47,10 +47,5 @@ That's all the server-side configuration you need!
 
 ## Client Login
 
-Now when you `npm login` against your registry, the user credentials you enter will be ignored and you will be granted an unresolved token, which is stored in your `~/.npmrc` file. Please _DO NOT_ enter your Google password on `npm login` - use a fake password instead, it will be discarded.
-
-The first time you attempt to `npm publish`, the registry will see that your token is unresolved and it will initially fail the publication, displaying a Google URL you should visit in your browser to authenticate against your Google account. Once you authenticate with Google using that URL and grant npm Enterprise access to your profile information, you will be redirected back to your npm Enterprise website and your token will be resolved, overwriting the user credentials you entered on `npm login` with your Google account name and email. You should now `npm publish` again to publish the package succesfully.
-
-Again, you _SHOULD NOT_ use your Google password with `npm login`. npm Enterprise should never see your Google password and will never ask for it. This is the point of OAuth.
-
-Once you are authenticated with your Google account, you can use `npm` and the Enterprise website as you normally would.
+Client login using SSO behaves differently than other authentication mechanisms, see
+[Single Sign-On Authentication](/cli/configuration.md#single-sign-on-authentication-saml-oauth-20).
