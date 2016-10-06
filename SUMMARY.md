@@ -30,6 +30,7 @@
   * [Backups and HA](tutorials/backups-and-ha.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
+  * [A Package Failed to Replicate](troubleshooting/replication.md)
   * [npm Enterprise Won't Boot](troubleshooting/booting.md)
   * [Migrating From Legacy Server](troubleshooting/migrating.md)
   * [Uninstalling npm Enterprise](troubleshooting/uninstalling.md)
