@@ -38,6 +38,9 @@ In addition to this list, you should make sure your host has access to the `yum`
 - ha.pool.sks-keyservers.net
 - pgp.mit.edu
 - keyserver.ubuntu.com
+- quay-registry.s3.amazonaws.com
+- auth.docker.io
+- cloudfront.net
 
 ### Replicated
 
