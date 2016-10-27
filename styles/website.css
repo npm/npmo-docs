@@ -7,15 +7,15 @@
 .bg-npm-brand{background-color:#cb3837 !important}.bg-npm-brand-turquoise{background-color:#35c7c7 !important}.bg-npm-brand-yellow-1{background-color:#fcef00 !important}.bg-npm-brand-yellow-1-alt{background-color:rgba(252,239,0,0.15) !important}.bg-npm-brand-yellow-2{background-color:#E0CA00 !important}.bg-npm-brand-yellow-2-alt{background-color:rgba(224,202,0,0.35) !important}.bg-npm-warm-1{background-color:#EA74F4 !important}.bg-npm-warm-2{background-color:#FE7570 !important}.bg-npm-warm-3{background-color:#f09233 !important}.bg-npm-blue-1{background-color:#166B8A !important}.bg-npm-blue-2{background-color:#2a79a7 !important}.bg-npm-blue-3{background-color:#1A8BCB !important}.bg-npm-blue-4{background-color:#DBECEC !important}.bg-npm-pastel-1{background-color:#88ACA1 !important}.bg-npm-pastel-2{background-color:#94BECC !important}.bg-npm-pastel-3{background-color:#A4BBD7 !important}.bg-npm-pastel-4{background-color:#BDCAC8 !important}.bg-npm-pastel-5{background-color:#E6E2C4 !important}.bg-npm-pastel-6{background-color:#dddFDF !important}.bg-npm-pastel-7{background-color:#F1EFE0 !important}.bg-npm-pastel-8{background-color:#D7E3E7 !important}.bg-npm-pastel-9{background-color:#f0f0f0 !important}.bg-npm-navy-1{background-color:#273547 !important}.bg-npm-navy-2{background-color:#34495e !important}.bg-npm-navy-headings{background-color:#373d48 !important}.bg-npm-navy-text{background-color:#6d7986 !important}.bg-neutral-1{background-color:#1a1a1a !important}.bg-neutral-2{background-color:#262626 !important}.bg-neutral-3{background-color:#404040 !important}.bg-neutral-4{background-color:#666 !important}.bg-neutral-5{background-color:gray !important}.bg-neutral-6{background-color:#999 !important}.bg-neutral-7{background-color:#b3b3b3 !important}.bg-neutral-8{background-color:#ccc !important}.bg-neutral-9{background-color:#e6e6e6 !important}.bg-neutral-10{background-color:#f2f2f2 !important}.bg-neutral-11{background-color:#fff !important}.bg-brand-1{background-color:#083330 !important}.bg-brand-2{background-color:#0B4D48 !important}.bg-brand-3{background-color:#025A53 !important}.bg-brand-4{background-color:#0F6660 !important}.bg-brand-5{background-color:#00776D !important}.bg-brand-6{background-color:#138078 !important}.bg-brand-7{background-color:#179990 !important}.bg-brand-8{background-color:#00A79D !important}.bg-brand-9{background-color:#1BB3A8 !important}.bg-brand-10{background-color:#1FCCC0 !important}.bg-brand-11{background-color:#D9FFFC !important}.bg-accent-1{background-color:#135680 !important}.bg-accent-2{background-color:#176799 !important}.bg-accent-3{background-color:#1B78B3 !important}.bg-accent-4{background-color:#1F8ACC !important}.bg-accent-5{background-color:#229BE6 !important}.bg-accent-6{background-color:#D9F0FF !important}.bg-dark-1{background-color:#232B2F !important}.bg-dark-2{background-color:#243641 !important}.bg-dark-3{background-color:#3D4A51 !important}.bg-dark-4{background-color:#4F6069 !important}.bg-dark-5{background-color:#607580 !important}.bg-dark-6{background-color:#788E9A !important}.bg-dark-7{background-color:#A2B1B9 !important}.bg-dark-8{background-color:#C5CED3 !important}.bg-dark-9{background-color:#DFE5E8 !important}.bg-dark-10{background-color:#EAEDEF !important}.bg-dark-11{background-color:#F5F6F7 !important}.bg-error-1{background-color:#801319 !important}.bg-error-2{background-color:#99171D !important}.bg-error-3{background-color:#B31B22 !important}.bg-error-4{background-color:#CC1F27 !important}.bg-error-5{background-color:#F2242F !important}.bg-error-6{background-color:#FFD9DB !important}.bg-warn-1{background-color:#806613 !important}.bg-warn-2{background-color:#B38F1B !important}.bg-warn-3{background-color:#FFF6D9 !important}.bg-success-1{background-color:#4D8013 !important}.bg-success-2{background-color:#5C9917 !important}.bg-success-3{background-color:#6CB31B !important}.bg-success-4{background-color:#7BCC1F !important}.bg-success-5{background-color:#8AE622 !important}.bg-success-6{background-color:#EDFFD9 !important}.bg-glow-1{background-color:rgba(255,255,255,0.1) !important}.bg-glow-2{background-color:rgba(255,255,255,0.2) !important}.bg-glow-3{background-color:rgba(255,255,255,0.4) !important}.bg-glow-4{background-color:rgba(255,255,255,0.6) !important}.bg-glow-5{background-color:#fff !important}.bg-shadow-1{background-color:rgba(0,0,0,0.3) !important}.bg-shadow-2{background-color:rgba(0,0,0,0.14) !important}.bg-shadow-3{background-color:rgba(0,0,0,0.07) !important}.bg-shadow-4{background-color:rgba(0,0,0,0.035) !important}
 
 /*!
- *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('font-awesome/fontawesome-webfont.eot?v=4.6.3');
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('font-awesome/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('font-awesome/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('font-awesome/fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('font-awesome/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+  src: url('font-awesome/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('font-awesome/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('font-awesome/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('font-awesome/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('font-awesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1840,6 +1840,7 @@
   content: "\f23e";
 }
 .fa-battery-4:before,
+.fa-battery:before,
 .fa-battery-full:before {
   content: "\f240";
 }
@@ -2185,6 +2186,143 @@
 .fa-fa:before,
 .fa-font-awesome:before {
   content: "\f2b4";
+}
+.fa-handshake-o:before {
+  content: "\f2b5";
+}
+.fa-envelope-open:before {
+  content: "\f2b6";
+}
+.fa-envelope-open-o:before {
+  content: "\f2b7";
+}
+.fa-linode:before {
+  content: "\f2b8";
+}
+.fa-address-book:before {
+  content: "\f2b9";
+}
+.fa-address-book-o:before {
+  content: "\f2ba";
+}
+.fa-vcard:before,
+.fa-address-card:before {
+  content: "\f2bb";
+}
+.fa-vcard-o:before,
+.fa-address-card-o:before {
+  content: "\f2bc";
+}
+.fa-user-circle:before {
+  content: "\f2bd";
+}
+.fa-user-circle-o:before {
+  content: "\f2be";
+}
+.fa-user-o:before {
+  content: "\f2c0";
+}
+.fa-id-badge:before {
+  content: "\f2c1";
+}
+.fa-drivers-license:before,
+.fa-id-card:before {
+  content: "\f2c2";
+}
+.fa-drivers-license-o:before,
+.fa-id-card-o:before {
+  content: "\f2c3";
+}
+.fa-quora:before {
+  content: "\f2c4";
+}
+.fa-free-code-camp:before {
+  content: "\f2c5";
+}
+.fa-telegram:before {
+  content: "\f2c6";
+}
+.fa-thermometer-4:before,
+.fa-thermometer:before,
+.fa-thermometer-full:before {
+  content: "\f2c7";
+}
+.fa-thermometer-3:before,
+.fa-thermometer-three-quarters:before {
+  content: "\f2c8";
+}
+.fa-thermometer-2:before,
+.fa-thermometer-half:before {
+  content: "\f2c9";
+}
+.fa-thermometer-1:before,
+.fa-thermometer-quarter:before {
+  content: "\f2ca";
+}
+.fa-thermometer-0:before,
+.fa-thermometer-empty:before {
+  content: "\f2cb";
+}
+.fa-shower:before {
+  content: "\f2cc";
+}
+.fa-bathtub:before,
+.fa-s15:before,
+.fa-bath:before {
+  content: "\f2cd";
+}
+.fa-podcast:before {
+  content: "\f2ce";
+}
+.fa-window-maximize:before {
+  content: "\f2d0";
+}
+.fa-window-minimize:before {
+  content: "\f2d1";
+}
+.fa-window-restore:before {
+  content: "\f2d2";
+}
+.fa-times-rectangle:before,
+.fa-window-close:before {
+  content: "\f2d3";
+}
+.fa-times-rectangle-o:before,
+.fa-window-close-o:before {
+  content: "\f2d4";
+}
+.fa-bandcamp:before {
+  content: "\f2d5";
+}
+.fa-grav:before {
+  content: "\f2d6";
+}
+.fa-etsy:before {
+  content: "\f2d7";
+}
+.fa-imdb:before {
+  content: "\f2d8";
+}
+.fa-ravelry:before {
+  content: "\f2d9";
+}
+.fa-eercast:before {
+  content: "\f2da";
+}
+.fa-microchip:before {
+  content: "\f2db";
+}
+.fa-snowflake-o:before {
+  content: "\f2dc";
+}
+.fa-superpowers:before {
+  content: "\f2dd";
+}
+.fa-wpexplorer:before {
+  content: "\f2de";
+}
+.fa-meetup:before {
+  content: "\f2e0";
 }
 .sr-only {
   position: absolute;
