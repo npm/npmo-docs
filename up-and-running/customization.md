@@ -56,15 +56,15 @@ The externally accessible URL of your npm Enterprise website.
 
 The company name that should be displayed on the npm Enterprise website.
 
-### Proxy URL
-
-If your company connects to the external Internet through a proxy,
-set the URL here.
-
 ### Secret used between services
 
 The secret key used both between internal services and to connect
 upstream replication.
+
+### Proxy URL
+
+If your company connects to the external Internet through a proxy,
+set the URL here.
 
 ### Storage
 
@@ -72,14 +72,20 @@ Configure the storage for npm Enterprise's various data-files. Frequently you
 will need to switch these paths to match a larger external drive that
 you've mounted on your appliance.
 
-### Scoped CLI Search
+### Upstream Registry
 
-By default `npm search` does not return scoped packages (since this is
-  potentially a breach of private information). Enable this setting to
-start returning scoped search results to the CLI.
+What upstream registry should npm Enterprise replicate packages from? This setting
+defaults to the public registry (`https://replicate.npmjs.com`), but can be
+configured to replicate from other internal npm Enterprise registries for HA
+deployments.
 
-_Note: you should only do this if your npm Enterprise appliance is
-  running behind a firewall._
+* **Upstream URL**: the registry to replicate from.
+* **Upstream secret**: if connecting to another npm Enterprise registry, provide
+  the _Secret used between services_ of the upstream server.
+* **Policy to apply during replication**: defaults to `white-list`, only replicating
+  modules added to your whitelist file (either by an administrator, or by the
+  read-through-cache). To replicate an entire upstream registry, set this value
+  to `mirror`.
 
 ### Read Through Cache
 
@@ -102,20 +108,22 @@ for operations performed by npm Enterprise.
 _As an example, you might disable SSL checks if your upstream GitHub Enterprise
 server is using a self-signed certificate._
 
-### Upstream Registry
+### Custom DNS
 
-What upstream registry should npm Enterprise replicate packages from? This setting
-defaults to the public registry (`https://replicate.npmjs.com`), but can be
-configured to replicate from other internal npm Enterprise registries for HA
-deployments.
+Define up to three different custom DNS entries that will go into the
+`/etc/hosts` file of each npm Enterprise container. This is useful for working
+around networking issues where e.g. npm Enterprise is running on a different
+subnet than your authentication provider or you need to be able to use a
+hostname without using the fully qualified domain name.
 
-* **Upstream URL**: the registry to replicate from.
-* **Upstream secret**: if connecting to another npm Enterprise registry, provide
-  the _Secret used between services_ of the upstream server.
-* **Policy to apply during replication**: defaults to `white-list`, only replicating
-  modules added to your whitelist file (either by an administrator, or by the
-  read-through-cache). To replicate an entire upstream registry, set this value
-  to `mirror`.
+### Scoped CLI Search
+
+By default `npm search` does not return scoped packages (since this is
+  potentially a breach of private information). Enable this setting to
+start returning scoped search results to the CLI.
+
+_Note: you should only do this if your npm Enterprise appliance is
+  running behind a firewall._
 
 ### Auth Scoped Installs
 
