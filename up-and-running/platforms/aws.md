@@ -10,11 +10,12 @@ We have AMIs for several AWS regions. When you launch a new instance in the AWS 
 
 Here’s a list of the AMI IDs by region:
 
-* `us-east-1` (N. Virginia): `ami-9e145989`
-* `us-west-1` (N. California): `ami-dc5c15bc`
-* `us-west-2` (Oregon): `ami-6e37ee0e`
-* `eu-central-1` (Frankfurt): `ami-e2e8178d`
-* `ap-southeast-2` (Sydney): `ami-e4d0e387`
+* `us-east-1` (N. Virginia): `ami-f23613e5`
+* `us-west-1` (N. California): `ami-5c317b3c`
+* `us-west-2` (Oregon): `ami-d6e445b6`
+* `eu-central-1` (Frankfurt): `ami-34847f5b`
+* `eu-west-1` (Ireland): `ami-8ae6acf9`
+* `ap-southeast-2` (Sydney): `ami-8c1b27ef`
 
 Make sure the AMI comes from owner `666882590071`.
 
