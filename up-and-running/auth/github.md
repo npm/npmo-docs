@@ -33,7 +33,7 @@ manually generate a token and add it to your [`.npmrc`](/files/npmrc) file.
 
 1. Visit github.com/settings/tokens/new to create a new "Personal access token".
 1. Use a descriptive name for your token, like "myco npmE"
-1. Leave the default scopes as they are.
+1. Leave the default scopes as they are. If using private repositories, ensure that the "repo" scope is selected for the token; see [GitHub scopes](https://developer.github.com/v3/oauth/#scopes) for more details.
 1. Click "Generate Token" and you'll be redirected to a new page that displays your token. Copy the token right away, as it will only be displayed on screen once.
 1. Copy the token and paste it into the bottom of your [`.npmrc`](/files/npmrc) file:
 
