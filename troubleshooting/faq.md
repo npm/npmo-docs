@@ -8,7 +8,6 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmonpm-on-site-and-how-is-it-related-to-npmenpm-enterprise)
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
-    - [What if I am running devicemapper in loopback mode?](#what-if-i-am-running-devicemapper-in-loopback-mode)
     - [What should I do if I see devicemapper warning?](#what-should-i-do-if-i-see-devicemapper-warning)
 
 - Scopes and Packages
