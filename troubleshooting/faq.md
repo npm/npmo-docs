@@ -8,7 +8,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?](#what-is-npmonpm-on-site-and-how-is-it-related-to-npmenpm-enterprise)
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
-    - [What should I do if I see devicemapper warning?](#what-should-i-do-if-i-see-devicemapper-warning)
+    - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -138,12 +138,12 @@ the IP address:
 2. edit `/etc/default/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
 3. `sudo service replicated stop && sudo service replicated-operator stop && sudo service replicated start && sudo service replicated-operator start`, to reload the environment.
 
-## What should I do if I see devicemapper warning?
+## What should I do if I see a devicemapper warning?
 
 Running `devicemapper` in loopback mode is discouraged for production.
 It has known performance problems and a different storage driver should be used. 
-See devicemapper performance considerations (https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#other-device-mapper-performance-considerations) 
-and selecting a storage driver (https://docs.docker.com/engine/userguide/storagedriver/selectadriver/). 
+See [devicemapper performance considerations](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#other-device-mapper-performance-considerations) 
+and [selecting a storage driver](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/) to understand the available storage drivers and limitations. 
 
 
 To find out which storage driver is set on the daemon, use the docker info command:
@@ -159,10 +159,7 @@ Alternatively, you can force the Docker daemon to automatically start with the o
 Your choice of storage driver can affect the performance of your npm Enterprise server. 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
-We recommend to use `overlay` over `devicemapper`. https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
-
-Following link will help you to configure Docker to use the `overlay` storage driver 
-(https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
 
 ## What's the difference between a scoped package and an unscoped package?
 
