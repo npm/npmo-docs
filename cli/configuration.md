@@ -103,23 +103,21 @@ For details on configuring custom authentication, please see
 
 ## Single Sign-On Authentication (SAML, OAuth 2.0)
 
-When using a SSO provider for authentication the `Username`, `Password`, and
-`Email` that you are prompted for are not used. We recommend providing the following:
+When using a SSO provider for authentication you need to validate your session with SSO provider.
+
+Our new feature `--auth-type` will allow to validate session with SSO provider during login.
+
+This feature requires a 4.4.x or newer version of the npm client. You can get this
+by running:
 
 ```
-Username: sso
-Password: sso
-Email: (this IS public) sso@example.com
-```
-
-_Note: newer versions of the npm CLI will eliminate the need for entering a `Username`/`Password`/`Email`
-  when SSO is used._
-
-The first time that you publish or install a private
-module you will be asked to visit a URL to validate your session with the SSO provider:
-
-![SSO Validate](/gitbook/images/sso-validate.png)
-
-Simply copy the url nested between the phrases `visit` and `to validate`, and open it
-in your favorite web-browser. This will direct you direct you through a SSO flow, after which
-the token stored in your local `~/.npmrc` file will work for all future publishes and installs.
+[sudo] npm install npm -g
+ ```
+ 
+ You can provide `--auth-type=oauth` during login.
+ 
+ ```
+ npm login --auth-type=oauth
+ ```
+ 
+ This will direct you through a SSO flow, after which the token stored in your local `~/.npmrc` file will work for all future publishes and installs.
