@@ -14,6 +14,7 @@
       * [LDAP Authentication](up-and-running/auth/ldap.md)
       * [Google OAuth2 Integration](up-and-running/auth/oauth-google.md)
       * [GitHub Enterprise OAuth2](up-and-running/auth/oauth-github.md)
+      * [Custom Authentication](up-and-running/auth/custom.md)
 * [Configuring and Using the npm CLI](cli/README.md)
   * [Installing the npm CLI](cli/installation.md)
   * [Updating the npm CLI](cli/updating.md)
