@@ -105,7 +105,7 @@ For details on configuring custom authentication, please see
 
 When using a SSO provider for authentication you need to validate your session with SSO provider.
 
-Our new feature `--auth-type` will allow to validate session with SSO provider during login.
+The flag `--auth-type` allows you to delegate to a SSO provider during login.
 
 This feature requires a 4.4.x or newer version of the npm client. You can get this
 by running:
@@ -114,7 +114,7 @@ by running:
 [sudo] npm install npm -g
  ```
  
- You can provide `--auth-type=oauth` during login.
+ For SSO strategies (SAML, OAuth, etc) provide --auth-type=oauth during login.
  
  ```
  npm login --auth-type=oauth
