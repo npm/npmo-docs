@@ -1,10 +1,10 @@
 # Custom Authentication
 
-If authentication system use in your organization is not listed in [npme's supported authentication methods](/up-and-running/auth/#authentication) you can use custom authentication, we have provided following two custom authentication plugins:
- * npme-auth-atlassian-stash
- * npme-auth-gitlab
+If your authentication system is not listed in [npme's supported authentication methods](/up-and-running/auth/#authentication) you may be able to use an external open-source plugin (or write your own). Here are some of the SSO plugins that exist:
+ * [npme-auth-atlassian-stash](https://github.com/bcoe/npme-auth-atlassian-stash)
+ * [npme-auth-gitlab](https://github.com/nexdrew/npme-auth-gitlab)
 
-You can also opt to write your own `custom auth-plugin` for npm Enterprise.
+You can also opt to write your own `custom auth-plugin` for npm Enterprise using one of the open-source plugins listed above as a starting point.
 
 ## 1. Atlassian Stash authentication and authorization strategy for npm Enterprise.
 
