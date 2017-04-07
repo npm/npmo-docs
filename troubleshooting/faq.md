@@ -9,6 +9,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
+    - [What should I do with git dependencies on closed networks?](#what-should-i-do-with-git-dependencies-on-closed-networks)
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -160,6 +161,26 @@ Your choice of storage driver can affect the performance of your npm Enterprise 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+
+## What should I do with git dependencies on closed networks?
+
+If you are installing the package that have a dependency on a git url, npm will fetch that package from github itself because git dependencies are valid in npm.
+
+```
+"dependencies" : {
+  "name1" : "git://github.com/user/project.git#commit-ish",
+  "name2" : "git://github.com/user/project.git#commit-ish"
+}
+```
+When you are installing the package in the closed network where a dependency references a git url rather than a package name, you are unable to access due to no internet connectivity.
+
+In this situation you have to download the tarball of package from github on a local and re-publish to the private registry.
+
+To publish the tarball to private registry follow the below instructions:
+
+*  tar -xvzf fileName.tar.gz
+*  cd package
+*  npm publish --registry http://your-private-registry:8080
 
 ## What's the difference between a scoped package and an unscoped package?
 
