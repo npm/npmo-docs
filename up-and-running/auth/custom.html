@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Github Enterprise Integration · npm Enterprise Docs</title>
+        <title>Custom Authentication · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ldap.html" />
+    <link rel="next" href="../../cli/" />
     
     
-    <link rel="prev" href="open.html" />
+    <link rel="prev" href="oauth-github.html" />
     
 
     </head>
@@ -274,7 +274,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3.1.2" data-path="github.html">
+        <li class="chapter " data-level="1.2.3.1.2" data-path="github.html">
             
                 <a href="github.html">
             
@@ -326,7 +326,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.6" data-path="custom.html">
+        <li class="chapter active" data-level="1.2.3.1.6" data-path="custom.html">
             
                 <a href="custom.html">
             
@@ -681,7 +681,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Github Enterprise Integration</a>
+        <a href="../.." >Custom Authentication</a>
     </h1>
 </div>
 
@@ -696,38 +696,61 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="github-enterprise-authentication"><a name="github-enterprise-authentication" class="plugin-anchor" href="#github-enterprise-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Github Enterprise Authentication</h1><p>If your organization uses GitHub or GitHub Enterprise, npm Enterprise can be configured
-to automatically use them for login and access control. Simply add a
-repository field to your package.json that points to your repo:</p><pre><code class="lang-js">{
-  ..
-  <span class="hljs-string">&quot;repository&quot;</span>: {
-    <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;git://github.mycompany.com/myco/mypackage.git&quot;</span>
-  }
+                                <h1 id="custom-authentication"><a name="custom-authentication" class="plugin-anchor" href="#custom-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Custom Authentication</h1><p>If your authentication system is not listed in <a href=".#authentication">npme&apos;s supported authentication methods</a> you may be able to use an external open-source plugin (or write your own). Here are some of the third-party plugins that exist:</p><ul><li><a href="https://github.com/bcoe/npme-auth-atlassian-stash" target="_blank">npme-auth-atlassian-stash</a>
+</li>
+<li><a href="https://github.com/nexdrew/npme-auth-gitlab" target="_blank">npme-auth-gitlab</a>
+</li></ul>
+<p>You can also opt to write your own <code>custom auth-plugin</code> for npm Enterprise using one of the open-source plugins listed above as a starting point.</p><h2 id="1-atlassian-stash-authentication-and-authorization-strategy-for-npm-enterprise"><a name="1-atlassian-stash-authentication-and-authorization-strategy-for-npm-enterprise" class="plugin-anchor" href="#1-atlassian-stash-authentication-and-authorization-strategy-for-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>1. Atlassian Stash authentication and authorization strategy for npm Enterprise.</h2><h3 id="installation"><a name="installation" class="plugin-anchor" href="#installation"><i class="fa fa-link" aria-hidden="true"></i></a>Installation</h3><p>Install <code>npme-auth-atlassian-stash</code> in npme&apos;s data directory. By default this can be found in <code>/usr/local/lib/npme/data</code>.</p><pre><code>npm install @bcoe/npme-auth-atlassian-stash</code></pre>
+<h3 id="configuration"><a name="configuration" class="plugin-anchor" href="#configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Configuration</h3><p>This module will use <code>stash.json</code> which you should create in npme&apos;s data directory (by default this can be found in <code>/usr/local/lib/npme/data</code>).</p><pre><code>{
+  &quot;host&quot;: &quot;https://stash.domain.com&quot;,
+  &quot;user&quot;: &quot;npme&quot;,
+  &quot;pass&quot;: &quot;npmepass&quot;,
+  &quot;logFile&quot;: &quot;/etc/npme/data/npme-auth-atlassian-stash.log&quot;,
+  &quot;logLevel&quot;: &quot;info&quot;
 }</code></pre>
-<p>npm Enterprise restricts installation of your
-package to users who have access to the repo for that package, and restricts
-publishing of that package to users who have commit access to the repo.</p><h2 id="pointing-at-your-github-enterprise-appliance"><a name="pointing-at-your-github-enterprise-appliance" class="plugin-anchor" href="#pointing-at-your-github-enterprise-appliance"><i class="fa fa-link" aria-hidden="true"></i></a>Pointing at your GitHub Enterprise appliance</h2><p>To point npm Enterprise at your GitHub Enterprise appliance:</p><ol><li>visit the admin console at <code>http://myreg.mycompany.com:8800</code>
+<ul><li><strong>host</strong>: your Stash repository
 </li>
-<li>choose <code>GitHub</code> as the authentication strategy.
+<li><strong>name</strong>: admin Stash user login used for basic authorization
 </li>
-<li>choose <code>GitHub Enterprise</code>.
+<li><strong>pass</strong>: admin Stash user password
 </li>
-<li>enter your GitHub Enterprise appliance&apos;s host and scheme.
-</li></ol>
-<h2 id="logging-in-with-two-factor-authentication"><a name="logging-in-with-two-factor-authentication" class="plugin-anchor" href="#logging-in-with-two-factor-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Logging in with two-factor authentication</h2><p>If you use two-factor authentication for your GitHub account, you will need to
-manually generate a token and add it to your <a href="../../files/npmrc"><code>.npmrc</code></a> file.</p><ol><li>Visit github.com/settings/tokens/new to create a new &quot;Personal access token&quot;.
+<li><strong>logFile</strong>: location of module log file
 </li>
-<li>Use a descriptive name for your token, like &quot;myco npmE&quot;
-</li>
-<li>Leave the default scopes as they are. If using private repositories, ensure that the &quot;repo&quot; scope is selected for the token; see <a href="https://developer.github.com/v3/oauth/#scopes" target="_blank">GitHub scopes</a> for more details.
-</li>
-<li>Click &quot;Generate Token&quot; and you&apos;ll be redirected to a new page that displays your token. Copy the token right away, as it will only be displayed on screen once.
-</li>
-<li>Copy the token and paste it into the bottom of your <a href="../../files/npmrc"><code>.npmrc</code></a> file:
-</li></ol>
-<pre><code>@myco:registry=https://npme-private.npmjs.com/
-//npme-private.npmjs.com/:_authToken=3aa689a8a6772ab997bb333d096b8c1f48a9ccc</code></pre>
-<p><em>Note: you do not need to run <code>npm login</code> if you set up two-factor authentication this way.</em></p>
+<li><strong>logLevel</strong>: logging level
+</li></ul>
+<h3 id="stash-user"><a name="stash-user" class="plugin-anchor" href="#stash-user"><i class="fa fa-link" aria-hidden="true"></i></a>Stash user</h3><p><code>npme-auth-atlassian-stash</code> will use the admin Stash account to get information about users, groups, projects and repositories. This account should be created only for the purpose of <code>npme-auth-atlassian-stash</code> and should have administrative privileges to be able to acquire needed information.</p><p>Go to your npm Enterprise admin console (on port 8800 of your server), go to Authentication section on Settings page, select Custom , and populate plugin value as</p><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Config Value</th>
+</tr></thead><tbody>
+<tr><td>Authorization plugin</td>
+<td>/etc/npme/data/node_modules/@bcoe/npme-auth-atlassian-stash</td>
+</tr><tr><td>Authentication plugin</td>
+<td>/etc/npme/data/node_modules/@bcoe/npme-auth-atlassian-stash</td>
+</tr><tr><td>Session plugin</td>
+<td>/etc/npme/data/node_modules/@bcoe/npme-auth-atlassian-stash</td>
+</tr></tbody></table>
+
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="2-gitlab-authentication-and-authorization-strategy-for-npm-enterprise"><a name="2-gitlab-authentication-and-authorization-strategy-for-npm-enterprise" class="plugin-anchor" href="#2-gitlab-authentication-and-authorization-strategy-for-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>2. GitLab authentication and authorization strategy for npm Enterprise.</h2><p>Login to npm Enterprise using GitLab credentials
+Based on GitLab&apos;s API</p><h3 id="installation"><a name="installation" class="plugin-anchor" href="#installation"><i class="fa fa-link" aria-hidden="true"></i></a>Installation</h3><p>To install on your npm Enterprise instance:</p><p><code>cd /usr/local/lib/npme/data</code> (or the directory configured for Miscellaneous data files in the admin console)</p><pre><code>sudo npm i npme-auth-gitlab</code></pre>
+<h3 id="configuration"><a name="configuration" class="plugin-anchor" href="#configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Configuration</h3><p><code>sudo touch gitlab.json</code> and populate it with data like the following:</p><pre><code>{
+  &quot;url&quot;: &quot;https://gitlab.example.com&quot;,
+  &quot;strictSSL&quot;: false
+}</code></pre>
+<p>Point the &quot;url&quot; to your GitLab instance. If it&apos;s using https with a self-signed cert, then make sure &quot;strictSSL&quot; is false.</p><p>Go to your npm Enterprise admin console (on port 8800 of your server), go to Settings, select Custom for Authentication, and populate each plugin value as <code>/etc/npme/data/node_modules/npme-auth-gitlab</code></p><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Config Value</th>
+</tr></thead><tbody>
+<tr><td>Authorization plugin</td>
+<td>/etc/npme/data/node_modules/npme-auth-gitlab</td>
+</tr><tr><td>Authentication plugin</td>
+<td>/etc/npme/data/node_modules/npme-auth-gitlab</td>
+</tr><tr><td>Session plugin</td>
+<td>/etc/npme/data/node_modules/npme-auth-gitlab</td>
+</tr></tbody></table>
+
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p>
                                 
                                 </section>
                             
@@ -754,12 +777,12 @@ manually generate a token and add it to your <a href="../../files/npmrc"><code>.
 
             
                 
-                <a href="open.html" class="navigation navigation-prev " aria-label="Previous page: Open Authentication">
+                <a href="oauth-github.html" class="navigation navigation-prev " aria-label="Previous page: GitHub Enterprise OAuth2">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="ldap.html" class="navigation navigation-next " aria-label="Next page: LDAP Authentication">
+                <a href="../../cli/" class="navigation navigation-next " aria-label="Next page: Configuring and Using the npm CLI">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -770,7 +793,7 @@ manually generate a token and add it to your <a href="../../files/npmrc"><code>.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"next":{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},"previous":{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/github.md","mtime":"2017-04-12T06:01:28.867Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-04-12T06:03:12.963Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom Authentication","level":"1.2.3.1.6","depth":4,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"path":"up-and-running/auth/oauth-github.md","ref":"up-and-running/auth/oauth-github.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/custom.md","mtime":"2017-04-12T06:01:28.867Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-04-12T06:03:12.963Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
