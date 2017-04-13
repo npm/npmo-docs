@@ -9,6 +9,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
+    - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -160,6 +161,41 @@ Your choice of storage driver can affect the performance of your npm Enterprise 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+
+## What should I do if ssl problem occurs with npme over https?
+
+While working with custom certificate for npme registry, you might get an error related to ssl certificate on https while logging in or publishing a package, but it works fine on browser with https. It happens because node is a bit stricter about certificates than Chrome.
+
+To fix your issue temporarily you can provide `--strict-ssl=false` during login or you can add it to your ~/.npmrc file
+`npm config set strict-ssl=false`.
+
+For permanent fix you can point npm to a cafile
+```
+npm config set cafile /path/to/cert.pem
+```
+
+You can also configure ca string(s) directly.
+
+```
+npm config set ca "cert string"`
+```
+`ca` can be an array of cert strings too. In your .npmrc:
+
+```
+ca[ ]="cert 1 base64 string"
+ca[ ]="cert 2 base64 string"
+```
+
+The npm config commands above will persist the relevant config items to your ~/.npmrc file:
+
+```
+cafile=/path/to/cert.pem
+```
+
+
+Above CA settings will override the default "real world" certificate authority lookups that npm uses. If you try and use any public npm registries via https that aren't signed by your CA certificate, you will get errors.
+
+If you need to support both public https npm registries as well as your own, you could use [curl's Mozilla based CA bundle](https://curl.haxx.se/docs/caextract.html) and append your CA cert to the cacert.pem file.
 
 ## What's the difference between a scoped package and an unscoped package?
 
