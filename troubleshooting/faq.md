@@ -164,7 +164,7 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
 
 ## What should I do with git dependencies on closed networks?
 
-If you are installing the package that have a dependency on a git url, npm will fetch that package from github itself because git dependencies are valid in npm.
+If you are installing a package that has a git URL as a dependency, npm will fetch that package from the remote git repository itself. npm supports both git and HTTP URL formats (see https://docs.npmjs.com/files/package.json#dependencies), so we will need to work around this in our private registry.
 
 ```
 "dependencies" : {
@@ -172,15 +172,22 @@ If you are installing the package that have a dependency on a git url, npm will 
   "name2" : "git://github.com/user/project.git#commit-ish"
 }
 ```
-When you are installing the package in the closed network where a dependency references a git url rather than a package name, you are unable to access due to no internet connectivity.
+When you are installing the package in the closed network where a dependency references a git url rather than a package name, you will be unable to access due to no internet connectivity.
 
-In this situation you have to download the tarball of package from github on a local and re-publish to the private registry.
+In this situation, one approach you can take is to download a tarball version of the package and republish it to your private registry.
 
-To publish the tarball to private registry follow the below instructions:
+You can download a tarball version of the package from GitHub using
+```
+ wget -L https://github.com/user-or-org/repo/archive/master.tar.gz
 
-*  tar -xvzf fileName.tar.gz
+```
+Replace `user-or-org` and `repo` accordingly.
+
+To publish the tarball to private registry simply follow the steps listed below:
+
+*  tar -xvzf package.tar.gz
 *  cd package
-*  npm publish --registry http://your-private-registry:8080
+*  npm publish --registry=http://your-private-registry:8080
 
 ## What's the difference between a scoped package and an unscoped package?
 
