@@ -9,6 +9,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
+    - [How do I upgrade npm Enterprise license?](#how-do-i-upgrade-npm-enterprise-license)
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -160,6 +161,18 @@ Your choice of storage driver can affect the performance of your npm Enterprise 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+
+## How do I upgrade npm Enterprise license?
+
+You can upgrade npme license by following below steps:
+
+1. Run `npme update-license` on your npm Enterprise server.
+
+2. It will prompt you for billing email, enter your registered billing email.
+
+3. Then it will prompt you for license key, enter your license key.
+
+You can get license key by purchasing npm Enterprise license from [here](https://www.npmjs.com/enterprise/license)
 
 ## What's the difference between a scoped package and an unscoped package?
 
