@@ -9,7 +9,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
-    - [How do I upgrade npm Enterprise license?](#how-do-i-upgrade-npm-enterprise-license)
+    - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -162,9 +162,9 @@ So it’s important to understand the different storage driver options available
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
 
-## How do I upgrade npm Enterprise license?
+## How do I update my npm Enterprise license?
 
-You can upgrade npme license by following below steps:
+You can update npm Enterprise license by following the steps below:
 
 1. Run `npme update-license` on your npm Enterprise server.
 
