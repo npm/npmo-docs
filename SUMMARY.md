@@ -29,6 +29,7 @@
   * [Bitbucket Pipelines](tutorials/pipelines.md)
   * [Terminating SSL with NGINX](tutorials/nginx.md)
   * [Backups and HA](tutorials/backups-and-ha.md)
+  * [npm Enterprise with Nexus](tutorials/npm-enterprise-with-nexus.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [A Package Failed to Replicate](troubleshooting/replication.md)
