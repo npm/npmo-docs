@@ -29,6 +29,7 @@
   * [Bitbucket Pipelines](tutorials/pipelines.md)
   * [Terminating SSL with NGINX](tutorials/nginx.md)
   * [Backups and HA](tutorials/backups-and-ha.md)
+  * [Load balancing with Varnish](tutorials/load-balancing-with-varnish.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [A Package Failed to Replicate](troubleshooting/replication.md)
