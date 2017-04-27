@@ -164,7 +164,7 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
 
 ## What should I do with git dependencies on closed networks?
 
-If you are installing a package that has a git URL as a dependency, npm will fetch that package from the remote git repository itself. npm supports both git and HTTP URL formats (see https://docs.npmjs.com/files/package.json#dependencies), so we will need to work around this in our private registry.
+If you are installing a package that has a git URL as a dependency, npm will fetch that package from the remote git repository itself. npm supports both [git and HTTP URL formats](https://docs.npmjs.com/files/package.json#dependencies), so we will need to work around this in our private registry.
 
 ```
 "dependencies" : {
@@ -174,12 +174,13 @@ If you are installing a package that has a git URL as a dependency, npm will fet
 ```
 When you are installing the package in the closed network where a dependency references a git url rather than a package name, you will be unable to access due to no internet connectivity.
 
+#### Publishing the git dependency to your private repo
+
 In this situation, one approach you can take is to download a tarball version of the package and republish it to your private registry.
 
 You can download a tarball version of the package from GitHub using
 ```
  wget -L https://github.com/user-or-org/repo/archive/master.tar.gz
-
 ```
 Replace `user-or-org` and `repo` accordingly.
 
@@ -187,7 +188,20 @@ To publish the tarball to private registry simply follow the steps listed below:
 
 *  tar -xvzf package.tar.gz
 *  cd package
-*  npm publish --registry=http://your-private-registry:8080
+*  npm publish --registry=http://your-private-registry:8080 --scope=@your-scope
+
+#### Updating packages to reference the new dependency
+
+After publishing the git dependency to your private repo you need to update the packages to reference the new dependency.
+
+```
+"dependencies" : {
+  "@your-scope/package-name" : "latest version"
+}
+```
+Please note that, since it will often be a dependency of a dependency that has the git dependency, it will likely be necessary to both publish the git dependency and the dependency requiring it. A good best practice is to publish these new versions with a scope (@your-scope/request);
+
+We have a tool for simplifying this process: https://www.npmjs.com/package/scope-it
 
 ## What's the difference between a scoped package and an unscoped package?
 
