@@ -4,9 +4,11 @@ If you are using npm enterprise for publishing your private packages and wish to
 
 
 * Open *http://your-host:8081/* in your browser.
-* Sign in with admin credentials ( You can crate your own user and login with that credentials)
-```User Name: admin
-Password: admin123```.
+* Sign in with admin credentials (You can create your own user and login with those credentials)
+
+    ```User Name: admin
+    Password: admin123```
+
 * Click on Settings Icon from the top left menu.
 * Select *Repository->Repositories* from the left panel options.
 * Click on `Create repository` button.
@@ -15,20 +17,20 @@ Password: admin123```.
 
 1. Select `npm (proxy)` from the repository list.
     * Add unique repository name.
-    * Check the online option ( This will allow repository to accept incoming requests).
+    * Check the online option (This will allow repository to accept incoming requests).
 2. Add remote storage url.
     Enter the url of your private registry.
     E.g *http://your_npme-registry-url/*
 3. Save the changes.
 
-Here’s a good documentation that explains better about configuring Nexus as npm repository *http://blog.sonatype.com/using-nexus-3-as-your-repository-part-2-npm-packages*
+This blog post provides more detail about configuring Nexus as an npm repository: *http://blog.sonatype.com/using-nexus-3-as-your-repository-part-2-npm-packages*
 
 **Authentication**
 
 1. Select *Security->Realms* from the left panel options.
 2. Add `npm Bearer Token Realm` from available realms to active realms and save the changes.
 
-Here’s the documentation regarding authentication for npm nexus repository *http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/*.
+This blog post provides more detail about authentication in Nexus for npm repositories: *http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/*.
 
 Run `npm config set registry {repository path, likely your npm-proxy-repository-url}`.
 
@@ -38,7 +40,7 @@ Run `npm login npm login --registry=http://your-host:8081/repository/your-npm-pr
 
 It will prompt you for-
 
-* *User Name*: Enter the nexus repository username. ( If you haven’t created any user then default is **‘admin’**).
+* *User Name*: Enter the nexus repository username. (If you haven’t created any user then default is **‘admin’**).
 * *Password*: Enter the nexus repository password. (If you haven’t created any then default is **‘admin123’**).
 * *Email*: Enter your email.
 
