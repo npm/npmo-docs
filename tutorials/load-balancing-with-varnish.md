@@ -22,7 +22,7 @@ backend default {
  }
  ```
 
-This defines a backend in Varnish called `default`. When needs to get content from this backend it will connect to port 8080 on `localhost (127.0.0.1)`.
+This defines a backend in Varnish called `default`. When Varnish serves content from this backend, it will connect to port 8080 on `127.0.0.1`.
 
 Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.
 
