@@ -76,15 +76,18 @@ sub vcl_recv {
   set req.http.X-Authorization = req.http.Authorization;
   unset req.http.Authorization;
   unset req.http.If-Modified-Since;
-
+if (req.url ~ "@") {
     if (req.method == "GET") {
      set req.backend_hint = pkgread.backend();
-    } else {
+    }
+    else {
      set req.backend_hint = registry;
     }
-  } else if (req.method == "GET") {
+  }
+  else if (req.method == "GET") {
     set req.backend_hint = public;
-  } else {
+  }
+  else {
     set req.backend_hint = registry;
   }
 }
