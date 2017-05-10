@@ -187,7 +187,7 @@ Replace `user-or-org` and `repo` accordingly.
 To publish the tarball to your private registry simply follow the steps listed below:
 
 *  tar -xvzf package.tar.gz
-*  cd packageTo publish the tarball to your private registry simply follow the steps listed below:
+*  cd package
 *  npm publish --registry=http://your-private-registry:8080 --scope=@your-scope
 
 #### Updating packages to reference the new dependency
