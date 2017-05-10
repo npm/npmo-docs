@@ -164,12 +164,11 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
 
 ## What should I do if ssl problem occurs with npme over https?
 
-While working with custom certificate for npme registry, you might get an error related to ssl certificate on https while logging in or publishing a package, but it works fine on browser with https. It happens because node is a bit stricter about certificates than Chrome.
-
+When using a custom certificate for your npme registry, you might get an error related to the SSL certificate when logging in or publishing a package even though the browser does not display errors when viewing the npme registry site. This is because node's certificate validation is strict and doesn't allow for things like self-signed certificates by default.
 To fix your issue temporarily you can provide `--strict-ssl=false` during login or you can add it to your ~/.npmrc file
 `npm config set strict-ssl=false`.
 
-For permanent fix you can point npm to a cafile
+For a permanent fix, you can point npm to a `cafile`.
 ```
 npm config set cafile /path/to/cert.pem
 ```
@@ -193,7 +192,7 @@ cafile=/path/to/cert.pem
 ```
 
 
-Above CA settings will override the default "real world" certificate authority lookups that npm uses. If you try and use any public npm registries via https that aren't signed by your CA certificate, you will get errors.
+The above `cafile` setting will override the default "real world" certificate authority lookups that npm uses. If you try and use any public npm registries via https that aren't signed by your CA certificate, you will get errors.
 
 If you need to support both public https npm registries as well as your own, you could use [curl's Mozilla based CA bundle](https://curl.haxx.se/docs/caextract.html) and append your CA cert to the cacert.pem file.
 
