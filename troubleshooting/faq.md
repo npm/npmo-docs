@@ -172,7 +172,7 @@ You can update npm Enterprise license by following the steps below:
 
 3. Then it will prompt you for license key, enter your license key.
 
-You can get license key by purchasing npm Enterprise license from [here](https://www.npmjs.com/enterprise/license)
+You can get a license key by purchasing an npm Enterprise license on our [license page](https://www.npmjs.com/enterprise/license)
 
 ## What's the difference between a scoped package and an unscoped package?
 
