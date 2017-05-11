@@ -30,6 +30,7 @@
   * [Bitbucket Pipelines](tutorials/pipelines.md)
   * [Terminating SSL with NGINX](tutorials/nginx.md)
   * [Backups and HA](tutorials/backups-and-ha.md)
+  * [Load balancing with Varnish](tutorials/load-balancing-with-varnish.md)
   * [npm Enterprise with Nexus](tutorials/npm-enterprise-with-nexus.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
