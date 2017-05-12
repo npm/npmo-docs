@@ -24,23 +24,22 @@ Change bind address of server **Redis B** running outside of docker container by
 
 Now you will have two instances of Redis running on your primary server.
 
-* One inside your docker container (shipped with npmE), Let's say it **Redis A**.
-* Other on your primary server that you have installed outside the docker container, say **Redis B**.
+* One inside your docker container (shipped with npmE), let's say it **Redis A**.
+* Other on your primary server that you have installed outside the docker container, **Redis B**.
 
 Make the Redis running on the primary server (**Redis B**) slave of Redis running inside your docker container (**Redis A**).
 
 Run
 `redis-cli -h your_primary_host slaveof your_redis_server_ip_running_inside_docker_container 6379`.
 
-# Example
+#### Example
 
-```
 Consider Redis A IP is 172.17.0.1
 
-and your_primary_host IP is 195.122.21.166
+Your primary host IP is 195.122.21.166
 
-then the above command will look like
-
+then your application command will look like
+```
 redis-cli -h 195.122.21.166 slaveof 172.17.0.1 6379
 ```
 
