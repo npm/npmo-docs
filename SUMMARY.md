@@ -32,6 +32,7 @@
   * [Backups and HA](tutorials/backups-and-ha.md)
   * [Load balancing with Varnish](tutorials/load-balancing-with-varnish.md)
   * [npm Enterprise with Nexus](tutorials/npm-enterprise-with-nexus.md)
+  * [Redis Replication](tutorials/redis-replication.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [A Package Failed to Replicate](troubleshooting/replication.md)
