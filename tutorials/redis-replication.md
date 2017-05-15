@@ -7,7 +7,7 @@ To enable load balancing on npmE server for allowing users to install packages f
 
 Redis replication allows slave Redis servers to be exact copies of master servers so that can have the same login across servers.
 
-First, install Redis on your primary server.
+First, [install Redis](https://redis.io/topics/quickstart/) on your primary server.
 
 ```
 wget http://download.redis.io/releases/redis-3.0.4.tar.gz
@@ -15,6 +15,9 @@ tar xzf redis-3.0.4.tar.gz
 cd redis-3.0.4
 make
 ```
+
+Then run `sudo make install`.
+
 Run `redis-cli -v` to make sure that you are running Redis *version 3.0.4*.
 
 Change bind address of server **Redis B** running outside of docker container by updating the `redis.conf` file.
