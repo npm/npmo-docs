@@ -10,7 +10,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
-
+    - [Why to use npm Enterprise](#why-to-use-npm-enterprise)
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -161,6 +161,28 @@ Your choice of storage driver can affect the performance of your npm Enterprise 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+
+## Why to use npm Enterprise?
+
+1. npm Enterprise is single tenant vs. multi tenant -- which is important for some compliance heavy companies; npm Enterprise also allows you to have any number of scopes, and provides its own website, which can be useful for large organizations.
+
+2. npm Enterprise allows you to run npm’s infrastructure behind your company’s firewall.
+
+4. Security is a serious concern, and with npm Enterprise we have mitigated the risks by partnering with *Node Security Platform* to provide the security features many enterprise customers have been looking for.
+
+   You can read our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) about it, and another article straight from the [Node Security Platform](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
+
+5. npm Enterprise can significantly improve the efficiency of the private code that you write at your organization making it easier to share documentation and code, distribute code to your build servers, and to breakup your monolithic code-bases into easier-to-reason-about modules.
+
+6. You can restrict publishes or installs to/from npm Enterprise with the help of following supported authentication types:
+
+   *  [GitHub Enterprise](https://npme.npmjs.com/docs/up-and-running/auth/github.html)
+   *  Bitbucket Cloud
+   *  [LDAP](https://npme.npmjs.com/docs/up-and-running/auth/ldap.html)
+   *  SAML
+   *  OAuth 2, e.g. [Google](https://npme.npmjs.com/docs/up-and-running/auth/oauth-google.html)
+
+   You can also opt to write your own [custom auth-plugin](https://npme.npmjs.com/docs/up-and-running/auth/custom.html) for npm Enterprise.
 
 ## What should I do if ssl problem occurs with npme over https?
 
