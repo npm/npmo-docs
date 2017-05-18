@@ -10,7 +10,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
-    - [Why to use npm Enterprise](#why-to-use-npm-enterprise)
+    - [Why use npm Enterprise](#why-use-npm-enterprise)
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -162,19 +162,19 @@ So it’s important to understand the different storage driver options available
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
 
-## Why to use npm Enterprise?
+## Why use npm Enterprise?
 
-1. npm Enterprise is single tenant vs. multi tenant -- which is important for some compliance heavy companies; npm Enterprise also allows you to have any number of scopes, and provides its own website, which can be useful for large organizations.
+1. npm Enterprise is single tenant vs. multi tenant -- which is important for companies with advanced compliance needs. npm Enterprise also allows you to have any number of scopes, and provides its own website, which can be useful for large organizations.
 
 2. npm Enterprise allows you to run npm’s infrastructure behind your company’s firewall.
 
-4. Security is a serious concern, and with npm Enterprise we have mitigated the risks by partnering with *Node Security Platform* to provide the security features many enterprise customers have been looking for.
+3. Integration with the *Node Security Platform* provides package-level analysis to assist enterprise customers with security risk mitigation.
 
-   You can read our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) about it, and another article straight from the [Node Security Platform](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
+   Read more about it on our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) and this [Node Security Platform article.](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
 
-5. npm Enterprise can significantly improve the efficiency of the private code that you write at your organization making it easier to share documentation and code, distribute code to your build servers, and to breakup your monolithic code-bases into easier-to-reason-about modules.
+4. Significantly improve the efficiency of your development process making it easier to share documentation and code, streamline your build process, and to breakup your monolithic code-bases into individual packages that are easier to maintain.
 
-6. You can restrict publishes or installs to/from npm Enterprise with the help of following supported authentication types:
+5. Control access to packages and the website via the following supported authentication types:
 
    *  [GitHub Enterprise](https://npme.npmjs.com/docs/up-and-running/auth/github.html)
    *  Bitbucket Cloud
@@ -182,8 +182,8 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
    *  SAML
    *  OAuth 2, e.g. [Google](https://npme.npmjs.com/docs/up-and-running/auth/oauth-google.html)
 
-   You can also opt to write your own [custom auth-plugin](https://npme.npmjs.com/docs/up-and-running/auth/custom.html) for npm Enterprise.
-
+   Optionally, develop your own [custom auth-plugin](https://npme.npmjs.com/docs/up-and-running/auth/custom.html) for advanced cases where a supported option is unavailable.
+   
 ## What should I do if ssl problem occurs with npme over https?
 
 When using a custom certificate for your npme registry, you might get an error related to the SSL certificate when logging in or publishing a package even though the browser does not display errors when viewing the npme registry site. This is because node's certificate validation is strict and doesn't allow for things like self-signed certificates by default.
