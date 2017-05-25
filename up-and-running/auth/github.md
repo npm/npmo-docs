@@ -17,6 +17,9 @@ npm Enterprise restricts installation of your
 package to users who have access to the repo for that package, and restricts
 publishing of that package to users who have commit access to the repo.
 
+_Note: The Github Enterprise integration does not support website auth with two-factor authentication. If you want to use two-factor authentication, with website-auth enabled [GitHub Enterprise OAuth2](up-and-running/auth/oauth-github.md) would be the best option._
+
+
 ## Pointing at your GitHub Enterprise appliance
 
 To point npm Enterprise at your GitHub Enterprise appliance:
