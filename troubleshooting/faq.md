@@ -172,7 +172,7 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
 
    Read more about it on our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) and this [Node Security Platform article.](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
 
-4. Significantly improve the efficiency of your development process making it easier to share documentation and code, streamline your build process, and to breakup your monolithic code-bases into individual packages that are easier to maintain.
+4. Significantly improve the efficiency of your development process making it easier to share documentation and code, streamline your build process, and breakup your monolithic code-bases into individual packages that are easier to maintain.
 
 5. Control access to packages and the website via the following supported authentication types:
 
