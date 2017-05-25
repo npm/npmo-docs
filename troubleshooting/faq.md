@@ -9,8 +9,10 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
-    - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
     - [Why use npm Enterprise](#why-use-npm-enterprise)
+    - [What should I do with git dependencies on closed networks?](#what-should-i-do-with-git-dependencies-on-closed-networks)
+    - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
+    - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -184,6 +186,59 @@ We recommend that you use the `overlay` driver, rather than `devicemapper`; for 
 
    Optionally, develop your own [custom auth-plugin](https://npme.npmjs.com/docs/up-and-running/auth/custom.html) for advanced cases where a supported option is unavailable.
    
+## What should I do with git dependencies on closed networks?
+
+If you are installing a package that has a git URL as a dependency, npm will fetch that package from the remote git repository itself. npm supports both [git and HTTP URL formats](https://docs.npmjs.com/files/package.json#dependencies), so we will need to work around this in our private registry.
+
+```
+"dependencies" : {
+  "name1" : "git://github.com/user/project.git#commit-ish",
+  "name2" : "git://github.com/user/project.git#commit-ish"
+}
+```
+When you are installing the package in the closed network where a dependency references a git url rather than a package name, you will be unable to install the dependency since it references an external network address.
+
+#### Publishing the git dependency to your private repo
+
+In this situation, one approach you can take is to download a tarball version of the package and republish it to your private registry.
+
+You can download a tarball version of the package from GitHub using:
+```
+ wget -L https://github.com/user-or-org/repo/archive/master.tar.gz
+```
+Replace `user-or-org` and `repo` accordingly.
+
+To publish the tarball to your private registry simply follow the steps listed below:
+
+*  tar -xvzf package.tar.gz
+*  cd package
+*  npm publish --registry=http://your-private-registry:8080 --scope=@your-scope
+
+#### Updating packages to reference the new dependency
+
+After publishing the git dependency to your private repo you need to update the packages to reference the new dependency.
+
+```
+"dependencies" : {
+  "@your-scope/package-name" : "latest version"
+}
+```
+Please note that, since it will often be a dependency of a dependency that has the git dependency, it will likely be necessary to both publish the git dependency and the dependency requiring it. A good best practice is to publish these new versions with a scope (@your-scope/request);
+
+We have a tool for simplifying this process: https://www.npmjs.com/package/scope-it
+
+## How do I update my npm Enterprise license?
+
+You can update npm Enterprise license by following the steps below:
+
+1. Run `npme update-license` on your npm Enterprise server.
+
+2. It will prompt you for billing email, enter your registered billing email.
+
+3. Then it will prompt you for license key, enter your license key.
+
+You can get a license key by purchasing an npm Enterprise license on our [license page](https://www.npmjs.com/enterprise/license)
+
 ## What should I do if ssl problem occurs with npme over https?
 
 When using a custom certificate for your npme registry, you might get an error related to the SSL certificate when logging in or publishing a package even though the browser does not display errors when viewing the npme registry site. This is because node's certificate validation is strict and doesn't allow for things like self-signed certificates by default.
