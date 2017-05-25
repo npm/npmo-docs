@@ -9,10 +9,10 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
+    - [Why use npm Enterprise](#why-use-npm-enterprise)
     - [What should I do with git dependencies on closed networks?](#what-should-i-do-with-git-dependencies-on-closed-networks)
     - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
-
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -164,6 +164,28 @@ So it’s important to understand the different storage driver options available
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
 
+## Why use npm Enterprise?
+
+1. npm Enterprise is single tenant vs. multi tenant -- which is important for companies with advanced compliance needs. npm Enterprise also allows you to have any number of scopes, and provides its own website, which can be useful for large organizations.
+
+2. npm Enterprise allows you to run npm’s infrastructure behind your company’s firewall.
+
+3. Integration with the *Node Security Platform* provides package-level analysis to assist enterprise customers with security risk mitigation.
+
+   Read more about it on our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) and this [Node Security Platform article.](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
+
+4. Significantly improve the efficiency of your development process making it easier to share documentation and code, streamline your build process, and breakup your monolithic code-bases into individual packages that are easier to maintain.
+
+5. Control access to packages and the website via the following supported authentication types:
+
+   *  [GitHub Enterprise](https://npme.npmjs.com/docs/up-and-running/auth/github.html)
+   *  Bitbucket Cloud
+   *  [LDAP](https://npme.npmjs.com/docs/up-and-running/auth/ldap.html)
+   *  SAML
+   *  OAuth 2, e.g. [Google](https://npme.npmjs.com/docs/up-and-running/auth/oauth-google.html)
+
+   Optionally, develop your own [custom auth-plugin](https://npme.npmjs.com/docs/up-and-running/auth/custom.html) for advanced cases where a supported option is unavailable.
+   
 ## What should I do with git dependencies on closed networks?
 
 If you are installing a package that has a git URL as a dependency, npm will fetch that package from the remote git repository itself. npm supports both [git and HTTP URL formats](https://docs.npmjs.com/files/package.json#dependencies), so we will need to work around this in our private registry.
