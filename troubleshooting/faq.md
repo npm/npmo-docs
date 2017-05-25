@@ -9,6 +9,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I replicate between two npm Enterprise instances?](#how-do-i-replicate-between-two-npm-enterprise-instances)
     - [What should I do if npm Enterprise binds to the wrong address?](#what-should-i-do-if-npm-enterprise-binds-to-the-wrong-ip-address)
     - [What should I do if I see a devicemapper warning?](#what-should-i-do-if-i-see-a-devicemapper-warning)
+    - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
 
 - Scopes and Packages
@@ -161,6 +162,19 @@ Your choice of storage driver can affect the performance of your npm Enterprise 
 So it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
+
+
+## How do I update my npm Enterprise license?
+
+You can update npm Enterprise license by following the steps below:
+
+1. Run `npme update-license` on your npm Enterprise server.
+
+2. It will prompt you for billing email, enter your registered billing email.
+
+3. Then it will prompt you for license key, enter your license key.
+
+You can get a license key by purchasing an npm Enterprise license on our [license page](https://www.npmjs.com/enterprise/license)
 
 ## What should I do if ssl problem occurs with npme over https?
 
