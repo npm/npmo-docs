@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Open Authentication · npm Enterprise Docs</title>
+        <title>SAML Authentication · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="github.html" />
+    <link rel="next" href="../../cli/" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="custom.html" />
     
 
     </head>
@@ -261,7 +261,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.3.1.1" data-path="open.html">
+        <li class="chapter " data-level="1.2.3.1.1" data-path="open.html">
             
                 <a href="open.html">
             
@@ -339,7 +339,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.7" data-path="saml.html">
+        <li class="chapter active" data-level="1.2.3.1.7" data-path="saml.html">
             
                 <a href="saml.html">
             
@@ -733,7 +733,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Open Authentication</a>
+        <a href="../.." >SAML Authentication</a>
     </h1>
 </div>
 
@@ -748,13 +748,29 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="open-authentication"><a name="open-authentication" class="plugin-anchor" href="#open-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Open Authentication</h1><p>If you do not need authentication or authorization at all (for example, you&apos;re
-only running npm Enterprise inside your firewalled, private network), you can
-configure npm Enterprise to accept whatever credentials users log in with, and
-allow everyone access to everything.</p><p>In order to do so, visit npm Enterprise&apos;s admin console, and choose the <code>Open</code> authentication strategy.</p><p>The npm CLI will still require that you log in in order to publish
-packages, but you can just log in with any credentials (although the
-username you input will be inserted into the package document - for
-example in the <code>maintainers</code> field).</p>
+                                <h1 id="saml-authentication"><a name="saml-authentication" class="plugin-anchor" href="#saml-authentication"><i class="fa fa-link" aria-hidden="true"></i></a>SAML Authentication</h1><h3 id="configure-npm-enterprise-to-work-with-your-saml-sso-provider"><a name="configure-npm-enterprise-to-work-with-your-saml-sso-provider" class="plugin-anchor" href="#configure-npm-enterprise-to-work-with-your-saml-sso-provider"><i class="fa fa-link" aria-hidden="true"></i></a>Configure npm Enterprise to work with your SAML SSO provider.</h3><p>Under <strong>Authentication</strong>, select <strong>SAML</strong> and enter the following values:</p><table>
+<thead>
+<tr><th>Config Field</th>
+<th>Config Value</th>
+</tr></thead><tbody>
+<tr><td>Entity ID</td>
+<td>http://npm.yourcompany.com:8081/auth/saml/metadata.xml</td>
+</tr><tr><td>Assert Endpoint</td>
+<td>http://npm.yourcompany.com:8081/auth/saml/assert</td>
+</tr><tr><td>Logout Endpoint</td>
+<td>http://npm.yourcompany.com:8081/auth/saml/logout</td>
+</tr><tr><td>Format for Name ID</td>
+<td>urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress</td>
+</tr><tr><td>Identity Provider SSO Login URL</td>
+<td>Enter SAML 2.0 endpoint URL from your SAML provider</td>
+</tr><tr><td>Identity Provider Single Logout URL</td>
+<td>Enter SLO endpoint URL from your SAML provider</td>
+</tr><tr><td>Identity Provider Certificate</td>
+<td>Copy your certificate from SAML provider</td>
+</tr></tbody></table>
+
+<p>Click <strong>Save</strong> to save these settings and then <strong>Restart now</strong> (when prompted) to restart the appliance and apply these settings.</p><p>That&apos;s all the server-side configuration you need!</p><h2 id="client-login"><a name="client-login" class="plugin-anchor" href="#client-login"><i class="fa fa-link" aria-hidden="true"></i></a>Client Login</h2><p>Client login using SSO behaves differently than other authentication mechanisms, see
+<a href="../../cli/configuration.html#single-sign-on-authentication-saml-oauth-20">Single Sign-On Authentication</a>.</p>
                                 
                                 </section>
                             
@@ -781,12 +797,12 @@ example in the <code>maintainers</code> field).</p>
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Authentication">
+                <a href="custom.html" class="navigation navigation-prev " aria-label="Previous page: Custom Authentication">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="github.html" class="navigation navigation-next " aria-label="Next page: Github Enterprise Integration">
+                <a href="../../cli/" class="navigation navigation-next " aria-label="Next page: Configuring and Using the npm CLI">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -797,7 +813,7 @@ example in the <code>maintainers</code> field).</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"next":{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},"previous":{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]},{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"path":"up-and-running/auth/oauth-github.md","ref":"up-and-running/auth/oauth-github.md","articles":[]},{"title":"Custom Authentication","level":"1.2.3.1.6","depth":4,"path":"up-and-running/auth/custom.md","ref":"up-and-running/auth/custom.md","articles":[]},{"title":"SAML Authentication","level":"1.2.3.1.7","depth":4,"path":"up-and-running/auth/saml.md","ref":"up-and-running/auth/saml.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/open.md","mtime":"2017-06-07T18:17:56.456Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-07T18:19:41.678Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"SAML Authentication","level":"1.2.3.1.7","depth":4,"next":{"title":"Configuring and Using the npm CLI","level":"1.3","depth":1,"path":"cli/README.md","ref":"cli/README.md","articles":[{"title":"Installing the npm CLI","level":"1.3.1","depth":2,"path":"cli/installation.md","ref":"cli/installation.md","articles":[]},{"title":"Updating the npm CLI","level":"1.3.2","depth":2,"path":"cli/updating.md","ref":"cli/updating.md","articles":[]},{"title":"Configuring the CLI client","level":"1.3.3","depth":2,"path":"cli/configuration.md","ref":"cli/configuration.md","articles":[]}]},"previous":{"title":"Custom Authentication","level":"1.2.3.1.6","depth":4,"path":"up-and-running/auth/custom.md","ref":"up-and-running/auth/custom.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/auth/saml.md","mtime":"2017-06-07T18:17:56.456Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-07T18:19:41.678Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
