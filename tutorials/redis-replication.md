@@ -18,7 +18,7 @@ Now go to your secondary server's admin dashboard settings page.
 
 1. Go to `Expose Redis For Replication` and select `No`.
 
-2. Set the address of your primary server in `Upstream Redis` section.
+2. Set the address of your primary server in `Upstream Redis` section. (Please note that `port` is not required with the address of the primary server)
 
 To check the replication status run `sudo docker exec -i npme-redis redis-cli info replication` and verify the output shown as below:
 
