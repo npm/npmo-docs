@@ -23,7 +23,7 @@ an Ubuntu 14.04 LTS VM running.
 
 While setting this up, make sure to:
 
-- Pick a size that has *at least* 7 GB of RAM. **We strongly recommend 14 GB.**
+- Pick a size that has *at least* 8 GB of RAM. **We strongly recommend 16 GB.**
 - Take note of the name of the Security Group you assign. We'll need to edit it
   in Step 3.
 
