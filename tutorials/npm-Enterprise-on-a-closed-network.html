@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Terminating SSL with NGINX · npm Enterprise Docs</title>
+        <title>npm Enterprise on a closed network · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="backups-and-ha.html" />
+    <link rel="next" href="../troubleshooting/" />
     
     
-    <link rel="prev" href="pipelines.html" />
+    <link rel="prev" href="redis-replication.html" />
     
 
     </head>
@@ -549,7 +549,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.3" data-path="nginx.html">
+        <li class="chapter " data-level="1.5.3" data-path="nginx.html">
             
                 <a href="nginx.html">
             
@@ -614,7 +614,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.8" data-path="npm-Enterprise-on-a-closed-network.html">
+        <li class="chapter active" data-level="1.5.8" data-path="npm-Enterprise-on-a-closed-network.html">
             
                 <a href="npm-Enterprise-on-a-closed-network.html">
             
@@ -746,7 +746,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Terminating SSL with NGINX</a>
+        <a href=".." >npm Enterprise on a closed network</a>
     </h1>
 </div>
 
@@ -761,88 +761,47 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="terminating-ssl-with-nginx"><a name="terminating-ssl-with-nginx" class="plugin-anchor" href="#terminating-ssl-with-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>Terminating SSL with NGINX</h1><p>Using NGINX is a great way to add DNS and SSL termination to your
-npm Enterprise server.</p><p>Here&apos;s an example <code>nginx.conf</code> configuration that you can use for
-associating one DNS name with your npm Enterprise Website and an
-alternative DNS name with your npm Enterprise Registry:</p><pre><code class="lang-nginx"><span class="hljs-attribute">user</span> root;
-<span class="hljs-attribute">worker_processes</span> <span class="hljs-number">1</span>;
-<span class="hljs-attribute">pid</span> /var/run/nginx.pid;
-
-<span class="hljs-section">events</span> {
-    <span class="hljs-comment"># After increasing this value You probably should increase limit</span>
-    <span class="hljs-comment"># of file descriptors (for example in start_precmd in startup script)</span>
-    <span class="hljs-attribute">worker_connections</span>  <span class="hljs-number">1024</span>;
-}
-
-<span class="hljs-section">http</span> {
-    <span class="hljs-attribute">upstream</span> registry {
-        <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8080</span>;
-    }
-
-    <span class="hljs-attribute">upstream</span> www {
-        <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:8081</span>;
-    }
-
-    <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">200M</span>;
-
-    <span class="hljs-attribute">include</span>       /etc/nginx/mime.types;
-    <span class="hljs-attribute">default_type</span>  application/octet-stream;
-
-    <span class="hljs-attribute">log_format</span>  main  <span class="hljs-string">&apos;<span class="hljs-variable">$remote_addr</span> - <span class="hljs-variable">$remote_user</span> [<span class="hljs-variable">$time_local</span>] &quot;<span class="hljs-variable">$request</span>&quot; &apos;</span>
-                      <span class="hljs-string">&apos;<span class="hljs-variable">$status</span> <span class="hljs-variable">$body_bytes_sent</span> &quot;<span class="hljs-variable">$http_referer</span>&quot; &apos;</span>
-                      <span class="hljs-string">&apos;&quot;<span class="hljs-variable">$http_user_agent</span>&quot; &quot;<span class="hljs-variable">$http_x_forwarded_for</span>&quot;&apos;</span>;
-
-    <span class="hljs-attribute">access_log</span>  /var/log/nginx/access.log  main;
-
-    <span class="hljs-attribute">sendfile</span>        <span class="hljs-literal">on</span>;
-
-    <span class="hljs-attribute">keepalive_timeout</span>  <span class="hljs-number">65</span>;
-
-    <span class="hljs-comment"># npm Enterprise registry.</span>
-    <span class="hljs-section">server</span> {
-        <span class="hljs-attribute">listen</span>       <span class="hljs-number">443</span>;
-        <span class="hljs-attribute">server_name</span>  demo-registry.npmjs.com;
-
-        <span class="hljs-attribute">ssl</span>                  <span class="hljs-literal">on</span>;
-
-        <span class="hljs-attribute">ssl_certificate</span>      /home/ubuntu/sslcerts/wildcard.pem;
-        <span class="hljs-attribute">ssl_certificate_key</span>  /home/ubuntu/sslcerts/wildcard.pem;
-
-        <span class="hljs-attribute">ssl_session_timeout</span>  <span class="hljs-number">5m</span>;
-
-        <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;
-        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;
-        <span class="hljs-attribute">ssl_ciphers</span> <span class="hljs-string">&quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;</span>;
-
-        <span class="hljs-attribute">location</span> / {
-            <span class="hljs-attribute">proxy_pass</span>       http://registry;
-            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
-        }
-    }
-
-    <span class="hljs-comment"># npm Enterprise Website</span>
-    <span class="hljs-section">server</span> {
-        <span class="hljs-attribute">listen</span>       <span class="hljs-number">443</span>;
-        <span class="hljs-attribute">server_name</span>  demo-www.npmjs.com;
-
-        <span class="hljs-attribute">ssl</span>                  <span class="hljs-literal">on</span>;
-
-        <span class="hljs-attribute">ssl_certificate</span>      /home/ubuntu/sslcerts/wildcard.pem;
-        <span class="hljs-attribute">ssl_certificate_key</span>  /home/ubuntu/sslcerts/wildcard.pem;
-
-        <span class="hljs-attribute">ssl_session_timeout</span>  <span class="hljs-number">5m</span>;
-
-        <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;
-        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;
-        <span class="hljs-attribute">ssl_ciphers</span> <span class="hljs-string">&quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;</span>;
-
-        <span class="hljs-attribute">location</span> / {
-            <span class="hljs-attribute">proxy_pass</span>       http://www;
-            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
-        }
-    }
-}</code></pre>
-
+                                <h1 id="npm-enterprise-on-closed-network"><a name="npm-enterprise-on-closed-network" class="plugin-anchor" href="#npm-enterprise-on-closed-network"><i class="fa fa-link" aria-hidden="true"></i></a>Npm Enterprise on closed network</h1><p>You can use npm Enterprise on the private/closed network. Here are the two approaches:</p><ol><li>Install npmE in open network and move VM&#x2019;s to closed network
+</li>
+<li>Air-Gap installation
+</li></ol>
+<h3 id="install-npme-in-open-network-and-move-vms-to-closed-network"><a name="install-npme-in-open-network-and-move-vms-to-closed-network" class="plugin-anchor" href="#install-npme-in-open-network-and-move-vms-to-closed-network"><i class="fa fa-link" aria-hidden="true"></i></a>Install npmE in open network and move VM&#x2019;s to closed network</h3><p>To achieve this, create two VM&apos;s (<code>npmePrimary</code> and <code>npmeSource</code> for example) and install npm Enterprise on both using the instructions in the <a href="https://npme.npmjs.com/docs/up-and-running/platforms/other.html" target="_blank">up and running</a>
+ section.</p><p>In this configuration, publication of internal packages and all installs will happen against <code>npmePrimary</code> with <code>npmeSource</code> serving as the means for importing new public packages and new versions for existing public packages from the registry on a cadence you control.</p><p>To initialize your installation:</p><ol><li>With <code>npmeSource</code> still connected to the internet, edit the <code>whitelist</code> file so that it&apos;s a new-line delimited list of the package names you&apos;ll want available on your closed network. The <code>white-list</code> file is in the data folder which is <code>/usr/local/lib/npme/data</code> by default unless you changed this under <code>Miscellaneous Data</code> in the npme Settings Panel.
+</li>
+<li>Allow adequate time for the replication process to pull in all the packages added to the <code>whitelist</code> file.
+</li>
+<li>Bring <code>npmeSource</code> and <code>npmePrimary</code> into the closed network.
+</li>
+<li>In <code>npmePrimary&apos;s</code> Configuration Settings, under <code>Upstream Registry</code>:
+<ul><li>point the Upstream URL to <code>npmeSource</code>
+</li>
+<li>set the <code>Upstream Secret</code> to match <code>npmeSource&apos;s</code>
+</li>
+<li>set the <code>Policy to mirror</code>
+</li></ul>
+</li></ol>
+<p>To add new packages from the public registry to your closed network:</p><ol><li>Clone <code>npmeSource</code> and allow it access to the internet.
+</li>
+<li>Add any new packages to the <code>whitelist</code> that were missing from the initial install.
+</li>
+<li>Copy <code>/usr/local/lib/npme</code> to a memory stick or portable drive. If you changed the location of the storage paths, be sure to copy the contents from all the folders.
+</li>
+<li>Stop <code>npmeSource&apos;s</code> npme instance that&apos;s running inside your network from the npme Dashboard.
+</li>
+<li>Copy over all the files from the cloned instance to the correct destination path on <code>npmeSource</code>.
+</li>
+<li>Restart the npme instance on <code>npmeSource</code> from the npme Dashboard.
+</li>
+<li>Restart replication on <code>npmePrimary</code> with the command <code>npme reset-follower</code> from the shell.
+</li></ol>
+<h3 id="air-gap-installation"><a name="air-gap-installation" class="plugin-anchor" href="#air-gap-installation"><i class="fa fa-link" aria-hidden="true"></i></a>Air-Gap installation</h3><p>An &#x201C;Air-Gap&#x201D; environment is a network that has no path for inbound or outbound internet traffic at all.</p><ul><li>Install Docker on the VM running on a closed network.
+</li></ul>
+<p>Install a supported version of Docker on your server. At the time of this writing, Replicated still supported Docker versions as old as <code>1.7.1</code>. We recommend installing the latest version of Docker available for the range of your <a href="https://www.replicated.com/docs/kb/supporting-your-customers/installing-docker-in-airgapped/" target="_blank">operating system</a>.</p><ul><li>Install Replicated.
+</li></ul>
+<p>Download the latest release of Replicated from <a href="https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz" target="_blank">replicated official site</a> and move it to the VM running on your closed network.</p><p>Run the commands below.</p><pre><code> tar xzvf replicated.tar.gz
+ cat ./install.sh | sudo bash -s airgap
+</code></pre>
+<p>On your request, we will enable the air-gap solution for your npm Enterprise server license and also provide you the air-gap enabled license (.rli) file for activating your Enterprise server.</p><p>Along with that will also provide you the download link and password for the air-gap package.</p><p>Move both these files to your VM running on a closed network.</p><p>Now navigate to the management console at <a href="https://your-host-server:8800" target="_blank">https://your-host-server:8800</a>.</p><p>Accept the self-signed certificate, pass the preflight checks, and you will see the license upload screen. Select the Airgapped install option, then provide the path of <code>.airgap</code> file and upload the <code>license (.rli) file</code> here.</p><p>Once this screen is completed, Replicated runs as normal. In the <a href="https://your-host-server:8800/console/settings" target="_blank">https://your-host-server:8800/console/settings</a> page, there is a section to set the Air-Gap mode settings.</p><p>You can install updates and sync the license by downloading new versions and renaming them with the .airgap extension after that place them in the locations specified on the /console/settings page.</p>
                                 
                                 </section>
                             
@@ -869,12 +828,12 @@ alternative DNS name with your npm Enterprise Registry:</p><pre><code class="lan
 
             
                 
-                <a href="pipelines.html" class="navigation navigation-prev " aria-label="Previous page: Bitbucket Pipelines">
+                <a href="redis-replication.html" class="navigation navigation-prev " aria-label="Previous page: Redis Replication">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="backups-and-ha.html" class="navigation navigation-next " aria-label="Next page: Backups and HA">
+                <a href="../troubleshooting/" class="navigation navigation-next " aria-label="Next page: Troubleshooting">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -885,7 +844,7 @@ alternative DNS name with your npm Enterprise Registry:</p><pre><code class="lan
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Terminating SSL with NGINX","level":"1.5.3","depth":2,"next":{"title":"Backups and HA","level":"1.5.4","depth":2,"path":"tutorials/backups-and-ha.md","ref":"tutorials/backups-and-ha.md","articles":[]},"previous":{"title":"Bitbucket Pipelines","level":"1.5.2","depth":2,"path":"tutorials/pipelines.md","ref":"tutorials/pipelines.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/nginx.md","mtime":"2017-06-16T20:09:16.529Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-16T20:12:30.224Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"npm Enterprise on a closed network","level":"1.5.8","depth":2,"next":{"title":"Troubleshooting","level":"1.6","depth":1,"path":"troubleshooting/README.md","ref":"troubleshooting/README.md","articles":[{"title":"FAQ","level":"1.6.1","depth":2,"path":"troubleshooting/faq.md","ref":"troubleshooting/faq.md","articles":[]},{"title":"A Package Failed to Replicate","level":"1.6.2","depth":2,"path":"troubleshooting/replication.md","ref":"troubleshooting/replication.md","articles":[]},{"title":"npm Enterprise Won't Boot","level":"1.6.3","depth":2,"path":"troubleshooting/booting.md","ref":"troubleshooting/booting.md","articles":[]},{"title":"Migrating From Legacy Server","level":"1.6.4","depth":2,"path":"troubleshooting/migrating.md","ref":"troubleshooting/migrating.md","articles":[]},{"title":"Uninstalling npm Enterprise","level":"1.6.5","depth":2,"path":"troubleshooting/uninstalling.md","ref":"troubleshooting/uninstalling.md","articles":[]}]},"previous":{"title":"Redis Replication","level":"1.5.7","depth":2,"path":"tutorials/redis-replication.md","ref":"tutorials/redis-replication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/npm-Enterprise-on-a-closed-network.md","mtime":"2017-06-16T20:09:16.529Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-16T20:12:30.224Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
