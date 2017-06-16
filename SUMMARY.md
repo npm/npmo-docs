@@ -34,6 +34,7 @@
   * [Load balancing with Varnish](tutorials/load-balancing-with-varnish.md)
   * [npm Enterprise with Nexus](tutorials/npm-enterprise-with-nexus.md)
   * [Redis Replication](tutorials/redis-replication.md)
+  * [npm Enterprise on a closed network](tutorials/npm-Enterprise-on-a-closed-network.md)
 * [Troubleshooting](troubleshooting/README.md)
   * [FAQ](troubleshooting/faq.md)
   * [A Package Failed to Replicate](troubleshooting/replication.md)
