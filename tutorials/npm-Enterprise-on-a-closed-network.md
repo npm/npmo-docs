@@ -7,26 +7,30 @@ You can use npm Enterprise on the private/closed network. Here are the two appro
 
 ### Install npmE in open network and move VM’s to closed network
 
-To achieve this create two VM’s let’s say npmBlank and npmSource on open-network and install npm Enterprise on both these VM’s.
+To achieve this, create two VM's (`npmePrimary` and `npmeSource` for example) and install npm Enterprise on both using the instructions in the [up and running]( https://npme.npmjs.com/docs/up-and-running/platforms/other.html)
+ section.
 
-Both these VM’s originate as npm Enterprise servers, provisioned using the instructions provided [up and running section]( https://npme.npmjs.com/docs/up-and-running/platforms/other.html)
+In this configuration, publication of internal packages and all installs will happen against `npmePrimary` with `npmeSource` serving as the means for importing new public packages and new versions for existing public packages from the registry on a cadence you control.
 
-Now, follow the instructions below.
+To initialize your installation:
 
-* Seed the VM npmSource (currently connected to the Internet) with the packages you need.
-* For seeding packages to this VM you can use White-listing or mirror policy.
-* Bring this VM (npmSource) to the closed network.
-* Also bring npmBlank that has no packages on it to the closed network. (It’s just a blank installation of npm Enterprise).
-* Now set up the blank npm Enterprise (i.e npmBlank) to mirror the npmSource VM with your packages on it.
+1. With `npmeSource` still connected to the internet, edit the `whitelist` file so that it's a new-line delimited list of the package names you'll want available on your closed network. The `white-list` file is in the data folder which is `/usr/local/lib/npme/data` by default unless you changed this under `Miscellaneous Data` in the npme Settings Panel.
+* Allow adequate time for the replication process to pull in all the packages added to the `whitelist` file.
+* Bring `npmeSource` and `npmePrimary` into the closed network.
+* In `npmePrimary's` Configuration Settings, under `Upstream Registry`:
+    * point the Upstream URL to `npmeSource`
+    * set the `Upstream Secret` to match `npmeSource's`
+    * set the `Policy to mirror`
 
-Follow the steps below to bring new packages from public Internet to your closed network.
+To add new packages from the public registry to your closed network:
 
-* First, seed an instance on the public Internet with your full white-list (that has all new and old packages)
-* Once it finishes replicating, then place /usr/local/lib/npme onto a memory stick.
-* Now stop the instance inside your network that your secondary instance replicates from, copy over these files, and boot it.
-* Restart replication on your primary instance (it will now pull down the new set of files).
-You will publish your own private modules to the instance that started out as blank; You’ll keep replacing the packages on the secondary server it replicates from.
-
+1. Clone `npmeSource` and allow it access to the internet.
+*  Add any new packages to the `whitelist` that were missing from the initial install.
+*  Copy `/usr/local/lib/npme` to a memory stick or portable drive. If you changed the location of the storage paths, be sure to copy the contents from all the folders.
+*  Stop `npmeSource's` npme instance that's running inside your network from the npme Dashboard.
+*  Copy over all the files from the cloned instance to the correct destination path on `npmeSource`.
+*  Restart the npme instance on `npmeSource` from the npme Dashboard.
+*  Restart replication on `npmePrimary` with the command `npme reset-follower` from the shell.
 
 ### Air-Gap installation
 
@@ -34,7 +38,7 @@ An “Air-Gap” environment is a network that has no path for inbound or outbou
 
 * Install Docker on the VM running on a closed network.
 
-Install a supported version of Docker on your server. Replicated supports Docker from 1.7.1 to 1.13.1. We recommend installing the latest version of Docker available for the range of your [operating system](https://www.replicated.com/docs/kb/supporting-your-customers/installing-docker-in-airgapped/).
+Install a supported version of Docker on your server. At the time of this writing, Replicated still supported Docker versions as old as `1.7.1`. We recommend installing the latest version of Docker available for the range of your [operating system](https://www.replicated.com/docs/kb/supporting-your-customers/installing-docker-in-airgapped/).
 
 * Install Replicated.
 
