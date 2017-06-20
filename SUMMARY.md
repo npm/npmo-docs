@@ -7,6 +7,7 @@
     * [Using Microsoft Azure](up-and-running/platforms/azure.md)
     * [Using Vagrant](up-and-running/platforms/vagrant.md)
     * [Other Platforms](up-and-running/platforms/other.md)
+    * [AWS Cloud Formation Template](up-and-running/platforms/aws-cloud-formation-template.md)
   * [Configuring Your Instance](up-and-running/customization.md)
     * [Authentication](up-and-running/auth/README.md)
       * [Open Authentication](up-and-running/auth/open.md)
