@@ -33,7 +33,7 @@ You will have to have at least one EC2 key pair created before using this templa
 
 **Initial Start Time**
 
-Even after the instance starts, it will still take a few minutes for all of the steps to complete. Please be patient as this can take between 5 to 10 minutes. Once the process has completed, navigate your browser to http://<instances public ip>:8800 and follow the setup instructions.
+Even after the instance starts, it will still take a few minutes for all of the steps to complete. Please be patient as this can take between 5 to 10 minutes. Once the process has completed, navigate your browser to `http://<instance's public ip>:8800` and follow the setup instructions.
 
 **Changing the Linux Distribution**
 
@@ -220,7 +220,7 @@ Resources:
                   - '  "packages_host_path": { "value": "/mnt/packages" },'
                   - '  "postgres_host_path": { "value": "/mnt/pg" },'
                   - '  "read_through_cache": { "value": "read_through_cache_yes" },'
-                  - '  "redis_host_path": { "value": "mnt/redis" },'
+                  - '  "redis_host_path": { "value": "/mnt/redis" },'
                   - '  "reject_unauthorized": { "value": "reject_unauthorized_no" },'
                   - '  "remote_policy": { "value": "'
                   - !FindInMap
