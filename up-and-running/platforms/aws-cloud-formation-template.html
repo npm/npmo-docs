@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Other Platforms · npm Enterprise Docs</title>
+        <title>AWS Cloud Formation Template · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -63,10 +63,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="aws-cloud-formation-template.html" />
+    <link rel="next" href="../customization.html" />
     
     
-    <link rel="prev" href="vagrant.html" />
+    <link rel="prev" href="other.html" />
     
 
     </head>
@@ -215,7 +215,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.2.4" data-path="other.html">
+        <li class="chapter " data-level="1.2.2.4" data-path="other.html">
             
                 <a href="other.html">
             
@@ -228,7 +228,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.5" data-path="aws-cloud-formation-template.html">
+        <li class="chapter active" data-level="1.2.2.5" data-path="aws-cloud-formation-template.html">
             
                 <a href="aws-cloud-formation-template.html">
             
@@ -759,7 +759,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Other Platforms</a>
+        <a href="../.." >AWS Cloud Formation Template</a>
     </h1>
 </div>
 
@@ -774,41 +774,312 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="other-linux-platforms"><a name="other-linux-platforms" class="plugin-anchor" href="#other-linux-platforms"><i class="fa fa-link" aria-hidden="true"></i></a>Other Linux Platforms</h1><p>npm Enterprise works on most modern versions of Linux:</p><ul><li>Ubuntu 14.04 / 15.10
+                                <h1 id="aws-cloud-formation-template"><a name="aws-cloud-formation-template" class="plugin-anchor" href="#aws-cloud-formation-template"><i class="fa fa-link" aria-hidden="true"></i></a>AWS Cloud formation template.</h1><h4 id="this-template-is-intended-to-provide-a-functional-baseline-for-npme-install-on-aws-with-the-following-software"><a name="this-template-is-intended-to-provide-a-functional-baseline-for-npme-install-on-aws-with-the-following-software" class="plugin-anchor" href="#this-template-is-intended-to-provide-a-functional-baseline-for-npme-install-on-aws-with-the-following-software"><i class="fa fa-link" aria-hidden="true"></i></a>This template is intended to provide a functional, baseline for npmE install on AWS with the following software:</h4><ul><li>Ubuntu 16.04 LTS
 </li>
-<li>CentOS 7.x
+<li>linux kernel 4.4.0-1016-aws
 </li>
-<li>Red Hat Enterprise Linux (RHEL) 7.x
+<li>node 6.10.2
 </li>
-<li>Debian 7.7
+<li>npm 3.10.10
+</li>
+<li>npme 4.3.10
+</li>
+<li>replicated 2.9.0
+</li>
+<li>docker 17.03.1-ce, build c6d412e
 </li></ul>
-<p>Simply follow the steps listed below:</p><h2 id="step-1-install-npm-and-nodejs"><a name="step-1-install-npm-and-nodejs" class="plugin-anchor" href="#step-1-install-npm-and-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Step 1: Install npm and Node.js</h2><p>Now that you have a server provisioned, let&apos;s install npm and Node.js</p><p><em>On Ubuntu:</em></p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo npm i -g npm@latest
-node -v &amp;&amp; npm -v</code></pre>
-<p><em>On CentOS/RHEL:</em></p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://rpm.nodesource.com/setup_4.x | sudo -E bash -
-sudo yum -y install nodejs
-sudo npm i -g npm@latest
-node -v &amp;&amp; npm -v</code></pre>
-<h2 id="step-2-install-npm-enterprise-itself"><a name="step-2-install-npm-enterprise-itself" class="plugin-anchor" href="#step-2-install-npm-enterprise-itself"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm Enterprise Itself</h2><pre><code class="lang-bash">sudo npm i npme -g --unsafe</code></pre>
-<p>To confirm that it worked, type <code>npme</code>. If the install succeeded you should see the
-<code>npme help</code> screen, which looks like this:</p><p><img alt="npme help in terminal" src="../../gitbook/images/npme-help.png"></p><h2 id="step-3-set-up-endpoints"><a name="step-3-set-up-endpoints" class="plugin-anchor" href="#step-3-set-up-endpoints"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Set up Endpoints</h2><p>There are now 3 web services running on 3 ports on your VM. Make sure that these
-ports are open on your server:</p><table>
+<p>While setting up the instance, choose <code>Production</code> or <code>Testing</code> for the Environment settings.
+This will select <code>r3.large</code> or <code>r3.xlarge</code> respectively.</p><table>
 <thead>
-<tr><th>Service</th>
-<th>Port</th>
+<tr><th>Size</th>
+<th>vCPU/ECU</th>
+<th>GB RAM</th>
+<th>GB SSD</th>
 </tr></thead><tbody>
-<tr><td>Administrator Panel</td>
-<td>8800</td>
-</tr><tr><td>Registry</td>
-<td>8080</td>
-</tr><tr><td>Website</td>
-<td>8081</td>
+<tr><td>r3.large</td>
+<td>2,6.5</td>
+<td>15</td>
+<td>32</td>
+</tr><tr><td>r3.xlarge</td>
+<td>4,13</td>
+<td>30.5</td>
+<td>80</td>
 </tr></tbody></table>
 
-<p>On CentOS/RHEL servers, you may need to disable <code>firewalld</code>. It&apos;s also worth checking
-that your default <a href="https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules" target="_blank">iptable rules</a> aren&apos;t blocking any traffic.</p><p>On Ubuntu, you should double check that <code>ufw</code> is not blocking traffic to any of these
-ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring-npm-enterprise" class="plugin-anchor" href="#step-4-configuring-npm-enterprise"><i class="fa fa-link" aria-hidden="true"></i></a>Step 4: Configuring npm Enterprise</h2><p>Open your favorite web browser, access your server on port <code>8800</code>, and follow the prompts to configure and start your appliance.</p><p>For more information on configuring npm Enterprise, <a href="../customization.html">read these docs</a>.</p>
+<h4 id="key-points-to-note-down-while-setup-process"><a name="key-points-to-note-down-while-setup-process" class="plugin-anchor" href="#key-points-to-note-down-while-setup-process"><i class="fa fa-link" aria-hidden="true"></i></a>Key points to note down while setup process.</h4><p><strong>Admin Console Password</strong></p><p>The template will require you to set a password for the admin console. Don&apos;t lose this. Once you&apos;ve set it, you&apos;ll have to have it to access the admin console and complete the setup.</p><p><strong>Network Security</strong></p><p>This template will allow you to limit incoming connections to SSH, the npmE Admin Panel and the two registry ports (8080, 8081). Each of these defaults to allowing connections from anywhere.</p><p>You will have to have at least one EC2 key pair created before using this template to select so that you can SSH into the instance when it&apos;s complete.</p><p><strong>Initial Start Time</strong></p><p>Even after the instance starts, it will still take a few minutes for all of the steps to complete. Please be patient as this can take between 5 to 10 minutes. Once the process has completed, navigate your browser to <code>http://&lt;instance&apos;s public ip&gt;:8800</code> and follow the setup instructions.</p><p><strong>Changing the Linux Distribution</strong></p><p>A considerable amount of the approach would need to be changed in order for this template to work for any other distribution. The AWSRegionToAMI property under Mappings would be the first thing to change as this provides a look up of the AMI Id for the distro image for each given region.</p><p>After that, you&apos;d need to revisit each of the shell scripts and change out distribution specifics such as the package manager and how to install and initialize Amazon&apos;s Cloud Formation initialiser.</p><p><strong>Below is the cloud formation template for npmE setup that you can use.</strong></p><h4 id="npme-cloudformationyaml"><a name="npme-cloudformationyaml" class="plugin-anchor" href="#npme-cloudformationyaml"><i class="fa fa-link" aria-hidden="true"></i></a>npme-cloudformation.yaml</h4><pre><code>AWSTemplateFormatVersion: 2010-09-09
+Description: AWS CloudFormation Template for npm enterprise instance.
+Parameters:
+  SSHKeyName:
+    Description: Name of existing EC2 KeyPair to enable SSH access.
+    Type: &apos;AWS::EC2::KeyPair::KeyName&apos;
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  SSHLocation:
+    Description: The IP address range that can be used to SSH to the EC2 instances
+    Type: String
+    MinLength: &apos;9&apos;
+    MaxLength: &apos;18&apos;
+    Default: 0.0.0.0/0
+    AllowedPattern: &apos;(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})&apos;
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  AdminLocation:
+    Description: The IP address range that can be used to access the npme admin console
+    Type: String
+    MinLength: &apos;9&apos;
+    MaxLength: &apos;18&apos;
+    Default: 0.0.0.0/0
+    AllowedPattern: &apos;(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})&apos;
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  RegistryLocation:
+    Description: The IP address range that can be used to access the npme admin console
+    Type: String
+    MinLength: &apos;9&apos;
+    MaxLength: &apos;18&apos;
+    Default: 0.0.0.0/0
+    AllowedPattern: &apos;(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})&apos;
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  AdminPassword:
+    Description: npm enterprise admin console password.
+    Type: String
+    NoEcho: true
+  Branding:
+    Description: npm enterprise brand
+    Type: String
+    Default: &quot;&quot;
+  Environment:
+    Description: Environment settings to use for instance.
+    Type: String
+    Default: Production
+    AllowedValues:
+      - Production
+      - Testing
+  Monitoring:
+    Description: Turn detailed monitoring on?
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+  VolumeDeleteOnTermination:
+    Description: Delete volume on instance termination?
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+  DisableApiTermination:
+    Description: Allow API to delete instance on termination?
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+Mappings:
+  EnvironmentSettings:
+    Production:
+      InstanceType: r3.xlarge
+      EbsOptimized: true
+      UpstreamUrl: https://replicate.npmjs.com
+      UpstreamPolicy: white-list
+    Testing:
+      InstanceType: r3.large
+      EbsOptimized: true
+      UpstreamUrl: https://replicate.npmjs.com
+      UpstreamPolicy: white-list
+  AWSRegionToAMI:
+    ap-south-1:
+      id: ami-4fa4d920
+    ap-southeast-1:
+      id: ami-93ef68f0
+    ap-southeast-2:
+      id: ami-1e01147d
+    ap-northeast-1:
+      id: ami-1de1df7a
+    ap-northeast-2:
+      id: ami-6722ff09
+    ca-central-1:
+      id: ami-e273cf86
+    cn-north-1:
+      id: ami-a163b4cc
+    eu-central-1:
+      id: ami-a74c95c8
+    eu-west-1:
+      id: ami-6c101b0a
+    eu-west-2:
+      id: ami-056d7a61
+    sa-east-1:
+      id: ami-4bd8b727
+    us-east-1:
+      id: ami-20631a36
+    us-east-2:
+      id: ami-a5b196c0
+    us-gov-west-1:
+      id: ami-ff22a79e
+    us-west-1:
+      id: ami-9fe6c7ff
+    us-west-2:
+      id: ami-45224425
+Resources:
+  EC2Instance:
+    Type: &apos;AWS::EC2::Instance&apos;
+    Properties:
+      EbsOptimized: !FindInMap
+        - EnvironmentSettings
+        - !Ref Environment
+        - EbsOptimized
+      InstanceType: !FindInMap
+        - EnvironmentSettings
+        - !Ref Environment
+        - InstanceType
+      ImageId: !FindInMap
+        - AWSRegionToAMI
+        - !Ref AWS::Region
+        - id
+      KeyName: !Ref SSHKeyName
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -x
+          parted /dev/xvdb mklabel msdos
+          parted -a opt /dev/xvdb mkpart primary ext4 0% 100%
+          mkfs.ext4 -L datapartition /dev/xvdb1
+          mount -o defaults /dev/xvdb1 /mnt
+          mkdir -p /mnt/docker
+          apt-get update
+          apt-get install -y python-pip
+          pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
+          cfn-init -v --resource EC2Instance --stack &quot;${AWS::StackName}&quot; --region &quot;${AWS::Region}&quot;
+          cfn-signal -e $? --resource EC2Instance --stack &quot;${AWS::StackName}&quot; --region &quot;${AWS::Region}&quot;
+    Metadata:
+      &apos;AWS::CloudFormation::Init&apos;:
+        config:
+          files:
+            /home/ubuntu/npme-setup/npme-settings.json:
+              content: !Join
+                - &apos;&apos;
+                - - &apos;{&apos;
+                  - &apos;  &quot;allowpublishes&quot;: { &quot;value&quot;: &quot;allowpublishes_all&quot; },&apos;
+                  - &apos;  &quot;auth_source&quot;: { &quot;value&quot;: &quot;auth_type_open&quot; },&apos;
+                  - &apos;  &quot;authfetch&quot;: { &quot;value&quot;: &quot;authfetch_no&quot; },&apos;
+                  - &apos;  &quot;authglobal&quot;: { &quot;value&quot;: &quot;authglobal_no&quot; },&apos;
+                  - &apos;  &quot;authwww&quot;: { &quot;value&quot;: &quot;authwww_no&quot; },&apos;
+                  - &apos;  &quot;authz_cache_enabled&quot;: { &quot;value&quot;: &quot;authz_cache_enabled_yes&quot; },&apos;
+                  - &apos;  &quot;branding&quot;: { &quot;value&quot;: &quot;&apos;
+                  - !Ref Branding
+                  - &apos;&quot; },&apos;
+                  - &apos;  &quot;couch_url_remote&quot;: { &quot;value&quot;: &quot;&apos;
+                  - !FindInMap
+                    - EnvironmentSettings
+                    - !Ref Environment
+                    - UpstreamUrl
+                  - &apos;&quot; },&apos;
+                  - &apos;  &quot;couchdb_host_path&quot;: { &quot;value&quot;: &quot;/mnt/couch&quot; },&apos;
+                  - &apos;  &quot;data_host_path&quot;: { &quot;value&quot;: &quot;/mnt/data&quot; },&apos;
+                  - &apos;  &quot;es_host_path&quot;: { &quot;value&quot;: &quot;/mnt/es&quot; },&apos;
+                  - &apos;  &quot;packages_host_path&quot;: { &quot;value&quot;: &quot;/mnt/packages&quot; },&apos;
+                  - &apos;  &quot;postgres_host_path&quot;: { &quot;value&quot;: &quot;/mnt/pg&quot; },&apos;
+                  - &apos;  &quot;read_through_cache&quot;: { &quot;value&quot;: &quot;read_through_cache_yes&quot; },&apos;
+                  - &apos;  &quot;redis_host_path&quot;: { &quot;value&quot;: &quot;/mnt/redis&quot; },&apos;
+                  - &apos;  &quot;reject_unauthorized&quot;: { &quot;value&quot;: &quot;reject_unauthorized_no&quot; },&apos;
+                  - &apos;  &quot;remote_policy&quot;: { &quot;value&quot;: &quot;&apos;
+                  - !FindInMap
+                    - EnvironmentSettings
+                    - !Ref Environment
+                    - UpstreamPolicy
+                  - &apos;&quot; },&apos;
+                  -   &apos;&quot;scoped_search&quot;: { &quot;value&quot;: &quot;scoped_search_yes&quot; }&apos;
+                  - &apos;}&apos;
+            /home/ubuntu/npme-setup/replicated.conf:
+              content: !Sub |
+                {
+                  &quot;DaemonAuthenticationType&quot;: &quot;password&quot;,
+                  &quot;DaemonAuthenticationPassword&quot;: &quot;${AdminPassword}&quot;,
+                  &quot;Channel&quot;: &quot;stable&quot;,
+                  &quot;LicenseFileLocation&quot;: &quot;/etc/replicated/license.rli&quot;,
+                  &quot;ImportSettingsFrom&quot;: &quot;/home/ubuntu/npme-setup/npme-settings.json&quot;,
+                  &quot;LogLevel&quot;: &quot;error&quot;
+                }
+            /home/ubuntu/npme-setup/npme-install.sh:
+              content: |
+                #!/bin/bash -xe
+                # install node &amp; npm
+                echo &quot;installing node &amp; npm&quot;
+                cd ~ &amp;&amp; curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
+                bash nodesource_setup.sh
+                apt-get install -y build-essential nodejs
+                # install npme
+                npm i npme -g --ignore-scripts
+                cp /home/ubuntu/npme-setup/replicated.conf /etc/replicated.conf
+                npme install -s -u
+                service docker stop
+                service docker start
+                docker start replicated replicated-operator replicated-ui
+              mode: &quot;000755&quot;
+              owner: root
+              group: root
+            /etc/fstab:
+              content: |
+                \LABEL=cloudimg-rootfs  /  ext4 defaults,discard  0 0
+                /dev/xvdb1  /mnt  ext4  defaults,nofail   0 2
+              owner: root
+              group: root
+            /etc/docker/daemon.json:
+              content: |
+                {
+                  &quot;graph&quot;: &quot;/mnt/docker&quot;
+                }
+          commands:
+            install:
+              command: &quot;./npme-install.sh&quot;
+              cwd: &quot;/home/ubuntu/npme-setup/&quot;
+  InstanceSecurityGroup:
+    Type: &apos;AWS::EC2::SecurityGroup&apos;
+    Properties:
+      GroupDescription: Enable SSH access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: &apos;22&apos;
+          ToPort: &apos;22&apos;
+          CidrIp: !Ref SSHLocation
+        - IpProtocol: tcp
+          FromPort: &apos;8800&apos;
+          ToPort: &apos;8800&apos;
+          CidrIp: !Ref AdminLocation
+        - IpProtocol: tcp
+          FromPort: &apos;8080&apos;
+          ToPort: &apos;8080&apos;
+          CidrIp: !Ref RegistryLocation
+        - IpProtocol: tcp
+          FromPort: &apos;8081&apos;
+          ToPort: &apos;8081&apos;
+          CidrIp: !Ref RegistryLocation
+  IPAddress:
+    Type: &apos;AWS::EC2::EIP&apos;
+  IPAssoc:
+    Type: &apos;AWS::EC2::EIPAssociation&apos;
+    Properties:
+      InstanceId: !Ref EC2Instance
+      EIP: !Ref IPAddress
+  WaitHandle:
+    Type: AWS::CloudFormation::WaitConditionHandle
+Outputs:
+  InstanceId:
+    Description: Instance Id of the newly created EC2 instance.
+    Value: !Ref EC2Instance
+  PublicIP:
+    Description: Public IP address of the newly created EC2 instance.
+    Value: !GetAtt EC2Instance.PublicIp
+  PublicDNS:
+    Description: Public DNS Name of the newly created EC2 instance.
+    Value: !GetAtt EC2Instance.PublicDnsName
+  PrivateIP:
+    Description: Private IP address of the newly created EC2 instance.
+    Value: !GetAtt EC2Instance.PrivateIp
+  PrivateDNS:
+    Description: Private DNS Name of the newly created EC2 instance.
+    Value: !GetAtt EC2Instance.PrivateDnsName
+</code></pre>
+
                                 
                                 </section>
                             
@@ -835,12 +1106,12 @@ ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring
 
             
                 
-                <a href="vagrant.html" class="navigation navigation-prev " aria-label="Previous page: Using Vagrant">
+                <a href="other.html" class="navigation navigation-prev " aria-label="Previous page: Other Platforms">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="aws-cloud-formation-template.html" class="navigation navigation-next " aria-label="Next page: AWS Cloud Formation Template">
+                <a href="../customization.html" class="navigation navigation-next " aria-label="Next page: Configuring Your Instance">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -851,7 +1122,7 @@ ports.</p><h2 id="step-4-configuring-npm-enterprise"><a name="step-4-configuring
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Other Platforms","level":"1.2.2.4","depth":3,"next":{"title":"AWS Cloud Formation Template","level":"1.2.2.5","depth":3,"path":"up-and-running/platforms/aws-cloud-formation-template.md","ref":"up-and-running/platforms/aws-cloud-formation-template.md","articles":[]},"previous":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/other.md","mtime":"2017-06-20T20:20:50.672Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-20T20:24:06.467Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"AWS Cloud Formation Template","level":"1.2.2.5","depth":3,"next":{"title":"Configuring Your Instance","level":"1.2.3","depth":2,"path":"up-and-running/customization.md","ref":"up-and-running/customization.md","articles":[{"title":"Authentication","level":"1.2.3.1","depth":3,"path":"up-and-running/auth/README.md","ref":"up-and-running/auth/README.md","articles":[{"title":"Open Authentication","level":"1.2.3.1.1","depth":4,"path":"up-and-running/auth/open.md","ref":"up-and-running/auth/open.md","articles":[]},{"title":"Github Enterprise Integration","level":"1.2.3.1.2","depth":4,"path":"up-and-running/auth/github.md","ref":"up-and-running/auth/github.md","articles":[]},{"title":"LDAP Authentication","level":"1.2.3.1.3","depth":4,"path":"up-and-running/auth/ldap.md","ref":"up-and-running/auth/ldap.md","articles":[]},{"title":"Google OAuth2 Integration","level":"1.2.3.1.4","depth":4,"path":"up-and-running/auth/oauth-google.md","ref":"up-and-running/auth/oauth-google.md","articles":[]},{"title":"GitHub Enterprise OAuth2","level":"1.2.3.1.5","depth":4,"path":"up-and-running/auth/oauth-github.md","ref":"up-and-running/auth/oauth-github.md","articles":[]},{"title":"Custom Authentication","level":"1.2.3.1.6","depth":4,"path":"up-and-running/auth/custom.md","ref":"up-and-running/auth/custom.md","articles":[]},{"title":"SAML Authentication","level":"1.2.3.1.7","depth":4,"path":"up-and-running/auth/saml.md","ref":"up-and-running/auth/saml.md","articles":[]}]}]},"previous":{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/aws-cloud-formation-template.md","mtime":"2017-06-20T20:20:50.672Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-20T20:24:06.467Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
