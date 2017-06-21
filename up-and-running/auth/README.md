@@ -9,7 +9,7 @@ Currently we support:
 - [GitHub Enterprise]
 - Bitbucket Cloud
 - [LDAP]
-- SAML
+- [SAML]
 - OAuth 2, e.g. [Google]
 
 ## Writing Custom Authentication Plugins
@@ -23,3 +23,4 @@ Install your module on the host machine in the `Miscellaneous data files` storag
 [LDAP]: ../auth/ldap.md
 [Google]: ../auth/oauth-google.md
 [custom auth-plugin]: ../auth/custom.md
+[SAML]: ../auth/saml.md
