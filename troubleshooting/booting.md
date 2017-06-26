@@ -6,25 +6,25 @@ will not boot, here are some steps you can take to fix the problem:
 ## Step 1: Make Sure You Have Enough Disk Space
 
 A common cause of npm Enterprise failing can be your machine running out of
-disk space. run `du -h` and ensure that both your root volume, and the data
+disk space. Run `du -h` and ensure that both your root volume, and the data
 directories you've configured under settings in `:8800`, have space available.
 
-## Step 2: Upgrade to the Newest Version of Replicated on Your npme Server
+## Step 2: Upgrade to the Newest Version of Replicated on Your npmE Server
 
-Older versions of Replicated (npme's orchestration software) ran into booting problems
+Older versions of Replicated (npme's orchestration software) run into booting problems
 more frequently. Upgrading to a newer version of the appliance will frequently resolve
 these issues.
 
   > make sure you've run backups recently, before upgrading your appliance.
 
-1. ssh into your npme server.
-2. run `replicated --version`
-3. if you you are on a version `< 2.0.0` run:
-  > `curl -sSL https://get.replicated.com/migrate-v2 | sudo bash`
-4. if you are on a version `> 2.0.0` run:
-  > `sudo npm i npme -g --unsafe`
+1. SSH into your npmE server.
+2. Run `replicated --version`.
+3. If you you are on a version `< 2.0.0` run:
+  > `curl -sSL https://get.replicated.com/migrate-v2 | sudo bash`.
+4. If you are on a version `> 2.0.0` run:
+  > `sudo npm i npme -g --unsafe`.
 
-## Step 3: Upgrade to the Newest Versions of the npme Containers
+## Step 3: Upgrade to the Newest Versions of the npmE Containers
 
 To upgrade your containers, visit the admin console on `:8800` and
 run "Check Now".

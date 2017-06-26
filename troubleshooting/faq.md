@@ -23,21 +23,21 @@ Here are answers to some frequently asked questions. If you don't see your quest
 
 ## What is npm Enterprise made of?
 
-npme consists of Docker, Replicated, the npme appliance, and the `npme` installer bin.
+npmE consists of Docker, Replicated, the npme appliance, and the `npme` installer bin.
 
-[Docker](https://www.docker.com/) is used to run Replicated and the npme appliance.
+[Docker](https://www.docker.com/) is used to run Replicated and the npmE appliance.
 
-[Replicated](https://www.replicated.com/) is npme's orchestration software and admin console. It consists of its own Docker images/containers and integration with the underlying operating system. The admin console binds to port `:8800` and uses an SSL/TLS cert separate from the npme appliance. Access the admin console using your favorite browser to configure and manage your npme instance.
+[Replicated](https://www.replicated.com/) is npmE's orchestration software and admin console. It consists of its own Docker images/containers and integration with the underlying operating system. The admin console binds to port `:8800` and uses an SSL/TLS cert separate from the npmE appliance. Access the admin console using your favorite browser to configure and manage your npmE instance.
 
-The npme appliance is a suite of Docker images/containers that make up the private npm registry and website. The registry binds to port `:8080` and the website binds to port `:8081` on your host. Each instance of the appliance maintains its own databases as Docker containers, storing their data in configurable directories on the host file system. The npme appliance is configured and managed by the admin console. The appliance does not use any SSL/TLS certificate, but the registry and website can be fronted with a load balancer, web server, or reverse proxy that terminates SSL/TLS. See [Terminating SSL with NGINX](../tutorials/nginx.md) for an example.
+The npmE appliance is a suite of Docker images/containers that make up the private npm registry and website. The registry binds to port `:8080` and the website binds to port `:8081` on your host. Each instance of the appliance maintains its own databases as Docker containers, storing their data in configurable directories on the host file system. The npmE appliance is configured and managed by the admin console. The appliance does not use any SSL/TLS certificate, but the registry and website can be fronted with a load balancer, web server, or reverse proxy that terminates SSL/TLS. See [Terminating SSL with NGINX](../tutorials/nginx.md) for an example.
 
-The [`npme` bin](https://www.npmjs.com/package/npme) is a CLI app distributed as a public npm package. It is used as a one-step installer for Docker and Replicated, and after installation it provides several administrative commands for adding or configuring functionality for your npme instance. In order to use it, you must have Node and npm installed on your host.
+The [`npme` bin](https://www.npmjs.com/package/npme) is a CLI app distributed as a public npm package. It is used as a one-step installer for Docker and Replicated, and after installation it provides several administrative commands for adding or configuring functionality for your npme instance. In order to use it, you must have Node.js and npm installed on your host.
 
 The last piece to the puzzle is `npm` itself. The same CLI client you use to install packages from the public registry can be used to publish and install private packages from npm Enterprise. Read more about in [Common Workflows](../workflow/README.md).
 
 ## How do I upgrade npm Enterprise?
 
-The answer depends on [which part](#what-is-npm-enterprise-made-of) of npme you're talking about.
+The answer depends on [which part](#what-is-npm-enterprise-made-of) of npmE you're talking about.
 
 1. Upgrading the appliance (registry and website)
 
@@ -45,7 +45,7 @@ The answer depends on [which part](#what-is-npm-enterprise-made-of) of npme you'
 
     Upgrading to a new appliance version will first download the necessary Docker images and then restart the appliance. Downtime will be incurred while the appliance is restarted and generally takes less than a minute.
 
-    It's probably a good idea to check for updates every few weeks.
+    It's a good idea to check for updates every few weeks.
 
 2. Upgrading the `npme` bin
 
@@ -81,15 +81,15 @@ The answer depends on [which part](#what-is-npm-enterprise-made-of) of npme you'
     curl -sSL https://get.replicated.com/docker | sudo bash no-docker
     ```
 
-    It's generally a good idea to upgrade Replicated with Docker to make sure your system is running the best compatible version of Docker for npme.
+    It's generally a good idea to upgrade Replicated with Docker to make sure your system is running the best compatible version of Docker for npmE.
 
-    Note that all of these options incur downtime for your npme instance.
+    Note that all of these options incur downtime for your npmE instance.
 
-## What is npmo/npm On-Site, and how is it related to npme/npm Enterprise?
+## What is npmo/npm On-Site, and how is it related to npmE/npm Enterprise?
 
 The first version of npm Enterprise did not use Docker or Replicated, but it only supported a small range of platforms. Around August 2015, the product was refactored to leverage Replicated and Docker, significantly expanding the range of supported platforms, and was soon renamed to npm On-Site. Over time we discovered the On-Site name was confusing, and so in April 2016 we rebranded npm On-Site back to npm Enterprise.
 
-npm On-Site is literally the same product as npm Enterprise, just an older version. Similarly, the `npmo` bin was renamed to `npme` and has been deprecated.
+npm On-Site is literally the same product as npm Enterprise, just an older version. Similarly, the `npmo` bin was renamed to `npmE` and has been deprecated.
 
 If you're currently running npm On-Site, please use the [How do I upgrade npm Enterprise?](#how-do-i-upgrade-npm-enterprise) answer to upgrade to npm Enterprise, and make sure to migrate Replicated to version 2. You should also replace the `npmo` bin on your host with `npme` via the following:
 
@@ -105,20 +105,20 @@ server. This gives you a hot spare to fallback to in the case of failure.
 
 Setting up a replica is easy:
 
-1. on your primary server copy the values of `Full URL of npm Enterprise registry`, and
+1. On your primary server, copy the values of `Full URL of npm Enterprise registry`, and
    `Secret used between services` (replication connects to the registry component
     of npm Enterprise, which defaults to running on `:8080`).
-2. provision the secondary server and ensure that publication and installation is working
+2. Provision the secondary server and ensure that publication and installation is working
   appropriately.
 3. Optionally, set `Publication Settings` to `Read Only` on the secondary server (this
    will prevent users form accidentally publishing packages to it).
-4. on the secondary server:
+4. On the secondary server:
   * set `Upstream URL` to the value of `Full URL of npm Enterprise registry` on the primary.
   * set `Upstream secret` to the value of `Secret used between services` on the primary.
   * set `Policy to apply during replication` to `mirror` on the secondary server.
 5. `ssh` into the secondary server, and run `npme reset-follower`.
 
-That's all there is to it, wait a few minutes and the secondary should be synced with the
+That's all there is to it! Wait a few minutes and the secondary should be synced with the
 primary server.
 
 For more details, see replication for [Backups and HA](../tutorials/backups-and-ha.md).
@@ -131,14 +131,14 @@ the IP address:
 
 ### On Centos/RHEL
 
-1. edit `/etc/sysconfig/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
-2. edit `/etc/sysconfig/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
+1. Edit `/etc/sysconfig/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
+2. Edit `/etc/sysconfig/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
 3. `sudo systemctl restart replicated replicated-operator`, to reload the environment.
 
 ### On Ubuntu/Debian
 
-1. edit `/etc/default/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
-2. edit `/etc/default/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
+1. Edit `/etc/default/replicated`, set `PRIVATE_ADDRESS` to the appropriate value.
+2. Edit `/etc/default/replicated-operator`, set `PRIVATE_ADDRESS` to the appropriate value.
 3. `sudo service replicated stop && sudo service replicated-operator stop && sudo service replicated start && sudo service replicated-operator start`, to reload the environment.
 
 ## What should I do if I see a devicemapper warning?
@@ -149,7 +149,7 @@ See [devicemapper performance considerations](https://docs.docker.com/engine/use
 and [selecting a storage driver](https://docs.docker.com/engine/userguide/storagedriver/selectadriver/) to understand the available storage drivers and limitations. 
 
 
-To find out which storage driver is set on the daemon, use the docker info command:
+To find out which storage driver is set on the daemon, use the Docker info command:
 
 `$ docker info`
 
@@ -159,22 +159,22 @@ You can set the storage driver by passing the `—-storage-driver=<name>` option
 
 Alternatively, you can force the Docker daemon to automatically start with the overlay/overlay2 driver by editing the Docker config file and adding the `—-storage-driver=overlay` flag to the `DOCKER_OPTS` line.
 
-Your choice of storage driver can affect the performance of your npm Enterprise server. 
-So it’s important to understand the different storage driver options available and select the right one for your application.
+Your choice of storage driver can affect the performance of your npm Enterprise server, 
+so it’s important to understand the different storage driver options available and select the right one for your application.
 
 We recommend that you use the `overlay` driver, rather than `devicemapper`; for help configuring this [please see the following tutorial](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#configure-docker-with-the-overlayoverlay2-storage-driver)
 
 ## Why use npm Enterprise?
 
-1. npm Enterprise is single tenant vs. multi tenant -- which is important for companies with advanced compliance needs. npm Enterprise also allows you to have any number of scopes, and provides its own website, which can be useful for large organizations.
+1. npm Enterprise is single tenant vs. multi tenant -- which is important for companies with advanced compliance needs. npm Enterprise also allows you to have any number of scopes and provides its own website, which can be useful for large organizations.
 
 2. npm Enterprise allows you to run npm’s infrastructure behind your company’s firewall.
 
-3. Integration with the *Node Security Platform* provides package-level analysis to assist enterprise customers with security risk mitigation.
+3. Integration with the *Node Security Platform* provides package-level analysis to assist Enterprise customers with security risk mitigation.
 
    Read more about it on our [blog](http://blog.npmjs.org/post/146943134240/npm-add-ons) and this [Node Security Platform article.](https://medium.com/node-security/announcing-npm-enterprise-security-add-on-6dde303efb9f).
 
-4. Significantly improve the efficiency of your development process making it easier to share documentation and code, streamline your build process, and breakup your monolithic code-bases into individual packages that are easier to maintain.
+4. Significantly improve the efficiency of your development process, making it easier to share documentation and code, streamline your build process, and breakup your monolithic code-bases into individual packages that are easier to maintain.
 
 5. Control access to packages and the website via the following supported authentication types:
 
@@ -208,7 +208,7 @@ You can download a tarball version of the package from GitHub using:
 ```
 Replace `user-or-org` and `repo` accordingly.
 
-To publish the tarball to your private registry simply follow the steps listed below:
+To publish the tarball to your private registry, simply follow the steps listed below:
 
 *  tar -xvzf package.tar.gz
 *  cd package
@@ -216,14 +216,14 @@ To publish the tarball to your private registry simply follow the steps listed b
 
 #### Updating packages to reference the new dependency
 
-After publishing the git dependency to your private repo you need to update the packages to reference the new dependency.
+After publishing the git dependency to your private repo, you need to update the packages to reference the new dependency:
 
 ```
 "dependencies" : {
   "@your-scope/package-name" : "latest version"
 }
 ```
-Please note that, since it will often be a dependency of a dependency that has the git dependency, it will likely be necessary to both publish the git dependency and the dependency requiring it. A good best practice is to publish these new versions with a scope (@your-scope/request);
+Please note that, since it will often be a dependency of a dependency that has the git dependency, it will likely be necessary to both publish the git dependency and the dependency requiring it. We recommend that you publish these new versions with a scope (@your-scope/request);
 
 We have a tool for simplifying this process: https://www.npmjs.com/package/scope-it
 
@@ -233,19 +233,19 @@ You can update npm Enterprise license by following the steps below:
 
 1. Run `npme update-license` on your npm Enterprise server.
 
-2. It will prompt you for billing email, enter your registered billing email.
+2. When prompted, enter your registered billing email.
 
-3. Then it will prompt you for license key, enter your license key.
+3. When prompted, enter your license key.
 
 You can get a license key by purchasing an npm Enterprise license on our [license page](https://www.npmjs.com/enterprise/license)
 
-## What should I do if ssl problem occurs with npme over https?
+## What should I do if SSL problem occurs with npmE over https?
 
-When using a custom certificate for your npme registry, you might get an error related to the SSL certificate when logging in or publishing a package even though the browser does not display errors when viewing the npme registry site. This is because node's certificate validation is strict and doesn't allow for things like self-signed certificates by default.
+When using a custom certificate for your npmE registry, you might get an error related to the SSL certificate when logging in or publishing a package even though the browser does not display errors when viewing the npme registry site. This is because Node's certificate validation is strict and doesn't allow for things like self-signed certificates by default.
 To fix your issue temporarily you can provide `--strict-ssl=false` during login or you can add it to your ~/.npmrc file
 `npm config set strict-ssl=false`.
 
-For a permanent fix, you can point npm to a `cafile`.
+For a permanent fix, you can point npm to a `cafile`:
 ```
 npm config set cafile /path/to/cert.pem
 ```
@@ -283,7 +283,7 @@ Technically, the only difference is the presence of a scope in the package name.
 
 Yes, because a scoped package is only made public if published using `npm publish --access public` (or subsequently modified via `npm access public`). For this reason, we *highly* recommend that you use a scope for any and all private packages.
 
-## Do I have to use a scope for the packages I publish to npme?
+## Do I have to use a scope for the packages I publish to npmE?
 
 Technically no. There are a couple ways you can configure your `npm` client (or even an individual package) to point to your private registry without using a scope, but we *highly* recommend using a scope for _all_ private packages to avoid unintentionally publishing your private package to the public registry, based on the following facts:
 
@@ -296,7 +296,7 @@ For more info on scopes, see the next question.
 
 ## Am I assigned a scope for npm Enterprise? How many scopes can I use?
 
-Unlike [orgs or private packages](https://www.npmjs.com/features) on the public registry, you are *not* assigned a scope to use for private packages you publish to npm Enterprise. You are free to use any scope name that you wish, but to avoid namespace collisions with public scoped packages, you should try to use a scope that identifies your company/organization and is unique on the public registry. This will also make it easier to switch to npm's hosted orgs solution (where your private packages are hosted privately on the public registry), if you ever wish to do so. But it's your choice!
+Unlike [orgs or private packages](https://www.npmjs.com/features) on the public registry, you are *not* assigned a scope to use for private packages you publish to npm Enterprise. You are free to use any scope name that you wish, but to avoid namespace collisions with public scoped packages, you should try to use a scope that identifies your company/organization and is unique on the public registry. This will also make it easier to switch to npm's hosted Orgs solution (where your private packages are hosted privately on the public registry), if you ever wish to do so. But it's your choice!
 
 You are allowed to use as many scopes as you like with npm Enterprise. You could use different scopes for different teams or projects within your organization, or use one scope for all packages. It's up to you!
 
