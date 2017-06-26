@@ -13,7 +13,7 @@ by running:
  ```
 
 <a name="pointing-your-client-to-the-registry"></a>
-## Pointing your client to the Enterprise registry
+## Pointing Your Client to the Enterprise Registry
 
 Once you have an up-to-date client, you can configure it to install from and
 publish to your private npm Enterprise registry.
@@ -28,8 +28,8 @@ Read about each option below.
 ### Option 1: Using Enterprise for private and public packages
 
 If you want all packages, whether they are under a scope or not, to be stored in
-your private registry, then you should configure the npm client to use your
-private npm Enterprise appliance as the top level registry.
+your private registry, you should configure the npm client to use your
+private npm Enterprise appliance as the top-level registry.
 
 To do this, first set your Enterprise registry as the CLI's default registry:
 
@@ -103,7 +103,7 @@ For details on configuring custom authentication, please see
 
 ## Single Sign-On Authentication (SAML, OAuth 2.0)
 
-When using a SSO provider for authentication you need to validate your session with SSO provider.
+When using a SSO provider for authentication, you need to validate your session with SSO provider.
 
 The flag `--auth-type` allows you to delegate to a SSO provider during login.
 

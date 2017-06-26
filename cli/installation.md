@@ -3,7 +3,7 @@
 ## npm works with npm Enterprise
 
 npm Enterprise is a program called `npme` that runs on a server or VM
-and is configured and maintainer by the IT or Ops department at your
+and is configured and maintained by the IT or Ops department at your
 company.
 
 In order for you and your development teams to use your npm Enterprise
@@ -45,7 +45,7 @@ so we can include it.
 
 ## Node.js Installers
 
-Although we don't recommend it, you can also install Node.js (which come with
+Although we don't recommend it, you can also install Node.js (which comes with
 npm) via installers.
 
 ### Node.js Installers
