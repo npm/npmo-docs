@@ -68,7 +68,7 @@ In addition to this list, you should make sure your host has access to the `yum`
 
 ## Note on Supported Platforms
 
-We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.
+We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but none are officially supported at this time.
 
 We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We'd love to work with you.
 

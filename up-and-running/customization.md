@@ -10,19 +10,19 @@ Enterprise's admin console on `:8800`
 The first time you visit your appliance on port `:8800`, there is some
 initial configuration that you will need to perform:
 
-1. because no certificate has been configured for your appliance, you
+1. Because no certificate has been configured for your appliance, you
   will need to proceed past a certificate warning in the browser:
 
   ![Admin Console](/gitbook/images/01-security-warning.png)
 
-2. next you will be prompted to upload a certificate, or to generate
+2. Next you will be prompted to upload a certificate, or to generate
   a self-signed certificate (this certificate will be used going forward
   when accessing the admin console, this will need to be configured
   separately for the website and registry see [Terminating SSL with NGINX]).
-3. on the next screen you will be prompted for the `billing email` and
+3. On the next screen you will be prompted for the `billing email` and
   `license key `, which you were provided with when you started your
   [npm Enterprise trial](https://www.npmjs.com/enterprise).
-4. you will next be prompted to set a password for the npm Enterprise
+4. You will next be prompted to set a password for the npm Enterprise
   admin console. This password is used by administrators to configure
   your appliance.
 5. Next, a series of preflight checks will be run. These checks ensure that
@@ -48,11 +48,11 @@ While you may choose to use the default registry URL
 in the registry binding to an alternative port (it
   always binds to `:8080`).
 
-### Full URL of npm Enterprise website
+### Full URL of npm Enterprise Website
 
 The externally accessible URL of your npm Enterprise website.
 
-### Your company name
+### Your Company Name
 
 The company name that should be displayed on the npm Enterprise website.
 

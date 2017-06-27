@@ -13,7 +13,7 @@ There are two basic steps to server-side configuration: creating an OAuth client
 
 ### Setup OAuth2 client credentials in GitHub Enterprise
 
-1. login to your GitHub Enterprise appliance.
+1. Login to your GitHub Enterprise appliance.
 2. Click on **Settings**, **OAuth Applications**, **Register a new OAuth application**.
 3. Fill in the requested information:
   * `Application Name`: npm Enterprise.
@@ -41,7 +41,7 @@ Under **Authentication**, select **OAuth2** and enter the following values:
 | Email Key          | email |
 | User Key           | login |
 
-Click **Save** to save these settings and then **Restart now** (when prompted) to restart the appliance and apply these settings.
+Click **Save** to save these settings and then **Restart now** to restart the appliance and apply these settings.
 
 That's all the server-side configuration you need!
 

@@ -32,7 +32,7 @@ your VM and move on to Step 2!
 
 ## Step 2: Install npm and Node.js
 
-Now that you have a VM deployed, let's install npm and Node.js
+Now that you have a VM deployed, let's install npm and Node.
 
 ```bash
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
