@@ -11,7 +11,7 @@ To configure another instance as a replica, use the "Upstream registry" section 
 
 If you make these configuration changes after an instance has already been running, you should do one of the following on your replica instance:
 
-1. Run `npme reset-follower`
+1. Run `npme reset-follower`.
 2. Stop the services/containers via admin console Dashboard, remove or truncate the `sequence` file in your replica instance (located in your configured "Miscellaneous data files" directory), and then start the services/containers.
 
 This will ensure that your replica has the full set of package changes from the instance it's following.
@@ -20,15 +20,15 @@ In this manner, you could set up multiple replicas of a single instance or daisy
 
 Although it's not necessary, you may also wish to store manual snapshots for backup purposes in addition to running live replicas. The host directories you should snapshot are represented on the Settings page as the following:
 
-- **CouchDB storage path on host** which defaults to `/usr/local/lib/npme/couchdb`
+- **CouchDB storage path on host** which defaults to `/usr/local/lib/npme/couchdb`.
 
     CouchDB is used to hold package metadata for every package in your registry, including public and private packages. This is the directory that holds the critical db files representing this data.
 
-- **Package storage path on host** which defaults to `/usr/local/lib/npme/packages`
+- **Package storage path on host** which defaults to `/usr/local/lib/npme/packages`.
 
     Each version of every package in your registry is stored as a tarball on the host file system. This is the root directory for all package tarballs.
 
-- **Miscellaneous data files** which defaults to `/usr/local/lib/npme/data`
+- **Miscellaneous data files** which defaults to `/usr/local/lib/npme/data`.
 
     The registry maintains some small files and runtime data to keep track of things like replication status and whitelist configuration. This is the directory that holds those files.
 
