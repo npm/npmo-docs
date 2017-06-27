@@ -97,7 +97,7 @@ Although the `npme` installer can conveniently install all dependencies required
 
 7. Optionally uninstall Node.js and npm.
 
-    Assuming you do not need Node.js or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.js.
+    Assuming you do not need Node or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.
 
     Ubuntu/Debian:
 

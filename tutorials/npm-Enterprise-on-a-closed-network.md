@@ -1,36 +1,36 @@
-# Npm Enterprise on closed network
+# npm Enterprise on Closed Network
 
-You can use npm Enterprise on the private/closed network. Here are the two approaches:
+You can use npm Enterprise on a private/closed network. Here are the two approaches:
 
-1. Install npmE in open network and move VM’s to closed network
-2. Air-Gap installation
+1. Install npmE in an open network and move VM’s to a closed network.
+2. Air-Gap installation.
 
-### Install npmE in open network and move VM’s to closed network
+### Install npmE in open network and move VM’s to closed network:
 
-To achieve this, create two VM's (`npmePrimary` and `npmeSource` for example) and install npm Enterprise on both using the instructions in the [up and running]( https://npme.npmjs.com/docs/up-and-running/platforms/other.html)
+Create two VM's (`npmePrimary` and `npmeSource` for example) and install npm Enterprise on both using the instructions in the [up and running]( https://npme.npmjs.com/docs/up-and-running/platforms/other.html)
  section.
 
-In this configuration, publication of internal packages and all installs will happen against `npmePrimary` with `npmeSource` serving as the means for importing new public packages and new versions for existing public packages from the registry on a cadence you control.
+In this configuration, publication of internal packages and all installs will happen against `npmePrimary`. `npmeSource` will serve as the means for importing new public packages and new versions for existing public packages from the registry on a cadence you control.
 
 To initialize your installation:
 
-1. With `npmeSource` still connected to the internet, edit the `whitelist` file so that it's a new-line delimited list of the package names you'll want available on your closed network. The `white-list` file is in the data folder which is `/usr/local/lib/npme/data` by default unless you changed this under `Miscellaneous Data` in the npme Settings Panel.
+1. With `npmeSource` still connected to the internet, edit the `whitelist` file so that it's a new-line delimited list of the package names you'll want available on your closed network. The `white-list` file is in the data folder which is `/usr/local/lib/npme/data` by default unless you changed this under `Miscellaneous Data` in the npme Settings panel.
 * Allow adequate time for the replication process to pull in all the packages added to the `whitelist` file.
 * Bring `npmeSource` and `npmePrimary` into the closed network.
 * In `npmePrimary's` Configuration Settings, under `Upstream Registry`:
-    * point the Upstream URL to `npmeSource`
-    * set the `Upstream Secret` to match `npmeSource's`
-    * set the `Policy to mirror`
+    * Point the Upstream URL to `npmeSource`.
+    * Set the `Upstream Secret` to match `npmeSource's`.
+    * Set the `Policy to mirror`.
 
 To add new packages from the public registry to your closed network:
 
-1. Clone `npmeSource` and allow it access to the internet.
-*  Add any new packages to the `whitelist` that were missing from the initial install.
-*  Copy `/usr/local/lib/npme` to a memory stick or portable drive. If you changed the location of the storage paths, be sure to copy the contents from all the folders.
-*  Stop `npmeSource's` npme instance that's running inside your network from the npme Dashboard.
-*  Copy over all the files from the cloned instance to the correct destination path on `npmeSource`.
-*  Restart the npme instance on `npmeSource` from the npme Dashboard.
-*  Restart replication on `npmePrimary` with the command `npme reset-follower` from the shell.
+1. Clone `npmeSource` and grant it access to the internet.
+2.  Add any new packages to the `whitelist` that were missing from the initial install.
+3. Copy `/usr/local/lib/npme` to a memory stick or portable drive. If you changed the location of the storage paths, be sure to copy the contents from all the folders.
+4.  Stop `npmeSource's` npmE instance that's running inside your network from the npmE Dashboard.
+5.  Copy over all the files from the cloned instance to the correct destination path on `npmeSource`.
+6.  Restart the npmE instance on `npmeSource` from the npmE Dashboard.
+7.  Restart replication on `npmePrimary` with the command `npme reset-follower` from the shell.
 
 ### Air-Gap installation
 
@@ -44,16 +44,16 @@ Install a supported version of Docker on your server. At the time of this writin
 
 Download the latest release of Replicated from [replicated official site](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) and move it to the VM running on your closed network.
 
-Run the commands below.
+Run the commands below:
 
 ```
  tar xzvf replicated.tar.gz
  cat ./install.sh | sudo bash -s airgap
 
 ```
-On your request, we will enable the air-gap solution for your npm Enterprise server license and also provide you the air-gap enabled license (.rli) file for activating your Enterprise server.
+You can request that we enable the air-gap solution for your npm Enterprise server license and also provide you the air-gap enabled license (.rli) file for activating your Enterprise server.
 
-Along with that will also provide you the download link and password for the air-gap package.
+Along with that we will also provide you the download link and password for the air-gap package.
 
 Move both these files to your VM running on a closed network.
 
