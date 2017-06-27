@@ -5,13 +5,13 @@ Before you can publish a private module, you should follow the steps outlined in
 To create a private module, all you need to do is initialize an npm module with the same
 scope that you used while logging in:
 
-1. create a folder with the name of your module, e.g., `my-test-module`.
-2. run `npm init` specifying the scope you used while logging in (see [Using npm Enterprise for Private Packages](/cli/configuration.md#option-2-using-enterprise-for-private-packages-only)):
+1. Create a folder with the name of your module, e.g., `my-test-module`.
+2. Run `npm init` specifying the scope you used while logging in (see [Using npm Enterprise for Private Packages](/cli/configuration.md#option-2-using-enterprise-for-private-packages-only)):
 
   > `npm init --scope=@mycompany`
 
-3. fill in information when prompted, to generate a package.json file.
-4. write your module, and when you're ready simply type `npm publish`.
+3. Fill in information when prompted to generate a package.json file.
+4. Write your module. When you're ready, type `npm publish`.
 
   > _Note: some auth strategies introduce additional requirements, e.g.,
     the [GitHub Strategy] requires that you populate the `repository`
