@@ -7,7 +7,7 @@ To get npm Enterprise up and running on Microsoft Azure, you first need:
 - An npm Enterprise license. Get a [free trial] here.
 - A [Microsoft account] and an [Azure account].
 
-...then we'll need to:
+...then [we'll help you] to:
 
 1. Set up and deploy an Ubuntu 14.04 LTS VM.
 2. Install Node.js and npm.
@@ -74,5 +74,6 @@ For more information on configuring npm Enterprise, [read these docs](/up-and-ru
 [free trial]: https://www.npmjs.com/enterprise#free-trial
 [Microsoft account]: https://signup.live.com/signup
 [Azure account]: https://azure.microsoft.com/free/
+[we'll help you]: mailto:support@npmjs.com
 [Microsoft Azure portal]: https://portal.azure.com/
 [this tutorial]: https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/

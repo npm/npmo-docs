@@ -8,7 +8,7 @@ To get npm Enterprise up and running with Vagrant, you first need:
 - [VirtualBox] installed.
 - [Vagrant] installed.
 
-...then we'll need to:
+...then [we'll help you] to:
 
 1. Download and run the npm Enterprise [Vagrantfile]
 
@@ -46,5 +46,6 @@ For more information on configuring npm Enterprise, [read these docs](/up-and-ru
 [free trial]: https://www.npmjs.com/enterprise#free-trial
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
+[we'll help you]: mailto:support@npmjs.com
 [NodeSource]: https://github.com/nodesource/distributions
 [Vagrantfile]: https://raw.githubusercontent.com/npm/npme-vagrant/master/Vagrantfile
