@@ -16,7 +16,7 @@ Now that you have a server provisioned, let's install npm and Node.js
 _On Ubuntu:_
 
 ```bash
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm i -g npm@latest
 node -v && npm -v
@@ -25,7 +25,7 @@ node -v && npm -v
 _On CentOS/RHEL:_
 
 ```bash
-curl -sL https://rpm.nodesource.com/setup_4.x | sudo -E bash -
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 sudo yum -y install nodejs
 sudo npm i -g npm@latest
 node -v && npm -v
