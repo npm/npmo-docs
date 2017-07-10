@@ -1,4 +1,5 @@
 node_modules
 _book
 tmp
+.DS_store
 styles/components.css
