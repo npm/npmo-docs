@@ -774,26 +774,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="using-microsoft-azure"><a name="using-microsoft-azure" class="plugin-anchor" href="#using-microsoft-azure"><i class="fa fa-link" aria-hidden="true"></i></a>Using Microsoft Azure</h1><h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2><p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p><ul><li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here!
+                                <h1 id="using-microsoft-azure"><a name="using-microsoft-azure" class="plugin-anchor" href="#using-microsoft-azure"><i class="fa fa-link" aria-hidden="true"></i></a>Using Microsoft Azure</h1><h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2><p>To get npm Enterprise up and running on Microsoft Azure, you first need:</p><ul><li>An npm Enterprise license. Get a <a href="https://www.npmjs.com/enterprise#free-trial" target="_blank">free trial</a> here.
 </li>
-<li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a>
+<li>A <a href="https://signup.live.com/signup" target="_blank">Microsoft account</a> and an <a href="https://azure.microsoft.com/free/" target="_blank">Azure account</a>.
 </li></ul>
-<p>...then we&apos;ll need to:</p><ol><li>Set up and deploy an Ubuntu 14.04 LTS VM
+<p>...then <a href="mailto:support@npmjs.com" target="_blank">we&apos;ll help you</a> to:</p><ol><li>Set up and deploy an Ubuntu 14.04 LTS VM.
 </li>
-<li>install Node.js and npm
+<li>Install Node.js and npm.
 </li>
-<li>install npm Enterprise itself
+<li>Install npm Enterprise.
 </li>
-<li>Set up endpoints for the admin panel, registry, and website
+<li>Set up endpoints for the admin panel, registry, and website.
 </li></ol>
-<p>Let&apos;s get started!</p><h2 id="step-1-get-a-vm-up-and-running"><a name="step-1-get-a-vm-up-and-running" class="plugin-anchor" href="#step-1-get-a-vm-up-and-running"><i class="fa fa-link" aria-hidden="true"></i></a>Step 1: Get a VM Up and Running</h2><p>The first step is to get a VM running. Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for getting
-an Ubuntu 14.04 LTS VM running.</p><p>While setting this up, make sure to:</p><ul><li>Pick a size that has <em>at least</em> 8 GB of RAM. <strong>We strongly recommend 16 GB.</strong>
+<p>Let&apos;s get started!</p><h2 id="step-1-get-a-vm-up-and-running"><a name="step-1-get-a-vm-up-and-running" class="plugin-anchor" href="#step-1-get-a-vm-up-and-running"><i class="fa fa-link" aria-hidden="true"></i></a>Step 1: Get a VM Up and Running</h2><p>Follow <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/" target="_blank">this tutorial</a> for setting up
+an Ubuntu 14.04 LTS VM.</p><p>While setting this up, make sure to:</p><ul><li>Pick a size that has <em>at least</em> 8 GB of RAM. <strong>We strongly recommend 16 GB</strong>.
 </li>
 <li>Take note of the name of the Security Group you assign. We&apos;ll need to edit it
 in Step 3.
 </li></ul>
 <p>Feel free to make any other configurations you wish. Once you are set, deploy
-your VM and move on to Step 2!</p><h2 id="step-2-install-npm-and-nodejs"><a name="step-2-install-npm-and-nodejs" class="plugin-anchor" href="#step-2-install-npm-and-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm and Node.js</h2><p>Now that you have a VM deployed, let&apos;s install npm and Node.js</p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://deb.nodesource.com/setup_4.x | sudo -E bash -
+your VM and move on to Step 2!</p><h2 id="step-2-install-npm-and-nodejs"><a name="step-2-install-npm-and-nodejs" class="plugin-anchor" href="#step-2-install-npm-and-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install npm and Node.js</h2><p>Now that you have a VM deployed, let&apos;s install npm and Node.</p><pre><code class="lang-bash">curl <span class="hljs-_">-s</span>L https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm i -g npm@latest
 node -v &amp;&amp; npm -v</code></pre>
@@ -857,7 +857,7 @@ we need to configure are:</p><table>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"next":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"previous":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/azure.md","mtime":"2017-06-26T18:25:04.576Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-26T18:28:17.315Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"next":{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},"previous":{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/azure.md","mtime":"2017-07-17T20:48:48.149Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-07-17T20:50:40.817Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

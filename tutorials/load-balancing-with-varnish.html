@@ -774,7 +774,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="load-balancing-with-varnish"><a name="load-balancing-with-varnish" class="plugin-anchor" href="#load-balancing-with-varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Load balancing with Varnish</h1><p>If you are using npm Enterprise and want to apply Varnish as a solution for load balancing then follow the steps below.</p><ul><li><p>Install and configure nginx.</p><ul><li><a href="https://gist.github.com/bcoe/0f2ca5e644d464f40f9937c9787a244c" target="_blank">Configure nginx</a>
+                                <h1 id="load-balancing-with-varnish"><a name="load-balancing-with-varnish" class="plugin-anchor" href="#load-balancing-with-varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Load balancing with Varnish</h1><p>If you are using npm Enterprise and want to apply Varnish as a solution for load balancing, follow the steps below.</p><ul><li><p>Install and configure nginx.</p><ul><li><a href="https://gist.github.com/bcoe/0f2ca5e644d464f40f9937c9787a244c" target="_blank">Configure nginx</a>
 </li>
 <li><a href="https://www.masv.io/boost-nginx-connection-limits/" target="_blank">Increase limits</a>
 </li></ul>
@@ -784,25 +784,25 @@
     .host = &quot;127.0.0.1&#x201D;;
     .port = &quot;8080&#x201D;;
  }</code></pre>
-<p>This defines a backend in Varnish called <code>default</code>. When Varnish serves content from this backend, it will connect to port 8080 on <code>127.0.0.1</code>.</p><p>Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.</p><p>Let say we have default backend defined as registry</p><pre><code>backend registry {
+<p>This defines a backend in Varnish called <code>default</code>. When Varnish serves content from this backend, it will connect to port 8080 on <code>127.0.0.1</code>.</p><p>Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.</p><p>Let&apos;s say we have default backend defined as registry:</p><pre><code>backend registry {
   .host = &quot;127.0.0.1&quot;;
   .port = &quot;8080&quot;;
 }</code></pre>
-<p>This will point to your npm Enterprise registry.</p><p>Now we want to configure another server as replica of our primary server and use it for load balancing.</p><pre><code>backend replica {
+<p>This will point to your npm Enterprise registry.</p><p>Now we want to configure another server as replica of our primary server and use it for load balancing:</p><pre><code>backend replica {
   .host = &#x201C;Enter your host&quot;;
   .port = &quot;8080&quot;;
 }</code></pre>
-<p>Add another backend called public</p><pre><code>backend public {
+<p>Add another backend called public:</p><pre><code>backend public {
   .host = &quot;127.0.0.1&quot;;
   .port = &quot;8085&quot;;
 }</code></pre>
-<p>Now group the above defined backends into a Director (group) called <code>pkgread</code>.</p><pre><code>sub vcl_init {
+<p>Now group the above defined backends into a Director (group) called <code>pkgread</code>:</p><pre><code>sub vcl_init {
   new pkgread = directors.round_robin();
   pkgread.add_backend(registry);
   pkgread.add_backend(replica);
 }</code></pre>
-<p>Now send all the traffic to the <code>pkgread</code> Director.</p><p>We can avoid specific package collisions here, by redirecting traffic based on our requirements. Such as, here we are redirecting all scoped package installs to all the 3 backends that are available. But publish is redirected to <code>registry i.e (localhost:8080)</code>.
-Other than the scoped packages all the other packages are installed from <code>public server i.e (localhost:8085)</code> and publishes are redirected to <code>registry i.e (localhost:8080)</code>.</p><pre><code>sub vcl_recv {
+<p>Now send all the traffic to the <code>pkgread</code> Director.</p><p>We can avoid specific package collisions here by redirecting traffic based on our requirements. For instance, here we are redirecting all scoped package installs to all the 3 backends that are available, but publish is redirected to <code>registry i.e (localhost:8080)</code>.
+Other than the scoped packages, all the other packages are installed from <code>public server i.e (localhost:8085)</code> and publishes are redirected to <code>registry i.e (localhost:8080)</code>:</p><pre><code>sub vcl_recv {
   set req.http.X-Authorization = req.http.Authorization;
   unset req.http.Authorization;
   unset req.http.If-Modified-Since;
@@ -864,7 +864,7 @@ if (req.url ~ &quot;@&quot;) {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Load balancing with Varnish","level":"1.5.5","depth":2,"next":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"path":"tutorials/npm-enterprise-with-nexus.md","ref":"tutorials/npm-enterprise-with-nexus.md","articles":[]},"previous":{"title":"Backups and HA","level":"1.5.4","depth":2,"path":"tutorials/backups-and-ha.md","ref":"tutorials/backups-and-ha.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/load-balancing-with-varnish.md","mtime":"2017-06-26T18:25:04.572Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-26T18:28:17.315Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Load balancing with Varnish","level":"1.5.5","depth":2,"next":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"path":"tutorials/npm-enterprise-with-nexus.md","ref":"tutorials/npm-enterprise-with-nexus.md","articles":[]},"previous":{"title":"Backups and HA","level":"1.5.4","depth":2,"path":"tutorials/backups-and-ha.md","ref":"tutorials/backups-and-ha.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/load-balancing-with-varnish.md","mtime":"2017-07-17T20:48:48.145Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-07-17T20:50:40.817Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

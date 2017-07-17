@@ -774,13 +774,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="npm-enterprise-with-nexus"><a name="npm-enterprise-with-nexus" class="plugin-anchor" href="#npm-enterprise-with-nexus"><i class="fa fa-link" aria-hidden="true"></i></a>npm Enterprise with Nexus</h1><p>If you are using npm enterprise for publishing your private packages and wish to use Nexus repository to setup proxy for your private registry then follow the steps below.</p><ul><li>Open <em><a href="http://your-host:8081/" target="_blank">http://your-host:8081/</a></em> in your browser.
+                                <h1 id="npm-enterprise-with-nexus"><a name="npm-enterprise-with-nexus" class="plugin-anchor" href="#npm-enterprise-with-nexus"><i class="fa fa-link" aria-hidden="true"></i></a>npm Enterprise with Nexus</h1><p>If you are using npm Enterprise for publishing your private packages and wish to use a Nexus repository to set up proxy for your private registry then follow the steps below:</p><ul><li>Open <em><a href="http://your-host:8081/" target="_blank">http://your-host:8081/</a></em> in your browser.
 </li>
-<li><p>Sign in with admin credentials (You can create your own user and login with those credentials)</p><p><code>User Name: admin
+<li><p>Sign in with admin credentials (You can create your own user and login with those credentials).</p><p><code>User Name: admin
   Password: admin123</code></p></li>
-<li><p>Click on Settings Icon from the top left menu.</p></li>
+<li><p>Click on the Settings icon from the top left menu.</p></li>
 <li><p>Select <em>Repository-&gt;Repositories</em> from the left panel options.</p></li>
-<li>Click on <code>Create repository</code> button.
+<li>Click on the <code>Create repository</code> button.
 </li></ul>
 <p><strong>Configuring Nexus as a npm repository.</strong></p><ol><li><p>Select <code>npm (proxy)</code> from the repository list.</p><ul><li>Add unique repository name.
 </li>
@@ -796,13 +796,13 @@
 </li>
 <li>Add <code>npm Bearer Token Realm</code> from available realms to active realms and save the changes.
 </li></ol>
-<p>This blog post provides more detail about authentication in Nexus for npm repositories: <em><a href="http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/" target="_blank">http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/</a></em>.</p><p>Run <code>npm config set registry {repository path, likely your npm-proxy-repository-url}</code>.</p><p>To get your <strong>npm-proxy-repository-url</strong> go to <em>Repository-&gt;Repositories</em>, look for your <em>npm-proxy repository</em>, copy the url by clicking on <strong>copy</strong> button.</p><p>Run <code>npm login npm login --registry=http://your-host:8081/repository/your-npm-proxy-name/</code>.</p><p>It will prompt you for-</p><ul><li><em>User Name</em>: Enter the nexus repository username. (If you haven&#x2019;t created any user then default is <strong>&#x2018;admin&#x2019;</strong>).
+<p>This blog post provides more detail about authentication in Nexus for npm repositories: <em><a href="http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/" target="_blank">http://www.sonatype.org/nexus/2015/11/19/new-npm-tools-for-your-nexus-repository-manager-tool-box/</a></em>.</p><p>Run <code>npm config set registry {repository path, likely your npm-proxy-repository-url}</code>.</p><p>To get your <strong>npm-proxy-repository-url</strong> go to <em>Repository-&gt;Repositories</em>, look for your <em>npm-proxy repository</em>, copy the url by clicking on <strong>copy</strong> button.</p><p>Run <code>npm login npm login --registry=http://your-host:8081/repository/your-npm-proxy-name/</code>.</p><p>It will prompt you for:</p><ul><li><em>User Name</em>: Enter the Nexus repository username. (If you haven&#x2019;t created any user then default is <strong>&#x2018;admin&#x2019;</strong>).
 </li>
-<li><em>Password</em>: Enter the nexus repository password. (If you haven&#x2019;t created any then default is <strong>&#x2018;admin123&#x2019;</strong>).
+<li><em>Password</em>: Enter the Nexus repository password. (If you haven&#x2019;t created any then default is <strong>&#x2018;admin123&#x2019;</strong>).
 </li>
 <li><em>Email</em>: Enter your email.
 </li></ul>
-<p>Now try installing your private packages from nexus repository.</p>
+<p>Now try installing your private packages from your Nexus repository.</p>
                                 
                                 </section>
                             
@@ -845,7 +845,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"next":{"title":"Redis Replication","level":"1.5.7","depth":2,"path":"tutorials/redis-replication.md","ref":"tutorials/redis-replication.md","articles":[]},"previous":{"title":"Load balancing with Varnish","level":"1.5.5","depth":2,"path":"tutorials/load-balancing-with-varnish.md","ref":"tutorials/load-balancing-with-varnish.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/npm-enterprise-with-nexus.md","mtime":"2017-06-26T18:25:04.572Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-06-26T18:28:17.315Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"next":{"title":"Redis Replication","level":"1.5.7","depth":2,"path":"tutorials/redis-replication.md","ref":"tutorials/redis-replication.md","articles":[]},"previous":{"title":"Load balancing with Varnish","level":"1.5.5","depth":2,"path":"tutorials/load-balancing-with-varnish.md","ref":"tutorials/load-balancing-with-varnish.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/npm-enterprise-with-nexus.md","mtime":"2017-07-17T20:48:48.145Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-07-17T20:50:40.817Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
