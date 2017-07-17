@@ -4,11 +4,11 @@
 
 To get npm Enterprise up and running with Vagrant, you first need:
 
-- An npm Enterprise license. Get a [free trial] here!
+- An npm Enterprise license. Get a [free trial] here.
 - [VirtualBox] installed.
 - [Vagrant] installed.
 
-...then we'll need to:
+...then [we'll help you] to:
 
 1. Download and run the npm Enterprise [Vagrantfile]
 
@@ -18,12 +18,12 @@ Let's get started!
 
 The Vagrantfile does several things:
 
-  - updates `apt-get`
-  - installs `curl` via `apt-get`
-  - installs Node.js, via [NodeSource]
-  - updates npm
-  - displays Node.js and npm versions
-  - installs `npme` globally as the root user, via npm
+  - Updates `apt-get`.
+  - Installs `curl` via `apt-get`.
+  - Installs Node.js, via [NodeSource].
+  - Updates npm.
+  - Displays Node.js and npm versions.
+  - Installs `npme` globally as the root user, via npm.
 
 Additionally, it forwards the following ports:
 
@@ -46,5 +46,6 @@ For more information on configuring npm Enterprise, [read these docs](/up-and-ru
 [free trial]: https://www.npmjs.com/enterprise#free-trial
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
+[we'll help you]: mailto:support@npmjs.com
 [NodeSource]: https://github.com/nodesource/distributions
 [Vagrantfile]: https://raw.githubusercontent.com/npm/npme-vagrant/master/Vagrantfile

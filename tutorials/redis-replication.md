@@ -7,14 +7,14 @@ Redis replication allows slave Redis servers to be exact copies of master server
 
 To replicate Redis session follow the steps below:
 
-Go to your primary server's admin dashboard settings page.
+1. Go to your primary server's admin dashboard settings page.
 
-1. Select **Expose Redis For Replication** option from left panel.
+2. Select **Expose Redis For Replication** option from left panel.
 
-2. To enable replication select `Yes` in `Expose Redis For Replication` section and keep the `Upstream Redis` section blank.
+3. To enable replication, select `Yes` in `Expose Redis For Replication` section and keep the `Upstream Redis` section blank.
 
 
-Now go to your secondary server's admin dashboard settings page.
+Now go to your secondary server's admin dashboard settings page:
 
 1. Go to `Expose Redis For Replication` and select `No`.
 
@@ -28,7 +28,7 @@ master_host:your_primary_server_ip
 master_port:6379
 master_link_status:up
 ```
-To verify the redis replication, run `redis-cli info keyspace` on both Upstream and Replica server and make sure the keys count matches on both servers.
+To verify the Redis replication, run `redis-cli info keyspace` on both Upstream and Replica server and make sure the keys count matches on both servers.
 
 
 

@@ -6,7 +6,7 @@
 
 1. Use the `bitbucket-pipelines.yml` supplied in [this repository](https://bitbucket.org/benjamincoe/private-modules-demo/src).
 2. Set the `NPM_TOKEN` environment variable (This token can be found in your local `~/.npmrc`, after you log in to the registry).
-3. Enable pipelines
+3. Enable pipelines.
 
 ## Working with private packages in npm Enterprise
 

@@ -1,6 +1,6 @@
 # Load balancing with Varnish
 
-If you are using npm Enterprise and want to apply Varnish as a solution for load balancing then follow the steps below.
+If you are using npm Enterprise and want to apply Varnish as a solution for load balancing, follow the steps below.
 
 * Install and configure nginx.
 
@@ -26,7 +26,7 @@ This defines a backend in Varnish called `default`. When Varnish serves content 
 
 Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.
 
-Let say we have default backend defined as registry
+Let's say we have default backend defined as registry:
 
 ```
 backend registry {
@@ -37,7 +37,7 @@ backend registry {
 
 This will point to your npm Enterprise registry.
 
-Now we want to configure another server as replica of our primary server and use it for load balancing.
+Now we want to configure another server as replica of our primary server and use it for load balancing:
 
 ```
 backend replica {
@@ -46,7 +46,7 @@ backend replica {
 }
 ```
 
-Add another backend called public
+Add another backend called public:
 
 ```
 backend public {
@@ -55,7 +55,7 @@ backend public {
 }
 ```
 
-Now group the above defined backends into a Director (group) called `pkgread`.
+Now group the above defined backends into a Director (group) called `pkgread`:
 
 ```
 sub vcl_init {
@@ -67,8 +67,8 @@ sub vcl_init {
 
 Now send all the traffic to the `pkgread` Director.
 
-We can avoid specific package collisions here, by redirecting traffic based on our requirements. Such as, here we are redirecting all scoped package installs to all the 3 backends that are available. But publish is redirected to `registry i.e (localhost:8080)`.
-Other than the scoped packages all the other packages are installed from `public server i.e (localhost:8085)` and publishes are redirected to `registry i.e (localhost:8080)`.
+We can avoid specific package collisions here by redirecting traffic based on our requirements. For instance, here we are redirecting all scoped package installs to all the 3 backends that are available, but publish is redirected to `registry i.e (localhost:8080)`.
+Other than the scoped packages, all the other packages are installed from `public server i.e (localhost:8085)` and publishes are redirected to `registry i.e (localhost:8080)`:
 
 
 ```

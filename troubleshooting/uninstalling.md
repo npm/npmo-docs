@@ -2,7 +2,7 @@
 
 Although the `npme` installer can conveniently install all dependencies required to run an npm Enterprise instance, it cannot uninstall everything on its own. Here's a quick guide to uninstall and remove the different components that make up the Enterprise product.
 
-1. Uninstall the `npme` package
+1. Uninstall the `npme` package.
 
     ```
     sudo npm uninstall -g npme
@@ -10,13 +10,13 @@ Although the `npme` installer can conveniently install all dependencies required
 
     This removes the installer but not the Enterprise appliance.
 
-2. Note storage paths in admin console settings
+2. Note storage paths in admin console settings.
 
     If you wish to remove all packages and data from your registry, please make a note of all the Storage paths you have configured for your instance at `https://<your-server>:8800/settings`.
 
     The default root is `/usr/local/lib/npme`. You can remove these in step 6 below.
 
-3. Uninstall the orchestration layer and admin console
+3. Uninstall the orchestration layer and admin console.
 
     To uninstall and remove Replicated, please [follow the instructions found here](https://www.replicated.com/docs/distributing-an-application/installing/#removing-replicated).
 
@@ -48,7 +48,7 @@ Although the `npme` installer can conveniently install all dependencies required
 
     You can ignore any commands that might have failed.
 
-4. Stop and remove all Docker containers and images
+4. Stop and remove all Docker containers and images.
 
     Assuming you are not using Docker for anything else on your server, you may remove all running Docker containers and images with the following commands:
 
@@ -61,9 +61,9 @@ Although the `npme` installer can conveniently install all dependencies required
     sudo docker rmi -f $(sudo docker images -q)
     ```
 
-    Be careful! This will remove any other services using Docker on your system!
+    Be careful! This will remove any other services using Docker on your system.
 
-5. Optionally uninstall Docker
+5. Optionally uninstall Docker.
 
     If you wish, you may also remove Docker itself. Use the instructions for your Linux distribution:
 
@@ -83,7 +83,7 @@ Although the `npme` installer can conveniently install all dependencies required
 
     If you have configured Docker to store data in a directory other than `/var/lib/docker`, remove it instead.
 
-6. Optionally remove packages and Enterprise data
+6. Optionally remove packages and Enterprise data.
 
     To completely wipe the Enterprise data, you should also remove the directories noted from step 2. Note that this will remove all packages you have published thus far!
 
@@ -95,9 +95,9 @@ Although the `npme` installer can conveniently install all dependencies required
 
     If you configured npm Enterprise to store data in directories other than the defaults, remove those instead.
 
-7. Optionally uninstall Node.js and npm
+7. Optionally uninstall Node.js and npm.
 
-    Assuming you do not need Node.js or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.js.
+    Assuming you do not need Node or npm for anything else on your server, you may uninstall them via the system package manager you used to install Node.
 
     Ubuntu/Debian:
 

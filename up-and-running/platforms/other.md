@@ -11,7 +11,7 @@ Simply follow the steps listed below:
 
 ## Step 1: Install npm and Node.js
 
-Now that you have a server provisioned, let's install npm and Node.js
+Now that you have a server provisioned, let's install npm and Node:
 
 _On Ubuntu:_
 

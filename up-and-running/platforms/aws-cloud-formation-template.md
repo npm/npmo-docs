@@ -27,19 +27,19 @@ The template will require you to set a password for the admin console. Don't los
 
 **Network Security**
 
-This template will allow you to limit incoming connections to SSH, the npmE Admin Panel and the two registry ports (8080, 8081). Each of these defaults to allowing connections from anywhere.
+This template will allow you to limit incoming connections to SSH, the npmE Admin panel and the two registry ports (8080, 8081). Each of these defaults to allowing connections from anywhere.
 
 You will have to have at least one EC2 key pair created before using this template to select so that you can SSH into the instance when it's complete.
 
 **Initial Start Time**
 
-Even after the instance starts, it will still take a few minutes for all of the steps to complete. Please be patient as this can take between 5 to 10 minutes. Once the process has completed, navigate your browser to `http://<instance's public ip>:8800` and follow the setup instructions.
+Even after the instance starts, it will still take a few minutes for all of the steps to complete. Please be patient, as this can take between 5 to 10 minutes. Once the process has completed, navigate your browser to `http://<instance's public ip>:8800` and follow the setup instructions.
 
 **Changing the Linux Distribution**
 
-A considerable amount of the approach would need to be changed in order for this template to work for any other distribution. The AWSRegionToAMI property under Mappings would be the first thing to change as this provides a look up of the AMI Id for the distro image for each given region.
+A considerable amount of the approach would need to be changed in order for this template to work for any other distribution. The AWSRegionToAMI property under Mappings would be the first thing to change, as this provides a look up of the AMI Id for the distro image for each given region.
 
-After that, you'd need to revisit each of the shell scripts and change out distribution specifics such as the package manager and how to install and initialize Amazon's Cloud Formation initialiser.
+After that, you'll need to revisit each of the shell scripts and change out distribution specifics such as the package manager and how to install and initialize Amazon's Cloud Formation initialiser.
 
 
 **Below is the cloud formation template for npmE setup that you can use.**

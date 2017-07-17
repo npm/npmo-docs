@@ -20,15 +20,15 @@ _this tutorial assumes that you have already [configured your CLI client](/cli/c
   Rather than using `[my-secret-token]` from your `~/.npmrc` file, you may opt to
   generate a deploy token on npm Enterprise:
 
-  1. `ssh` into your npm Enterprise server.
-  2. run `npme manage-tokens generate`.
-  3. copy this token, for use in the next step.
+  1. `SSH` into your npm Enterprise server.
+  2. Run `npme manage-tokens generate`.
+  3. Copy this token, for use in the next step.
 
 ## Now that you have a token
 
-1. on Travis CI, or your Travis Enterprise server, create an environment variable called
+1. On Travis CI or your Travis Enterprise server, create an environment variable called
   `NPM_TOKEN` and set this equal to `[my-secret-token]`.
-2. create a `.travis.yml` file in your project, that looks like this:
+2. Create a `.travis.yml` file in your project, that looks like this:
 
   ```yaml
   language: node_js
@@ -42,7 +42,7 @@ _this tutorial assumes that you have already [configured your CLI client](/cli/c
   * **`https://registry.mycompany.com`**: should be the full address of your private registry, including scheme and port.
   * **`registry.mycompany.com`**: should be the address of your private registry, including port.
 
-That's all there is to it, when you kickoff builds on Travis it should now
+That's all there is to it! When you kickoff builds on Travis, it should now
 be able to install modules from private npm Enterprise server.
 
 ## Automating Publishes
@@ -51,9 +51,9 @@ With Travis CI's [Deployment functionality](https://docs.travis-ci.com/user/depl
 
 To enable Travis CI deploys:
 
-* on Travis CI, or your Travis Enterprise server, create an environment variable called
+* On Travis CI, or your Travis Enterprise server, create an environment variable called
   `NPM_TOKEN` and set this equal to `[my-secret-token]`.
-* add the following linew to your `.travis.yml`:
+* Add the following line to your `.travis.yml`:
 
 ```yaml
 deploy:
@@ -64,7 +64,7 @@ deploy:
     tags: true
 ```
 
-* add a `publishConfig.registry` entry to your `package.json`, pointing to your private registry:
+* Add a `publishConfig.registry` entry to your `package.json`, pointing to your private registry:
 
 ```json
 {
