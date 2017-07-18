@@ -32,7 +32,7 @@
   * [Bitbucket Pipelines](tutorials/pipelines.md)
   * [Terminating SSL with NGINX](tutorials/nginx.md)
   * [Backups and HA](tutorials/backups-and-ha.md)
-  * [Load balancing with Varnish](tutorials/load-balancing-with-varnish.md)
+  * [Load balancing with NGiNX Varnish](tutorials/load-balancing-with-varnish.md)
   * [npm Enterprise with Nexus](tutorials/npm-enterprise-with-nexus.md)
   * [Redis Replication](tutorials/redis-replication.md)
   * [npm Enterprise on a closed network](tutorials/npm-Enterprise-on-a-closed-network.md)
