@@ -2,20 +2,30 @@
 
 If you are using npm Enterprise and want to apply Varnish as a solution for load balancing then follow the steps below.
 
-* **Preferred Topology.**
+## Preferred Topology
 
 The recommended topology is to provide a dedicated host for NGiNX and Varnish to run on. In environments where a secondary instance is warranted to support the load, running NGiNX and Varnish on the primary will only introduce competition for resources and could destabilize your environment.
 
-**IMPORTANT** The configuration files provided assume that NGiNX and Varnish are each running on the same dedicated host, separate from the hosts for the primary and secondary npmE instances.
+----
+**IMPORTANT** 
 
-* [**Install and configure NGiNX.**](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
+The configuration files provided assume that NGiNX and Varnish are each running on the same dedicated host, separate from the hosts for the primary and secondary npmE instances.
 
-* **Nginx Configuration File.**
+----
 
-> **Edit the `nginx.conf` according to the steps mentioned below.**
+## Install and Configure NGiNX
 
-> **Run `sudo nano /etc/nginx/nginx.conf`**
+For directions on how to install NGiNX, see their tutorial [here](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/).
 
+### Edit the NGiNX Configuration 
+
+Change the NGiNX configuration to match the configuration specified below using the command:
+
+```bash
+sudo nano /etc/nginx/nginx.conf
+```
+
+** nginx.conf contents **
 ```
 # -----------------------------------------------------------------------------
 # 1. replace `your-domain.com` with your public-facing domain
@@ -122,18 +132,37 @@ http {
 }
 ```
 
-> **Edit `/etc/sysctl.conf` and change or add the line `fs.file-max = 4096`**
+### Copy SSL Certificate
 
-> **Copy your `SSL pem file` to `/etc/nginx/wildcard.pem`**
+ * copy your SSL `.pem` file` to `/etc/nginx/wildcard.pem`
+ * reload the NGiNX configuration with `sudo nginx -s reload`
 
-> **Reload the NGiNX configuration with `sudo nginx -s reload`**
+## Increase File Handles
 
-* [**Install and configure varnish.**](https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation)
+Edit your system control configuration with the following command and add the line shown:
 
-> **Edit the `default.vcl` according to the steps mentioned below.**
+```bash
+sudo nano /etc/sysctl.conf
+```
 
-> **Run `sudo nano /etc/varnish/default.vcl`** ( or you can use your .vcl file instead of default.vcl file)
+** add line: **
+```
+fs.file-max = 4096
+```
 
+## Install and Configure Varnish
+
+For directions on how to install Varnish, see their documentation [here](https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation).
+
+### Edit the Varnish Configuration 
+
+Change the Varnish configuration to match the configuration specified below using the command:
+
+```bash
+sudo nano /etc/varnish/default.vcl
+```
+
+** default.vcl contents **
 ```
 # -----------------------------------------------------------------------------
 # 1. replace `1.1.1.1` with your primary server's IP
@@ -222,9 +251,17 @@ sub vcl_backend_fetch {
 }
 ```
 
-**Now restart varnish:**
+### Restart Varnish
 
-> On `Debian systems` - `sudo service varnish restart`
+**On Debian systems** 
 
-> On `CentOS/RHEL systems` - `sudo # Load balancing with NGiNX & Varnish
+```shell
+sudo service varnish restart
+```
+
+**On CentOS/RHEL systems**
+```shell
+sudo systemctl restart varnish
+```
+
 
