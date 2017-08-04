@@ -1,18 +1,19 @@
 # npm Enterprise Add-Ons
 
 Add-ons allow third-party developer tools to integrate directly into npm Enterprise.
-This allows npm Enterprise to be augmented with powerful functionality, such as: vulnerability scanning, license auditing, and code quality analysis.
+This gives npm Enterprise powerful functionality, such as: vulnerability scanning, license auditing, and code quality analysis.
 
 ## Installing Add-Ons
 
 Add-ons are installed via the `npme` admin tool on your Enterprise server:
 
-1. ssh into your npme appliance.
-2. run `npme addon <add-on-identifier>`.
+1. SSH into your npme appliance.
+2. Run `npme addon <add-on-identifier>`.
 3. third-parties may require an additional step, such as verifying your
    email address.
-4. that's all there is to it, visit any package page in your
-   npm Enterprise website:
+
+That's all there is to it! Visit any package page in your
+npm Enterprise website:
 
 ![npm Enterprise Add-Ons](/gitbook/images/npme-addon.png)
 
@@ -20,10 +21,10 @@ Add-ons are installed via the `npme` admin tool on your Enterprise server:
 
 ### Node Security
 
-* homepage: https://nodesecurity.io/
-* installation: `npme addon nodesecurity`
+* Homepage: https://nodesecurity.io/
+* Installation: `npme addon nodesecurity`
 
-The Node Security team audits modules Enterprises depend on and then surface this  security information in the Node Security Platform. For years, the nsp tool has been a pivotal source of intelligence on vulnerabilities in Node dependencies.
+The Node Security team audits modules that Enterprises depend on and then surface security information in the Node Security Platform. For years, the nsp tool has been a pivotal source of intelligence on vulnerabilities in Node dependencies.
 
 The npm Enterprise Node Security add-on provides this information in the sidebar of the module detail page. By clicking the sidebar, a user receives a more detailed
 description of the vulnerability.
@@ -32,10 +33,10 @@ description of the vulnerability.
 
 ### FOSSA
 
-* homepage: http://fossa.io/
-* installation: `npme addon http://{fossa_host}/api/services/npm`
+* Homepage: http://fossa.io/
+* Installation: `npme addon http://{fossa_host}/api/services/npm`
 
-FOSSA’s Licenses add-on proactively assesses both public and proprietary packages in a company’s npmE registry to identify licensing issues and obligations. npmE users will be able to view an at-a-glance summary of a package’s licensing impact online before deciding to download and integrate into their products.
+FOSSA’s Licenses add-on proactively assesses both public and proprietary packages in npmE registries to identify licensing issues and obligations. npmE users will be able to view an at-a-glance summary of a package’s licensing impact online before deciding to download and integrate it into their products.
 
 FOSSA runs as an appliance securely behind your firewall, contact
 support@fossa.io to get started with this add-on.
@@ -44,12 +45,12 @@ support@fossa.io to get started with this add-on.
 
 ### bitHound
 
-* homepage: https://www.bithound.io/
-* installation: `npme install addon https://www.bithound.io/npm/plugin.json`
+* Homepage: https://www.bithound.io/
+* Installation: `npme install addon https://www.bithound.io/npm/plugin.json`
 
-Once the bitHound Addon is activated (via email post installation), you will start seeing bitHound package metrics and insights. This will show up on the right hand side where you're already used to seeing npm provided information.
+Once the bitHound add-on is activated (via email post-installation), you will start seeing bitHound package metrics and insights. This will show up on the right hand side where you're already used to seeing npm provided information.
 
-This information provides valuable insight into the health of the open-source
+This information provides valuable insight into the health of any open-source
 dependencies your company is building on top of.
 
 ![bitHound](/gitbook/images/npme-bithound.png)
@@ -59,21 +60,21 @@ dependencies your company is building on top of.
 Would you like to write an npm Enterprise add-on? send an email to
 <a href="mailto:support@npmjs.com">support@npmjs.com</a>.
 
-npm Enterprise Add-Ons consist of two parts: a manifest that provides
-meta information about an add-on, and a server that gets web-hooks
+npm Enterprise add-ons consist of two parts: a manifest that provides
+meta-information about an add-on, and a server that gets web-hooks
 posted to it from the npm Enterprise appliance.
 
 ### The Manifest
 
 The manifest contains the following fields:
 
-* **type:** what type of add-on is this (currently `badge plus` is the only option)
-* **email:** email address of the add-on maintainer.
-* **name:** human readable name for add-on.
-* **homepage:** homepage URL for add-on.
-* **description:** a brief description of the add-on.
-* **callback:** callback to invoke during add-on installation.
-* **webhook:** webhook to invoke with package.json, as package pages are
+* **type:** What type of add-on is this (currently `badge plus` is the only option).
+* **email:** An email address of the add-on maintainer.
+* **name:** a human-readable name for the add-on.
+* **homepage:** A homepage URL for the add-on.
+* **description:** A brief description of the add-on.
+* **callback:** A callback to invoke during add-on installation.
+* **webhook:** A webhook to invoke with package.json, as package pages are
   visited by users.
 
 _bitHound's manifest:_

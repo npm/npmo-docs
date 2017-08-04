@@ -1,17 +1,17 @@
 # npm Enterprise with Nexus
 
-If you are using npm enterprise for publishing your private packages and wish to use Nexus repository to setup proxy for your private registry then follow the steps below.
+If you are using npm Enterprise for publishing your private packages and wish to use a Nexus repository to set up proxy for your private registry then follow the steps below:
 
 
 * Open *http://your-host:8081/* in your browser.
-* Sign in with admin credentials (You can create your own user and login with those credentials)
+* Sign in with admin credentials (You can create your own user and login with those credentials).
 
     ```User Name: admin
     Password: admin123```
 
-* Click on Settings Icon from the top left menu.
+* Click on the Settings icon from the top left menu.
 * Select *Repository->Repositories* from the left panel options.
-* Click on `Create repository` button.
+* Click on the `Create repository` button.
 
 **Configuring Nexus as a npm repository.**
 
@@ -38,10 +38,10 @@ To get your **npm-proxy-repository-url** go to *Repository->Repositories*, look 
 
 Run `npm login npm login --registry=http://your-host:8081/repository/your-npm-proxy-name/`.
 
-It will prompt you for-
+It will prompt you for:
 
-* *User Name*: Enter the nexus repository username. (If you haven’t created any user then default is **‘admin’**).
-* *Password*: Enter the nexus repository password. (If you haven’t created any then default is **‘admin123’**).
+* *User Name*: Enter the Nexus repository username. (If you haven’t created any user then default is **‘admin’**).
+* *Password*: Enter the Nexus repository password. (If you haven’t created any then default is **‘admin123’**).
 * *Email*: Enter your email.
 
-Now try installing your private packages from nexus repository.
+Now try installing your private packages from your Nexus repository.

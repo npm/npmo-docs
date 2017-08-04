@@ -1,6 +1,6 @@
 # Google OAuth2 Integration
 
-npm Enterprise allows you to log in to your private registry and website using your Google account. Follow these steps to set it up.
+npm Enterprise allows you to log in to your private registry and website using your Google account. Follow these steps to set it up:
 
 ## Server Configuration
 
@@ -10,7 +10,7 @@ There are two basic steps to server-side configuration: creating an oauth client
 
 These steps are based on [Google's documentation](https://developers.google.com/identity/protocols/OAuth2WebServer).
 
-First log in to the Google Developers API console at https://console.developers.google.com/apis/credentials
+First, log in to the Google Developers API console at https://console.developers.google.com/apis/credentials.
 
 Click the **Create credentials** button and choose **OAuth client ID**.
 
@@ -41,7 +41,7 @@ Under **Authentication**, select **OAuth2** and enter the following values:
 | Email Key          | ```email``` |
 | User Key           | ```name``` |
 
-Click **Save** to save these settings and then **Restart now** (when prompted) to restart the appliance and apply these settings.
+Click **Save** to save these settings and then **Restart now** 	to restart the appliance and apply these settings.
 
 That's all the server-side configuration you need!
 

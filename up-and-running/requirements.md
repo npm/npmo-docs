@@ -10,7 +10,7 @@ To install the latest version of npm Enterprise, you need a server fulfilling th
     - Red Hat Enterprise Linux (RHEL) 7.x
     - Debian 7.7
 - 4 or more CPUs/cores
-- At least 8 GB of memory/RAM
+- At least 16 GB of memory/RAM
 - At least 25 GB of disk space (see [note on disk space](#note-on-disk-space) below)
 - Ports opened for inbound TCP traffic:
     - 8800 (admin console)
@@ -68,7 +68,7 @@ In addition to this list, you should make sure your host has access to the `yum`
 
 ## Note on Supported Platforms
 
-We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but, at this time, no other systems are officially supported.
+We have tested extensively on the operating systems listed above. It may be possible to run npm Enterprise on other systems, but none are officially supported at this time.
 
 We do our best to support as many systems as possible. If you have special requirements or feedback for other platforms, please reach out to us at support@npmjs.com. We'd love to work with you.
 

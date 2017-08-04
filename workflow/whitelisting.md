@@ -4,7 +4,7 @@ The default policy for mirroring is the whitelist policy. A whitelist provides a
 
 The default location for the whitelist is `/usr/local/lib/npme/data/whitelist`.
 
-### Whitelisting from the server
+### Whitelisting from the Server
 
 You can configure what packages should be copied from the public registry to npm Enterprise on the server. Add packages to your whitelist by running this command on the server:
 

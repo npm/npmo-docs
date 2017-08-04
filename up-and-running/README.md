@@ -2,14 +2,14 @@
 
 In order to get up and running, you'll need to accomplish 5 things:
 
-- provision a server running Ubuntu, CentOS, RHEL, or Debian.
-- install [Node.js], ideally using a [NodeSource] dist.
-- install [npm]
-- install [npm Enterprise]
-- ensure ports `8800`, `8080`, `8081` accessible on your server.
+- Provision a server running Ubuntu, CentOS, RHEL, or Debian.
+- Install [Node.js], ideally using a [NodeSource] dist.
+- Install [npm].
+- Install [npm Enterprise].
+- Ensure ports `8800`, `8080`, `8081` accessible on your server.
 
 If you feel comfortable with those steps, feel free to jump in on your own.
-Otherwise, we have platform specific tutorials to help get you going.
+Otherwise, we have platform specific tutorials to help get you going:
 
 ## Platform Specific Tutorials
 
@@ -23,7 +23,7 @@ We currently provide platform specific tutorials for:
   - [Vagrant]
   - [Other Linux Platforms]
 
-Don't see your favorite? Request a tutorial by messaging [support@npmjs.com]
+Don't see your favorite? Request a tutorial by messaging [support@npmjs.com].
 
 [Node.js]: http://www.nodejs.org
 [npm]: /cli/installation.html

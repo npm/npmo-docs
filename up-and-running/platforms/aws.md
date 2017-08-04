@@ -1,8 +1,8 @@
 # Running npm Enterprise in AWS
 
-Using our AMI, there is nothing to install. Just launch an instance, configure it using the npm Enterprise admin web UI, and you’re done: it’s a true point-and-click solution for sharing and managing private JavaScript packages within your company.
+Using our AMI, there is nothing to install. Just launch an instance, configure it using the npm Enterprise admin web UI, and you’re done. It’s a true point-and-click solution for sharing and managing private JavaScript packages within your company.
 
-Let’s take a quick look at the details.
+Let’s take a quick look at the details:
 
 ## 1. Find the AMI in your preferred AWS region
 
@@ -28,10 +28,10 @@ If you don’t see your preferred region in the list above, [contact our support
 
 When you launch an instance of the AMI, you’ll need to:
 
-* Choose an instance type: use `m3.large` or better
-* Enter a storage size: must be at least 16 GB; we recommend 75-150 GB for typical installs
-* Select or create a security group: open ports `22` (ssh), `8080` (registry), `8081` (website), and `8800` (npm Enterprise admin UI)
-* Select or create a `.pem` key pair: this allows you to `ssh` into your server instance
+* Choose an instance type: use `m3.large` or better.
+* Enter a storage size: must be at least 16 GB; we recommend 75-150 GB for typical installs.
+* Select or create a security group: open ports `22` (ssh), `8080` (registry), `8081` (website), and `8800` (npm Enterprise admin UI).
+* Select or create a `.pem` key pair: this allows you to `ssh` into your server instance.
 
 It’s not necessary, but if you’d prefer to attach an EBS volume for registry data that is separate from the root volume, you can. However, the root EBS volume cannot be smaller than 16 GB.
 

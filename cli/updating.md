@@ -1,7 +1,7 @@
 # Updating the npm CLI
 
 The npm CLI client ships with Node.js, but updates more often.
-Therefore, it is super important to update your npm regularly.
+Therefore, it is very important to update your npm regularly.
 
 You can update npm by typing:
 ```

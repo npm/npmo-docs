@@ -13,7 +13,7 @@ worker_processes 1;
 pid /var/run/nginx.pid;
 
 events {
-    # After increasing this value You probably should increase limit
+    # After increasing this value you should increase the limit
     # of file descriptors (for example in start_precmd in startup script)
     worker_connections  1024;
 }
