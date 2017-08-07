@@ -1,94 +1,267 @@
-# Load balancing with Varnish
+# Load balancing with NGiNX & Varnish
 
-If you are using npm Enterprise and want to apply Varnish as a solution for load balancing, follow the steps below.
+If you are using npm Enterprise and want to apply Varnish as a solution for load balancing then follow the steps below.
 
-* Install and configure nginx.
+## Preferred Topology
 
-    * [Configure nginx](https://gist.github.com/bcoe/0f2ca5e644d464f40f9937c9787a244c)
-    * [Increase limits](https://www.masv.io/boost-nginx-connection-limits/)
+The recommended topology is to provide a dedicated host for NGiNX and Varnish to run on. In environments where a secondary instance is warranted to support the load, running NGiNX and Varnish on the primary will only introduce competition for resources and could destabilize your environment.
 
-* [Install and configure varnish.](https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation)
+----
+**IMPORTANT** 
 
-Open `*.vcl` file (by default it is `default.vcl`).
+The configuration files provided assume that NGiNX and Varnish are each running on the same dedicated host, separate from the hosts for the primary and secondary npmE instances.
 
-Varnish has a concept of "backend" servers. A backend server is the server providing the content that Varnish will accelerate.
+----
 
-Somewhere in the top there will be a section that looks a bit like this:
+## Install and Configure NGiNX
 
+For directions on how to install NGiNX, see their tutorial [here](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/).
+
+### Edit the NGiNX Configuration 
+
+Change the NGiNX configuration to match the configuration specified below using the command:
+
+```bash
+sudo nano /etc/nginx/nginx.conf
 ```
-backend default {
-    .host = "127.0.0.1”;
-    .port = "8080”;
- }
- ```
 
-This defines a backend in Varnish called `default`. When Varnish serves content from this backend, it will connect to port 8080 on `127.0.0.1`.
-
-Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.
-
-Let's say we have default backend defined as registry:
-
+** nginx.conf contents **
 ```
-backend registry {
-  .host = "127.0.0.1";
+# -----------------------------------------------------------------------------
+# 1. replace `your-domain.com` with your public-facing domain
+# 2. replace `1.1.1.1` with your primary server's IP
+# 3. replace worker_processes with 1 if host only has 1 core
+# 4. add `fs.file-max = 4096` to `/etc/sysctl.conf`
+# 5. copy your SSL pem file to `/etc/nginx/wildcard.pem`
+# -----------------------------------------------------------------------------
+
+user root;
+worker_processes 2;
+pid /var/run/nginx.pid;
+worker_rlimit_nofile 30000;
+
+events {
+    worker_connections  4096;
+}
+
+http {
+    upstream website {
+      # primary server website.
+      server 1.1.1.1:8081;
+    }
+
+    upstream registry {
+        server 127.0.0.1:6081;
+    }
+
+    client_max_body_size  200M;
+    keepalive_timeout     65;
+
+    sendfile      on;
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    access_log    /var/log/nginx/access.log  main;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    # HTTPS - npmE website
+    server {
+        listen       443;
+        server_name  your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://website;
+              proxy_pass_request_headers on;
+        }
+    }
+
+    # HTTPS - npmE Registry
+    server {
+        listen       443;
+        server_name  registry.your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://registry;
+            proxy_pass_request_headers on;
+        }
+    }
+
+    # npm Enterprise on HTTPS.
+    server {
+        listen       4443;
+        server_name  npm.your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://registry;
+            proxy_pass_request_headers on;
+        }
+    }
+
+    # HTTP -
+    server {
+        listen        80;
+        server_name   npm.your-domain.com;
+        rewrite       ^ https://$server_name$request_uri? permanent;
+    }
+}
+```
+
+### Copy SSL Certificate
+
+ * copy your SSL `.pem` file` to `/etc/nginx/wildcard.pem`
+ * reload the NGiNX configuration with `sudo nginx -s reload`
+
+## Increase File Handles
+
+Edit your system control configuration with the following command and add the line shown:
+
+```bash
+sudo nano /etc/sysctl.conf
+```
+
+** add line: **
+```
+fs.file-max = 4096
+```
+
+## Install and Configure Varnish
+
+For directions on how to install Varnish, see their documentation [here](https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation).
+
+### Edit the Varnish Configuration 
+
+Change the Varnish configuration to match the configuration specified below using the command:
+
+```bash
+sudo nano /etc/varnish/default.vcl
+```
+
+** default.vcl contents **
+```
+# -----------------------------------------------------------------------------
+# 1. replace `1.1.1.1` with your primary server's IP
+# 2. replace `2.2.2.2` with your secondary server's IP
+# 3. duplicate `replica1` block for each secondary server
+# 4. add additional replicas in `vcl_init` via `pkgread.add_backend()`
+# -----------------------------------------------------------------------------
+
+vcl 4.0;
+import directors;
+backend primary {
+  .host = "1.1.1.1";
   .port = "8080";
+  .probe = {
+    .url = "/";
+    .timeout = 2s;
+    .interval = 30s;
+    .window = 5;
+    .threshold = 3;
+  }
 }
-```
 
-This will point to your npm Enterprise registry.
-
-Now we want to configure another server as replica of our primary server and use it for load balancing:
-
-```
-backend replica {
-  .host = “Enter your host";
+backend replica1 {
+  .host = "2.2.2.2";
   .port = "8080";
+  .probe = {
+    .url = "/";
+    .timeout = 2s;
+    .interval = 30s;
+    .window = 5;
+    .threshold = 3;
+  }
 }
-```
 
-Add another backend called public:
-
-```
-backend public {
-  .host = "127.0.0.1";
-  .port = "8085";
-}
-```
-
-Now group the above defined backends into a Director (group) called `pkgread`:
-
-```
 sub vcl_init {
   new pkgread = directors.round_robin();
-  pkgread.add_backend(registry);
-  pkgread.add_backend(replica);
+  pkgread.add_backend(primary);
+  pkgread.add_backend(replica1);
 }
-```
 
-Now send all the traffic to the `pkgread` Director.
+sub vcl_backend_response {
+  unset beresp.http.Etag;
+  if (bereq.url ~ "@" || bereq.url ~ "/-/whoami" || beresp.status >= 300 || bereq.method != "GET") {
+    # DON'T CACHE SCOPED MODULES.
+    set beresp.ttl = 0s;
+  } else if (bereq.url ~ "\.tgz$") {
+    # CACHE TARBALLS FOR A LONG TIME.
+    set beresp.ttl = 21600s;
+  } else if (bereq.url ~ "^/[^/]+$") {
+    # DON'T CACHE JSON FOR LONG.
+    set beresp.ttl = 300s;
+  } else {
+    # DON'T CACHE SPECIAL ROUTES
+    set beresp.ttl = 0s;
+  }
+}
 
-We can avoid specific package collisions here by redirecting traffic based on our requirements. For instance, here we are redirecting all scoped package installs to all the 3 backends that are available, but publish is redirected to `registry i.e (localhost:8080)`.
-Other than the scoped packages, all the other packages are installed from `public server i.e (localhost:8085)` and publishes are redirected to `registry i.e (localhost:8080)`:
+sub vcl_hash {
+  hash_data(req.url);
+  return (lookup);
+}
 
-
-```
 sub vcl_recv {
   set req.http.X-Authorization = req.http.Authorization;
   unset req.http.Authorization;
   unset req.http.If-Modified-Since;
-if (req.url ~ "@") {
-    if (req.method == "GET") {
-     set req.backend_hint = pkgread.backend();
-    }
-    else {
-     set req.backend_hint = registry;
-    }
+  # we can correct for specific package collisions here.
+  if (req.method == "GET") {
+    set req.backend_hint = pkgread.backend();
+  } else {
+    set req.backend_hint = primary;
   }
-  else if (req.method == "GET") {
-    set req.backend_hint = public;
-  }
-  else {
-    set req.backend_hint = registry;
+}
+
+sub vcl_backend_response {
+    if (beresp.status >= 300 && bereq.retries == 0 && bereq.method == "GET") {
+        return(retry);
+    }
+}
+
+sub vcl_backend_fetch {
+  set bereq.http.Authorization = bereq.http.X-Authorization;
+  if (bereq.retries > 0) {
+      set bereq.backend = primary;
   }
 }
 ```
+
+### Restart Varnish
+
+**On Debian systems** 
+
+```shell
+sudo service varnish restart
+```
+
+**On CentOS/RHEL systems**
+```shell
+sudo systemctl restart varnish
+```
+
+
