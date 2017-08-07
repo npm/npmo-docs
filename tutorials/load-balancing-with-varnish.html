@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Load balancing with Varnish · npm Enterprise Docs</title>
+        <title>Load balancing with NGiNX Varnish · npm Enterprise Docs</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -593,7 +593,7 @@
                 <a href="load-balancing-with-varnish.html">
             
                     
-                    Load balancing with Varnish
+                    Load balancing with NGiNX Varnish
             
                 </a>
             
@@ -759,7 +759,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Load balancing with Varnish</a>
+        <a href=".." >Load balancing with NGiNX Varnish</a>
     </h1>
 </div>
 
@@ -774,53 +774,204 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="load-balancing-with-varnish"><a name="load-balancing-with-varnish" class="plugin-anchor" href="#load-balancing-with-varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Load balancing with Varnish</h1><p>If you are using npm Enterprise and want to apply Varnish as a solution for load balancing, follow the steps below.</p><ul><li><p>Install and configure nginx.</p><ul><li><a href="https://gist.github.com/bcoe/0f2ca5e644d464f40f9937c9787a244c" target="_blank">Configure nginx</a>
+                                <h1 id="load-balancing-with-nginx--varnish"><a name="load-balancing-with-nginx--varnish" class="plugin-anchor" href="#load-balancing-with-nginx--varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Load balancing with NGiNX &amp; Varnish</h1><p>If you are using npm Enterprise and want to apply Varnish as a solution for load balancing then follow the steps below.</p><h2 id="preferred-topology"><a name="preferred-topology" class="plugin-anchor" href="#preferred-topology"><i class="fa fa-link" aria-hidden="true"></i></a>Preferred Topology</h2><p>The recommended topology is to provide a dedicated host for NGiNX and Varnish to run on. In environments where a secondary instance is warranted to support the load, running NGiNX and Varnish on the primary will only introduce competition for resources and could destabilize your environment.</p><hr><p><strong>IMPORTANT</strong></p><p>The configuration files provided assume that NGiNX and Varnish are each running on the same dedicated host, separate from the hosts for the primary and secondary npmE instances.</p><hr><h2 id="install-and-configure-nginx"><a name="install-and-configure-nginx" class="plugin-anchor" href="#install-and-configure-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>Install and Configure NGiNX</h2><p>For directions on how to install NGiNX, see their tutorial <a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/" target="_blank">here</a>.</p><h3 id="edit-the-nginx-configuration"><a name="edit-the-nginx-configuration" class="plugin-anchor" href="#edit-the-nginx-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Edit the NGiNX Configuration</h3><p>Change the NGiNX configuration to match the configuration specified below using the command:</p><pre><code class="lang-bash">sudo nano /etc/nginx/nginx.conf</code></pre>
+<p><strong> nginx.conf contents </strong></p><pre><code># -----------------------------------------------------------------------------
+# 1. replace `your-domain.com` with your public-facing domain
+# 2. replace `1.1.1.1` with your primary server&apos;s IP
+# 3. replace worker_processes with 1 if host only has 1 core
+# 4. add `fs.file-max = 4096` to `/etc/sysctl.conf`
+# 5. copy your SSL pem file to `/etc/nginx/wildcard.pem`
+# -----------------------------------------------------------------------------
+
+user root;
+worker_processes 2;
+pid /var/run/nginx.pid;
+worker_rlimit_nofile 30000;
+
+events {
+    worker_connections  4096;
+}
+
+http {
+    upstream website {
+      # primary server website.
+      server 1.1.1.1:8081;
+    }
+
+    upstream registry {
+        server 127.0.0.1:6081;
+    }
+
+    client_max_body_size  200M;
+    keepalive_timeout     65;
+
+    sendfile      on;
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    access_log    /var/log/nginx/access.log  main;
+
+    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;
+                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+
+    # HTTPS - npmE website
+    server {
+        listen       443;
+        server_name  your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           &quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;;
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://website;
+              proxy_pass_request_headers on;
+        }
+    }
+
+    # HTTPS - npmE Registry
+    server {
+        listen       443;
+        server_name  registry.your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           &quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;;
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://registry;
+            proxy_pass_request_headers on;
+        }
+    }
+
+    # npm Enterprise on HTTPS.
+    server {
+        listen       4443;
+        server_name  npm.your-domain.com;
+
+        ssl                   on;
+        ssl_certificate       /etc/nginx/wildcard.pem;
+        ssl_certificate_key   /etc/nginx/wildcard.pem;
+        ssl_session_timeout   5m;
+        ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers           &quot;EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS&quot;;
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            proxy_pass       http://registry;
+            proxy_pass_request_headers on;
+        }
+    }
+
+    # HTTP -
+    server {
+        listen        80;
+        server_name   npm.your-domain.com;
+        rewrite       ^ https://$server_name$request_uri? permanent;
+    }
+}</code></pre>
+<h3 id="copy-ssl-certificate"><a name="copy-ssl-certificate" class="plugin-anchor" href="#copy-ssl-certificate"><i class="fa fa-link" aria-hidden="true"></i></a>Copy SSL Certificate</h3><ul><li>copy your SSL <code>.pem</code> file<code>to</code>/etc/nginx/wildcard.pem`
 </li>
-<li><a href="https://www.masv.io/boost-nginx-connection-limits/" target="_blank">Increase limits</a>
+<li>reload the NGiNX configuration with <code>sudo nginx -s reload</code>
 </li></ul>
-</li>
-<li><p><a href="https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation" target="_blank">Install and configure varnish.</a></p></li></ul>
-<p>Open <code>*.vcl</code> file (by default it is <code>default.vcl</code>).</p><p>Varnish has a concept of &quot;backend&quot; servers. A backend server is the server providing the content that Varnish will accelerate.</p><p>Somewhere in the top there will be a section that looks a bit like this:</p><pre><code>backend default {
-    .host = &quot;127.0.0.1&#x201D;;
-    .port = &quot;8080&#x201D;;
- }</code></pre>
-<p>This defines a backend in Varnish called <code>default</code>. When Varnish serves content from this backend, it will connect to port 8080 on <code>127.0.0.1</code>.</p><p>Varnish can have several backends defined. You can even join several backends together into clusters of backends for load balancing purposes.</p><p>Let&apos;s say we have default backend defined as registry:</p><pre><code>backend registry {
-  .host = &quot;127.0.0.1&quot;;
+<h2 id="increase-file-handles"><a name="increase-file-handles" class="plugin-anchor" href="#increase-file-handles"><i class="fa fa-link" aria-hidden="true"></i></a>Increase File Handles</h2><p>Edit your system control configuration with the following command and add the line shown:</p><pre><code class="lang-bash">sudo nano /etc/sysctl.conf</code></pre>
+<p><strong> add line: </strong></p><pre><code>fs.file-max = 4096</code></pre>
+<h2 id="install-and-configure-varnish"><a name="install-and-configure-varnish" class="plugin-anchor" href="#install-and-configure-varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Install and Configure Varnish</h2><p>For directions on how to install Varnish, see their documentation <a href="https://varnish-cache.org/docs/trunk/installation/install.html?highlight=installation" target="_blank">here</a>.</p><h3 id="edit-the-varnish-configuration"><a name="edit-the-varnish-configuration" class="plugin-anchor" href="#edit-the-varnish-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Edit the Varnish Configuration</h3><p>Change the Varnish configuration to match the configuration specified below using the command:</p><pre><code class="lang-bash">sudo nano /etc/varnish/default.vcl</code></pre>
+<p><strong> default.vcl contents </strong></p><pre><code># -----------------------------------------------------------------------------
+# 1. replace `1.1.1.1` with your primary server&apos;s IP
+# 2. replace `2.2.2.2` with your secondary server&apos;s IP
+# 3. duplicate `replica1` block for each secondary server
+# 4. add additional replicas in `vcl_init` via `pkgread.add_backend()`
+# -----------------------------------------------------------------------------
+
+vcl 4.0;
+import directors;
+backend primary {
+  .host = &quot;1.1.1.1&quot;;
   .port = &quot;8080&quot;;
-}</code></pre>
-<p>This will point to your npm Enterprise registry.</p><p>Now we want to configure another server as replica of our primary server and use it for load balancing:</p><pre><code>backend replica {
-  .host = &#x201C;Enter your host&quot;;
+  .probe = {
+    .url = &quot;/&quot;;
+    .timeout = 2s;
+    .interval = 30s;
+    .window = 5;
+    .threshold = 3;
+  }
+}
+
+backend replica1 {
+  .host = &quot;2.2.2.2&quot;;
   .port = &quot;8080&quot;;
-}</code></pre>
-<p>Add another backend called public:</p><pre><code>backend public {
-  .host = &quot;127.0.0.1&quot;;
-  .port = &quot;8085&quot;;
-}</code></pre>
-<p>Now group the above defined backends into a Director (group) called <code>pkgread</code>:</p><pre><code>sub vcl_init {
+  .probe = {
+    .url = &quot;/&quot;;
+    .timeout = 2s;
+    .interval = 30s;
+    .window = 5;
+    .threshold = 3;
+  }
+}
+
+sub vcl_init {
   new pkgread = directors.round_robin();
-  pkgread.add_backend(registry);
-  pkgread.add_backend(replica);
-}</code></pre>
-<p>Now send all the traffic to the <code>pkgread</code> Director.</p><p>We can avoid specific package collisions here by redirecting traffic based on our requirements. For instance, here we are redirecting all scoped package installs to all the 3 backends that are available, but publish is redirected to <code>registry i.e (localhost:8080)</code>.
-Other than the scoped packages, all the other packages are installed from <code>public server i.e (localhost:8085)</code> and publishes are redirected to <code>registry i.e (localhost:8080)</code>:</p><pre><code>sub vcl_recv {
+  pkgread.add_backend(primary);
+  pkgread.add_backend(replica1);
+}
+
+sub vcl_backend_response {
+  unset beresp.http.Etag;
+  if (bereq.url ~ &quot;@&quot; || bereq.url ~ &quot;/-/whoami&quot; || beresp.status &gt;= 300 || bereq.method != &quot;GET&quot;) {
+    # DON&apos;T CACHE SCOPED MODULES.
+    set beresp.ttl = 0s;
+  } else if (bereq.url ~ &quot;\.tgz$&quot;) {
+    # CACHE TARBALLS FOR A LONG TIME.
+    set beresp.ttl = 21600s;
+  } else if (bereq.url ~ &quot;^/[^/]+$&quot;) {
+    # DON&apos;T CACHE JSON FOR LONG.
+    set beresp.ttl = 300s;
+  } else {
+    # DON&apos;T CACHE SPECIAL ROUTES
+    set beresp.ttl = 0s;
+  }
+}
+
+sub vcl_hash {
+  hash_data(req.url);
+  return (lookup);
+}
+
+sub vcl_recv {
   set req.http.X-Authorization = req.http.Authorization;
   unset req.http.Authorization;
   unset req.http.If-Modified-Since;
-if (req.url ~ &quot;@&quot;) {
-    if (req.method == &quot;GET&quot;) {
-     set req.backend_hint = pkgread.backend();
-    }
-    else {
-     set req.backend_hint = registry;
-    }
+  # we can correct for specific package collisions here.
+  if (req.method == &quot;GET&quot;) {
+    set req.backend_hint = pkgread.backend();
+  } else {
+    set req.backend_hint = primary;
   }
-  else if (req.method == &quot;GET&quot;) {
-    set req.backend_hint = public;
-  }
-  else {
-    set req.backend_hint = registry;
+}
+
+sub vcl_backend_response {
+    if (beresp.status &gt;= 300 &amp;&amp; bereq.retries == 0 &amp;&amp; bereq.method == &quot;GET&quot;) {
+        return(retry);
+    }
+}
+
+sub vcl_backend_fetch {
+  set bereq.http.Authorization = bereq.http.X-Authorization;
+  if (bereq.retries &gt; 0) {
+      set bereq.backend = primary;
   }
 }</code></pre>
+<h3 id="restart-varnish"><a name="restart-varnish" class="plugin-anchor" href="#restart-varnish"><i class="fa fa-link" aria-hidden="true"></i></a>Restart Varnish</h3><p><strong>On Debian systems</strong></p><pre><code class="lang-shell">sudo service varnish restart</code></pre>
+<p><strong>On CentOS/RHEL systems</strong></p><pre><code class="lang-shell">sudo systemctl restart varnish</code></pre>
 
                                 
                                 </section>
@@ -864,7 +1015,7 @@ if (req.url ~ &quot;@&quot;) {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Load balancing with Varnish","level":"1.5.5","depth":2,"next":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"path":"tutorials/npm-enterprise-with-nexus.md","ref":"tutorials/npm-enterprise-with-nexus.md","articles":[]},"previous":{"title":"Backups and HA","level":"1.5.4","depth":2,"path":"tutorials/backups-and-ha.md","ref":"tutorials/backups-and-ha.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/load-balancing-with-varnish.md","mtime":"2017-07-19T21:24:37.989Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-07-19T21:26:35.461Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Load balancing with NGiNX Varnish","level":"1.5.5","depth":2,"next":{"title":"npm Enterprise with Nexus","level":"1.5.6","depth":2,"path":"tutorials/npm-enterprise-with-nexus.md","ref":"tutorials/npm-enterprise-with-nexus.md","articles":[]},"previous":{"title":"Backups and HA","level":"1.5.4","depth":2,"path":"tutorials/backups-and-ha.md","ref":"tutorials/backups-and-ha.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"tutorials/load-balancing-with-varnish.md","mtime":"2017-08-07T15:51:37.015Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-08-07T15:53:42.786Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
