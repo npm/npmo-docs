@@ -6,7 +6,7 @@ To install the latest version of npm Enterprise, you need a server fulfilling th
 - Kernel version 3.10 or higher
 - One of the following Linux flavors (see [note on supported platforms](#note-on-supported-platforms) below):
     - Ubuntu 14.04 / 15.10
-    - CentOS 7.x
+    - CentOS 6.x
     - Red Hat Enterprise Linux (RHEL) 7.x
     - Debian 7.7
 - 4 or more CPUs/cores

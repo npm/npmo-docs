@@ -3,7 +3,7 @@
 npm Enterprise works on most modern versions of Linux:
 
 - Ubuntu 14.04 / 15.10
-- CentOS 7.x
+- CentOS 6.x
 - Red Hat Enterprise Linux (RHEL) 7.x
 - Debian 7.7
 
