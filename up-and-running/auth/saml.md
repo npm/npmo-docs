@@ -14,7 +14,8 @@ Under **Authentication**, select **SAML** and enter the following values:
 | Identity Provider Single Logout URL | Enter SLO endpoint URL from your SAML provider |
 | Identity Provider Certificate | Copy your certificate from SAML provider|
 
-Click **Save** to save these settings and then **Restart now** to restart the appliance and apply these settings.
+
+Click **Save** to save these settings and then **Restart now** (when prompted) to restart the appliance and apply these settings.
 
 That's all the server-side configuration you need!
 ## Client Login
