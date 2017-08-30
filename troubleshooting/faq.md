@@ -13,6 +13,8 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [What should I do with git dependencies on closed networks?](#what-should-i-do-with-git-dependencies-on-closed-networks)
     - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
+    - [What would happen to your data if you stop using npmE subscription?](#what-would-happen-to-your-data-if-you-stop-using-npme-subscription)
+
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
     - [Does using a scope make packages private automatically?](#does-using-a-scope-make-packages-private-automatically)
@@ -273,6 +275,17 @@ The above `cafile` setting will override the default "real world" certificate au
 
 If you need to support both public https npm registries as well as your own, you could use [curl's Mozilla based CA bundle](https://curl.haxx.se/docs/caextract.html) and append your CA cert to the cacert.pem file.
 
+## What would happen to your data if you stop using npmE subscription?
+
+The private data/modules are stored on `storage location` which you have configured for npmE storage. You can find your stored packages on `Package storage path on host` under Settings tab.
+
+npmE customers have full ownership of all their data and total control over where all of it is stored. The modules are stored in tarballs which are totally transparent and can be unpacked manually if you needed to do so. 
+
+If you stop using npmE subscription you can not use higher level functions of the system such as installations, publishing, access management, replication and all functionality that comes with npmE server.
+
+
+
+
 ## What's the difference between a scoped package and an unscoped package?
 
 A scoped package has a scope (or namespace), which begins with an `@` symbol and is followed by a `/`, in the package name, e.g. `@scope/foo`. An unscoped package has no scope in the package name, e.g. `foo`. The scope is a permanent part of the package's name and identity, used in `package.json` and also in `require()` or `import` statements in code.
@@ -309,3 +322,4 @@ no limit on the number of scopes that you can use in npm Enterprise.
 ## If I publish a package to my npm Enterprise registry, will it be published privately on the public registry too?
 
 No. Packages published to npm Enterprise are not published to an upstream registry, particularly not the public registry. One of the main reasons to use npm Enterprise is that you maintain complete control over the packages that you publish - they belong to you and they live _only_ on your server(s). Access to packages published to npm Enterprise is defined by your configured authentication/authorization provider, which is controlled by you or your organization. The access control used by the public registry is different and completely separate.
+    
