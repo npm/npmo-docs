@@ -774,19 +774,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="running-npm-enterprise-in-aws"><a name="running-npm-enterprise-in-aws" class="plugin-anchor" href="#running-npm-enterprise-in-aws"><i class="fa fa-link" aria-hidden="true"></i></a>Running npm Enterprise in AWS</h1><p>Using our AMI, there is nothing to install. Just launch an instance, configure it using the npm Enterprise admin web UI, and you&#x2019;re done. It&#x2019;s a true point-and-click solution for sharing and managing private JavaScript packages within your company.</p><p>Let&#x2019;s take a quick look at the details:</p><h2 id="1-find-the-ami-in-your-preferred-aws-region"><a name="1-find-the-ami-in-your-preferred-aws-region" class="plugin-anchor" href="#1-find-the-ami-in-your-preferred-aws-region"><i class="fa fa-link" aria-hidden="true"></i></a>1. Find the AMI in your preferred AWS region</h2><p>We have AMIs for several AWS regions. When you launch a new instance in the AWS EC2 Console, find the right one by searching for the relevant AMI ID under the <em>Community AMIs</em> tab. Note that new AMI versions are published about every month and include the date of publication in the AMI name.</p><p>Here&#x2019;s a list of the AMI IDs by region:</p><ul><li><code>ap-northeast-2</code> (Seoul): <code>ami-2d27f043</code>
+                                <h1 id="running-npm-enterprise-in-aws"><a name="running-npm-enterprise-in-aws" class="plugin-anchor" href="#running-npm-enterprise-in-aws"><i class="fa fa-link" aria-hidden="true"></i></a>Running npm Enterprise in AWS</h1><p>Using our AMI, there is nothing to install. Just launch an instance, configure it using the npm Enterprise admin web UI, and you&#x2019;re done. It&#x2019;s a true point-and-click solution for sharing and managing private JavaScript packages within your company.</p><p>Let&#x2019;s take a quick look at the details:</p><h2 id="1-find-the-ami-in-your-preferred-aws-region"><a name="1-find-the-ami-in-your-preferred-aws-region" class="plugin-anchor" href="#1-find-the-ami-in-your-preferred-aws-region"><i class="fa fa-link" aria-hidden="true"></i></a>1. Find the AMI in your preferred AWS region</h2><p>We have AMIs for the majority of AWS regions. When you launch a new instance in the AWS EC2 Console, find the right one by searching for the relevant AMI ID under the <em>Community AMIs</em> tab. Note that new AMI versions are published about every month and include the date of publication in the AMI name.</p><p>Here&#x2019;s a list of the AMI IDs by region:</p><ul><li><code>ap-northeast-1</code> (Tokyo) <code>ami-51a93e37</code>
 </li>
-<li><code>ap-southeast-2</code> (Sydney): <code>ami-316c5452</code>
+<li><code>ap-northeast-2</code> (Seoul) <code>ami-fe78d990</code>
 </li>
-<li><code>eu-central-1</code> (Frankfurt): <code>ami-81ec2aee</code>
+<li><code>ap-south-1</code> (Mumbai) <code>ami-10eda77f</code>
 </li>
-<li><code>eu-west-1</code> (Ireland): <code>ami-cddb80be</code>
+<li><code>ap-southeast-1</code> (Singapore) <code>ami-1b2d4667</code>
 </li>
-<li><code>us-east-1</code> (N. Virginia): <code>ami-f1f3f4e6</code>
+<li><code>ap-southeast-2</code> (Sydney) <code>ami-9a7282f8</code>
 </li>
-<li><code>us-west-1</code> (N. California): <code>ami-b1a5f2d1</code>
+<li><code>ca-central-1</code> (Canada) <code>ami-45308a21</code>
 </li>
-<li><code>us-west-2</code> (Oregon): <code>ami-6a39910a</code>
+<li><code>eu-central-1</code> (Frankfurt) <code>ami-5727b038</code>
+</li>
+<li><code>eu-west-1</code> (Ireland) <code>ami-ae6ce2d7</code>
+</li>
+<li><code>eu-west-2</code> (London) <code>ami-825f47e6</code>
+</li>
+<li><code>eu-west-3</code> (Paris) <code>ami-a22493df</code>
+</li>
+<li><code>sa-east-1</code> (Sao Paulo) <code>ami-f76c2c9b</code>
+</li>
+<li><code>us-east-1</code> (N. Virginia) <code>ami-5d8dce27</code>
+</li>
+<li><code>us-east-2</code> (Ohio) <code>ami-ae95bdcb</code>
+</li>
+<li><code>us-west-1</code> (N. California) <code>ami-0ce3e56c</code>
+</li>
+<li><code>us-west-2</code> (Oregon) <code>ami-5ef1693e</code>
 </li></ul>
 <p>Make sure the AMI comes from owner <code>666882590071</code>.</p><p>If you don&#x2019;t see your preferred region in the list above, <a href="https://www.npmjs.com/support" target="_blank">contact our support team</a>, and we&#x2019;ll get one created for you!</p><p><img alt="Search in Community AMIs" src="../../gitbook/images/ami-search.png"></p><h2 id="2-launch-it"><a name="2-launch-it" class="plugin-anchor" href="#2-launch-it"><i class="fa fa-link" aria-hidden="true"></i></a>2. Launch it</h2><p>When you launch an instance of the AMI, you&#x2019;ll need to:</p><ul><li>Choose an instance type: use <code>m3.large</code> or better.
 </li>
@@ -839,7 +855,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using AWS","level":"1.2.2.1","depth":3,"next":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},"previous":{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]},{"title":"AWS Cloud Formation Template","level":"1.2.2.5","depth":3,"path":"up-and-running/platforms/aws-cloud-formation-template.md","ref":"up-and-running/platforms/aws-cloud-formation-template.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/aws.md","mtime":"2017-08-17T21:40:42.547Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-08-17T21:44:42.436Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using AWS","level":"1.2.2.1","depth":3,"next":{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},"previous":{"title":"Platform Tutorials","level":"1.2.2","depth":2,"path":"up-and-running/platforms/README.md","ref":"up-and-running/platforms/README.md","articles":[{"title":"Using AWS","level":"1.2.2.1","depth":3,"path":"up-and-running/platforms/aws.md","ref":"up-and-running/platforms/aws.md","articles":[]},{"title":"Using Microsoft Azure","level":"1.2.2.2","depth":3,"path":"up-and-running/platforms/azure.md","ref":"up-and-running/platforms/azure.md","articles":[]},{"title":"Using Vagrant","level":"1.2.2.3","depth":3,"path":"up-and-running/platforms/vagrant.md","ref":"up-and-running/platforms/vagrant.md","articles":[]},{"title":"Other Platforms","level":"1.2.2.4","depth":3,"path":"up-and-running/platforms/other.md","ref":"up-and-running/platforms/other.md","articles":[]},{"title":"AWS Cloud Formation Template","level":"1.2.2.5","depth":3,"path":"up-and-running/platforms/aws-cloud-formation-template.md","ref":"up-and-running/platforms/aws-cloud-formation-template.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"npm Enterprise Docs","gitbook":"*"},"file":{"path":"up-and-running/platforms/aws.md","mtime":"2017-12-27T19:55:23.898Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-12-27T19:57:04.048Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
