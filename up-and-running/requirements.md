@@ -78,9 +78,9 @@ You can also check for system issues on the <a href="https://github.com/npm/npme
 
 The amount of disk space needed is directly proportional to the number and size of packages your registry will need to host.
 
-For example, the full public registry hosts at least 300,000 packages with an average of 6 versions each, and this requires at least a terabyte of storage. Smaller registries, however, can get away with just a few gigabytes.
+For example, the full public registry hosts at least 500,000 packages with an average of 6 versions each, and this requires at least 3.5 TB of storage. Smaller registries, however, can get away with just a few gigabytes.
 
-Therefore, a server with 75 - 150 GB is a good choice for most registries.
+Therefore, a server with a minimum of 150 GB is a good starting point. Installations that will host more internal packages or need to provide copies of more public packages should plan on provisioning much more disk space.
 
 Please reserve at least 10 GB for OS resources and npm Enterprise appliance containers.
 
