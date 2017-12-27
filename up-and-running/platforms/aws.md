@@ -6,17 +6,26 @@ Let’s take a quick look at the details:
 
 ## 1. Find the AMI in your preferred AWS region
 
-We have AMIs for several AWS regions. When you launch a new instance in the AWS EC2 Console, find the right one by searching for the relevant AMI ID under the _Community AMIs_ tab. Note that new AMI versions are published about every month and include the date of publication in the AMI name.
+We have AMIs for the majority of AWS regions. When you launch a new instance in the AWS EC2 Console, find the right one by searching for the relevant AMI ID under the _Community AMIs_ tab. Note that new AMI versions are published about every month and include the date of publication in the AMI name.
 
 Here’s a list of the AMI IDs by region:
 
-* `ap-northeast-2` (Seoul): `ami-2d27f043`
-* `ap-southeast-2` (Sydney): `ami-316c5452`
-* `eu-central-1` (Frankfurt): `ami-81ec2aee`
-* `eu-west-1` (Ireland): `ami-cddb80be`
-* `us-east-1` (N. Virginia): `ami-f1f3f4e6`
-* `us-west-1` (N. California): `ami-b1a5f2d1`
-* `us-west-2` (Oregon): `ami-6a39910a`
+* `ap-northeast-1` (Tokyo) `ami-51a93e37`
+* `ap-northeast-2` (Seoul) `ami-fe78d990`
+* `ap-south-1` (Mumbai) `ami-10eda77f`
+* `ap-southeast-1` (Singapore) `ami-1b2d4667`
+* `ap-southeast-2` (Sydney) `ami-9a7282f8`
+* `ca-central-1` (Canada) `ami-45308a21`
+* `eu-central-1` (Frankfurt) `ami-5727b038`
+* `eu-west-1` (Ireland) `ami-ae6ce2d7`
+* `eu-west-2` (London) `ami-825f47e6`
+* `eu-west-3` (Paris) `ami-a22493df`
+* `sa-east-1` (Sao Paulo) `ami-f76c2c9b`
+* `us-east-1` (N. Virginia) `ami-5d8dce27`
+* `us-east-2` (Ohio) `ami-ae95bdcb`
+* `us-west-1` (N. California) `ami-0ce3e56c`
+* `us-west-2` (Oregon) `ami-5ef1693e`
+
 
 Make sure the AMI comes from owner `666882590071`.
 
