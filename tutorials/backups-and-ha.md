@@ -6,7 +6,7 @@ To configure another instance as a replica, use the "Upstream registry" section 
 
 - Set the **Upstream URL** to the registry URL (port 8080) of the primary instance.
 - Set the **Upstream secret** to the **Secret used between services** of the primary instance.
-- Set the **Policy to apply during replication** to `mirror`.
+- Set the **Policy to apply during replication** to `mirror`. 
 - Optionally, set the **Publication Settings** to `Read Only` to prevent accidental publishes to the replica.
 
 If you make these configuration changes after an instance has already been running, you should do one of the following on your replica instance:
@@ -15,6 +15,8 @@ If you make these configuration changes after an instance has already been runni
 2. Stop the services/containers via admin console Dashboard, remove or truncate the `sequence` file in your replica instance (located in your configured "Miscellaneous data files" directory), and then start the services/containers.
 
 This will ensure that your replica has the full set of package changes from the instance it's following.
+
+_Note: Replicas must always be in **mirror** otherwise it will lead to the replicas being out of sync with the masters._
 
 In this manner, you could set up multiple replicas of a single instance or daisy chain one replica behind another for redundancy. We do not limit the number of npm Enterprise instances you can run or the number of packages each instance holds - our license is only based on how many users benefit from your instances.
 
@@ -33,3 +35,4 @@ Although it's not necessary, you may also wish to store manual snapshots for bac
     The registry maintains some small files and runtime data to keep track of things like replication status and whitelist configuration. This is the directory that holds those files.
 
 If all live replicas happen to fail, it is possible to recreate a warm instance by restoring snapshots of these directories after a new install. All other data can be rebuilt from the files in these key directories.
+
