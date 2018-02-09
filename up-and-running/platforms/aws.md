@@ -10,21 +10,21 @@ We have AMIs for the majority of AWS regions. When you launch a new instance in 
 
 Here’s a list of the AMI IDs by region:
 
-* `ap-northeast-1` (Tokyo) `ami-51a93e37`
-* `ap-northeast-2` (Seoul) `ami-fe78d990`
-* `ap-south-1` (Mumbai) `ami-10eda77f`
-* `ap-southeast-1` (Singapore) `ami-1b2d4667`
-* `ap-southeast-2` (Sydney) `ami-9a7282f8`
-* `ca-central-1` (Canada) `ami-45308a21`
-* `eu-central-1` (Frankfurt) `ami-5727b038`
-* `eu-west-1` (Ireland) `ami-ae6ce2d7`
-* `eu-west-2` (London) `ami-825f47e6`
-* `eu-west-3` (Paris) `ami-a22493df`
-* `sa-east-1` (Sao Paulo) `ami-f76c2c9b`
-* `us-east-1` (N. Virginia) `ami-5d8dce27`
-* `us-east-2` (Ohio) `ami-ae95bdcb`
-* `us-west-1` (N. California) `ami-0ce3e56c`
-* `us-west-2` (Oregon) `ami-5ef1693e`
+* `ap-northeast-1` (Tokyo) `ami-8f2050e9`
+* `ap-northeast-2` (Seoul) `ami-5f8e2c31`
+* `ap-south-1` (Mumbai) `ami-232d7f4c`
+* `ap-southeast-1` (Singapore) `ami-13aded6f`
+* `ap-southeast-2` (Sydney) `ami-248c7646`
+* `ca-central-1` (Canada) `ami-fd48cc99`
+* `eu-central-1` (Frankfurt) `ami-1c4f2873`
+* `eu-west-1` (Ireland) `ami-b199edc8`
+* `eu-west-2` (London) `ami-80f411e7`
+* `eu-west-3` (Paris) `ami-7a942207`
+* `sa-east-1` (Sao Paulo) `ami-078ac46b`
+* `us-east-1` (N. Virginia) `ami-520f1b28`
+* `us-east-2` (Ohio) `ami-c74074a2`
+* `us-west-2` (Oregon) `ami-3dcdc35d`
+* `us-west-2` (Oregon) `ami-d85ed8a0`
 
 
 Make sure the AMI comes from owner `666882590071`.
