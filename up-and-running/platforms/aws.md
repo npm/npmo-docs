@@ -23,7 +23,7 @@ Here’s a list of the AMI IDs by region:
 * `sa-east-1` (Sao Paulo) `ami-078ac46b`
 * `us-east-1` (N. Virginia) `ami-520f1b28`
 * `us-east-2` (Ohio) `ami-c74074a2`
-* `us-west-2` (Oregon) `ami-3dcdc35d`
+* `us-west-1` (N. California) `ami-3dcdc35d`
 * `us-west-2` (Oregon) `ami-d85ed8a0`
 
 
