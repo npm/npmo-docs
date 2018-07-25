@@ -43,3 +43,33 @@ header {
     background-color: rgb(40, 53, 70);
   }
 }
+
+.marketing {
+margin: 0px;
+margin-bottom: 16px;
+padding: 0.7em;
+font-size: 18px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+background: rgba(0, 0, 0, 0.02);
+border-radius: 0px 0px 2px 2px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+color: #666;
+text-decoration: none;
+text-align: center;
+}
+.marketing .inline-hed {
+font-weight: 600;
+}
+.marketing .inline-message {
+font-weight: 300;
+padding: 0em 0.5em;
+}
+
+.marketing a {
+font-weight: 400;
+text-decoration: none;
+color: #cb3837;
+white-space: nowrap;
+}
