@@ -14,6 +14,7 @@ Here are answers to some frequently asked questions. If you don't see your quest
     - [How do I update my npm Enterprise license?](#how-do-i-update-my-npm-enterprise-license)
     - [What should I do if ssl problem occurs with npme over https?](#what-should-i-do-if-ssl-problem-occurs-with-npme-over-https)
     - [What would happen to your data if you stop using npmE subscription?](#what-would-happen-to-your-data-if-you-stop-using-npme-subscription)
+    - [How to configure proxy in Docker service?](#how-to-configure-proxy-in-docker-service) 
 
 - Scopes and Packages
     - [What's the difference between a scoped package and an unscoped package?](#whats-the-difference-between-a-scoped-package-and-an-unscoped-package)
@@ -283,8 +284,73 @@ npmE customers have full ownership of all their data and total control over wher
 
 If you stop using npmE subscription you can not use higher level functions of the system such as installations, publishing, access management, replication and all functionality that comes with npmE server.
 
+## How to configure proxy in Docker service?
 
+In order for the system to work properly with your proxy, Docker has to be configured to use the proxy correctly. `HTTP_PROXY` and `HTTPS_PROXY` are standard Linux variables and they have to be set in order for the system to work correctly.
 
+To set these, you have two options:
+
+#### Option 1 - Change the /etc/sysconfig/docker
+
+```
+export HTTP_PROXY="http://proxy.company.com:proxyport"
+export HTTPS_PROXY="http://proxy.company.com:proxyport"
+sudo service docker restart
+```
+#### Option 2 - Set Environment Variables Via system.d
+
+```
+sudo mkdir /etc/systemd/system/docker.service.d
+```
+Create a file called `/etc/systemd/system/docker.service.d/http-proxy.conf` that adds the `HTTP_PROXY` environment variable:
+
+```
+[Service]
+Environment="HTTP_PROXY=http://proxy.company.com:proxyport"
+```
+If you are behind the `HTTPS` proxy server, create a file called `/etc/systemd/system/docker.service.d/https-proxy.conf` that adds the `HTTPS_PROXY` environment variable:
+
+```
+[Service]
+Environment="HTTPS_PROXY=http://proxy.company.com:proxyport"
+```
+If you have internal Docker registries that you need to contact without proxying, you can specify them via the `NO_PROXY` environment variable:
+
+```
+[Service]
+Environment="HTTP_PROXY=http://proxy.company.com:proxyport" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+```
+Or, if you are behind the HTTPS proxy server:
+
+```
+[Service]
+Environment="HTTPS_PROXY=http://proxy.company.com:proxyport" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
+```
+Flush changes:
+
+```
+sudo systemctl daemon-reload
+```
+Restart Docker:
+
+```
+sudo systemctl restart docker
+```
+
+Which option you choose may depend on your host OS and Docker version. The important thing is to ensure that the containers reflect those environment variables getting set correctly.
+
+Verify that the configuration has been loaded:
+
+```
+$ systemctl show --property=Environment docker
+Environment=HTTP_PROXY=http://proxy.company.com:proxyport
+```
+Or, if you are behind the HTTPS proxy server:
+
+```
+$ systemctl show --property=Environment docker
+Environment=HTTPS_PROXY=https://proxy.company.com:proxyport
+```
 
 ## What's the difference between a scoped package and an unscoped package?
 
